@@ -1,0 +1,37 @@
+{
+  "case_no": "CFI-058-2024",
+  "parties": {
+    "claimant": "Atul Dhawan Ashok Amir Chand Dhawan",
+    "defendant": "Ramzi Wahib El Jaouhari"
+  },
+  "rule_source": {
+    "instrument": "Rules of the DIFC Courts (RDC) Part 38",
+    "version": "as in force March 2026",
+    "specific_provisions": ["RDC 38.7", "RDC 38.8", "RDC 38.23"]
+  },
+  "events": [
+    {"t": "2024-08-21", "type": "claim_filed", "claim_form": "Part 7"},
+    {"t": "2025-10-29", "type": "order_issued", "judge": "Roger Stewart KC"},
+    {"t": "2025-11-12", "type": "amended_particulars_filed", "by": "claimant"},
+    {"t": "2025-11-25", "type": "amended_defence_filed", "by": "defendant"},
+    {"t": "2025-12-10", "type": "extension_application_filed", "ref": "CFI-058-2024/3"},
+    {"t": "2026-01-15", "type": "extension_granted_with_costs"},
+    {"t": "2026-01-27", "type": "costs_submission_filed", "by": "claimant"},
+    {"t": "2026-02-04", "type": "costs_submission_filed", "by": "defendant"},
+    {
+      "t": "2026-03-31",
+      "type": "costs_assessment",
+      "claim": {
+        "hours_worked": 3.0,
+        "hourly_rate_aed": 2000.0,
+        "court_fee_aed": 1121.75
+      }
+    }
+  ],
+  "human_ruling": {
+    "operative_paragraph": "The Claimant's costs referred to in the Order are assessed in the sum of AED 7,127.75.",
+    "stated_total_aed": 7127.75,
+    "schedule_total_aed": 7121.75,
+    "discrepancy_note": "The Schedule of Reasons states 'AED 7121.5 of which AED 1,121.75 is the Court fee. The balance is a claim for 3 hours at AED 2,000 per hour' — i.e. 6,000 + 1,121.75 = 7,121.75. The operative order states 7,127.75. The 6 AED gap is unexplained on the face of the order; we treat 7,121.75 as the predicate-derived value and flag the operative figure as a clerical reconciliation point. (This is itself a useful artifact: the protocol surfaces arithmetic discrepancies the human eye misses.)"
+  }
+}

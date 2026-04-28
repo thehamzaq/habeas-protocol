@@ -1,0 +1,122 @@
+## Rule of the Court (DIFC RDC 38.40 + Practice Direction No. 4 of 2017)
+##
+## Source 1: Rules of the DIFC Courts, Part 38 (Costs), specifically RDC
+## 38.40 — costs payable within 14 days of the date of the order assessing
+## them, unless the Court orders otherwise.
+##
+## Source 2: DIFC Courts Practice Direction No. 4 of 2017 — Interest on
+## Judgments, prescribing interest at 9% per annum on unpaid judgment
+## sums from the date of the order until payment in full.
+##
+## This file expresses the rule applied in:
+##   ARB 008/2026 — Oberlin v Ovidiu
+##   Order with Reasons of H.E. Justice Shamlan Al Sawalehi, 26 March 2026.
+## Operative paragraphs 2 and 3:
+##   "2. The Defendant shall pay the Costs Award within 14 days of the
+##       date of this Order, pursuant to RDC 38.40.
+##    3. In the event that the Defendant fails to pay the Costs Award
+##       within 14 days of the date of this Order, interest shall accrue
+##       at the rate of 9% per annum from the date of this Order until
+##       payment in full, in accordance with Practice Direction No. 4
+##       of 2017."
+##
+## The rule has a deferred-conditional shape: nothing accrues so long as
+## payment is made within the 14-day window. If the deadline is missed
+## the trigger fires and interest is computed retroactively from the
+## date of the order — not from the deadline. The predicate below
+## captures that asymmetry directly.
+
+```catala
+declaration structure CostsAwardOrder:
+  data principal_aed content decimal
+  data order_date content date
+  data deadline_days content integer
+  data interest_rate_pa content decimal
+
+declaration structure PaymentStatus:
+  data as_of content date
+  data paid content boolean
+  data payment_date content date
+
+declaration structure AmountOwed:
+  data deadline content date
+  data in_breach content boolean
+  data days_accrued content integer
+  data interest_accrued_aed content decimal
+  data total_owed_aed content decimal
+
+declaration scope OutstandingObligation:
+  input order content CostsAwardOrder
+  input status content PaymentStatus
+  output owed content AmountOwed
+
+scope OutstandingObligation:
+  definition owed equals
+    let deadline equals order.order_date + (order.deadline_days day) in
+    let reference_date equals
+      if status.paid then status.payment_date else status.as_of in
+    let in_breach equals reference_date > deadline in
+    let days equals
+      if in_breach then (reference_date - order.order_date in days) else 0 in
+    let interest equals
+      order.principal_aed * order.interest_rate_pa * (days / 365) in
+    AmountOwed {
+      -- deadline: deadline;
+      -- in_breach: in_breach;
+      -- days_accrued: days;
+      -- interest_accrued_aed: interest;
+      -- total_owed_aed: order.principal_aed + interest
+    }
+```
+
+## Test — facts of ARB 008/2026
+
+```catala
+declaration scope TestOberlinPaidOnTime:
+  output obligation content OutstandingObligation
+
+scope TestOberlinPaidOnTime:
+  definition obligation equals
+    OutstandingObligation of {
+      -- order:
+        CostsAwardOrder {
+          -- principal_aed: 76785.81;
+          -- order_date: |2026-03-26|;
+          -- deadline_days: 14;
+          -- interest_rate_pa: 0.09
+        };
+      -- status:
+        PaymentStatus {
+          -- as_of: |2026-04-08|;
+          -- paid: true;
+          -- payment_date: |2026-04-08|
+        }
+    }
+
+  assertion obligation.owed.in_breach = false
+  assertion obligation.owed.total_owed_aed = 76785.81
+
+declaration scope TestOberlinUnpaid61Days:
+  output obligation content OutstandingObligation
+
+scope TestOberlinUnpaid61Days:
+  definition obligation equals
+    OutstandingObligation of {
+      -- order:
+        CostsAwardOrder {
+          -- principal_aed: 76785.81;
+          -- order_date: |2026-03-26|;
+          -- deadline_days: 14;
+          -- interest_rate_pa: 0.09
+        };
+      -- status:
+        PaymentStatus {
+          -- as_of: |2026-05-26|;
+          -- paid: false;
+          -- payment_date: |2026-05-26|
+        }
+    }
+
+  assertion obligation.owed.in_breach = true
+  assertion obligation.owed.days_accrued = 61
+```

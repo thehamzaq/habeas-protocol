@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeas Protocol — Empirical Coding of DIFC + ADGM Judgments (v0.2)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">Maxim Labs · Working Paper v0.2</div>
+  <h1>Habeas Protocol</h1>
+  <p class="subhead">A constitutional reframing of the “Legal Operating System for Digital Worlds” thesis, grounded in empirical analysis of three operating special-jurisdiction tribunals: the <strong>DIFC Courts</strong> in Dubai, the <strong>ADGM Courts</strong> in Abu Dhabi, and the <strong>Singapore International Commercial Court (SICC)</strong>. <span class="muted">Updated April 28, 2026.</span></p>
+  <p class="abstract">
+    121 judgments coded against six per-ruling primitives a digital tribunal must satisfy, plus two architectural system properties. 39 form a hand-coded gold set (32 DIFC + 7 ADGM); the remaining 82 entries (69 ADGM + 13 SICC) are AI-triaged and AI-graded against the same rubric, with per-entry provenance. All three tribunals score at near-ceiling: SICC averages 1.95 / 2.00, ADGM 1.91, DIFC 1.72. The saturation pattern survives the 10× ADGM sample expansion (1.93 at n=7 → 1.91 at n=76) and replicates across a third operating tribunal in a different legal family (English-law-via-statute vs Singapore common law). All three score 2/2 on both system properties. Four executable traces from the corpus demonstrate the protocol covers static rules, deferred conditionals, rule-bounded human judgment, and arithmetic composition over substantive findings. The tribunals already exist; what is missing is the computational layer.
+  </p>
+</header>
+
+<section class="section">
+  <h2>At a glance</h2>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num" id="totalJudgments">—</div><div class="stat-label">Judgments coded</div></div>
+    <div class="stat"><div class="stat-num" id="goldSet">—</div><div class="stat-label">Hand-coded gold set</div></div>
+    <div class="stat"><div class="stat-num" id="difcCount">—</div><div class="stat-label">DIFC</div></div>
+    <div class="stat"><div class="stat-num" id="adgmCount">—</div><div class="stat-label">ADGM</div></div>
+    <div class="stat"><div class="stat-num" id="siccCount">—</div><div class="stat-label">SICC</div></div>
+    <div class="stat"><div class="stat-num" id="siccMean">—</div><div class="stat-label">SICC mean / 2.00</div></div>
+    <div class="stat"><div class="stat-num" id="adgmMean">—</div><div class="stat-label">ADGM mean / 2.00</div></div>
+    <div class="stat"><div class="stat-num" id="difcMean">—</div><div class="stat-label">DIFC mean / 2.00</div></div>
+    <div class="stat"><div class="stat-num" id="tracesWorking">4</div><div class="stat-label">Working traces</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>The six per-ruling primitives</h2>
+  <p>Properties of any individual ruling, scored 0 (absent) / 1 (partial) / 2 (fully implemented). v0.2 of the framework. Definitions live in <code>data/primitives.json</code>.</p>
+  <table class="data-table" id="primitivesTable">
+    <thead><tr><th>ID</th><th>Name</th><th>What it tests</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>Per-tribunal primitive heatmap</h2>
+  <p>Each row is one judgment, each column is one primitive. Dark cells score 2, mid score 1, light score 0. The three panels show that ADGM and SICC saturate the right-hand columns (PR3 Rule bind, PR4 Procedure, PR5 Ruling, PR6 Enforcement bridge) while DIFC has more spread, especially on PR6.</p>
+  <div id="heatmapDIFC" class="chart"></div>
+  <div id="heatmapADGM" class="chart"></div>
+  <div id="heatmapSICC" class="chart"></div>
+  <div class="legend-row">
+    <span><span class="legend-swatch" style="background:var(--heat-2)"></span>2 — fully implemented</span>
+    <span><span class="legend-swatch" style="background:var(--heat-1)"></span>1 — partial</span>
+    <span><span class="legend-swatch" style="background:var(--heat-0)"></span>0 — absent</span>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Tribunal comparison: mean primitive scores</h2>
+  <p>Mean score per primitive, with DIFC and ADGM side-by-side. ADGM scores at or near ceiling on every per-ruling primitive (1.96 average across six). DIFC averages 1.73, weakest on the Enforcement Bridge primitive — where ADGM wins because ADGM judgments explicitly bind to UAE federal law via Cabinet Resolution.</p>
+  <div id="meanComparison" class="chart"></div>
+  <p class="finding">
+    <strong>Finding:</strong> Two operating tribunals, both implementing the full protocol at near-ceiling, available to plug in today. The Maxim thesis does not require building a tribunal from scratch; it requires layering computation on top of the ones that already exist.
+  </p>
+</section>
+
+<section class="section">
+  <h2>System properties</h2>
+  <p>Architectural facts about the tribunal as a whole, not properties of individual rulings. Scored once per institution. The score-0 row is what you avoid by anchoring at DIFC or ADGM rather than at an ad-hoc Web3 arbitration project.</p>
+  <table class="data-table" id="systemPropsTable">
+    <thead><tr><th>Tribunal</th><th class="num">SP1 Separation of powers</th><th class="num">SP2 Appeal path</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<section class="section">
+  <h2>Rules cited across the corpus</h2>
+  <p>Frequency of cited instruments and clauses across the 39 judgments. RDC Part 38 (costs) is the single most-cited block, reflecting the corpus's heavy weighting toward costs and enforcement orders.</p>
+  <div id="rulesChart" class="chart"></div>
+</section>
+
+<section class="section">
+  <h2>Three working traces</h2>
+  <p>Each trace lifts a rule from the corpus into Catala source plus a Python predicate evaluator and runs it against an event log of the case facts. The three traces span the full spectrum of what the protocol can encode — and, in the case of trace #3, what it cannot.</p>
+  <div class="trace-grid" id="tracesGrid"></div>
+  <p class="finding">
+    <strong>Methodology note:</strong> the third trace is the methodologically necessary one — it shows what the rules <em>cannot</em> fully decide. The protocol bounds, but does not eliminate, the human-judgment residue.
+  </p>
+</section>
+
+<section class="section">
+  <h2>All judgments</h2>
+  <div class="filter-row">
+    <input type="text" id="searchBox" placeholder="Search case numbers, parties, judges, instruments…">
+    <select id="tribunalFilter">
+      <option value="">All tribunals</option>
+      <option value="DIFC Courts">DIFC Courts</option>
+      <option value="ADGM Courts">ADGM Courts</option>
+      <option value="Singapore International Commercial Court">SICC</option>
+    </select>
+    <select id="claimFilter">
+      <option value="">All claim types</option>
+    </select>
+  </div>
+  <table class="data-table" id="judgmentsTable">
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Tribunal</th>
+        <th>Date</th>
+        <th>Judge</th>
+        <th class="num">Mean score</th>
+        <th>PR1</th><th>PR2</th><th>PR3</th><th>PR4</th><th>PR5</th><th>PR6</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<footer class="foot">
+  <p><strong>Citation.</strong> Maxim Labs, “Habeas Protocol: An Empirical Analysis of DIFC + ADGM Courts as Working Prototypes for Constitutional Digital Tribunals,” v0.2 (April 2026).</p>
+  <p><strong>Primary sources.</strong> <a href="https://www.difccourts.ae/rules-decisions/judgments-orders">DIFC Courts judgments</a> · <a href="https://www.adgm.com/adgm-courts/judgments">ADGM Courts judgments</a>.</p>
+  <p>License: code MIT, dataset CC-BY-4.0. See <code>data/sources.md</code> for corpus provenance and <code>data/primitives.json</code> for the full scoring rubric.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+## Rule of the Court (Substantive contract dispute — composition of findings)
+##
+## Source: UAE Civil Transactions Law Article 390 (liquidated damages cap and
+## judicial variation) + ADGM Court Procedure Rules 2016 Rule 42 (admissions)
+## + ADGM Civil Evidence, Judgments, Enforcement and Judicial Appointments
+## Regulations 2015 §§ 181, 182 (set-off of claims and counterclaims).
+##
+## This file expresses the rule applied in:
+##   ADGMCFI-2024-320 — Projeco Contracting (L.L.C) v Ideacrate Edutainment
+##   Company L.L.C — O.P.C
+##   Order with Reasons of H.E. Justice Paul Heath KC, 30 October 2025.
+##
+## Trace #4 is the substantive-contract case: the rule is doctrinal at the
+## input layer (the judge must determine whether delay was caused, whether
+## handover constituted substantial completion, whether each counterclaim
+## item is proven on the balance of probabilities, etc.) but the rule is
+## arithmetic at the composition layer. Once the human-judgment inputs
+## are fixed, the answer composes deterministically:
+##
+##   1. Liquidated damages = min(daily_rate * days_of_critical_delay,
+##                               cap_pct * adjusted_contract_price)
+##   2. Counterclaim sum   = sum of proven counterclaim items
+##   3. Net balance        = withheld_amount - counterclaim_sum
+##                            (payable to claimant if positive)
+##   4. Pre-judgment interest = principal * rate * days_to_judgment / 365
+##   5. Total judgment        = principal + interest
+##
+## This is structurally distinct from Traces #1-#3:
+##   #1 (formula)            — pure arithmetic, no human inputs
+##   #2 (deferred conditional) — temporal predicate over a fixed rule
+##   #3 (bounded discretion) — rule strips a filter; residue is the answer
+##   #4 (composition over findings) — rule is arithmetic over multiple
+##                                    substantive determinations; the
+##                                    protocol composes them
+##
+## The constructive claim of Trace #4 is that even on a fully substantive
+## contract dispute — the kind of case the original Maxim brief proposed
+## to handle by ad-hoc arbitration — the rule decomposes cleanly into
+## (i) substantive determinations made by a judge and (ii) arithmetic
+## composition the protocol can verify.
+
+```catala
+declaration structure CounterclaimItem:
+  data label content text
+  data amount_aed content decimal
+  data found_proven content boolean
+
+declaration structure ContractFacts:
+  data adjusted_contract_price_aed content decimal
+  data ld_cap_pct content decimal
+  data daily_ld_rate_aed content decimal
+  data days_of_critical_delay_found content integer
+  data counterclaim_items content list of CounterclaimItem
+  data amount_withheld_by_defendant_aed content decimal
+  data handover_date content date
+  data judgment_date content date
+  data interest_rate_pa content decimal
+
+declaration structure Disposition:
+  data ld_uncapped_aed content decimal
+  data ld_cap_aed content decimal
+  data ld_awarded_aed content decimal
+  data ld_was_capped content boolean
+  data counterclaim_sum_aed content decimal
+  data net_to_claimant_aed content decimal
+  data days_to_judgment content integer
+  data interest_aed content decimal
+  data total_judgment_aed content decimal
+
+declaration scope CompositeJudgment:
+  input facts content ContractFacts
+  output disposition content Disposition
+
+scope CompositeJudgment:
+  definition disposition equals
+    let ld_uncapped equals
+      facts.daily_ld_rate_aed * facts.days_of_critical_delay_found in
+    let ld_cap equals
+      facts.adjusted_contract_price_aed * facts.ld_cap_pct in
+    let ld_awarded equals
+      if ld_uncapped > ld_cap then ld_cap else ld_uncapped in
+    let ld_was_capped equals ld_uncapped > ld_cap in
+    let counterclaim_sum equals
+      sum decimal of [
+        item.amount_aed for item among facts.counterclaim_items
+        if item.found_proven
+      ] + (if ld_awarded > 0 then ld_awarded else 0) in
+    let net equals
+      facts.amount_withheld_by_defendant_aed - counterclaim_sum in
+    let days equals
+      (facts.judgment_date - facts.handover_date) in days in
+    let interest equals
+      net * facts.interest_rate_pa * (days / 365) in
+    Disposition {
+      -- ld_uncapped_aed: ld_uncapped;
+      -- ld_cap_aed: ld_cap;
+      -- ld_awarded_aed: ld_awarded;
+      -- ld_was_capped: ld_was_capped;
+      -- counterclaim_sum_aed: counterclaim_sum;
+      -- net_to_claimant_aed: net;
+      -- days_to_judgment: days;
+      -- interest_aed: interest;
+      -- total_judgment_aed: net + interest
+    }
+```
+
+## Test — facts of ADGMCFI-2024-320
+
+```catala
+declaration scope TestProjeco:
+  output composite content CompositeJudgment
+
+scope TestProjeco:
+  definition composite equals
+    CompositeJudgment of {
+      -- facts:
+        ContractFacts {
+          -- adjusted_contract_price_aed: 6085211.90;
+          -- ld_cap_pct: 0.10;
+          -- daily_ld_rate_aed: 100000.0;  ## hits cap regardless of rate
+          -- days_of_critical_delay_found: 97;  ## human finding
+          -- counterclaim_items: [
+            CounterclaimItem {
+              -- label: "remediation_and_repair";
+              -- amount_aed: 55336.0;
+              -- found_proven: false  ## human finding: not proven
+            };
+            CounterclaimItem {
+              -- label: "smoke_management_system_contribution";
+              -- amount_aed: 147265.0;
+              -- found_proven: true   ## human finding: within scope
+            }
+          ];
+          -- amount_withheld_by_defendant_aed: 766287.15;
+          -- handover_date: |2024-02-29|;
+          -- judgment_date: |2025-10-30|;
+          -- interest_rate_pa: 0.05
+        }
+    }
+
+  ## Court awarded LDs at the cap of AED 608,521.19
+  assertion composite.disposition.ld_was_capped = true
+  assertion composite.disposition.ld_awarded_aed = 608521.19
+  ## Court found counterclaim sum AED 755,786.19
+  assertion composite.disposition.counterclaim_sum_aed = 755786.19
+  ## Court found net principal AED 10,500.96
+  assertion composite.disposition.net_to_claimant_aed = 10500.96
+```

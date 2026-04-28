@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+
+# Backups (kept locally, not pushed)
+*.bak
+*.bak.*
+
+# Raw scraped corpus — re-derivable via scripts/fetch_*.py
+# (Excluded to keep repo lean; full PDFs + HTML are 110+ MB)
+data/raw/
+
+# Local Catala/opam toolchain artefacts (if ever installed)
+_build/
+*.cmo
+*.cmi
+*.cmx
+*.o
+
+# Dashboard server lockfiles
+dashboard/.server.pid

@@ -1,0 +1,544 @@
+{
+  "generated_by": "scripts/triage_sicc.py",
+  "version": "v0.2",
+  "n_entries": 13,
+  "entries": [
+    {
+      "case_no": "OA 20/2024",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_20",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-08-06",
+      "parties": {
+        "claimant": "DOI",
+        "defendant": "DOJ and others and another matter"
+      },
+      "judge": "Roger Giles IJ",
+      "neutral_citation": "[2025] SGHC(I) 20",
+      "claim_type": "costs_assessment",
+      "outcome": "other",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "O 22 r 3",
+        "Rules 2021",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 10/2024",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_21",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-08-04",
+      "parties": {
+        "claimant": "DKB",
+        "defendant": "DKC"
+      },
+      "judge": "Thomas Bathurst IJ",
+      "neutral_citation": "[2025] SGHC(I) 21",
+      "claim_type": "substantive_breach",
+      "outcome": "claim_granted",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Order 2",
+        "O\u00a016 r\u00a08",
+        "O\u00a022 r\u00a02",
+        "O\u00a022 r\u00a03",
+        "Rules 2021",
+        "clause\u00a06",
+        "s\u00a029",
+        "s\u00a06",
+        "International Arbitration Act",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 3/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_22",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-08-12",
+      "parties": {
+        "claimant": "Novo Nordisk A/S",
+        "defendant": "KBP Biosciences Pte Ltd and another"
+      },
+      "judge": "Philip Jeyaretnam\u00a0J",
+      "neutral_citation": "[2025] SGHC(I) 22",
+      "claim_type": "arbitration_recognition",
+      "outcome": "claim_granted",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Rules 2021",
+        "order\n\n103",
+        "order\n\n108",
+        "order\n\n11",
+        "s 12A",
+        "s 2022",
+        "s 4",
+        "section 12A",
+        "International Arbitration Act",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Injunctions \u2014 Mareva injunction \u2014 Setting aside | Arbitration \u2014 Injunction \u2014 Court\u2019s powers under section 12A of the International Arbitration Act 1994 (2020 Rev Ed). Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 8/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_23",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-09-05",
+      "parties": {
+        "claimant": "Ebixcash Ltd and others",
+        "defendant": "Ashok Kumar Goel and another"
+      },
+      "judge": "Chua Lee Ming\u00a0J, Simon Thorley IJ and Thomas Bathurst IJ",
+      "neutral_citation": "[2025] SGHC(I) 23",
+      "claim_type": "arbitration_recognition",
+      "outcome": "other",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Order 16",
+        "Rule 1",
+        "Rule 2",
+        "Rule 21",
+        "Rules 2017",
+        "Rules 2021",
+        "rule 13",
+        "rule 18",
+        "International Arbitration Act",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 1,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice. Heuristic flags: PR5(no operative verb / annex / amount in tail). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 4/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_24",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-09-18",
+      "parties": {
+        "claimant": "DNO",
+        "defendant": "DNP"
+      },
+      "judge": "Anthony James Besanko IJ",
+      "neutral_citation": "[2025] SGHC(I) 24",
+      "claim_type": "arbitration_recognition",
+      "outcome": "claim_dismissed",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Order 4",
+        "Rules 2016",
+        "Rules 2021",
+        "Section 138",
+        "Section 366",
+        "s 24",
+        "s 366",
+        "s 59",
+        "International Arbitration Act",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside | Partnership\u2019s | DNP\u2019s damages. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 9/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_25",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-10-21",
+      "parties": {
+        "claimant": "GNC Holdings LLC",
+        "defendant": "ONI Global Pte Ltd and another"
+      },
+      "judge": "Chua Lee Ming\u00a0J, Simon Thorley IJ, James Allsop IJ",
+      "neutral_citation": "[2025] SGHC(I) 25",
+      "claim_type": "arbitration_recognition",
+      "outcome": "claim_dismissed",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Article 35",
+        "Order 3",
+        "Order 48",
+        "Rule 6",
+        "S 840",
+        "Section 19",
+        "s 31",
+        "s 54",
+        "International Arbitration Act",
+        "Rules of Court 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Public policy. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 10/2024",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_26",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-11-12",
+      "parties": {
+        "claimant": "DKB",
+        "defendant": "DKC"
+      },
+      "judge": "Thomas Bathurst IJ",
+      "neutral_citation": "[2025] SGHC(I) 26",
+      "claim_type": "substantive_breach",
+      "outcome": "other",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Order 16",
+        "O\u00a016 r\u00a011",
+        "Rules 2021",
+        "s 19",
+        "s 29",
+        "s\u00a019",
+        "s\u00a029",
+        "s\u00a031",
+        "International Arbitration Act"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 5/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_27",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-11-25",
+      "parties": {
+        "claimant": "Hulley Enterprises Ltd and others",
+        "defendant": "The Russian Federation"
+      },
+      "judge": "Andre Maniam J, James Allsop IJ and Anthony Meagher IJ",
+      "neutral_citation": "[2025] SGHC(I) 27",
+      "claim_type": "arbitration_enforcement",
+      "outcome": "claim_dismissed",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Order 1",
+        "Order 18",
+        "Order 21",
+        "Rules 2021",
+        "rule 11",
+        "rule 2",
+        "rule 21",
+        "rule 3",
+        "International Arbitration Act",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Enforcement \u2014 Foreign award | Civil Procedure \u2014 Judgments and orders. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 10/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_29",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2025-12-01",
+      "parties": {
+        "claimant": "DPT and another",
+        "defendant": "DPV and others"
+      },
+      "judge": "S Mohan J, Roger Giles IJ, Anselmo Reyes IJ",
+      "neutral_citation": "[2025] SGHC(I) 29",
+      "claim_type": "arbitration_recognition",
+      "outcome": "claim_dismissed",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Art 34",
+        "Article 34",
+        "O 23 r 7",
+        "Rules 2021",
+        "s 216",
+        "s 24",
+        "s 3",
+        "s\u00a0216",
+        "International Arbitration Act"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Breach of natural justice | Country A. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 2/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_1",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2026-01-09",
+      "parties": {
+        "claimant": "DNZ",
+        "defendant": "DOA"
+      },
+      "judge": "Andre Maniam J, Dominique Hascher IJ, Vivian Ramsey IJ",
+      "neutral_citation": "[2026] SGHC(I) 1",
+      "claim_type": "arbitration_recognition",
+      "outcome": "claim_dismissed",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "Art 19",
+        "Art 26",
+        "Article 19",
+        "Article 267",
+        "s 19",
+        "s 24",
+        "s 3",
+        "s 72",
+        "International Arbitration Act"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 4/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_2",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2026-02-12",
+      "parties": {
+        "claimant": "DNO",
+        "defendant": "DNP"
+      },
+      "judge": "Anthony James Besanko IJ",
+      "neutral_citation": "[2026] SGHC(I) 2",
+      "claim_type": "costs_assessment",
+      "outcome": "claim_granted",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "O 110 r\u00a046",
+        "O 21 r 2",
+        "O 21 r 22",
+        "O 22 r\u00a022",
+        "Order 21",
+        "O\u00a021 r\u00a022",
+        "O\u00a021\u00a0r\u00a022",
+        "Rule 2",
+        "International Arbitration Act",
+        "SICC Rules 2021"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 15/2025",
+      "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_3",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2026-03-26",
+      "parties": {
+        "claimant": "Hyatt Terminal and Industrial Corp",
+        "defendant": "Filipinas Third Millenium Realty Corp"
+      },
+      "judge": "Philip Jeyaretnam\u00a0J, Sir Henry Bernard Eder IJ, Douglas Samuel Jones AO IJ",
+      "neutral_citation": "[2026] SGHC(I) 3",
+      "claim_type": "arbitration_recognition",
+      "outcome": "claim_granted",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [
+        "ARTICLE 14",
+        "ARTICLE 20",
+        "ARTICLE 3",
+        "ARTICLE 7",
+        "Art\u00a034",
+        "article 21",
+        "article 7",
+        "s 3",
+        "International Arbitration Act"
+      ],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction \u2014 Whether proper party to arbitration agreement. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    },
+    {
+      "case_no": "OA 8/2026",
+      "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_4",
+      "tribunal": "Singapore International Commercial Court",
+      "division": "Singapore International Commercial Court",
+      "date_issued": "2026-04-24",
+      "parties": {
+        "claimant": "DVA and another",
+        "defendant": "DVC"
+      },
+      "judge": "Aidan Xu J, Anthony Meagher IJ and David Goddard IJ",
+      "neutral_citation": "[2026] SGHC(I) 4",
+      "claim_type": "interim_relief",
+      "outcome": "claim_granted",
+      "operative_amount_aed": null,
+      "operative_amount_usd": null,
+      "rules_cited": [],
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "coding": {
+        "coder": "MaximLabs (heuristic-graded)",
+        "coded_on": "2026-04-28",
+        "gold_set": false,
+        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Injunctions \u2014 Proprietary injunction | Blockchain B | Platform C. Heuristic flags: PR3(no specific Rule/Order/Section/Article numbers found), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+      }
+    }
+  ]
+}

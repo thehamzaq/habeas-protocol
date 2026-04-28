@@ -1,0 +1,141 @@
+{
+  "version": "0.2",
+  "title": "Habeas Protocol — Six Per-Ruling Primitives + Two System Properties",
+  "description": "v0.2 of the protocol formulation. Cleaner than v0.1 (which mixed constitutional values with technical features and an upstream-prevention category). The six primitives below are properties of any individual ruling; the two system properties are architectural facts about the tribunal as a whole. v0.1 scores are retained in judgments.json for provenance.",
+  "scoring": {
+    "0": "absent — not present in the ruling/architecture",
+    "1": "partial — present in informal or implicit form, not codified",
+    "2": "fully implemented — explicit, named, machine-readable in principle"
+  },
+  "per_ruling_primitives": [
+    {
+      "id": "PR1",
+      "name": "Identity",
+      "definition": "The ruling identifies the parties unambiguously: legal name, capacity, jurisdiction of incorporation or residence, and (where applicable) representative counsel of record. A digital implementation would attach DIDs or verifiable credentials at the same point.",
+      "examples_score_2": [
+        "full legal names, jurisdictions, counsel of record listed in the order header",
+        "anonymisation orders that nonetheless preserve party identifiers (A22 v C22)"
+      ],
+      "examples_score_1": [
+        "parties named without capacity or jurisdiction"
+      ],
+      "examples_score_0": [
+        "ambiguous or unidentified parties"
+      ]
+    },
+    {
+      "id": "PR2",
+      "name": "Evidence log",
+      "definition": "The ruling refers to a dated, attributable, append-only record of submissions, witness statements, exhibits, and prior orders. Each item should be findable by date and party. The protocol-relevant question is: could a third party reconstruct the case file from the ruling alone?",
+      "examples_score_2": [
+        "every cited submission has a date and a filer",
+        "explicit references to prior orders by date and judge"
+      ],
+      "examples_score_1": [
+        "submissions referenced but not dated"
+      ],
+      "examples_score_0": [
+        "evidence record opaque or absent"
+      ]
+    },
+    {
+      "id": "PR3",
+      "name": "Rule bind",
+      "definition": "The ruling cites the specific clause(s) of the specific instrument(s) it applies, and the version (typically by date or revision). 'RDC 38.7' is bind. 'pursuant to the rules' is partial. Discretion alone is absent.",
+      "examples_score_2": [
+        "specific clause cited (RDC 38.7, ADGM Court Procedure Rules 2016 Rule 68(1)(a))",
+        "specific Practice Direction or Regulation Section cited"
+      ],
+      "examples_score_1": [
+        "general reference to 'the rules' or 'the regulations'"
+      ],
+      "examples_score_0": [
+        "discretion-only ruling with no instrument cited"
+      ]
+    },
+    {
+      "id": "PR4",
+      "name": "Procedure",
+      "definition": "The ruling documents the procedural triplet: notice was given, both sides had opportunity to be heard, the decision is recorded with reasons. Each leg of the triplet must be visible in the order.",
+      "examples_score_2": [
+        "claimant submission dated X; defendant reply dated Y; decision with reasons issued",
+        "hearing held, parties represented, judgment with reasons"
+      ],
+      "examples_score_1": [
+        "ex parte order with structural protections (e.g., return date, liberty to apply)",
+        "one-sided record but documented opportunity"
+      ],
+      "examples_score_0": [
+        "no record of notice or opportunity to respond"
+      ]
+    },
+    {
+      "id": "PR5",
+      "name": "Ruling",
+      "definition": "The operative outcome is unambiguous, machine-readable in principle, and includes any conditions, deadlines, amounts, or interest rates. A judgment that says 'orders as per Annex' is acceptable; a judgment that says 'reasonable directions to follow' is not.",
+      "examples_score_2": [
+        "specific monetary amount, deadline, interest rate, payee, payer",
+        "schedule of orders enumerated and numbered"
+      ],
+      "examples_score_1": [
+        "directional ruling with details to be settled"
+      ],
+      "examples_score_0": [
+        "ruling deferred or non-operative"
+      ]
+    },
+    {
+      "id": "PR6",
+      "name": "Enforcement bridge",
+      "definition": "The ruling is enforceable beyond the tribunal: by NY Convention, by territorial sovereign, by recognised reciprocal-enforcement regime, or by an explicit cross-jurisdictional bridge. The protocol-relevant question is: who can compel performance, and through what authority?",
+      "examples_score_2": [
+        "arbitration recognition under NY Convention",
+        "explicit recognition of foreign court order under bilateral or multilateral treaty",
+        "ADGM ruling enforceable across UAE via Cabinet Resolution + Federal Law"
+      ],
+      "examples_score_1": [
+        "implicit enforceability via standard procedure but no explicit bridge"
+      ],
+      "examples_score_0": [
+        "ruling has no clear path to compulsion"
+      ]
+    }
+  ],
+  "system_properties": [
+    {
+      "id": "SP1",
+      "name": "Separation of powers",
+      "definition": "The actor that *makes* the rule is structurally distinct from the actor that *applies* it. The judge applying RDC is not the body that wrote RDC. The judge applying ADGM Court Procedure Rules 2016 is not the body that promulgated those rules. Scored once per tribunal, not per ruling — but observable in the ruling via instrument citation.",
+      "tribunal_score": {
+        "DIFC Courts": 2,
+        "ADGM Courts": 2,
+        "Singapore International Commercial Court": 2,
+        "VARA": 1,
+        "Próspera Arbitration Center": 2,
+        "ad-hoc Web3 arbitration (Kleros)": 0
+      }
+    },
+    {
+      "id": "SP2",
+      "name": "Appeal path",
+      "definition": "Rulings are reviewable by a body other than the original decision-maker, with a defined procedure. PTA gates, Court of Appeal, supervisory court of the territorial sovereign, or supranational review all count.",
+      "tribunal_score": {
+        "DIFC Courts": 2,
+        "ADGM Courts": 2,
+        "Singapore International Commercial Court": 2,
+        "VARA": 1,
+        "Próspera Arbitration Center": 1,
+        "ad-hoc Web3 arbitration (Kleros)": 0
+      }
+    }
+  ],
+  "v01_to_v02_mapping": {
+    "P1 (Versioned signed rules)": "PR3 (Rule bind) — same content, renamed for clarity",
+    "P2 (Executable predicates)": "Removed as a primitive; reframed as an *implementation property* of how rules are written. The interesting question becomes 'is PR3 (Rule bind) compilable?' rather than 'does the ruling implement executable predicates?'",
+    "P3 (Due-process trace)": "PR4 (Procedure) — same content, narrower scope",
+    "P4 (Separation of powers)": "Promoted to SP1 — system property, not per-ruling",
+    "P5 (Precedent chain)": "Subsumed into PR3 (Rule bind via case-law) and PR4 (Procedure via reference to prior orders). The v0.1 conflation between 'cites past case' and 'binds future case' was a bug.",
+    "P6 (External tribunal / appeal route)": "Split: PR6 (Enforcement bridge) is per-ruling; SP2 (Appeal path) is system property.",
+    "P7 (Preventive minimums)": "Removed — was a category error. Preventive minimums are properties of platform operators / regulators, not tribunals. Tested in roblox-forensics, not here. Added new primitive PR1 (Identity) and PR2 (Evidence log) which are structurally needed and v0.1 was missing."
+  }
+}

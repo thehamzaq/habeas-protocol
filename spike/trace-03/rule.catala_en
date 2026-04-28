@@ -1,0 +1,156 @@
+## Rule of the Court (Indemnity-basis costs review — DIFC common-law line)
+##
+## Source: indemnity-basis costs assessment as applied by the DIFC Courts,
+## following the English common-law line. The governing distinction is
+## stated by Cooke J. at §2 of the Schedule of Reasons in:
+##
+##   ENF 271/2025 — Timothy Hugh Christian Taylor v Arlette Joelle Marie
+##   Madeleine Yao Affi
+##   Order with Reasons of H.E. Justice Sir Jeremy Cooke, 1 April 2026.
+##
+##   "Where costs are ordered on the indemnity basis, there is no room
+##    for arguments of proportionality – only of reasonableness of the
+##    costs incurred."
+##
+## In contrast to standard-basis review (Trace #1) and to deadline /
+## interest accrual (Trace #2), indemnity-basis review is the canonical
+## case for *bounded discretion*: the rule strips one filter (proportion-
+## ality) and leaves a single one (reasonableness). The reasonableness
+## judgment is not a formula. The protocol's job is therefore *not* to
+## compute a single award figure. It is to:
+##
+##   (a) dispose of structurally-defective objections automatically,
+##   (b) hold rule-compliant findings deterministically, and
+##   (c) bound the residual region where human judgment is required.
+##
+## Concretely, on the facts of ENF 271/2025:
+##
+##   - Defendant's objection 1: "claimant did the work himself, so
+##       Hadef & Partners' bill must include time he did not pay them
+##       for" — non-specific, no element of the schedule named.
+##       Cooke J., §3-4: rejected as another allegation that should not
+##       have been made; the protocol disposes of this category by
+##       structural test (no named line item, no factual finding sought).
+##
+##   - Defendant's objection 2: "two lawyers were charged for hearing
+##       attendance when only one attended" — specific, named, fact-
+##       checkable. Cooke J., §3: rejected on evidence (both attended
+##       online). The protocol holds this finding deterministically.
+##
+##   - Court's own residual concern, §5: "some excess in the overall
+##       time spent by the senior associate" — a general qualitative
+##       observation arising from the Court's examination of the
+##       Schedule of Costs, not a named line item. This is the
+##       irreducible discretion residue. The protocol surfaces the
+##       category but cannot quantify the deduction.
+##
+## The award reduces the claim AED 128,914.80 → AED 120,000, a delta of
+## AED 8,914.80 (≈6.92% of claim). The protocol mechanically disposes
+## of objections 1 and 2; the AED 8,914.80 is the structured-discretion
+## residue.
+
+```catala
+declaration enumeration ObjectionResult:
+  -- mechanically_disposed_no_specific_complaint
+  -- factually_rejected_on_evidence
+  -- factually_accepted_with_named_amount content decimal
+  -- requires_human_judgment
+
+declaration structure Objection:
+  data label content text
+  data names_specific_line_item content boolean
+  data factual_finding content text
+  data named_amount_aed content decimal
+
+declaration structure Schedule:
+  data claimed_aed content decimal
+  data objections content list of Objection
+
+declaration structure ReviewOutcome:
+  data mechanically_disposed_aed content decimal
+  data deterministic_reductions_aed content decimal
+  data residual_discretion_lower_aed content decimal
+  data residual_discretion_upper_aed content decimal
+  data requires_human_judgment content boolean
+
+declaration scope IndemnityBasisReview:
+  input schedule content Schedule
+  output review content ReviewOutcome
+
+scope IndemnityBasisReview:
+  ## Indemnity basis: only reasonableness, no proportionality.
+  ## Rule encoded:
+  ##   1. An objection that does not name a specific element of the
+  ##      schedule is mechanically disposed (Cooke J., §4).
+  ##   2. An objection that names a line item AND has a factual finding
+  ##      "rejected_on_evidence" contributes 0 to the reduction.
+  ##   3. An objection that names a line item AND has a factual finding
+  ##      "accepted_with_named_amount" contributes its named amount.
+  ##   4. Any other category is bounded discretion: the protocol cannot
+  ##      derive the reduction.
+  definition review equals
+    let det_reductions equals
+      sum decimal of [
+        o.named_amount_aed for o among schedule.objections
+        if o.names_specific_line_item
+          and o.factual_finding = "accepted_with_named_amount"
+      ] in
+    let any_residual equals
+      exists o among schedule.objections such that
+        not o.names_specific_line_item
+          or o.factual_finding = "requires_human_judgment" in
+    let lower equals
+      schedule.claimed_aed - det_reductions in
+    let upper equals
+      schedule.claimed_aed - det_reductions in
+    ReviewOutcome {
+      -- mechanically_disposed_aed: 0.0;
+      -- deterministic_reductions_aed: det_reductions;
+      -- residual_discretion_lower_aed: 0.0;
+      -- residual_discretion_upper_aed: lower;
+      -- requires_human_judgment: any_residual
+    }
+```
+
+## Test — facts of ENF 271/2025
+
+```catala
+declaration scope TestTaylor:
+  output review content IndemnityBasisReview
+
+scope TestTaylor:
+  definition review equals
+    IndemnityBasisReview of {
+      -- schedule:
+        Schedule {
+          -- claimed_aed: 128914.80;
+          -- objections: [
+            Objection {
+              -- label: "claimant_did_work_himself";
+              -- names_specific_line_item: false;
+              -- factual_finding: "rejected_unspecific";
+              -- named_amount_aed: 0.0
+            };
+            Objection {
+              -- label: "double_counsel_charged_for_hearing";
+              -- names_specific_line_item: true;
+              -- factual_finding: "rejected_on_evidence";
+              -- named_amount_aed: 0.0
+            };
+            Objection {
+              -- label: "excess_senior_associate_time";
+              -- names_specific_line_item: false;
+              -- factual_finding: "requires_human_judgment";
+              -- named_amount_aed: 0.0
+            }
+          ]
+        }
+    }
+
+  ## Mechanically: all objections either disposed or held to zero.
+  ## Residual: the "excess senior associate time" category — predicate
+  ## flags it; cannot resolve it. Human reviewer makes the call,
+  ## producing the AED 8,914.80 deduction (claim 128,914.80 → 120,000).
+  assertion review.review.deterministic_reductions_aed = 0.0
+  assertion review.review.requires_human_judgment = true
+```

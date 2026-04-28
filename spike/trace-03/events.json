@@ -1,0 +1,106 @@
+{
+  "case_no": "ENF-271-2025",
+  "parties": {
+    "claimant": "Timothy Hugh Christian Taylor",
+    "defendant": "Arlette Joelle Marie Madeleine Yao Affi"
+  },
+  "rule_source": {
+    "instrument": "Indemnity-basis costs review (DIFC common-law line)",
+    "version": "as applied April 2026",
+    "governing_principle": "Cooke J. §2: 'Where costs are ordered on the indemnity basis, there is no room for arguments of proportionality – only of reasonableness of the costs incurred.'"
+  },
+  "events": [
+    {"t": "2026-03-11", "type": "indemnity_basis_costs_order", "judge": "Sir Jeremy Cooke"},
+    {"t": "2026-03-18", "type": "defendant_costs_submissions_filed"},
+    {"t": "2026-03-25", "type": "claimant_responsive_submissions_filed"},
+    {
+      "t": "2026-04-01",
+      "type": "indemnity_assessment",
+      "schedule": {
+        "claimed_aed": 128914.80,
+        "objections": [
+          {
+            "label": "claimant_did_work_himself",
+            "summary": "Defendant: costs claimed in respect of Hadef & Partners' bill must include work the Claimant did personally, and so are not reasonable.",
+            "names_specific_line_item": false,
+            "factual_finding": "rejected_unspecific",
+            "named_amount_aed": 0
+          },
+          {
+            "label": "double_counsel_charged_for_hearing",
+            "summary": "Defendant: costs of two lawyers were claimed for the hearing when only one attended.",
+            "names_specific_line_item": true,
+            "factual_finding": "rejected_on_evidence",
+            "named_amount_aed": 0,
+            "evidence_note": "Both lawyers attended the hearing online (Cooke J. §3)."
+          },
+          {
+            "label": "excess_senior_associate_time",
+            "summary": "Court's own residual observation on examining the Schedule of Costs: 'some excess in the overall time spent by the senior associate'.",
+            "names_specific_line_item": false,
+            "factual_finding": "requires_human_judgment",
+            "named_amount_aed": 0
+          }
+        ]
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "as_decided_in_ENF_271_2025",
+      "schedule_ref": "indemnity_assessment",
+      "expected": {
+        "deterministic_reductions_aed": "0.00",
+        "objections_mechanically_disposed": ["claimant_did_work_himself"],
+        "objections_held_to_zero": ["double_counsel_charged_for_hearing"],
+        "objections_requiring_human_judgment": ["excess_senior_associate_time"],
+        "requires_human_judgment": true
+      }
+    },
+    {
+      "label": "counterfactual_all_objections_specific_and_rejected",
+      "schedule_override": {
+        "claimed_aed": 128914.80,
+        "objections": [
+          {"label": "specific_a", "names_specific_line_item": true, "factual_finding": "rejected_on_evidence", "named_amount_aed": 0},
+          {"label": "specific_b", "names_specific_line_item": true, "factual_finding": "rejected_on_evidence", "named_amount_aed": 0}
+        ]
+      },
+      "expected": {
+        "deterministic_reductions_aed": "0.00",
+        "objections_mechanically_disposed": [],
+        "objections_held_to_zero": ["specific_a", "specific_b"],
+        "objections_requiring_human_judgment": [],
+        "requires_human_judgment": false,
+        "deterministic_award_aed": "128914.80"
+      }
+    },
+    {
+      "label": "counterfactual_specific_accepted_with_named_amount",
+      "schedule_override": {
+        "claimed_aed": 128914.80,
+        "objections": [
+          {"label": "duplicate_attendance_named", "names_specific_line_item": true, "factual_finding": "accepted_with_named_amount", "named_amount_aed": 4500.00},
+          {"label": "excess_disbursements_named", "names_specific_line_item": true, "factual_finding": "accepted_with_named_amount", "named_amount_aed": 1200.00}
+        ]
+      },
+      "expected": {
+        "deterministic_reductions_aed": "5700.00",
+        "objections_mechanically_disposed": [],
+        "objections_held_to_zero": [],
+        "objections_requiring_human_judgment": [],
+        "requires_human_judgment": false,
+        "deterministic_award_aed": "123214.80"
+      }
+    }
+  ],
+  "human_ruling": {
+    "operative_paragraph": "IT IS HEREBY ORDERED THAT the Defendant shall pay the Claimant the sum of AED 120,000 within 14 days of the date of this order.",
+    "claimed_aed": 128914.80,
+    "awarded_aed": 120000.00,
+    "discretion_delta_aed": 8914.80,
+    "discretion_delta_pct": 6.916,
+    "constructive_finding": "Indemnity-basis review on these facts is the canonical bounded-discretion case: the rule (reasonableness only, no proportionality) cannot derive a single award figure. The protocol mechanically disposes of objection 1 (no named line item — Cooke J. §4 'without any specific complaint about any element of them'), holds objection 2 deterministically at zero on the evidence, and surfaces objection 3 — the Court's own residual qualitative concern — as the irreducible human-judgment region. The AED 8,914.80 reduction (~6.92% of claim) is the structured-discretion residue. The protocol bounds, but does not eliminate, that residue.",
+    "comparator_note": "Across the three traces — Trace #1 (pure formula, AED 7,121.75 derived), Trace #2 (deferred conditional, retroactive interest from order date), Trace #3 (bounded discretion, AED 8,914.80 residue) — the protocol covers static rules, conditional rules, and rule-bounded human judgment. Trace #3 is the honest case for what the protocol cannot do, and is therefore the methodologically necessary third example."
+  }
+}

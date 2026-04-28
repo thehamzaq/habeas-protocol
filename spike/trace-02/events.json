@@ -1,0 +1,70 @@
+{
+  "case_no": "ARB-008-2026",
+  "parties": {
+    "claimant": "Oberlin",
+    "defendant": "Ovidiu"
+  },
+  "rule_source": {
+    "instruments": [
+      "Rules of the DIFC Courts (RDC) Part 38, RDC 38.40",
+      "DIFC Courts Practice Direction No. 4 of 2017 — Interest on Judgments"
+    ],
+    "version": "as in force March 2026",
+    "specific_provisions": ["RDC 38.40", "PD 4/2017"]
+  },
+  "events": [
+    {"t": "2025-12-05", "type": "arbitration_award_issued"},
+    {"t": "2026-01-26", "type": "arbitration_claim_filed", "by": "claimant", "ref": "ARB-008-2026"},
+    {"t": "2026-03-16", "type": "order_issued", "judge": "Shamlan Al Sawalehi", "outcome": "defendant_to_pay_claimant_costs"},
+    {"t": "2026-03-23", "type": "statement_of_costs_filed", "by": "claimant", "claimed_aed": 95982.26},
+    {
+      "t": "2026-03-26",
+      "type": "costs_order_issued",
+      "judge": "Shamlan Al Sawalehi",
+      "order": {
+        "principal_aed": 76785.81,
+        "order_date": "2026-03-26",
+        "deadline_days": 14,
+        "interest_rate_pa": 0.09,
+        "deadline_date": "2026-04-09",
+        "discretion": "80% of claimed AED 95,982.26 — standard-basis proportionality"
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "paid_on_time",
+      "status": {"as_of": "2026-04-08", "paid": true, "payment_date": "2026-04-08"},
+      "expected": {"in_breach": false, "days_accrued": 0, "interest_accrued_aed": "0.00", "total_owed_aed": "76785.81"}
+    },
+    {
+      "label": "paid_at_deadline",
+      "status": {"as_of": "2026-04-09", "paid": true, "payment_date": "2026-04-09"},
+      "expected": {"in_breach": false, "days_accrued": 0, "interest_accrued_aed": "0.00", "total_owed_aed": "76785.81"}
+    },
+    {
+      "label": "unpaid_one_day_late",
+      "status": {"as_of": "2026-04-10", "paid": false, "payment_date": "2026-04-10"},
+      "expected": {"in_breach": true, "days_accrued": 15, "interest_accrued_aed": "284.00", "total_owed_aed": "77069.81"}
+    },
+    {
+      "label": "unpaid_61_days",
+      "status": {"as_of": "2026-05-26", "paid": false, "payment_date": "2026-05-26"},
+      "expected": {"in_breach": true, "days_accrued": 61, "interest_accrued_aed": "1154.94", "total_owed_aed": "77940.75"}
+    },
+    {
+      "label": "paid_late_92_days",
+      "status": {"as_of": "2026-06-26", "paid": true, "payment_date": "2026-06-26"},
+      "expected": {"in_breach": true, "days_accrued": 92, "interest_accrued_aed": "1741.88", "total_owed_aed": "78527.69"}
+    }
+  ],
+  "human_ruling": {
+    "operative_paragraphs": [
+      "1. The Defendant shall pay the Claimant 80% of the Claimant’s costs of the Arbitration Claim in the total sum of AED 76,785.81 (the “Costs Award”).",
+      "2. The Defendant shall pay the Costs Award within 14 days of the date of this Order, pursuant to RDC 38.40.",
+      "3. In the event that the Defendant fails to pay the Costs Award within 14 days of the date of this Order, interest shall accrue at the rate of 9% per annum from the date of this Order until payment in full, in accordance with Practice Direction No. 4 of 2017."
+    ],
+    "constructive_finding": "Unlike Trace #1 (a pure cost-assessment formula), Trace #2 encodes a deferred conditional with retroactive activation: the 14-day window suppresses interest, but if the deadline is missed, interest is computed from the date of the order, not from the deadline. The predicate captures this asymmetry. Once compiled, the protocol can answer the lawyer's standing question — 'what is owed today?' — deterministically against any as-of date, without re-litigating the rule.",
+    "corpus_signal": "ARB 008/2026's structure (80% discretion + 14-day deadline + 9% interest) recurs verbatim in adjacent DIFC arbitration costs orders (e.g. ARB-WFO costs at USD 15,523.16 = 80% of USD 19,403.95). The DIFC has converged on a near-formula for arbitration costs; the protocol can codify it once and apply it to any subsequent matter."
+  }
+}

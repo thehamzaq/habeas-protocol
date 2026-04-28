@@ -1,0 +1,366 @@
+Processing 172 text files from /Users/hamzaqureshi/Downloads/maxim/habeas-protocol/scripts/../data/raw/adgm/text
+
+=== Classification (deduped by case_no) ===
+  total raw text files       172
+  unique case_no after dedup  74
+    saturating                9
+    procedural_default        7
+    borderline               58
+  skipped (already coded)     52
+  skipped (too short)          1
+
+=== Saturating (9) — code (2,2,2,2,2,2) ===
+
+  ADGMCFI-2024-045              -2025-_ADGMCFI_0003_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Lex fori governing rules of evidence and procedure. Requirements for  binding contract. Statutory requirements for registration of disposition of  land. Limitat
+
+  ADGMCFI-2025-011 and ADGMCFI-2025-012  -2025-_ADGMCFI_0005_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Application to stay court proceedings pending arbitration. Whether  arbitration clause in employment agreement is null and void, inoperative,  or incapable of b
+
+  ADGMCFI-2025-019              -2025-_ADGMCFI_0006_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Disputing Jurisdiction. Article 13(7) of Abu Dhabi Law No. (4) of 2013 (as  amended). Global Market Establishments. Expansion of ADGM  Jurisdiction to Al Reem I
+
+  ADGMCFI-2024-162              -2025-_ADGMCFI_0008_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Mortgage registered against real property located in Al Reem Island prior  to 1 January 2025. Mortgage default. Remedies available to mortgagee.  Foreclosure. E
+
+  ADGMCFI-2025-101              -2025-_ADGMCFI_0019_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Arbitration Agreement. Article 16 of Arbitration Regulations 2015. Whether  arbitration agreement null and void, inoperative or incapable of being  performed be
+
+  ADGMCFI-PCA-2025-005          -2025-_ADGMCFI_0021_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Freezing order.    Risk of dissipation.    “Without prejudice” privilege.    Negotiations to settle a dispute.     Exception of unambiguous impropriety.
+
+  ADGMCFI-2024-320              -2025-_ADGMCFI_0026_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Construction delay claim. Delay penalty payment. Liquidated damages.  Prolongation Costs. Substantial Completion of Works. Practical  Completion of Works. Appli
+
+  ADGMCFI-PCA-2025-006          -2025-_ADGMCFI_0030_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: Family trust. Application by a trustee for Court directions. Variation of  ADGM CPR r. 64(4) and ADGM Practice Direction 7.3(c). Appointment  of legal represent
+
+  ADGMCFI-2025-004 and ADGMCFI-2025-017  -2025-_ADGMCFI_0031_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: —
+    catch: ADGM Real Property Regulations 2024. Consequences of registration  under ss.22 and 23. Exceptions to indefeasibility of title under s. 24(f).
+
+=== Procedural default (7) — code (2,2,2,2,2,1) — confirm catchwords are case-management/costs ===
+
+  ADGMCFI-2024-319              -2025-_ADGMCFI_0002_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: Default Judgment. Court’s discretionary powers as to costs. Summary  assessment of costs on the standard basis. Costs that are proportionate  to the matters in 
+
+  ADGMCFI-2024-169              -2025-_ADGMCFI_0010_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: Preliminary issues. Governing law. Applicable version of terms and  conditions. Whether a contractual election was made.
+
+  ADGMCFI-2025-144              -2025-_ADGMCFI_0011_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: Application to vary order requiring payment into Court. Payment into  Court a condition of extension of time to ﬁle a defence. Effect of  insolvency on requirem
+
+  ADGMCFI-2025-160              -2025-_ADGMCFI_0022_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: Pre-action disclosure
+
+  ADGMCFI-2025-370              -2025-_ADGMCFI_0028_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: Interim Injunction Application. Delay in making the application.  Fortiﬁcation.
+
+  ADGMCFI-2025-227 and ADGMCFI-2025-257  -2026-_ADGMCFI_0002_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: ADGM Arbitration Regulations 2015. Application to set aside arbitral  award (Section 58). Application for recognition and enforcement of  award (Section 61). St
+
+  ADGMCFI-2025-208              -2026-_ADGMCFI_0003_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR6 (no enforcement bridge term in legislation/early body)
+    catch: Service of process under a  multilateral treaty. Application for  alternative service. Whether “ exceptional circumstances ” exist  to depart from treaty servic
+
+=== Borderline (58) — read carefully ===
+
+  ADGMCFI-2025-143              -2025-_ADGMCFI_0012_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=1 PR4=2 PR5=2 PR6=2    flags: PR3 (only general references; no Section/Rule/Article numbers)
+    catch: Service of claim by email on a company. Whether a claim served on a  person who is listed on government or official record for a company  constitutes service of
+
+  ADFMCFI-2020-020              -2026-_ADGMCFI_0004_Judgment_Summary.txt
+    PR1=2 PR2=2 PR3=1 PR4=2 PR5=2 PR6=2    flags: PR3 (only general references; no Section/Rule/Article numbers)
+    catch: Insolvency Regulations. Administration. Moratorium. Enforcement  proceedings. Deed of Company Arrangement (DOCA). DOCA creditor  entitlements. Hard bar date. Co
+
+  ADGMCFI-2019-008              2019_ADGMCFI_0007_ADGMCFI2019008_A4_v_B4_Judgment_of_Justice_Sir_Andrew_Smith_17
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCA-2023-001               ADGMCA-2023-001_-_Judgment_Appeal_17112023_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCA-2022-001               ADGMCA2022001_ADGMCA2022002_Judgment_Appeal_03072023_ReIssued_06072023_SEALED.tx
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2020-015 against, amongst others, Lux and the Company, were 
+to succeed in any of their claims , whether in terms of the restoration of their previous 
+shareholdings in the Borrower’s share register and/or in terms of an award of damages in their 
+favour… ” 
+136. Apart from reference in a document dated 20 May 2020 to legal proceedings not in fact filed until 
+29 July 2020, it is evident that Mr Hashemi  was thinking ahead and leaving nothing to chance, 
+15 November 2022 09:11 AM
+
+ 
+ 
+ 
+COURT OF FIRST INSTANCE JUDGMENT 
+AC Network Holding Limited and others v Polymath Ekar SPV 1 and others 20 
+so that were the Claimants to get home in these proceedings, in whole or in part (the possibility 
+of which clearly must have exercised him) then this contractual provision ensured that he was to 
+receive immediate and enhanced repayment from Lux , and thus protect against any financial  
+depredations as might be contained in any Judgment ultimately to issue in this case.       
+137. As to the corresponding definitional element of “arm’s length”, it is equally difficult to characterise 
+Lux, the ”Proposed Purchaser ” in the Drag Notice, as having made “ an offer on arm’s length 
+terms”, and the Court declines to do so because that does that does not represent the reality of 
+what occurred.  
+138. The International Valuation Standards Council, in a paper entitled “Market Value: An Established 
+Basis of Value” (November 2021)  has defined an ‘arm’s length transaction’ as “one betw  ADGMCFI-2020-015_-_Judgment_15112022_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 2/8 structured headers present)
+
+  ADGMCFI-2021-057              ADGMCFI-2021-057_-_A5_v_B5_-_Judgment_19092021.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2022-002              ADGMCFI-2022-002_-_Judgment_Preliminary_Issue_04012023_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2022-017              ADGMCFI-2022-017_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_22112022_SEALED.tx
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2022-020              ADGMCFI-2022-020_-_Judgment_Noor_Application_30012026_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2022-238              ADGMCFI-2022-238_-_Judgment_of_Justice_Stone_SBS_KC_13032023_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2022-299              ADGMCFI-2022-299_-_Judgment_STR_Application_Internal_Reports_Application_2611202
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2023-013              ADGMCFI-2023-013_-_Judgment_26062023_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2023-180              ADGMCFI-2023-180_-_Judgment_2024_ADGMCFI_0002_of_Justice_Stone_SBS_KC_06022024_S
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2023-248              ADGMCFI-2023-248_-_Judgment_ADGMCFI-2024-0011_29072024_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2024-073              ADGMCFI-2024-073-_Judgment_ANONYMISED_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2024-179              ADGMCFI-2024-179_-_Judgment_Justice_Paul_Heath_KC_-_15092025_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2025-004              ADGMCFI-2025-004_017_-_Judgment_of_Justice_Paul_Heath_KC_10122025_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2025-011 
+BETWEEN 
+ 
+ 
+VIANNEY STEPHANE MARIE NICOLAS MATHONNET 
+Claimant 
+ 
+and 
+MODUS OPERATIONS LLC 
+Defendant  
+ 
+ 
+ 
+ 
+IN THE MATTER OF CASE NUMBER ADGMCFI-2025-012 
+BETWEEN 
+ 
+ 
+ANDRE JUNIOR AYOTTE 
+Claimant 
+ 
+and 
+MODUS OPERATIONS LLC 
+Defendant  
+ 
+ 
+ 
+JUDGMENT OF JUSTICE SIR MICHAEL BURTON GBE 
+  
+27 March 2025 12:37 PM
+
+ 
+ 
+ 
+ 
+ 
+COURT OF FIRST INSTANCE JUDGMENT  
+ADGMCFI-2025-011 - Vianney Stephane Marie Nicolas Mathonnet v. Modus Operations LLC; and 
+ADGMCFI-2025-012 - Andre Junior Ayotte v. Modus Operations LLC 
+ 2  ADGMCFI-2025-011_and_012_-_Andre_Junior_Ayotte_v._Modus_Operations_LLC_-_Joint_J
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2025-165              ADGMCFI-2025-165_-_Costs_Judgment_-_Justice_Paul_Heath_KC_-_18122025_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2025-178              ADGMCFI-2025-178_-_Judgment_Summary_Judgment_-_Strike_Out_Application_21102025_S
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ?                             ADGMCFI-PCA-2025-005_-_Judgment_Interim_Freezing_Injunction_01092025_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ?                             ADGMCFI-PCA-2025-006_-_Judgment_Preliminary_Application_28112025_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ADGMCFI-2020-026              ADGMCFI2020026_Judgment_of_Justice_Stone_SBS_QC_07042021_FINAL_Amended_04052021.
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present)
+
+  ?                             adgmcfi-2018-011-judgment-of-justice-sir-michael-burton-25022019.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=2    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present)
+
+  ADGMCFI-2019-003              2019_ADGMCFI_0003_ADGMCFI2019003_Judgment_of_Justice_Stone_SBS_QC_27052019_30072
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2019-007              2019_ADGMCFI_0004_ADGMCFI2019007_A3_v_B3_Judgment_of_Justice_Sir_Andrew_Smith_04
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ?                             20200316_ADGMCFI_2019003_Judgment_of_Justice_Stone_SBS_QC_costs_final.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2020-019              28032021_ADGMCFI2020019_ADCB_v_KBBOBRS_Investments_Holdings_Limited_Anor_Judgmen
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCA-2025-001               ADGMCA-2025-001_-_Judgment_25062025_SEALED.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCA-2025-002               ADGMCA-2025-002_-_A30_Others_v._E30_Others_07102025_FINAL_-_Anonymised_SEALED.tx
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  APP-2025-005                  ADGMCA-APP-2025-005-006-007_-_Joint_Judgment_-2025-_ADGMCA_0002_-_Permission_to_
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCA-2019-001               ADGMCAAPP20190001Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_J
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 2/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  APP-2019-002                  ADGMCA_APP_2019_002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LL
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2018-013              ADGMCFI-2018-013-Laktineh_Co_Ltd_v_Ahmed_Al_Hatti_Anor-Judgment_of_Lord_McGhie_F
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2020-015              ADGMCFI-2020-015_-_Judgment_-_Permission_to_Appeal_07062023_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2020-051              ADGMCFI-2020-051_-_Judgment_on_Security_for_Costs_Application_02052021.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2022-111              ADGMCFI-2022-111_-_Judgment_03102022.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2022-178              ADGMCFI-2022-178_-_Judgment_of_Justice_Hayne_14092022_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2023-021              ADGMCFI-2023-021_-_Judgment_of_Justice_Stone_SBS_KC_-_22052024_-_Re-issued_23052
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2023-071              ADGMCFI-2023-071_-_Costs_Judgment_of_Justice_Stone_SBS_KC_12122023_SEALED.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2023-130              ADGMCFI-2023-130_-_Judgment_2024_ADGMCFI_0001_of_Justice_Sir_Michael_Burton_GBE_
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2025-227 
+BETWEEN 
+ 
+A23  
+Claimant 
+ 
+and 
+ 
+(1) B23  
+(2) C23  
+(3) D23  
+(4) E23  
+Defendants 
+ 
+AND 
+IN THE MATTER OF CASE NUMBER ADGMCFI-2025-257 
+BETWEEN 
+ 
+A25  
+Claimant 
+ 
+and 
+ 
+B25  
+Defendant 
+ 
+ 
+JUDGMENT OF JUSTICE PAUL HEATH KC 
+ 
+13 January 2026 12:36 PM 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COURT OF FIRST INSTANCE JUDGMENT  
+ADGMCFI-2025-227 - A23 V. B23 & OTHERS  
+ADGMCFI-2025-257 - A25 V. B25 
+  
+1 
+13 January 2026 12:36 PM  ADGMCFI-2025-227_and_257_Joint_Judgment_-2026-_ADGMCFI_0002_13012026_REDACTED.tx
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 2/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2020-005              ADGMCFI2020005_Erik_Rubingh_v_Veloqx_RSC_Limited_Judgment_of_Justice_Sir_Michael
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2020-014              ADGMCFI2020014Alvaro_Garcia_Torres_v_Veloqx_RSC_LimitedJudgment_of_Justice_Sir_M
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2021-021              ADGMCFI2021021_Samer_Yasser_Hilal_v_Haircare_Ltd_Judgment_of_Justice_Sir_Michael
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2021-042              ADGMCFI2021042_Judgment_of_Justice_Sir_Andrew_Smith_Claimants_Collateral_Use_App
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2022-129              ADGMCFI2022129_Aldarmaki_v_Abu_Dhabi_Commercial_Bank_ADCB_Judgment_of_Lord_Hope_
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2023-140              ADGMCFI2023140_Judgment_2024_ADGMCFI_0009_of_Justice_Sir_Michael_Burton_GBE_0409
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ?                             ADGMCFIPCA2021003_ADCB_v_Shetty_Ors_Judgment_22042021.txt
+    PR1=1 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 1/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ?                             adgmcfi-2017-003-judgment-afkar-capital-limited-v-fikry-26112017.txt
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ?                             adgmcfi-2017-003-judgment-afkar-capital-limited-v-saifallah-fikry-justice-sir-an
+    PR1=0 PR2=2 PR3=2 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2018-011              2019_ADGMCFI_0002_ADGMCFI-2018-011_-_Judgment_of_Justice_Sir_Michael_Burton_1403
+    PR1=0 PR2=2 PR3=1 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR3 (only general references; no Section/Rule/Article numbers); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  APP-2019-001                  ADGMCA-APP-2019-001-Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LL
+    PR1=0 PR2=2 PR3=1 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR3 (only general references; no Section/Rule/Article numbers); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCA-2019-002               ADGMCAAPP2019002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_J
+    PR1=0 PR2=2 PR3=1 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR3 (only general references; no Section/Rule/Article numbers); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2022-225              ADGMCFI-2022-225_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_28032023_FINAL_SEA
+    PR1=0 PR2=2 PR3=1 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR3 (only general references; no Section/Rule/Article numbers); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ADGMCFI-2023-028              ADGMCFI-2023-028_-_Judgment_of_Justice_Wiliam_Stone_SBS_KC_19102023_SEALED.txt
+    PR1=0 PR2=2 PR3=1 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR3 (only general references; no Section/Rule/Article numbers); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+  ?                             adgmcfi-2017-004-judgment-on-application-for-stay-and-costs-of-justice-sir-micha
+    PR1=0 PR2=2 PR3=1 PR4=2 PR5=2 PR6=1    flags: PR1 (no Name of Case header); PR3 (only general references; no Section/Rule/Article numbers); PR4 (only 0/8 structured headers present); PR6 (no enforcement bridge term in legislation/early body)
+
+=== Wrote /Users/hamzaqureshi/Downloads/maxim/habeas-protocol/scripts/../data/adgm_triage.json ===
+  saturating           9  (recommend: code (2,2,2,2,2,2))
+  procedural_default   7  (recommend: code (2,2,2,2,2,1) — confirm by catchwords)
+  borderline          58  (recommend: human careful read)

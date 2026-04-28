@@ -1,0 +1,375 @@
+{
+  "generated_by": "scripts/triage_sicc.py",
+  "n_text_files": 13,
+  "by_classification": {
+    "procedural_default": 1,
+    "saturating": 10,
+    "borderline": 2
+  },
+  "results": [
+    {
+      "file": "2025_SGHCI_20.txt",
+      "neutral_citation": "[2025] SGHC(I) 20",
+      "year": "2025",
+      "oa_no": "OA 20/2024",
+      "claimant": "DOI",
+      "defendant": "DOJ and others and another matter",
+      "coram": "Roger Giles IJ",
+      "hearing_date": "6 June 2025",
+      "decision_date": "6 August 2025",
+      "decision_date_iso": "2025-08-06",
+      "catchwords": [
+        "Civil Procedure \u2014 Costs"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "non-arbitration matter; no explicit cross-border enforcement bridge cited"
+        ]
+      },
+      "classification": "procedural_default",
+      "char_len": 27426
+    },
+    {
+      "file": "2025_SGHCI_21.txt",
+      "neutral_citation": "[2025] SGHC(I) 21",
+      "year": "2025",
+      "oa_no": "OA 10/2024",
+      "claimant": "DKB",
+      "defendant": "DKC",
+      "coram": "Thomas Bathurst IJ",
+      "hearing_date": "28\u00a0May 2025",
+      "decision_date": "4\u00a0August 2025",
+      "decision_date_iso": "2025-08-04",
+      "catchwords": [],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 23154
+    },
+    {
+      "file": "2025_SGHCI_22.txt",
+      "neutral_citation": "[2025] SGHC(I) 22",
+      "year": "2025",
+      "oa_no": "OA 3/2025",
+      "claimant": "Novo Nordisk A/S",
+      "defendant": "KBP Biosciences Pte Ltd and another",
+      "coram": "Philip Jeyaretnam\u00a0J",
+      "hearing_date": null,
+      "decision_date": "12 August 2025",
+      "decision_date_iso": "2025-08-12",
+      "catchwords": [
+        "Injunctions \u2014 Mareva injunction \u2014 Setting aside",
+        "Arbitration \u2014 Injunction \u2014 Court\u2019s powers under section 12A of the International Arbitration Act 1994 (2020 Rev Ed)"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 77621
+    },
+    {
+      "file": "2025_SGHCI_23.txt",
+      "neutral_citation": "[2025] SGHC(I) 23",
+      "year": "2025",
+      "oa_no": "OA 8/2025",
+      "claimant": "Ebixcash Ltd and others",
+      "defendant": "Ashok Kumar Goel and another",
+      "coram": "Chua Lee Ming\u00a0J, Simon Thorley IJ and Thomas Bathurst IJ",
+      "hearing_date": "10 July 2025",
+      "decision_date": "5 September 2025",
+      "decision_date_iso": "2025-09-05",
+      "catchwords": [
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 1,
+        "PR6": 2
+      },
+      "flags": {
+        "PR5": [
+          "no operative verb / annex / amount in tail"
+        ]
+      },
+      "classification": "borderline",
+      "char_len": 73781
+    },
+    {
+      "file": "2025_SGHCI_24.txt",
+      "neutral_citation": "[2025] SGHC(I) 24",
+      "year": "2025",
+      "oa_no": "OA 4/2025",
+      "claimant": "DNO",
+      "defendant": "DNP",
+      "coram": "Anthony James Besanko IJ",
+      "hearing_date": "19 May 2025",
+      "decision_date": "18 September 2025",
+      "decision_date_iso": "2025-09-18",
+      "catchwords": [
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside",
+        "Partnership\u2019s",
+        "DNP\u2019s damages"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 181103
+    },
+    {
+      "file": "2025_SGHCI_25.txt",
+      "neutral_citation": "[2025] SGHC(I) 25",
+      "year": "2025",
+      "oa_no": "OA 9/2025",
+      "claimant": "GNC Holdings LLC",
+      "defendant": "ONI Global Pte Ltd and another",
+      "coram": "Chua Lee Ming\u00a0J, Simon Thorley IJ, James Allsop IJ",
+      "hearing_date": "21\u00a0July 2025",
+      "decision_date": "21 October 2025",
+      "decision_date_iso": "2025-10-21",
+      "catchwords": [
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction",
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice",
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Public policy"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 123754
+    },
+    {
+      "file": "2025_SGHCI_26.txt",
+      "neutral_citation": "[2025] SGHC(I) 26",
+      "year": "2025",
+      "oa_no": "OA 10/2024",
+      "claimant": "DKB",
+      "defendant": "DKC",
+      "coram": "Thomas Bathurst IJ",
+      "hearing_date": null,
+      "decision_date": "12 November 2025",
+      "decision_date_iso": "2025-11-12",
+      "catchwords": [],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 9924
+    },
+    {
+      "file": "2025_SGHCI_27.txt",
+      "neutral_citation": "[2025] SGHC(I) 27",
+      "year": "2025",
+      "oa_no": "OA 5/2025",
+      "claimant": "Hulley Enterprises Ltd and others",
+      "defendant": "The Russian Federation",
+      "coram": "Andre Maniam J, James Allsop IJ and Anthony Meagher IJ",
+      "hearing_date": "3 October 2025",
+      "decision_date": "25 November 2025",
+      "decision_date_iso": "2025-11-25",
+      "catchwords": [
+        "Arbitration \u2014 Enforcement \u2014 Foreign award",
+        "Civil Procedure \u2014 Judgments and orders"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 19148
+    },
+    {
+      "file": "2025_SGHCI_29.txt",
+      "neutral_citation": "[2025] SGHC(I) 29",
+      "year": "2025",
+      "oa_no": "OA 10/2025",
+      "claimant": "DPT and another",
+      "defendant": "DPV and others",
+      "coram": "S Mohan J, Roger Giles IJ, Anselmo Reyes IJ",
+      "hearing_date": "22 September 2025",
+      "decision_date": "1 December 2025",
+      "decision_date_iso": "2025-12-01",
+      "catchwords": [
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside",
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Breach of natural justice",
+        "Country A",
+        "Company A",
+        "Country A",
+        "Witness 1",
+        "Company A",
+        "DPU\u2019s"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 158020
+    },
+    {
+      "file": "2026_SGHCI_1.txt",
+      "neutral_citation": "[2026] SGHC(I) 1",
+      "year": "2026",
+      "oa_no": "OA 2/2025",
+      "claimant": "DNZ",
+      "defendant": "DOA",
+      "coram": "Andre Maniam J, Dominique Hascher IJ, Vivian Ramsey IJ",
+      "hearing_date": null,
+      "decision_date": "9 January 2026",
+      "decision_date_iso": "2026-01-09",
+      "catchwords": [
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 146810
+    },
+    {
+      "file": "2026_SGHCI_2.txt",
+      "neutral_citation": "[2026] SGHC(I) 2",
+      "year": "2026",
+      "oa_no": "OA 4/2025",
+      "claimant": "DNO",
+      "defendant": "DNP",
+      "coram": "Anthony James Besanko IJ",
+      "hearing_date": "8 January 2026",
+      "decision_date": "12 February 2026",
+      "decision_date_iso": "2026-02-12",
+      "catchwords": [
+        "Civil Procedure \u2014 Costs"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 58375
+    },
+    {
+      "file": "2026_SGHCI_3.txt",
+      "neutral_citation": "[2026] SGHC(I) 3",
+      "year": "2026",
+      "oa_no": "OA 15/2025",
+      "claimant": "Hyatt Terminal and Industrial Corp",
+      "defendant": "Filipinas Third Millenium Realty Corp",
+      "coram": "Philip Jeyaretnam\u00a0J, Sir Henry Bernard Eder IJ, Douglas Samuel Jones AO IJ",
+      "hearing_date": "9 December 2025",
+      "decision_date": "26 March 2026",
+      "decision_date_iso": "2026-03-26",
+      "catchwords": [
+        "Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction \u2014 Whether proper party to arbitration agreement"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "char_len": 47705
+    },
+    {
+      "file": "2026_SGHCI_4.txt",
+      "neutral_citation": "[2026] SGHC(I) 4",
+      "year": "2026",
+      "oa_no": "OA 8/2026",
+      "claimant": "DVA and another",
+      "defendant": "DVC",
+      "coram": "Aidan Xu J, Anthony Meagher IJ and David Goddard IJ",
+      "hearing_date": "25 March 2026",
+      "decision_date": "24 April 2026",
+      "decision_date_iso": "2026-04-24",
+      "catchwords": [
+        "Civil Procedure \u2014 Injunctions \u2014 Proprietary injunction",
+        "Blockchain B",
+        "Platform C"
+      ],
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR3": [
+          "no specific Rule/Order/Section/Article numbers found"
+        ],
+        "PR6": [
+          "non-arbitration matter; no explicit cross-border enforcement bridge cited"
+        ]
+      },
+      "classification": "borderline",
+      "char_len": 42797
+    }
+  ]
+}

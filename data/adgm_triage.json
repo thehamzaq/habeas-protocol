@@ -1,0 +1,2012 @@
+{
+  "generated_by": "scripts/triage_adgm.py",
+  "n_text_files": 172,
+  "n_unique_cases": 74,
+  "n_saturating": 9,
+  "n_procedural_default": 7,
+  "n_borderline": 58,
+  "n_skipped_already_coded": 52,
+  "saturating_default": {
+    "PR1": 2,
+    "PR2": 2,
+    "PR3": 2,
+    "PR4": 2,
+    "PR5": 2,
+    "PR6": 2
+  },
+  "procedural_default": {
+    "PR1": 2,
+    "PR2": 2,
+    "PR3": 2,
+    "PR4": 2,
+    "PR5": 2,
+    "PR6": 1
+  },
+  "results": [
+    {
+      "file": "-2025-_ADGMCFI_0002_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2024-319",
+      "name_of_case": "Remy Alexandre Turcon v Tou\ufb01c Assaf & Anor.",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "27 February 2025",
+      "catchwords": "Default Judgment. Court\u2019s discretionary powers as to costs. Summary \nassessment of costs on the standard basis. Costs that are proportionate \nto the matters in issue and are reasonably incurred and reasonable in \namount. Factors relevant to",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0003_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2024-045",
+      "name_of_case": "Faysal Mohamad Awad v 3AM Property Investment Company LLC & Anor.",
+      "judge": "Justice Sir Andrew Smith",
+      "date_issued": "7 March 2025",
+      "catchwords": "Lex fori governing rules of evidence and procedure. Requirements for \nbinding contract. Statutory requirements for registration of disposition of \nland. Limitation defence. Remedy of speci\ufb01c performance. Power to \nappoint receiver. Estoppel",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0005_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-011 and ADGMCFI-2025-012",
+      "name_of_case": "Vianney Stephane Marie Nicolas Mathonnet v Modus Operations LLC \nAndre Junior Ayotte v Modus Operations LLC",
+      "judge": "Justice Sir Michael Burton GBE",
+      "date_issued": "27 March 2025",
+      "catchwords": "Application to stay court proceedings pending arbitration. Whether \narbitration clause in employment agreement is null and void, inoperative, \nor incapable of being performed. Arbitrability of employment claims. \nEmployment rights as a matt",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0006_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-019",
+      "name_of_case": "Saeed Mohammed Qambar Abbas v Siadah International Real Estate \nDevelopment L.L.C.",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "28 March 2025",
+      "catchwords": "Disputing Jurisdiction. Article 13(7) of Abu Dhabi Law No. (4) of 2013 (as \namended). Global Market Establishments. Expansion of ADGM \nJurisdiction to Al Reem Island. Real Estate Sale. Sale and Purchase \nAgreement. Arbitration Agreement.",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0008_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2024-162",
+      "name_of_case": "Commercial Bank of Dubai (PSC) v Mohammed Z A Alyazji",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "1 May 2025",
+      "catchwords": "Mortgage registered against real property located in Al Reem Island prior \nto 1 January 2025. Mortgage default. Remedies available to mortgagee. \nForeclosure. Equity of redemption. Sale of property in lieu of foreclosure. \nRequirements unde",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0010_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2024-169",
+      "name_of_case": "Dijllah Jewellery FZE v AVA Trade Middle East Limited",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "23 May 2025",
+      "catchwords": "Preliminary issues. Governing law. Applicable version of terms and \nconditions. Whether a contractual election was made.",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0011_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-144",
+      "name_of_case": "Andriy Sheremet v CQT Investment Group Ltd",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "4 June 2025",
+      "catchwords": "Application to vary order requiring payment into Court. Payment into \nCourt a condition of extension of time to \ufb01le a defence. Effect of \ninsolvency on requirement to pay money into Court.",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0012_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-143",
+      "name_of_case": "Al Khaleej Investment PSC v Ocean Pearl Real Estate Comp LLC",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "10 June 2025",
+      "catchwords": "Service of claim by email on a company. Whether a claim served on a \nperson who is listed on government or official record for a company \nconstitutes service of the claim on that company. Whether there is a \nsufficiently arguable defence su",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0019_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-101",
+      "name_of_case": "A24 v. B24",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "25 August 2025",
+      "catchwords": "Arbitration Agreement. Article 16 of Arbitration Regulations 2015. Whether \narbitration agreement null and void, inoperative or incapable of being \nperformed because of one party\u2019s failure to pay advance on costs. Stay of \nproceedings.",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0021_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-PCA-2025-005",
+      "name_of_case": "Sky Property Holdings LTD v. Corporate Sky Business Center L.T.D",
+      "judge": "Justice Sir Andrew Smith",
+      "date_issued": "1 September 2025",
+      "catchwords": "Freezing order.    Risk of dissipation.    \u201cWithout prejudice\u201d privilege.   \nNegotiations to settle a dispute.     Exception of unambiguous impropriety.",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0022_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-160",
+      "name_of_case": "Micca Ferrero & Others v. Drecford Holding Limited & Others",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "12 September 2025",
+      "catchwords": "Pre-action disclosure",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0026_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2024-320",
+      "name_of_case": "Projeco Contracting (L.L.C) v. Ideacrate Edutainment Company - L.L.C - \nO. P. C",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "30 October 2025",
+      "catchwords": "Construction delay claim. Delay penalty payment. Liquidated damages. \nProlongation Costs. Substantial Completion of Works. Practical \nCompletion of Works. Applicable law and forum (lex fori). Withdrawal of \nadmission under r. 42 of ADGM Cou",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0028_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-370",
+      "name_of_case": "Hera Investment Ltd & Others v. Athena Holding Limited & Others",
+      "judge": "Justice Kenneth Hayne AC",
+      "date_issued": "17 November 2025",
+      "catchwords": "Interim Injunction Application. Delay in making the application. \nForti\ufb01cation.",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0030_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-PCA-2025-006",
+      "name_of_case": "NX (as Trustee of the EYZ Trust) v AA (Bene\ufb01ciary 1) & Others",
+      "judge": "Justice Sir Andrew Smith",
+      "date_issued": "28 November 2025",
+      "catchwords": "Family trust. Application by a trustee for Court directions. Variation of \nADGM CPR r. 64(4) and ADGM Practice Direction 7.3(c). Appointment \nof legal representation for minor bene\ufb01ciaries. Con\ufb01dential nature of a \ntrust. Hearings in privat",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2025-_ADGMCFI_0031_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-004 and ADGMCFI-2025-017",
+      "name_of_case": "Taslin Tejrar v. Ahmed Nasser Hussain Alghanim & Others \nRubina Mohammed Umer v. Ahmed Nasser Hussain Alghanim & Anor.",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "10 December 2025",
+      "catchwords": "ADGM Real Property Regulations 2024. Consequences of registration \nunder ss.22 and 23. Exceptions to indefeasibility of title under s. 24(f).",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {},
+      "classification": "saturating",
+      "_priority": 3
+    },
+    {
+      "file": "-2026-_ADGMCFI_0002_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-227 and ADGMCFI-2025-257",
+      "name_of_case": "A23 v. B23 and Others \nA25 v. B25",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "13 January 2026",
+      "catchwords": "ADGM Arbitration Regulations 2015. Application to set aside arbitral \naward (Section 58). Application for recognition and enforcement of \naward (Section 61). Status of Termination Order (Section 46(a)). \nDistinction between \u201caward\u201d and \u201c pr",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2026-_ADGMCFI_0003_Judgment_Summary.txt",
+      "case_no": "ADGMCFI-2025-208",
+      "name_of_case": "MediAmAm Holdings Limited v. Beyond Dreams for General Trading WLL",
+      "judge": "Justice Paul Heath KC",
+      "date_issued": "26 January 2026",
+      "catchwords": "Service of process under a  multilateral treaty. Application for \nalternative service. Whether \u201c exceptional circumstances \u201d exist \nto depart from treaty service. \nLegislation Cited ADGM Court Procedure Rules 2016 \n1996 Gulf Cooperation Cou",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "procedural_default",
+      "_priority": 3
+    },
+    {
+      "file": "-2026-_ADGMCFI_0004_Judgment_Summary.txt",
+      "case_no": "ADFMCFI-2020-020",
+      "name_of_case": "Noor Capital PSC  v NMC Healthcare LTD (in administration) (subject \nto a deed of company arrangement)",
+      "judge": "Justice Sir Andrew Smith",
+      "date_issued": "30 January 2026",
+      "catchwords": "Insolvency Regulations. Administration. Moratorium. Enforcement \nproceedings. Deed of Company Arrangement (DOCA). DOCA creditor \nentitlements. Hard bar date. Court\u2019s powers to vary a DOCA. \nDiscretion to lift moratorium. \nLegislation and \nA",
+      "scores_heuristic": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 3
+    },
+    {
+      "file": "2019_ADGMCFI_0002_ADGMCFI-2018-011_-_Judgment_of_Justice_Sir_Michael_Burton_14032019.txt",
+      "case_no": "ADGMCFI-2018-011",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "2019_ADGMCFI_0003_ADGMCFI2019003_Judgment_of_Justice_Stone_SBS_QC_27052019_30072019.txt",
+      "case_no": "ADGMCFI-2019-003",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "2019_ADGMCFI_0004_ADGMCFI2019007_A3_v_B3_Judgment_of_Justice_Sir_Andrew_Smith_04072019_Redacted.txt",
+      "case_no": "ADGMCFI-2019-007",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "2019_ADGMCFI_0007_ADGMCFI2019008_A4_v_B4_Judgment_of_Justice_Sir_Andrew_Smith_171019_Redacted_v.txt",
+      "case_no": "ADGMCFI-2019-008",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "20200316_ADGMCFI_2019003_Judgment_of_Justice_Stone_SBS_QC_costs_final.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "28032021_ADGMCFI2020019_ADCB_v_KBBOBRS_Investments_Holdings_Limited_Anor_Judgment.txt",
+      "case_no": "ADGMCFI-2020-019",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCA-2023-001_-_Judgment_Appeal_17112023_SEALED.txt",
+      "case_no": "ADGMCA-2023-001",
+      "name_of_case": "",
+      "judge": "in the Court of First Instance, Justice Stone, having reviewed the authorities, ",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCA-2025-001_-_Judgment_25062025_SEALED.txt",
+      "case_no": "ADGMCA-2025-001",
+      "name_of_case": "",
+      "judge": "was not concerned with the \nsubsequent history of the Union Insurance notes whic",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCA-2025-002_-_A30_Others_v._E30_Others_07102025_FINAL_-_Anonymised_SEALED.txt",
+      "case_no": "ADGMCA-2025-002",
+      "name_of_case": "",
+      "judge": "was told that A30 has recently learned that the Respondents are likely to receiv",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCA-APP-2019-001-Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC-Judgment-26012020.txt",
+      "case_no": "APP-2019-001",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCA-APP-2025-005-006-007_-_Joint_Judgment_-2025-_ADGMCA_0002_-_Permission_to_Appeal_Applications_-_06102025_SEALED.txt",
+      "case_no": "APP-2025-005",
+      "name_of_case": "",
+      "judge": "dismissed the claim made by Federal and allowed each counterclaimant\u2019s \ncounterc",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCA2022001_ADGMCA2022002_Judgment_Appeal_03072023_ReIssued_06072023_SEALED.txt",
+      "case_no": "ADGMCA-2022-001",
+      "name_of_case": "",
+      "judge": "found, at the time of the hailstorm GPI had firm plans \nto sell the aircraft for",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCAAPP20190001Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment.txt",
+      "case_no": "ADGMCA-2019-001",
+      "name_of_case": "",
+      "judge": "did not understand there to be any dispute that, in dealing with an application ",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 2/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCAAPP2019002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment_FINAL_3103.txt",
+      "case_no": "ADGMCA-2019-002",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCA_APP_2019_002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment_20200212.txt",
+      "case_no": "APP-2019-002",
+      "name_of_case": "",
+      "judge": "explained \nhow this came about in paragraphs 5 to 8 of his judgment.  Further de",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI-2018-013-Laktineh_Co_Ltd_v_Ahmed_Al_Hatti_Anor-Judgment_of_Lord_McGhie_FINAL_30012020.txt",
+      "case_no": "ADGMCFI-2018-013",
+      "name_of_case": "",
+      "judge": "made a finding that service had been made in full: (Exhibit JL-40 \nto witness st",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI-2020-015_-_Judgment_-_Permission_to_Appeal_07062023_SEALED.txt",
+      "case_no": "ADGMCFI-2020-015",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2020-015_-_Judgment_15112022_SEALED.txt",
+      "case_no": "ADGMCFI-2020-015 against, amongst others, Lux and the Company, were \nto succeed in any of their claims , whether in terms of the restoration of their previous \nshareholdings in the Borrower\u2019s share register and/or in terms of an award of damages in their \nfavour\u2026 \u201d \n136. Apart from reference in a document dated 20 May 2020 to legal proceedings not in fact filed until \n29 July 2020, it is evident that Mr Hashemi  was thinking ahead and leaving nothing to chance, \n15 November 2022 09:11 AM\n\n \n \n \nCOURT OF FIRST INSTANCE JUDGMENT \nAC Network Holding Limited and others v Polymath Ekar SPV 1 and others 20 \nso that were the Claimants to get home in these proceedings, in whole or in part (the possibility \nof which clearly must have exercised him) then this contractual provision ensured that he was to \nreceive immediate and enhanced repayment from Lux , and thus protect against any financial  \ndepredations as might be contained in any Judgment ultimately to issue in this case.       \n137. As to the corresponding definitional element of \u201carm\u2019s length\u201d, it is equally difficult to characterise \nLux, the \u201dProposed Purchaser \u201d in the Drag Notice, as having made \u201c an offer on arm\u2019s length \nterms\u201d, and the Court declines to do so because that does that does not represent the reality of \nwhat occurred.  \n138. The International Valuation Standards Council, in a paper entitled \u201cMarket Value: An Established \nBasis of Value\u201d (November 2021)  has defined an \u2018arm\u2019s length transaction\u2019 as \u201cone betw",
+      "name_of_case": "",
+      "judge": "referred to the speech of Lord Hoffmann in \nOBG Ltd v Allan [2008] AC 1, where h",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 2/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2020-051_-_Judgment_on_Security_for_Costs_Application_02052021.txt",
+      "case_no": "ADGMCFI-2020-051",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI2021042_Judgment_of_Justice_Sir_Andrew_Smith_Claimants_Collateral_Use_Application_Issued_08.txt",
+      "case_no": "ADGMCFI-2021-042",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI-2021-057_-_A5_v_B5_-_Judgment_19092021.txt",
+      "case_no": "ADGMCFI-2021-057",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI-2022-002_-_Judgment_Preliminary_Issue_04012023_SEALED.txt",
+      "case_no": "ADGMCFI-2022-002",
+      "name_of_case": "",
+      "judge": "trained in English or another common law system will, as Mr Gillis submitted,  \n",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2022-017_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_22112022_SEALED.txt",
+      "case_no": "ADGMCFI-2022-017",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2022-020_-_Judgment_Noor_Application_30012026_SEALED.txt",
+      "case_no": "ADGMCFI-2022-020",
+      "name_of_case": "",
+      "judge": "acceded to the request, and gave instructions that the \nenforcement against NMCH",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2022-111_-_Judgment_03102022.txt",
+      "case_no": "ADGMCFI-2022-111",
+      "name_of_case": "",
+      "judge": "considers would have a better than 50 per cent chance of success \u201d. \n16. In its ",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI-2022-178_-_Judgment_of_Justice_Hayne_14092022_SEALED.txt",
+      "case_no": "ADGMCFI-2022-178",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2022-225_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_28032023_FINAL_SEALED.txt",
+      "case_no": "ADGMCFI-2022-225",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2022-238_-_Judgment_of_Justice_Stone_SBS_KC_13032023_SEALED.txt",
+      "case_no": "ADGMCFI-2022-238",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2022-299_-_Judgment_STR_Application_Internal_Reports_Application_26112025_SEALED.txt",
+      "case_no": "ADGMCFI-2022-299",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-013_-_Judgment_26062023_SEALED.txt",
+      "case_no": "ADGMCFI-2023-013",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-021_-_Judgment_of_Justice_Stone_SBS_KC_-_22052024_-_Re-issued_23052024_SEALED.txt",
+      "case_no": "ADGMCFI-2023-021",
+      "name_of_case": "",
+      "judge": "that \u201cno set meaning has been ascribed to [ MAC] clauses in the authorities \u201d, \n",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-028_-_Judgment_of_Justice_Wiliam_Stone_SBS_KC_19102023_SEALED.txt",
+      "case_no": "ADGMCFI-2023-028",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-071_-_Costs_Judgment_of_Justice_Stone_SBS_KC_12122023_SEALED.txt",
+      "case_no": "ADGMCFI-2023-071",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-130_-_Judgment_2024_ADGMCFI_0001_of_Justice_Sir_Michael_Burton_GBE_23012024_SEALED.txt",
+      "case_no": "ADGMCFI-2023-130",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-180_-_Judgment_2024_ADGMCFI_0002_of_Justice_Stone_SBS_KC_06022024_SEALED.txt",
+      "case_no": "ADGMCFI-2023-180",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2023-248_-_Judgment_ADGMCFI-2024-0011_29072024_SEALED.txt",
+      "case_no": "ADGMCFI-2023-248",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2024-073-_Judgment_ANONYMISED_SEALED.txt",
+      "case_no": "ADGMCFI-2024-073",
+      "name_of_case": "",
+      "judge": "Stone in A8 v B8\n(cit sup) at paras 32ff, and would respectfully adopt his reaso",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2024-179_-_Judgment_Justice_Paul_Heath_KC_-_15092025_SEALED.txt",
+      "case_no": "ADGMCFI-2024-179",
+      "name_of_case": "",
+      "judge": "the \nobligations of a particular class of persons (the Broker) by reference to t",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2025-004_017_-_Judgment_of_Justice_Paul_Heath_KC_10122025_SEALED.txt",
+      "case_no": "ADGMCFI-2025-004",
+      "name_of_case": "",
+      "judge": "in the onshore Courts of the Emirate of \nAbu Dhabi (the \u201cOnshore Court\u201d).4 \n2. O",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2025-011_and_012_-_Andre_Junior_Ayotte_v._Modus_Operations_LLC_-_Joint_Judgment.txt",
+      "case_no": "ADGMCFI-2025-011 \nBETWEEN \n \n \nVIANNEY STEPHANE MARIE NICOLAS MATHONNET \nClaimant \n \nand \nMODUS OPERATIONS LLC \nDefendant  \n \n \n \n \nIN THE MATTER OF CASE NUMBER ADGMCFI-2025-012 \nBETWEEN \n \n \nANDRE JUNIOR AYOTTE \nClaimant \n \nand \nMODUS OPERATIONS LLC \nDefendant  \n \n \n \nJUDGMENT OF JUSTICE SIR MICHAEL BURTON GBE \n  \n27 March 2025 12:37 PM\n\n \n \n \n \n \nCOURT OF FIRST INSTANCE JUDGMENT  \nADGMCFI-2025-011 - Vianney Stephane Marie Nicolas Mathonnet v. Modus Operations LLC; and \nADGMCFI-2025-012 - Andre Junior Ayotte v. Modus Operations LLC \n 2",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI-2025-165_-_Costs_Judgment_-_Justice_Paul_Heath_KC_-_18122025_SEALED.txt",
+      "case_no": "ADGMCFI-2025-165",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-2025-178_-_Judgment_Summary_Judgment_-_Strike_Out_Application_21102025_SEALED.txt",
+      "case_no": "ADGMCFI-2025-178",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 3
+    },
+    {
+      "file": "ADGMCFI-2025-227_and_257_Joint_Judgment_-2026-_ADGMCFI_0002_13012026_REDACTED.txt",
+      "case_no": "ADGMCFI-2025-227 \nBETWEEN \n \nA23  \nClaimant \n \nand \n \n(1) B23  \n(2) C23  \n(3) D23  \n(4) E23  \nDefendants \n \nAND \nIN THE MATTER OF CASE NUMBER ADGMCFI-2025-257 \nBETWEEN \n \nA25  \nClaimant \n \nand \n \nB25  \nDefendant \n \n \nJUDGMENT OF JUSTICE PAUL HEATH KC \n \n13 January 2026 12:36 PM \n\n\n \n \n \n \n \n \n \nCOURT OF FIRST INSTANCE JUDGMENT  \nADGMCFI-2025-227 - A23 V. B23 & OTHERS  \nADGMCFI-2025-257 - A25 V. B25 \n  \n1 \n13 January 2026 12:36 PM",
+      "name_of_case": "",
+      "judge": "relied on s. \n22(1) (which speaks of matters rather than awards), as providing t",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 2/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-PCA-2025-005_-_Judgment_Interim_Freezing_Injunction_01092025_SEALED.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "considers would have a better than 50 per cent chance of success\u201d.  \n01 Septembe",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI-PCA-2025-006_-_Judgment_Preliminary_Application_28112025_SEALED.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "is exercising a \ndiscretion.  As Tugendhat J said in AMM v HXW [2010] EWHC 2457 ",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI2020005_Erik_Rubingh_v_Veloqx_RSC_Limited_Judgment_of_Justice_Sir_Michael_Burton_GBE_11072020.txt",
+      "case_no": "ADGMCFI-2020-005",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI2020014Alvaro_Garcia_Torres_v_Veloqx_RSC_LimitedJudgment_of_Justice_Sir_Michael_Burton_GBE_22.txt",
+      "case_no": "ADGMCFI-2020-014",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI2020026_Judgment_of_Justice_Stone_SBS_QC_07042021_FINAL_Amended_04052021.txt",
+      "case_no": "ADGMCFI-2020-026",
+      "name_of_case": "",
+      "judge": "or Judges, the Registrar, any witnesses before or \nofficer of the Court or any l",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI2021021_Samer_Yasser_Hilal_v_Haircare_Ltd_Judgment_of_Justice_Sir_Michael_Burton_GBE_070120.txt",
+      "case_no": "ADGMCFI-2021-021",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFI2022129_Aldarmaki_v_Abu_Dhabi_Commercial_Bank_ADCB_Judgment_of_Lord_Hope_08082022_SEALED.txt",
+      "case_no": "ADGMCFI-2022-129",
+      "name_of_case": "",
+      "judge": "was wrong in assuming jurisdiction. \n2. The Claimant had failed to discharge its",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 1
+    },
+    {
+      "file": "ADGMCFI2023140_Judgment_2024_ADGMCFI_0009_of_Justice_Sir_Michael_Burton_GBE_04092024_REISSUED_SEALE.txt",
+      "case_no": "ADGMCFI-2023-140",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "ADGMCFIPCA2021003_ADCB_v_Shetty_Ors_Judgment_22042021.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "in the Chancery Division of the English High Court in Ras Al \nKhaimah Investment",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header"
+        ],
+        "PR4": [
+          "only 1/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-fikry-26112017.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-saifallah-fikry-justice-sir-andrew-smith-02052018.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "adgmcfi-2017-004-judgment-on-application-for-stay-and-costs-of-justice-sir-michael-burton-20042018.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR3": [
+          "only general references; no Section/Rule/Article numbers"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ],
+        "PR6": [
+          "no enforcement bridge term in legislation/early body"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    },
+    {
+      "file": "adgmcfi-2018-011-judgment-of-justice-sir-michael-burton-25022019.txt",
+      "case_no": "",
+      "name_of_case": "",
+      "judge": "",
+      "date_issued": "",
+      "catchwords": "",
+      "scores_heuristic": {
+        "PR1": 0,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "flags": {
+        "PR1": [
+          "no Name of Case header",
+          "no Judge header"
+        ],
+        "PR4": [
+          "only 0/8 structured headers present"
+        ]
+      },
+      "classification": "borderline",
+      "_priority": 2
+    }
+  ]
+}

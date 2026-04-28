@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Habeas Protocol — Judgment Coding Schema v0.2",
+  "description": "Per-judgment record schema. Supports both v0.1 (7-primitive) and v0.2 (6-primitive + 2 system) scoring layers. Every entry in judgments.json must validate against this. v0.2 is the active schema; v0.1 is retained for provenance on the original DIFC gold set.",
+  "type": "object",
+  "required": [
+    "case_no",
+    "url",
+    "tribunal",
+    "division",
+    "date_issued",
+    "parties",
+    "judge",
+    "claim_type",
+    "primitive_scores_v02",
+    "coding"
+  ],
+  "properties": {
+    "case_no": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "tribunal": {
+      "type": "string",
+      "enum": ["DIFC Courts", "ADGM Courts", "Singapore International Commercial Court", "VARA", "Próspera Arbitration Center"]
+    },
+    "division": { "type": "string" },
+    "date_issued": { "type": "string", "format": "date" },
+    "parties": {
+      "type": "object",
+      "required": ["claimant", "defendant"],
+      "properties": {
+        "claimant": { "type": "string" },
+        "defendant": { "type": "string" }
+      }
+    },
+    "judge": { "type": "string" },
+    "neutral_citation": { "type": "string" },
+    "claim_type": {
+      "type": "string",
+      "enum": [
+        "costs_assessment", "permission_to_appeal", "case_management",
+        "summary_judgment", "interim_relief", "arbitration_recognition",
+        "arbitration_enforcement", "default_judgment", "substantive_breach",
+        "jurisdictional_challenge", "interpretation", "insolvency",
+        "real_property", "anti_suit_injunction", "fraud", "other"
+      ]
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "claim_granted", "claim_partially_granted", "claim_dismissed",
+        "application_refused", "settled", "discontinued", "other"
+      ]
+    },
+    "operative_amount_aed": { "type": ["number", "null"] },
+    "operative_amount_usd": { "type": ["number", "null"] },
+    "rules_cited": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "cases_cited": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Precedent cases cited in the ruling — supports the rule-bind primitive (PR3) where the binding instrument is case-law rather than statute."
+    },
+    "primitive_scores_v01": {
+      "type": "object",
+      "description": "7-primitive scoring (deprecated). Retained for provenance on original DIFC gold set.",
+      "properties": {
+        "P1": { "type": "integer", "enum": [0, 1, 2] },
+        "P2": { "type": "integer", "enum": [0, 1, 2] },
+        "P3": { "type": "integer", "enum": [0, 1, 2] },
+        "P4": { "type": "integer", "enum": [0, 1, 2] },
+        "P5": { "type": "integer", "enum": [0, 1, 2] },
+        "P6": { "type": "integer", "enum": [0, 1, 2] },
+        "P7": { "type": "integer", "enum": [0, 1, 2] }
+      }
+    },
+    "primitive_scores_v02": {
+      "type": "object",
+      "description": "Six per-ruling primitives. The two system properties (SP1, SP2) are tribunal-level and recorded in primitives.json, not per-ruling.",
+      "required": ["PR1", "PR2", "PR3", "PR4", "PR5", "PR6"],
+      "properties": {
+        "PR1": { "type": "integer", "enum": [0, 1, 2], "description": "Identity" },
+        "PR2": { "type": "integer", "enum": [0, 1, 2], "description": "Evidence log" },
+        "PR3": { "type": "integer", "enum": [0, 1, 2], "description": "Rule bind" },
+        "PR4": { "type": "integer", "enum": [0, 1, 2], "description": "Procedure" },
+        "PR5": { "type": "integer", "enum": [0, 1, 2], "description": "Ruling" },
+        "PR6": { "type": "integer", "enum": [0, 1, 2], "description": "Enforcement bridge" }
+      }
+    },
+    "coding": {
+      "type": "object",
+      "required": ["coder", "coded_on", "notes"],
+      "properties": {
+        "coder": { "type": "string" },
+        "coded_on": { "type": "string", "format": "date" },
+        "gold_set": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "case_no": "ADGMCFI-2024-320",
+  "parties": {
+    "claimant": "Projeco Contracting (L.L.C)",
+    "defendant": "Ideacrate Edutainment Company L.L.C - O.P.C"
+  },
+  "rule_source": {
+    "instruments": [
+      "UAE Federal Law No. (5) of 1985 (Civil Transactions Law) — Article 390 (judicial variation of liquidated damages)",
+      "ADGM Court Procedure Rules 2016 — Rule 42 (admissions and withdrawal)",
+      "ADGM Civil Evidence, Judgments, Enforcement and Judicial Appointments Regulations 2015 — §§ 181, 182 (set-off)"
+    ],
+    "applicable_law_note": "Substantive law: UAE Civil Transactions Law (per contract). Procedural and evidential law: ADGM (lex fori per Cooke J. line). Both layers compile."
+  },
+  "events": [
+    {"t": "2022-12-16", "type": "contract_signed", "by": "Projeco", "initial_price_aed": 5158987.0},
+    {"t": "2022-12-27", "type": "baseline_programme_adopted", "label": "Rev.05"},
+    {"t": "2023-05-15", "type": "presumptive_completion_date_initial"},
+    {"t": "2023-08-15", "type": "completion_date_extended_first"},
+    {"t": "2023-11-15", "type": "completion_date_extended_final", "note": "admitted by Ideacrate; admission later sought to be withdrawn"},
+    {"t": "2024-02-29", "type": "handover", "note": "court found this constituted substantial completion"},
+    {"t": "2025-01-10", "type": "interim_injunction_issued", "scope": "restraining encashment of security cheques"},
+    {"t": "2025-06-16", "type": "trial_day_1"},
+    {"t": "2025-06-17", "type": "trial_day_2"},
+    {"t": "2025-10-30", "type": "judgment_issued", "judge": "Paul Heath KC"}
+  ],
+  "human_findings_required": [
+    "97 days of critical delay caused by Projeco (between 16 Nov 2023 and 29 Feb 2024)",
+    "Handover on 29 Feb 2024 constituted substantial completion (end-date for LDs)",
+    "Smoke management system was within Projeco's contractual scope of work",
+    "Remediation/repair counterclaim AED 55,336 not proven on balance of probabilities",
+    "Withdrawal of admission application refused under ADGM CPR Rule 42(4)",
+    "Article 390 application to vary LDs refused: Projeco failed to show actual loss < cap"
+  ],
+  "facts": {
+    "adjusted_contract_price_aed": 6085211.90,
+    "ld_cap_pct": 0.10,
+    "daily_ld_rate_aed": 100000.0,
+    "days_of_critical_delay_found": 97,
+    "counterclaim_items": [
+      {"label": "liquidated_damages", "amount_aed": 608521.19, "found_proven": true, "computed_from_rule": true},
+      {"label": "remediation_and_repair", "amount_aed": 55336.0, "found_proven": false},
+      {"label": "smoke_management_system_contribution", "amount_aed": 147265.0, "found_proven": true}
+    ],
+    "amount_withheld_by_defendant_aed": 766287.15,
+    "handover_date": "2024-02-29",
+    "judgment_date": "2025-10-30",
+    "interest_rate_pa": 0.05
+  },
+  "human_ruling": {
+    "ld_awarded_aed": 608521.19,
+    "ld_basis": "10% of adjusted contract price (cap)",
+    "counterclaim_sum_aed": 755786.19,
+    "principal_aed": 10500.96,
+    "pre_judgment_interest_aed": 877.48,
+    "interest_basis": "5% per annum from 29 February 2024 to 30 October 2025",
+    "total_judgment_aed": 11378.44,
+    "court_daycount_days": 610,
+    "predicate_daycount_days": 609,
+    "constructive_finding": "The substantive contract dispute decomposes cleanly into (i) human substantive findings (delay, scope, proof of items) and (ii) deterministic arithmetic composition over those findings. The protocol takes the findings as inputs and composes them: LDs cap → counterclaim set-off → net principal → pre-judgment interest. Predicate output for the principal matches the court's AED 10,500.96 exactly. Predicate output for pre-judgment interest at 609 calendar days = AED 876.04; court's stated AED 877.48 corresponds to 610 days, indicating the court used inclusive-endpoint counting (or a +1 convention). The 1.44 AED gap is a daycount convention question, not an arithmetic error — the protocol surfaces the convention question for review.",
+    "comparator_to_prior_traces": "Trace #1 (formula): pure arithmetic, no human input. Trace #2 (deferred conditional): temporal predicate over a fixed rule. Trace #3 (bounded discretion): rule strips a filter, residue IS the answer. Trace #4 (composition over findings): the rule arithmetically composes multiple substantive findings into a final number — the protocol bounds the human-judgment region to the inputs while making the composition deterministic and auditable."
+  }
+}

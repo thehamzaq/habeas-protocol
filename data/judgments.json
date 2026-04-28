@@ -1,0 +1,5022 @@
+[
+  {
+    "case_no": "CFI 058/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0582024-atul-dhawan-ashok-amir-chand-dhawan-v-ramzi-wahib-el-jaouhari-3",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-03-31",
+    "parties": {
+      "claimant": "Atul Dhawan Ashok Amir Chand Dhawan",
+      "defendant": "Ramzi Wahib El Jaouhari"
+    },
+    "judge": "H.E. Justice Roger Stewart KC",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_granted",
+    "operative_amount_aed": 7127.75,
+    "rules_cited": [
+      "RDC Part 38",
+      "RDC 38.7"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Trace #1 candidate. Pure arithmetic: hours × rate + filing fee. P2=2 because the formula is fully deterministic. The court's operative figure (AED 7,127.75) differs from its own Schedule of Reasons arithmetic (AED 7,121.75) by AED 6 — the protocol surfaces a clerical error. P5=1 because the rule is cited but no precedent invoked. P6=1: appealable in principle but not discussed."
+    }
+  },
+  {
+    "case_no": "ARB 008/2026",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/arbitration/arb-0082026-oberlin-v-ovidiu",
+    "tribunal": "DIFC Courts",
+    "division": "Arbitration",
+    "date_issued": "2026-03-26",
+    "parties": {
+      "claimant": "Oberlin",
+      "defendant": "Ovidiu"
+    },
+    "judge": "H.E. Justice Shamlan Al Sawalehi",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 76785.81,
+    "rules_cited": [
+      "RDC Part 38",
+      "RDC 38.40",
+      "Practice Direction No. 4 of 2017"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 1,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Trace #2 candidate. Deadline + interest accrual is the canonical 'smart contract' shape: 14-day window, 9% p.a. if missed, both rules cited explicitly. P5=2 because PD No. 4/2017 is named precedent-instrument. P6=2: arbitration-recognition matter — NY Convention enforceability is structural. P2=2: the deadline + interest rule is fully predicate-shaped."
+    }
+  },
+  {
+    "case_no": "ENF 271/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/enforcement/enf-2712025-timothy-hugh-christian-taylor-v-arlette-joelle-marie-madeleine-yao-affi",
+    "tribunal": "DIFC Courts",
+    "division": "Enforcement",
+    "date_issued": "2026-04-01",
+    "parties": {
+      "claimant": "Timothy Hugh Christian Taylor",
+      "defendant": "Arlette Joelle Marie Madeleine Yao Affi"
+    },
+    "judge": "H.E. Justice Sir Jeremy Cooke",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 120000,
+    "rules_cited": [
+      "indemnity-basis costs (DIFC common-law line)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Trace #3 candidate. Indemnity-basis review = bounded discretion: only reasonableness, not proportionality. Court reduced AED 128,914.80 to AED 120,000 (specific delta). P2=1 because rule is bounded but the actual reduction is a structured human call, not formula-derived. P1=1: indemnity basis is invoked but no clause-specific citation. The honest case for what executable rules can't do."
+    }
+  },
+  {
+    "case_no": "CFI 110/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-1102025-karthi-keyan-venkataramana-v-ahmed-mohammad-abdul-rahman-ali",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-07",
+    "parties": {
+      "claimant": "Karthi Keyan Venkataramana",
+      "defendant": "Ahmed Mohammad Abdul Rahman Ali"
+    },
+    "judge": "H.E. Justice Sir Jeremy Cooke",
+    "claim_type": "case_management",
+    "outcome": "application_refused",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC 23.77"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 0,
+      "P3": 2,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Letter Application to vary CMO from in-person to remote trial. P2=0: pure policy reasoning (witness credibility, regional security). Genuinely not predicate-shaped. P5=0: no precedent cited. Useful negative datapoint for the empirical claim that not every DIFC ruling is codifiable."
+    }
+  },
+  {
+    "case_no": "CFI 079/2020",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0792020-punjab-national-bank-difc-branch-v-nmc-healthcare-llc",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-11-25",
+    "parties": {
+      "claimant": "Punjab National Bank DIFC Branch",
+      "defendant": "NMC Healthcare LLC"
+    },
+    "judge": "Assistant Registrar Delvin Sumo",
+    "claim_type": "case_management",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC (general reference)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 2,
+      "P3": 1,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 1,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Administrative closure for failure to file Certificate of Service after Notice of Discontinuance. P2=2 because the rule is mechanical: deadline missed → administrative closure. P3=1: only claimant side documented (defendant did not need to be heard given procedural posture). P1=1: 'pursuant to RDC' but no specific clause."
+    }
+  },
+  {
+    "case_no": "CFI 072/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0722025-difc-investments-ltd-v-difc-registrar-companie",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-07-16",
+    "parties": {
+      "claimant": "DIFC Investments Ltd",
+      "defendant": "DIFC Registrar of Companies"
+    },
+    "judge": "H.E. Justice Nassir Al Nasser",
+    "claim_type": "interim_relief",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "DIFC Operating Law (Law No. 7 of 2018) Articles 33(1)(b), 33(1)(f)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Restoration of restaurant entity to public register; defendant Registrar admitted claim. P2=2: pure rule application (Law No. 7 of 2018 Art. 33). P3=2: Acknowledgment of Service admitting in entirety. Notable: this is a citizen-vs-state action where the *Registrar of Companies* is the defendant — a structural mark of separation of powers."
+    }
+  },
+  {
+    "case_no": "ARB 024/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/arbitration/arb-0242025-olympio-v-olwin-1",
+    "tribunal": "DIFC Courts",
+    "division": "Arbitration",
+    "date_issued": "2025-08-15",
+    "parties": {
+      "claimant": "Olympio",
+      "defendant": "Olwin"
+    },
+    "judge": "H.E. Justice Shamlan Al Sawalehi",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 38",
+      "RDC 38.40",
+      "Practice Direction No. 4 of 2017"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 1,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Worldwide Freezing Order costs at USD 15,523.16 (80% of USD 19,403.95). Identical structure to ARB 008/2026 — same 80% discretion + 14-day deadline + 9% interest pattern. The repeated structure across the corpus is itself a finding: DIFC has converged on a near-formula for costs orders, which the protocol can codify."
+    }
+  },
+  {
+    "case_no": "CFI 057/2021",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0572021-khaled-salem-musabeh-humaid-al-mheiri-v-mr-john-cameron-2",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-10-07",
+    "parties": {
+      "claimant": "Khaled Salem Musabeh Humaid Al Mheiri",
+      "defendant": "Mr John Cameron"
+    },
+    "judge": "H.E. Justice Lord Angus Glennie",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC 38.21",
+      "RDC 38.23"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Standard-basis assessment with proportionality: USD 26,000 awarded ('doing the best I can'). P2=1: explicit acknowledgement of bounded discretion under RDC 38.21+38.23 — the rule names the factors but the weighting is judicial."
+    }
+  },
+  {
+    "case_no": "CFI 034/2022",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0342022-icici-bank-limited-v-mr-bavaguthu-raghuram-shetty-1",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-08-13",
+    "parties": {
+      "claimant": "ICICI Bank Limited",
+      "defendant": "Mr Bavaguthu Raghuram Shetty"
+    },
+    "judge": "H.E. Chief Justice Wayne Martin",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "DIFC Court Law",
+      "RDC"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Costs of renewed permission-to-appeal application: USD 21,865.44. P5=2 because the order references multiple prior orders in the same case (chain of decision-making documented). P6=2: PTA refused with explicit appeal route. The rich procedural history is exactly the kind of trace structure Habeas Primitive 5 wants."
+    }
+  },
+  {
+    "case_no": "CA 002/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/ca-0022025-01-olsen-02-obed-v-othmar",
+    "tribunal": "DIFC Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2025-09-09",
+    "parties": {
+      "claimant": "(01) Olsen (02) Obed",
+      "defendant": "Othmar"
+    },
+    "judge": "H.E. Chief Justice Wayne Martin",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 116574.6,
+    "rules_cited": [
+      "DIFC Courts costs jurisprudence"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Court of Appeal costs assessment: AED 116,574.60 from claimed AED 209,972.85. Court itemises 7 reasons for finding excess. P5=2: cross-references to Dubai Court ruling. P6=2: this *is* the appellate level. Interest at 5% (compounded annually) — different rate from CFI standard 9% — captures variability the protocol must encode."
+    }
+  },
+  {
+    "case_no": "DEC 001/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/digital-economy-court/dec-0012025-techteryx-ltd-v-1-ig-limited-2-ig-markets-limited-3-ig-index-limited-4-ig-trading-and-investments-limited",
+    "tribunal": "DIFC Courts",
+    "division": "Digital Economy Court",
+    "date_issued": "2026-04-03",
+    "parties": {
+      "claimant": "Techteryx Ltd",
+      "defendant": "(1) IG Limited (2) IG Markets Limited (3) IG Index Limited (4) IG Trading and Investments Limited"
+    },
+    "judge": "H.E. Justice Michael Black KC",
+    "claim_type": "interim_relief",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC 25.1(10)",
+      "RDC 28.51",
+      "RDC 28.52",
+      "DIFC Law of Damages and Remedies (Law No. 7 of 2005) Article 36",
+      "DIFC Courts Law (Law No. 2 of 2025) Articles 15(1), 24(D)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 1
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Norwich Pharmacal + Bankers Trust order against non-party financial institutions in stablecoin-fraud tracing case. USD 456M alleged misappropriation. Cross-jurisdictional: Hong Kong High Court proceedings + DIFC WFO + Dubai-resident defendants. P5=2: full statutory basis (5 instruments cited). P7=1: stablecoin reserve fraud — partially preventable by issuer-level KYC + audit gating, hence not 0. Most metaverse-relevant judgment in the corpus."
+    }
+  },
+  {
+    "case_no": "CFI 035/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0352025-eli-mydlarz-v-sadapay-technologies-ltd",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-09-19",
+    "parties": {
+      "claimant": "Eli Mydlarz",
+      "defendant": "Sadapay Technologies Ltd"
+    },
+    "judge": "H.E. Justice Roger Stewart",
+    "claim_type": "jurisdictional_challenge",
+    "outcome": "application_refused",
+    "operative_amount_aed": 47000,
+    "rules_cited": [
+      "DIFC Employment Law Article 22"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Jurisdictional challenge dismissed; costs AED 47,000. Substantive limitation analysis: 13 days late under Employment Law (1-year limitation) but in time under contractual 6-year limitation. P5=2: explicit reference to parallel CFI-025-2025 ('arguments materially same'). The limitation analysis itself is predicate-shaped: type-of-claim → applicable-limitation-period → in-time?"
+    }
+  },
+  {
+    "case_no": "CFI 076/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0762024-aptiva-technologies-fze-v-liberty-steel-group-holdings-emea-ltd-1",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-02-26",
+    "parties": {
+      "claimant": "Aptiva Technologies FZE",
+      "defendant": "Liberty Steel Group Holdings (EMEA) Ltd"
+    },
+    "judge": "H.E. Justice Roger Stewart",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 38 (implicit)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 2,
+      "P3": 1,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 1,
+      "PR3": 1,
+      "PR4": 1,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "USD 45,000 awarded as claimed; defendant filed no submissions. P3=1 because while opposing party had opportunity, none was taken — partial trace. P2=2 because in absence of opposition, the rule reduces to 'is the amount reasonable on its face' which is more deterministic than contested cases."
+    }
+  },
+  {
+    "case_no": "ENF 053/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/enforcement/enf-0532025-standard-chartered-plc-v-standard-chartered-bank",
+    "tribunal": "DIFC Courts",
+    "division": "Enforcement",
+    "date_issued": "2025-04-30",
+    "parties": {
+      "claimant": "Standard Chartered PLC",
+      "defendant": "Standard Chartered Bank"
+    },
+    "judge": "H.E. Deputy Chief Justice Ali Al Madhani",
+    "claim_type": "arbitration_enforcement",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "DIFC Court Law (Law No. 2 of 2025) Article 31(4)",
+      "RDC"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 1,
+      "P4": 2,
+      "P5": 1,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 1,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Recognition and enforcement of an English High Court order (Justice Michael Green, FL-2020-000038 et seq) under DIFC Court Law Article 31(4). P6=2: this is the textbook external-tribunal-bridge primitive. The most habeas-primitive-6-relevant judgment in the sample: the DIFC explicitly carries an English court order across jurisdictional boundaries."
+    }
+  },
+  {
+    "case_no": "CFI 053/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0532024-qatar-general-insurance-reinsurance-company-qspc-v-emrgent-risk-solutions-limited",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-08-29",
+    "parties": {
+      "claimant": "Qatar General Insurance & Reinsurance Company QSPC",
+      "defendant": "Emrgent Risk Solutions Limited"
+    },
+    "judge": "H.E. Justice Sapna Jhangiani",
+    "claim_type": "case_management",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 28",
+      "RDC 28.40"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Document-production case management with Redfern schedule. The Court's 'overriding objective' analysis here illustrates the classic move where rule-citation is high (P1=2) but predicate-codability is moderate (P2=1) — relevance-and-materiality determinations are bounded but contextual."
+    }
+  },
+  {
+    "case_no": "TCD 001/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/technology-and-construction-division/tcd-0012024-architeriors-interior-design-llc-v-emirates-national-investment-co-llc-7",
+    "tribunal": "DIFC Courts",
+    "division": "Technology and Construction Division",
+    "date_issued": "2026-02-23",
+    "parties": {
+      "claimant": "Architeriors Interior Design (L.L.C)",
+      "defendant": "Emirates National Investment Co (L.L.C)"
+    },
+    "judge": "H.E. Justice Roger Stewart",
+    "claim_type": "permission_to_appeal",
+    "outcome": "application_refused",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "DIFC Courts permission-to-appeal jurisprudence"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "PTA refused: 'no realistic prospect of success' — a bounded standard, not a formula. P5=2: cross-references to multiple prior orders in same case. P6=2: PTA gatekeeping is itself the external-tribunal mechanism. Note: case header says 'IN THE COURT OF APPEAL' but division is TCD — a structural artefact worth flagging."
+    }
+  },
+  {
+    "case_no": "CFI 010/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0102024-fursa-consulting-v-bay-gate-investment-llc",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-01-23",
+    "parties": {
+      "claimant": "Fursa Consulting",
+      "defendant": "Bay Gate Investment LLC"
+    },
+    "judge": "Assistant Registrar Hayley Norton",
+    "claim_type": "case_management",
+    "outcome": "application_refused",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC 40.5",
+      "RDC 40.15",
+      "RDC 40.17"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 1,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 1,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Default Costs Certificate refused for procedural defect: claimant used wrong form (P23 instead of P40/01). P2=2 because the rule is form-specific and binary — used right form? grant. used wrong? refuse. This is one of the most predicate-shaped rulings in the sample."
+    }
+  },
+  {
+    "case_no": "CFI 092/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0922024-mag-development-services-limited-v-1-collection-club-restaurant-limited-2-laurent-buisine-3-hugo-valat",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-04-22",
+    "parties": {
+      "claimant": "MAG Development Services Limited",
+      "defendant": "(1) The Collection Club Restaurant Limited (2) Laurent Buisine (3) Hugo Valat"
+    },
+    "judge": "H.E. Justice Nassir Al Nasser",
+    "claim_type": "default_judgment",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 14",
+      "RDC 14.2"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Setting aside default judgment of AED 11,012,500. Test: 'real prospect of successfully defending the claim' (RDC 14.2). P2=1: bounded standard, not formula. Substantively interesting because it shows the court will undo its own default judgment — a structural protection consistent with primitive 6 (appealability/correctability)."
+    }
+  },
+  {
+    "case_no": "ARB 032/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/arbitration/arb-0322025-oswin-v-1-otila-2-ondray-1",
+    "tribunal": "DIFC Courts",
+    "division": "Arbitration",
+    "date_issued": "2025-12-16",
+    "parties": {
+      "claimant": "Oswin",
+      "defendant": "(1) Otila (2) Ondray"
+    },
+    "judge": "H.E. Justice Sir Jeremy Cooke",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 80000,
+    "rules_cited": [
+      "indemnity-basis costs"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 1,
+      "P3": 1,
+      "P4": 2,
+      "P5": 1,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 1,
+      "PR2": 1,
+      "PR3": 1,
+      "PR4": 1,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Indemnity-basis costs reduced from AED 85,417.50 to AED 80,000. P3=1 because Second Defendant failed to file written submissions despite opportunity. Court reasons: 27 hours = 3 man-days; reduction for 'duplication of work'. Bounded discretion under indemnity standard, parallel to ENF 271/2025."
+    }
+  },
+  {
+    "case_no": "CFI 067/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0672025-coinmena-bsc-v-foloosi-technologies-ltd",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-20",
+    "parties": {
+      "claimant": "Coinmena B.S.C.",
+      "defendant": "Foloosi Technologies Ltd"
+    },
+    "judge": "H.E. Justice Shamlan Al Sawalehi",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 38",
+      "RDC 38.7",
+      "RDC 38.8",
+      "RDC 38.23",
+      "RDC 38.40",
+      "Practice Direction No. 4 of 2017"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Costs of PTA Application: USD 23,670.17 (80% of USD 29,587.71). The standard 80%-of-claimed pattern repeats. Coinmena is a digital-payments party — a metaverse-adjacent commercial dispute. P7=0 still because predator/safety harm is not the issue; this is B2B contractual."
+    }
+  },
+  {
+    "case_no": "CFI 071/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0712025-agro-resource-tarim-gida-ic-ve-dis-ticaret-s-v-promising-international-trading-co-dmcc-1",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-09-25",
+    "parties": {
+      "claimant": "Agro Resource Tarim Gida IC VE DIS Ticaret A.S.",
+      "defendant": "Promising International Trading CO. DMCC"
+    },
+    "judge": "H.E. Justice Nassir Al Nasser",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 19940,
+    "rules_cited": [
+      "RDC Part 38",
+      "RDC 38.8",
+      "RDC 38.23",
+      "RDC 38.40",
+      "Practice Direction No. 4 of 2017"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "AED 19,940 (80% of AED 24,800). Yet another 80% pattern. Notable: judge writes 'in accordance with the DIFC Courts' standard practice' — explicit acknowledgement that this is now a standardised rule, supporting the argument that DIFC has effectively converged on a codifiable practice."
+    }
+  },
+  {
+    "case_no": "CFI 098/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0982025-bhanu-choudhrie-v-1-dhariya-choudhrie-2-anita-choudhrie",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-03-02",
+    "parties": {
+      "claimant": "Bhanu Choudhrie",
+      "defendant": "(1) Dhariya Choudhrie (2) Anita Choudhrie"
+    },
+    "judge": "H.E. Justice Sir Jeremy Cooke",
+    "claim_type": "case_management",
+    "outcome": "application_refused",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC (case management)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 1,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Extension Application refused; deadline-with-consequence (compliance by 5 March 2026 or matter listed for hearing). The deadline structure is predicate-shaped, but the 'realistic effort' assessment isn't. P3=2: full submission record."
+    }
+  },
+  {
+    "case_no": "CFI 078/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0782025-capital-ventures-fzco-v-gfh-partners-manrre-reit-ceic-plc-1",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-09-25",
+    "parties": {
+      "claimant": "Capital Ventures FZCO",
+      "defendant": "GFH Partners Manrre REIT (CEIC) PLC"
+    },
+    "judge": "H.E. Justice Maha Al Mheiri",
+    "claim_type": "case_management",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 400,
+    "rules_cited": [
+      "RDC 23.79",
+      "RDC 1.6",
+      "Practice Direction No. 2 of 2019"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Extension granted but with USD 400 late-filing fee under PD No. 2 of 2019: 'USD 200 per day' for 48 hours of delay. P2=2 because the late-filing fee is a pure linear formula — yet another fully codifiable rule embedded in the corpus."
+    }
+  },
+  {
+    "case_no": "CFI 022/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0222025-tayseer-ali-v-sadapay-technologies-ltd-4",
+    "tribunal": "DIFC Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2026-03-17",
+    "parties": {
+      "claimant": "Tayseer Ali",
+      "defendant": "Sadapay Technologies Ltd"
+    },
+    "judge": "H.E. Chief Justice Wayne Martin",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": 45000,
+    "rules_cited": [
+      "Registrar's Practice Direction No. 1 of 2023"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 1,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 1,
+      "PR3": 2,
+      "PR4": 1,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "AED 45,000 (from claimed AED 59,600). Crucially, Practice Direction No. 1 of 2023 specifies HOURLY-RATE BANDS by years-of-experience: '> 10 years experience' top of range AED 3,298. Court reduced because rate claimed (AED 3,700) exceeded the band. P2=2: this is a literal lookup-table rule — directly codifiable as a switch on years_experience → permitted_rate."
+    }
+  },
+  {
+    "case_no": "CFI 039/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0392025-emirates-nbd-bank-pjsc-v-1-rashed-abulaziz-almakhawi-2-abdulaziz-rashed-abdulaziz-mohammed-almakhawi-3-hessa-rashed-1",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-17",
+    "parties": {
+      "claimant": "Emirates NBD Bank PJSC",
+      "defendant": "(1) Rashed Abulaziz Almakhawi (2) Abdulaziz Rashed Abdulaziz Mohammed Almakhawi (3) Hessa Rashed Abulaziz Almakhawi (4) Shamma Rashed Abulaziz Almakhawi"
+    },
+    "judge": "H.E. Justice Michael Black",
+    "claim_type": "interim_relief",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 12",
+      "RDC 4.2(1)",
+      "RDC 44.9"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 2,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Multi-application omnibus order around Worldwide Freezing Order. 'Unless order': comply by 4pm 20 April 2026 or lose right to defend. P2=2 because unless-orders are pure conditional predicates (compliance? then defend; non-compliance? then strike out). Multiple applications in one order — high-throughput case management. Costs USD 23,833.31."
+    }
+  },
+  {
+    "case_no": "ARB 029/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/arbitration/arb-0292025-ozan-v-owain",
+    "tribunal": "DIFC Courts",
+    "division": "Arbitration",
+    "date_issued": "2026-04-09",
+    "parties": {
+      "claimant": "Ozan",
+      "defendant": "Owain"
+    },
+    "judge": "H.E. Justice Shamlan Al Sawalehi",
+    "claim_type": "arbitration_recognition",
+    "outcome": "application_refused",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "DIFC Arbitration Law (Law No. 1 of 2008) Article 42",
+      "RDC Part 43",
+      "RDC 43.18-43.43",
+      "RDC 43.61",
+      "RDC 44.4"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 2,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 1,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Recognition and enforcement of Singapore Chamber of Maritime Arbitration award (USD 3,072,936.53). PTA + Stay refused. P6=2: this is the most clearly cross-jurisdictional bridge in the sample — Singapore arbitration → DIFC enforcement → eventual onward enforcement under NY Convention. Heavy rule-citation around inter-partes vs ex parte procedure."
+    }
+  },
+  {
+    "case_no": "CFI 007/2026",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0072026-1-bimal-gandhi-2-nishant-kaushik-v-1-muhanad-hisham-mohammed-azzeh-2-pcs-holiding-limited-3-i-d-centriq-digital-solu",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-10",
+    "parties": {
+      "claimant": "(1) Bimal Gandhi (2) Nishant Kaushik",
+      "defendant": "(1) Muhanad Hisham Mohammed Azzeh (2) PCS Holding Limited (3) I D Centriq Digital Solutions L.L.C"
+    },
+    "judge": "H.E. Justice Nassir Al Nasser",
+    "claim_type": "case_management",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC 4.2(1)",
+      "RDC Part 12",
+      "RDC Part 19",
+      "RDC 1.6 (overriding objective)"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Extension Application: defendants requested 6 weeks; granted only ~10 days for jurisdiction challenge + 21 April for Defence. Multi-factor balancing test (notice timing, complexity, regional instability). P2=1 because the overriding-objective balance is bounded but contextual. Notable explicit factor: 'regional instability' weighed but not decisive."
+    }
+  },
+  {
+    "case_no": "DIFC Courts Order No. 3 of 2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-administrative-orders/difc-courts-order-no-3-2025-respect-difc-courts-small-claims-tribunal",
+    "tribunal": "DIFC Courts",
+    "division": "Court Administrative Orders",
+    "date_issued": "2025-11-03",
+    "parties": {
+      "claimant": "n/a (administrative)",
+      "defendant": "n/a (administrative)"
+    },
+    "judge": "Chief Justice Wayne Martin",
+    "claim_type": "other",
+    "outcome": "other",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Dubai Law No. 9 of 2004",
+      "Dubai Law No. 2 of 2025 Article 10(B)(10)",
+      "DIFC Courts Order No. 1 of 2021",
+      "RDC Part 53"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 0,
+      "P3": 0,
+      "P4": 2,
+      "P5": 1,
+      "P6": 0,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 0,
+      "PR2": 0,
+      "PR3": 2,
+      "PR4": 0,
+      "PR5": 2,
+      "PR6": 0
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Administrative appointment of 4 additional Small Claims Tribunal members. NOT an adjudicative ruling — it is a *rule-making* / appointment act by the Chief Justice in administrative capacity. P4=2 because this is exactly the separation-of-powers moment: the Chief Justice sitting as administrator authorises the bench, then sits separately when adjudicating cases brought to it. P3=0 (no parties), P6=0 (administrative). Including this in the gold set is intentional — it shows the corpus contains rule-making acts AND adjudicative acts, and the protocol must distinguish them."
+    }
+  },
+  {
+    "case_no": "CFI 045/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0452025-stelian-gheorghe-v-1-bsa-ahmad-bin-hezeem-associates-llp-2-jimmy-haoula-2",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-06",
+    "parties": {
+      "claimant": "Stelian Gheorghe",
+      "defendant": "(1) BSA Ahmad Bin Hezeem & Associates LLP (2) Jimmy Haoula"
+    },
+    "judge": "H.E. Justice (per filename)",
+    "claim_type": "other",
+    "outcome": "other",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 1,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Professional negligence claim against law firm. Coded conservatively from header + structure: standard CFI substantive procedural posture. Fits the dominant pattern. Including in gold set to mark a *legal-professional-defendant* sub-case which is structurally interesting (a tribunal regulating its own bar)."
+    }
+  },
+  {
+    "case_no": "CFI 036/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0362025-stephan-karl-morgenstern-v-saif-sultan-al-mehrzi-lawyers-legal-consultancy-1",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-06",
+    "parties": {
+      "claimant": "Stephan Karl Morgenstern",
+      "defendant": "Saif Sultan Al Mehrzi Lawyers & Legal Consultancy"
+    },
+    "judge": "H.E. Justice Roger Stewart",
+    "claim_type": "case_management",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC Part 28"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 0,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Cross-applications for document production (Redfern schedule). Claimant's Application granted, Defendant's Application dismissed. Document-relevance determinations are bounded but contextual (P2=1). Document-by-document table in the order itself is structurally well-suited to predicate evaluation."
+    }
+  },
+  {
+    "case_no": "CFI 011/2025",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0112025-five-holding-limited-difc-v-brij-dhirubhai-patel",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-15",
+    "parties": {
+      "claimant": "Five Holding Limited (DIFC)",
+      "defendant": "Brij Dhirubhai Patel"
+    },
+    "judge": "H.E. Deputy Chief Justice Ali Al Madhani",
+    "claim_type": "permission_to_appeal",
+    "outcome": "application_refused",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "DIFC Court Law (Law No. 2 of 2025) Article 14"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 2,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "PTA dismissed; jurisdictional challenge under Article 14 of DIFC Court Law. 8 grounds of appeal grouped for analysis (44-paragraph reasoning). P2=1 because PTA gatekeeping ('realistic prospect of success') is a bounded standard but reasoning-heavy. P6=2: PTA is the textbook external-tribunal layer."
+    }
+  },
+  {
+    "case_no": "CFI 067/2024",
+    "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0672024-edouard-mandelkern-v-sami-bennani",
+    "tribunal": "DIFC Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-04-13",
+    "parties": {
+      "claimant": "Edouard Mandelkern",
+      "defendant": "Sami Bennani"
+    },
+    "judge": "H.E. Justice (per filename)",
+    "claim_type": "other",
+    "outcome": "other",
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "RDC"
+    ],
+    "primitive_scores_v01": {
+      "P1": 2,
+      "P2": 1,
+      "P3": 2,
+      "P4": 2,
+      "P5": 1,
+      "P6": 1,
+      "P7": 0
+    },
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 1,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Conservative coding from structural inspection. Individual-vs-individual commercial dispute. Standard CFI pattern. Included to round out the gold set with another procedural-substantive case."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-283",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance — Real Property Division",
+    "date_issued": "2026-02-04",
+    "parties": {
+      "claimant": "Castello Cafe and Restaurant L.L.C - S.P.C",
+      "defendant": "TSL Properties LLC; Three Sixty Communities Estate LLC; Modon Holding P.S.C; MENA Real Estate Solutions LLC"
+    },
+    "judge": "Justice Paul Heath KC",
+    "neutral_citation": "[2026] ADGMCFI 0005",
+    "claim_type": "summary_judgment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Cabinet Resolution No. (41) of 2023",
+      "Abu Dhabi Law No. (4) of 2013 (as amended by Law No. (12) of 2020), Article 13(7)",
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM Court Procedure Rules 2016 — Rules 9(2)(a), 68(1)(a), 75",
+      "ADGM Practice Direction 7 — paragraph 7.33"
+    ],
+    "cases_cited": [
+      "Union Properties PJSC v Trinkler & Partners Ltd [2024] ADGMCFI 0014",
+      "Al Nashef v Empire Island Tower Ltd [2025] ADGMCFI 0025",
+      "Caparo Industries Plc v Dickman [1990] 1 All ER 568 (HL)",
+      "Hedley Byrne & Co Ltd v Heller & Partners Ltd [1964] AC 465 (HL)",
+      "Murphy v Brentwood District Council [1991] 1 AC 398 (HL)",
+      "Chandler v Cape Plc [2012] 3 All ER 640 (CA)",
+      "Phonogram Ltd v Lane [1982] 3 CMLR 615 (CA)",
+      "Global Private Investments RSC Ltd v Global Aerospace Underwriting Managers Ltd [2021] ADGMCFI 0005"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Summary judgment for second/third/fourth defendants in commercial-lease claim. USD 1.08M sought; defendants found not parties to lease. Strong on every primitive: full English-style party identification, Caparo-test reasoning citing 8 English HL/CA cases plus 2 ADGMCFI cases, ADGM Court Procedure Rules 2016 Rule 68(1)(a) explicitly cited as the summary-judgment authority, full notice/hearing/decision triplet (hearing 20 Jan 2026, judgment 4 Feb 2026), specific operative orders. Enforcement bridge via Cabinet Resolution + Abu Dhabi Law (UAE federal level) + ADGM jurisdiction over Al Reem Island."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-158",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-02-19",
+    "parties": {
+      "claimant": "Xetech Solutions Ltd",
+      "defendant": "Pulsar Capital Holdings Limited"
+    },
+    "judge": "Justice Paul Heath KC",
+    "neutral_citation": "[2026] ADGMCFI 0006",
+    "claim_type": "substantive_breach",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "ADGM Application of English Law Regulations 2015"
+    ],
+    "cases_cited": [
+      "Arnold v Britton & Ors [2015] UKSC 36",
+      "Rainy Sky SA & Ors v Kookmin Bank [2011] 1 WLR 2900",
+      "Wood v Capita Insurance Services Ltd [2017] UKSC 24",
+      "Reardon Smith Line Ltd v Yngvar Hansen-Tangen [1976] 1 WLR 989 (HL)",
+      "Prenn v Simmonds [1971] 1 WLR 1381 (HL)",
+      "Ladd v Marshall [1954] 1 WLR 1489 (CA)",
+      "Providence Building Services Ltd v Hexagon Housing Association Ltd [2026] UKSC 1",
+      "Dijllah Jewellery FZE v AVA Trade Middle East Ltd [2026] ADGMCFI 0001"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "DIRECTLY THESIS-RELEVANT: Software development contract dispute (digital healthcare platform). Claimant Xetech is UK-based, defendant Pulsar is a third-party investor. Court applies Arnold-Rainy-Sky-Wood line of English contractual interpretation. Expert evidence on Azure DevOps records used to determine 'completion' of source code. This is exactly the kind of cross-border SaaS dispute the protocol thesis targets. Full primitives across the board."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-198",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-02-20",
+    "parties": {
+      "claimant": "A22 & B22",
+      "defendant": "C22"
+    },
+    "judge": "Justice Paul Heath KC",
+    "neutral_citation": "[2026] ADGMCFI 0007",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016 — Rule 172(1), Rule 195",
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial Appointments Regulations 2015 — Section 49"
+    ],
+    "cases_cited": [
+      "A22 & B22 v. C22 [2025] ADGMCFI 0018",
+      "Afkar Capital Ltd v Saifallah Fikry [2018] ADGMCFI 0002",
+      "Brookes v HSBC Bank Plc [2011] EWCA Civ 354",
+      "Ghafoor v Cliff [2006] EWHC 825 (Ch)",
+      "R (On the Application of Gourlay) v Parole Board [2021] 3 All ER 95 (UKSC)",
+      "Turcon v Assaf [2025] ADGMCFI 0002"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 1,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Anti-suit injunction case (anonymised). Costs allocation following discontinuance. PR1=1 because parties are anonymised — but this is a structural protection, not an absence of identity (court has full identity, public does not). PR3 cites both ADGM Court Procedure Rules 2016 Rule 172(1) presumption + Section 49 of Courts Regulations broad discretion. Demonstrates the ADGM tribunal's facility with English-law costs jurisprudence."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-322 + 323",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-02-23",
+    "parties": {
+      "claimant": "A17, A18 (anonymised)",
+      "defendant": "B17, C17, D17, B18 (anonymised)"
+    },
+    "judge": "Justice Sir Andrew Smith",
+    "neutral_citation": "[2026] ADGMCFI 0008",
+    "claim_type": "arbitration_enforcement",
+    "outcome": "claim_partially_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": 7859178,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016 — Rules 97(1), 110, 117"
+    ],
+    "cases_cited": [
+      "Hulley Enterprises Ltd v Russian Federation [2021] EWHC 894 (Comm)",
+      "Lachesis v Lacrosse [2021] DIFC CA 005",
+      "Tibbles v SIG plc [2012] EWCA Civ",
+      "JSC BTA Bank v Ablaylov [2015] UKSC 64",
+      "Taurus Petroleum Ltd v State Oil Marketing Co [2017] UKSC 64",
+      "Hardy Exploration v Govt of India [2018] EWHC",
+      "Vitol SA v Capri Marine Ltd [2010] EWHC 458"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 1,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "USD 140M LCIA arbitration award enforcement; Worldwide Freezing Order; Third-Party Debt Order USD 7,859,178. Cross-jurisdictional: LCIA arbitration → ADGM enforcement → English High Court fraud challenge attempt. Notably cites a DIFC CA case (Lachesis v Lacrosse) — the two tribunals cite each other, evidence of an emerging UAE common-law sphere. PR6=2: arbitration recognition under NY Convention is structural."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-249 + ADGMCFI-2024-047",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-03-03",
+    "parties": {
+      "claimant": "Federal Properties Limited – Sole Proprietorship L.L.C",
+      "defendant": "Rawafid H Jazairi Ibrahim; Amir Sadik Ali Al Samarraie"
+    },
+    "judge": "Justice Paul Heath KC",
+    "neutral_citation": "[2026] ADGMCFI 0009",
+    "claim_type": "real_property",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "ADGM Real Property Regulations 2024 — Section 144",
+      "ADGM Real Property Regulations (Fees) Rules 2024"
+    ],
+    "cases_cited": [
+      "Federal Properties Limited v Rawafid H Jazairi Ibrahim [2025] ADGMCFI 0013",
+      "Federal Properties Limited v Rawafid H Jazairi Ibrahim [2025] ADGMCFI 0020",
+      "Federal Properties Limited v Rawafid H Jazairi Ibrahim [2025] ADGMCFI 0002 (CA)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Constructive-trust property transfer using Torrens land registration system (operative on Al Reem Island from 1 Jan 2025). Court directs ADGM Registration Authority to use its Section 144 correction power. PR6=2: ADGM tribunal directly compels a UAE state-side registry. This is exactly the 'enforcement bridge' primitive in operation — the digital extension layer (ADGM) reaches into the territorial sovereign's land registry."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-265",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance — Commercial & Civil Division",
+    "date_issued": "2026-03-06",
+    "parties": {
+      "claimant": "Union Properties PJSC; UPP Capital Investment Co LLC",
+      "defendant": "Trinkler & Partners Ltd; First Fund Management Ltd; Jorg Klar; Paresh Khiara; Ahmed Khouri (and others)"
+    },
+    "judge": "Justice Sir Andrew Smith",
+    "neutral_citation": "[2026] ADGMCFI 0010",
+    "claim_type": "fraud",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": 320000000,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016 — Rules 97(1), 110, 117",
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial Appointments Regulations 2015 — Section 67",
+      "ADGM Financial Services and Markets Regulations 2015 — Sections 103, 218(1), 242",
+      "ADGM Application of English Law Regulations 2015",
+      "UAE Federal Law No. 2 of 2015 (Commercial Companies)",
+      "UAE Federal Law No. 5 of 1985 (Civil Transactions)",
+      "Private International Law (Miscellaneous Provisions) Act 1995 (UK) — Sections 11, 12"
+    ],
+    "cases_cited": [
+      "Union Properties v Trinkler [2025] ADGMCFI 0016, [2025] ADGMCFI 0015, [2024] ADGMCFI 0014, [2024] ADGMCFI 0006, [2023] ADGMCFI 0011, [2023] ADGMCFI 0009 (six prior orders in same case)",
+      "Caparo (and dozens of English authorities)",
+      "Smith New Court Securities v Scrimgeour Vickers [1997] AC 254"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "AED 320M fraud claim dismissed — Claimants found victims of fraud but failed to prove these specific defendants were party. The richest precedent-and-rule citation in the corpus: 8+ ADGM-internal cases, 30+ English cases, UK statute, UAE federal laws, ADGM regulations across multiple instruments. Fraud was real (court so found); evidentiary failure dispositive. PR3=2 with overflow."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-020",
+    "url": "https://www.adgm.com/adgm-courts/judgments",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance — Commercial & Civil Division",
+    "date_issued": "2026-04-15",
+    "parties": {
+      "claimant": "Secure Capital Equipment L.L.C",
+      "defendant": "NMC Healthcare Limited (in administration)"
+    },
+    "judge": "Justice Sir Andrew Smith",
+    "neutral_citation": "[2026] ADGMCFI 0011",
+    "claim_type": "insolvency",
+    "outcome": "application_refused",
+    "operative_amount_aed": 26000000,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "ADGM Insolvency Regulations 2022 — Sections 45(5), 76(1), 76(3)",
+      "ADGM Insolvency Regulations 2015 — Sections 45(5), 76(1), 76(3)"
+    ],
+    "cases_cited": [
+      "NMC Healthcare Limited v Noor Capital PSC [2022] ADGMCFI 0003",
+      "Noor Capital PSC v NMC Healthcare Limited [2026] ADGMCFI 0004",
+      "Re Atlantic Computer Systems Plc [1992] Ch 505",
+      "CargoLogicAir Ltd v WWTAI AirOpCo 1 Bermuda Ltd [2024] EWHC 508 (Comm)",
+      "South Coast Construction Ltd v Iverson Road Ltd [2017] EWHC 61 (TCC)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs",
+      "coded_on": "2026-04-27",
+      "gold_set": true,
+      "notes": "Permission refused to continue Dubai Court proceedings against NMC Healthcare (in DOCA administration). NMC Healthcare also appears in the DIFC corpus (CFI 079/2020). The same insolvency proceeding visible in two tribunals — useful cross-tribunal triangulation point. ADGM applies 2015+2022 versions of its own Insolvency Regulations — explicit version-binding (PR3=2). PR6=2: ADGM administration order has effect over Dubai Court proceedings."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-319",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-02-27",
+    "parties": {
+      "claimant": "Remy Alexandre Turcon",
+      "defendant": "Touﬁc Assaf & Anor."
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial",
+      "Appointments Regulations 2015 – Sections 49, 222 and 223",
+      "ADGM Court Procedure Rules 2016 – Rules 39, 40A, 195(1) and 198",
+      "Practice Direction 7 – Paragraph 7.22",
+      "Practice Direction 9 – Paragraphs 9.21 and 9.22"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0002_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0002_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: Default Judgment. Court’s discretionary powers as to costs. Summary \nassessment of costs on the standard basis. Costs th"
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-045",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-03-07",
+    "parties": {
+      "claimant": "Faysal Mohamad Awad",
+      "defendant": "3AM Property Investment Company LLC & Anor."
+    },
+    "judge": "Justice Sir Andrew Smith",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Cabinet Resolution No. (41) of 2023 Regarding the Amendment of Cabinet",
+      "Resolution No. (4) of 2013 Concerning the Determination of the Location",
+      "and Area of the Abu Dhabi Global Market",
+      "Abu Dhabi Law 4/2013 Concerning Abu Dhabi Global Market (the",
+      "“Founding Law”) – Article 13",
+      "Federal Decree Law 32/2021 on Commercial Companies – Article 84",
+      "ADGM Court Procedure Rules 2016 – Rule 117",
+      "Federal Decree Law 35/2022 Promulgating the Law of Evidence in Civil",
+      "and Commercial Transactions – Article 66",
+      "Abu Dhabi Executive Council Resolution 23/2005 – Article 1"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0003_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0003_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-011",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-03-27",
+    "parties": {
+      "claimant": "Vianney Stephane Marie Nicolas Mathonnet",
+      "defendant": "Modus Operations LLC Andre Junior Ayotte v Modus Operations LLC"
+    },
+    "judge": "Justice Sir Michael Burton GBE",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No. (4) of 2013, as amended by Abu Dhabi Law No. (12) of",
+      "2020 (the “ADGM Founding Law”) – Articles 13(7) and 13(9)",
+      "ADGM Arbitration Regulations 2015 – Section 16",
+      "ADGM Employment Regulations 2019 – Section 1",
+      "Employment Rights Act 1996 (UK) – Section 203",
+      "ADGM Employment Regulations 2019 (Compensation Awards and Limits)",
+      "Rules 2019 – Rules 2, 3, 9(3) and 9(5)",
+      "ADGM Divisions and Jurisdiction (Court of First Instance) Rules 2015"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0005_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0005_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-019",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-03-28",
+    "parties": {
+      "claimant": "Saeed Mohammed Qambar Abbas",
+      "defendant": "Siadah International Real Estate Development L.L.C."
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No. (4) of 2013, as amended by Abu Dhabi Law No. (12) of",
+      "2020 (the “ADGM Founding Law”) – Article 13(7)",
+      "Cabinet Resolution No. (41) of 2023 – Article 2",
+      "ADGM Court Procedure Rules 2016 – Rule 38(2) Executive Summary",
+      "The Court issued a judgment regarding a jurisdictional dispute. The case",
+      "concerned an off-plan property sale agreement (the “Agreement”) for a",
+      "unit in Masdar City, with the Claimant seeking to terminate the Agreement",
+      "and recover payments. The Defendant challenged the jurisdiction of the",
+      "Abu Dhabi Global Market Courts to hear the Claim.",
+      "The Court analysed Article 13(7) of Abu Dhabi Law No. (4) of 2013, as"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0006_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0006_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-162",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-05-01",
+    "parties": {
+      "claimant": "Commercial Bank of Dubai (PSC)",
+      "defendant": "Mohammed Z A Alyazji"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Real Property Regulations 2024 – Sections 1(g), 7-9, 67, 68(2), 72–",
+      "78, 178 and 184(2)",
+      "ADGM Real Property Regulations 2015 – Section 157(2)",
+      "Abu Dhabi Law No. 3 of 2015 Concerning the Regulation of the Real Estate",
+      "Sector in the Emirate of Abu Dhabi (the “Abu Dhabi Mortgage Law”) -",
+      "Articles 53- 57",
+      "Abu Dhabi Law No (4) of 2013 (as amended by Law No (12) of 2020) –",
+      "Article 13(7)(b)",
+      "ADGM Application of English Law Regulations 2015 – Sections 1(1) and",
+      "3(1)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0008_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0008_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-169",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-05-23",
+    "parties": {
+      "claimant": "Dijllah Jewellery FZE",
+      "defendant": "AVA Trade Middle East Limited"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "–"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0010_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0010_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: Preliminary issues. Governing law. Applicable version of terms and \nconditions. Whether a contractual election was made."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-144",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-06-04",
+    "parties": {
+      "claimant": "Andriy Sheremet",
+      "defendant": "CQT Investment Group Ltd"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016 – Rules 1-8, 44(2), 44(3), 46(1) and",
+      "46(2)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0011_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0011_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: Application to vary order requiring payment into Court. Payment into \nCourt a condition of extension of time to ﬁle a de"
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-101",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-08-25",
+    "parties": {
+      "claimant": "A24",
+      "defendant": "B24"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "UAE Cabinet Decision No. (41) of 2023",
+      "Abu Dhabi Law No. (4) of 2013 (as amended by Law No. (12) of 2020)",
+      "ADGM Arbitration Regulations 2015",
+      "ADGM Court Procedure Rules 2016",
+      "Federal Law No. (5) of 1985 (Civil Transactions Law)",
+      "Federal Decree Law No. (50) of 2022 (Commercial Transactions Law)",
+      "Federal Decree Law No. (35) of 2022 (Law of Evidence in Civil and",
+      "Commercial Transactions)",
+      "Federal Decree Law No. (42) of 2022 (Civil Procedure Law)",
+      "ADGM Application of English Law Regulations 2015"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0019_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0019_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-PCA-2025-005",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-09-01",
+    "parties": {
+      "claimant": "Sky Property Holdings LTD",
+      "defendant": "Corporate Sky Business Center L.T.D"
+    },
+    "judge": "Justice Sir Andrew Smith",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No. 20 of 2006",
+      "Abu Dhabi Law No. 4 of 2013 (as amended by Abu Dhabi Law No. 12 of 2020)",
+      "ADGM Court Procedure Rules 2016",
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial",
+      "Appointments Regulations 2015",
+      "ADGM Application of English Law Regulations 2015",
+      "The dispute in this case arises out of a commercial lease agreement for",
+      "property on Al Reem Island, with Sky Property Holdings LTD (“Sky”) bringing",
+      "a pre-claim without notice application seeking a “domestic freezing",
+      "injunction” against Corporate Sky Business Center L.T.D (“CSBC”) for"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0021_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0021_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-160",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-09-12",
+    "parties": {
+      "claimant": "Micca Ferrero & Others",
+      "defendant": "Drecford Holding Limited & Others"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Commercial Licensing Regulations 2015",
+      "ADGM Companies Regulations 2020",
+      "ADGM Court Procedure Rules 2016",
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial",
+      "Appointments Regulations 2015",
+      "English Civil Procedure Rules",
+      "Senior Courts Act 1981 (UK)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0022_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0022_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: Pre-action disclosure"
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-320",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-10-30",
+    "parties": {
+      "claimant": "Projeco Contracting (L.L.C)",
+      "defendant": "Ideacrate Edutainment Company - L.L.C - O. P. C"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "UAE Federal Decree Law No. (35) of 2022 Promulgating the Law of",
+      "Evidence in Civil and Commercial Transactions",
+      "UAE Federal Law No. (5) of 1985 concerning the Issuance of the Civil",
+      "Transactions Law",
+      "Abu Dhabi Law No. (4) of 2013 as amended by Abu Dhabi Law No. (12) of",
+      "2020",
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial",
+      "Appointments Regulations 2015",
+      "2",
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0026_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0026_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-370",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-11-17",
+    "parties": {
+      "claimant": "Hera Investment Ltd & Others",
+      "defendant": "Athena Holding Limited & Others"
+    },
+    "judge": "Justice Kenneth Hayne AC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Companies Regulations 2020"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0028_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0028_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: Interim Injunction Application. Delay in making the application. \nFortiﬁcation."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-PCA-2025-006",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-11-28",
+    "parties": {
+      "claimant": "NX (as Trustee of the EYZ Trust)",
+      "defendant": "AA (Beneﬁciary 1) & Others"
+    },
+    "judge": "Justice Sir Andrew Smith",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No. 4 of 2013, as amended by Abu Dhabi Law No. 12 of",
+      "2020 (the “ADGM Founding Law”) – articles 1(1), 3, 6, 13(7) and 13(8)",
+      "ADGM Courts, Civil Evidence, Judgments, Enforcement and Judicial",
+      "Appointments Regulations 2015 – sections 16(2) and 98",
+      "ADGM Court Procedure Rules 2016 (the “ADGM CPR”) – rules 2, 14(2),",
+      "57(2), 64(3), 64(4) and 173(1)",
+      "ADGM Practice Direction 7 – paragraph 7.3(c)",
+      "ADGM Application of English Law Regulations 2015 – section 1(1)",
+      "English Civil Procedure Rules 1998 – rule 39.2",
+      "English Civil Procedure (Amendment) Rules 2019"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0030_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0030_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-004",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-12-10",
+    "parties": {
+      "claimant": "Taslin Tejrar",
+      "defendant": "Ahmed Nasser Hussain Alghanim & Others Rubina Mohammed Umer v. Ahmed Nasser Hussain Alghanim & Anor."
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Real Property Regulations 2024",
+      "Federal Cabinet Resolution No 41 of 2023",
+      "UAE Civil Code (Federal Law No. (5) of 1985)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0031_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2025-_ADGMCFI_0031_Judgment_Summary.txt. All structured headers present; saturating default applied per scripts/triage_adgm.py rubric."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-227",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-01-13",
+    "parties": {
+      "claimant": "A23",
+      "defendant": "B23 and Others A25 v. B25"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Arbitration Regulations 2015"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2026-_ADGMCFI_0002_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2026-_ADGMCFI_0002_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: ADGM Arbitration Regulations 2015. Application to set aside arbitral \naward (Section 58). Application for recognition an"
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-208",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-01-26",
+    "parties": {
+      "claimant": "MediAmAm Holdings Limited",
+      "defendant": "Beyond Dreams for General Trading WLL"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-triage)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2026-_ADGMCFI_0003_Judgment_Summary.txt",
+      "notes": "AI-triaged from -2026-_ADGMCFI_0003_Judgment_Summary.txt. Procedural matter (case management/costs/interim) — PR6=1 per rubric ('implicit enforceability via standard procedure; no explicit bridge'). Catchwords: Service of process under a  multilateral treaty. Application for \nalternative service. Whether “ exceptional circumstanc"
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-143",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-06-10",
+    "parties": {
+      "claimant": "Al Khaleej Investment PSC",
+      "defendant": "Ocean Pearl Real Estate Comp LLC"
+    },
+    "judge": "Justice Paul Heath KC",
+    "claim_type": "real_property",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Cabinet Resolution No (41) of 2023",
+      "Abu Dhabi Law No (4) of 2023 (as amended by Law No (12) of 2020)",
+      "ADGM Real Property Regulations 2024",
+      "ADGM Real Property Regulations 2015",
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM Court Procedure Rules 2016 - Rules 2, 3(a) ,3(c), 15(1), and 16A(1)"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "-2025-_ADGMCFI_0012_Judgment_Summary.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 3 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 catchwords describe matter; outcome implicit in summary structure",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from -2025-_ADGMCFI_0012_Judgment_Summary.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2018-011",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2019-03-14",
+    "parties": {
+      "claimant": "TETYANA GLUKHOVA",
+      "defendant": "ESPOIR FLOWER BOUTIQUE LTD"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "2019_ADGMCFI_0002_ADGMCFI-2018-011_-_Judgment_of_Justice_Sir_Michael_Burton_14032019.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 4 body-dated reference(s)",
+        "PR3=1 only general references",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (2 verbs, e.g. 'I conclude')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from 2019_ADGMCFI_0002_ADGMCFI-2018-011_-_Judgment_of_Justice_Sir_Michael_Burton_14032019.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2019-003",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2019-05-27",
+    "parties": {
+      "claimant": "ROSEWOOD HOTEL ABU DHABI LLC",
+      "defendant": "SKELMORE HOSPITALITY GROUP LTD."
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "2019_ADGMCFI_0003_ADGMCFI2019003_Judgment_of_Justice_Stone_SBS_QC_27052019_30072019.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 6 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (1 verbs, e.g. 'application is granted')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from 2019_ADGMCFI_0003_ADGMCFI2019003_Judgment_of_Justice_Stone_SBS_QC_27052019_30072019.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2019-007",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2017-10-25",
+    "parties": {
+      "claimant": "A3",
+      "defendant": "B3"
+    },
+    "judge": "H.E. Justice Andrew Smith",
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Arbitration Regulations 2015",
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "2019_ADGMCFI_0004_ADGMCFI2019007_A3_v_B3_Judgment_of_Justice_Sir_Andrew_Smith_04072019_Redacted.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 60 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (7 verbs, e.g. 'declaration that')",
+        "PR6=2 arbitration recognition/enforcement implies NY Convention bridge"
+      ],
+      "notes": "AI-graded from 2019_ADGMCFI_0004_ADGMCFI2019007_A3_v_B3_Judgment_of_Justice_Sir_Andrew_Smith_04072019_Redacted.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2019-008",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2018-07-19",
+    "parties": {
+      "claimant": "A4",
+      "defendant": "B4"
+    },
+    "judge": "H.E. Justice Andrew Smith",
+    "claim_type": "arbitration_recognition",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No (4) of 2013"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "2019_ADGMCFI_0007_ADGMCFI2019008_A4_v_B4_Judgment_of_Justice_Sir_Andrew_Smith_171019_Redacted_v.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 19 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (2 verbs, e.g. 'ordered that')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from 2019_ADGMCFI_0007_ADGMCFI2019008_A4_v_B4_Judgment_of_Justice_Sir_Andrew_Smith_171019_Redacted_v.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "20200316_ADGMCFI_2019003_Judgment_of_Justice_Stone_SBS_QC_costs_final.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2020-03-16",
+    "parties": {
+      "claimant": "ROSEWOOD HOTEL ABU DHABI LLC",
+      "defendant": "SKELMORE HOSPITALITY GROUP LTD."
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "20200316_ADGMCFI_2019003_Judgment_of_Justice_Stone_SBS_QC_costs_final.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 13 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (1 verbs, e.g. 'costs to be')",
+        "PR6=2 arbitration recognition/enforcement implies NY Convention bridge"
+      ],
+      "notes": "AI-graded from 20200316_ADGMCFI_2019003_Judgment_of_Justice_Stone_SBS_QC_costs_final.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-019",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2021-03-28",
+    "parties": {
+      "claimant": "ABU DHABI COMMERICAL BANK PJSC",
+      "defendant": "KBBOBRS INVESTMENTS HOLDINGS LIMITED FIRST"
+    },
+    "judge": null,
+    "claim_type": "real_property",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "Trustee Act 1925"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "28032021_ADGMCFI2020019_ADCB_v_KBBOBRS_Investments_Holdings_Limited_Anor_Judgment.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 13 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'granted leave to')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from 28032021_ADGMCFI2020019_ADCB_v_KBBOBRS_Investments_Holdings_Limited_Anor_Judgment.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCA-2023-001",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2023-11-17",
+    "parties": {
+      "claimant": "AC NETWORK HOLDING LIMITED First",
+      "defendant": "AC POOL HOLDING LIMITED Second Appellant KHALIL MOHAMED BINLADIN Third Appellant DALIA KHALIL BINLADIN Fourth Appellant HORIZON LIGHT INVESTMENTS LLC Fifth Appe"
+    },
+    "judge": "in the Court of First Instance, Justice Stone, having reviewed the authorities, said that the current position on that question is far from settled under English law. He held that, as he was not si",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA-2023-001_-_Judgment_Appeal_17112023_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 31 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (1 verbs, e.g. 'Defendant shall pay')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCA-2023-001_-_Judgment_Appeal_17112023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCA-2025-001",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2025-06-25",
+    "parties": {
+      "claimant": "UNION PROPERTIES PJSC First",
+      "defendant": "UPP CAPITAL INVESTMENT CO LLC Second Appellant and NASSER BUTTI OMAIR YOUSEF ALMHEIRI"
+    },
+    "judge": "was not concerned with the subsequent history of the Union Insurance notes which were sold and the proceeds used to pay transaction charges. The amendment and strike out applications were primarily",
+    "claim_type": "costs_assessment",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA-2025-001_-_Judgment_25062025_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 41 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (5 verbs, e.g. 'Appeal dismissed')",
+        "PR6=2 enforcement bridge: Federal Law"
+      ],
+      "notes": "AI-graded from ADGMCA-2025-001_-_Judgment_25062025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCA-2025-002",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2025-10-07",
+    "parties": {
+      "claimant": "A30 First",
+      "defendant": "B30 Second Appellant C30 Third Appellant D30 Fourth Appellant and E30 First"
+    },
+    "judge": "was told that A30 has recently learned that the Respondents are likely to receive, or may already have received, funds from the National Bank of Party C (“Party C Bank”) under two guarantees provid",
+    "claim_type": "interim_relief",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Arbitration Regulations 2015"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA-2025-002_-_A30_Others_v._E30_Others_07102025_FINAL_-_Anonymised_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 32 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (6 verbs, e.g. 'Appeal is allowed')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCA-2025-002_-_A30_Others_v._E30_Others_07102025_FINAL_-_Anonymised_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "APP-2019-001",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2019-11-17",
+    "parties": {
+      "claimant": "SKELMORE HOSPITALITY GROUP LTD.",
+      "defendant": "ROSEWOOD HOTEL ABU DHABI LLC"
+    },
+    "judge": null,
+    "claim_type": "permission_to_appeal",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA-APP-2019-001-Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC-Judgment-26012020.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=1 only one specific citation",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'costs of the Application')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCA-APP-2019-001-Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC-Judgment-26012020.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "APP-2025-005",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2025-10-06",
+    "parties": {
+      "claimant": "FEDERAL PROPERTIES LIMITED – SOLE PROPRIETORSHIP LLC (ALSO KNOWN AS FEDERAL PROPERTIES LIMITED)",
+      "defendant": "RAWAFID H JAZAIRI IBRAHIM First"
+    },
+    "judge": "dismissed the claim made by Federal and allowed each counterclaimant’s counterclaim that Federal should take the steps necessary to transfer to the counterclaimant the title to a residential unit or",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Real Property Regulations 2024"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA-APP-2025-005-006-007_-_Joint_Judgment_-2025-_ADGMCA_0002_-_Permission_to_Appeal_Applications_-_06102025_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 5 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'costs to be')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCA-APP-2025-005-006-007_-_Joint_Judgment_-2025-_ADGMCA_0002_-_Permission_to_Appeal_Applications_-_06102025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCA-2022-001",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2021-12-13",
+    "parties": {
+      "claimant": "GLOBAL AEROSPACE UNDERWRITING MANAGERS LIMITED First",
+      "defendant": "XL INSURANCE COMPANY SE, DIREKTION FUR DEUTSCHLAND (company number HRB 94266) Second Appellant SWISS RE INTERNATIONAL SE NIEDERLASSUNG DEUTSCHLAND (company numb"
+    },
+    "judge": "found, at the time of the hailstorm GPI had firm plans to sell the aircraft for about US$40 million and had set about doing so. 10. Section One of the policy provides the cover for loss of or dama",
+    "claim_type": "real_property",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA2022001_ADGMCA2022002_Judgment_Appeal_03072023_ReIssued_06072023_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 106 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'Appeal allowed')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCA2022001_ADGMCA2022002_Judgment_Appeal_03072023_ReIssued_06072023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCA-2019-001",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2019-09-01",
+    "parties": {
+      "claimant": "SKELMORE HOSPITALITY GROUP LTD.",
+      "defendant": "ROSEWOOD HOTEL ABU DHABI LLC"
+    },
+    "judge": "did not understand there to be any dispute that, in dealing with an application under that Rule, the Court had an unfettered discretion whether to grant permission. In our opinion that is indeed th",
+    "claim_type": "permission_to_appeal",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCAAPP20190001Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 5 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (3 verbs, e.g. 'Appeal refused')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCAAPP20190001Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCA-2019-002",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2020-03-31",
+    "parties": {
+      "claimant": "SKELMORE HOSPITALITY GROUP LTD.",
+      "defendant": "ROSEWOOD HOTEL ABU DHABI LLC"
+    },
+    "judge": null,
+    "claim_type": "permission_to_appeal",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCAAPP2019002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment_FINAL_3103.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=1 only general references",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (5 verbs, e.g. 'Set Aside')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCAAPP2019002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment_FINAL_3103.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "APP-2019-002",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of Appeal",
+    "date_issued": "2020-03-04",
+    "parties": {
+      "claimant": "SKELMORE HOSPITALITY GROUP LTD.",
+      "defendant": "ROSEWOOD HOTEL ABU DHABI LLC"
+    },
+    "judge": "explained how this came about in paragraphs 5 to 8 of his judgment. Further details are given in paragraphs 6 to 9 of a witness statement provided by Mr Justin Mostert on 23 January 2020, the Chie",
+    "claim_type": "permission_to_appeal",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCA_APP_2019_002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment_20200212.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 29 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (23 verbs, e.g. 'SET ASIDE')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCA_APP_2019_002_Skelmore_Hospitality_Group_Ltd_v_Rosewood_Hotel_Abu_Dhabi_LLC_Judgment_20200212.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2018-013",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2019-02-28",
+    "parties": {
+      "claimant": "LAKTINEH & CO. LTD",
+      "defendant": "AHMED AL HATTI FIRST"
+    },
+    "judge": "made a finding that service had been made in full: (Exhibit JL-40 to witness statement of Jade Laktineh dated 31 December 2019). The certificate of service is date stamped 18 April 2019 and service",
+    "claim_type": "default_judgment",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "Abu Dhabi Law No.4 of 2013"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2018-013-Laktineh_Co_Ltd_v_Ahmed_Al_Hatti_Anor-Judgment_of_Lord_McGhie_FINAL_30012020.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 5 body-dated reference(s)",
+        "PR3=2 21 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (22 verbs, e.g. 'SET ASIDE')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2018-013-Laktineh_Co_Ltd_v_Ahmed_Al_Hatti_Anor-Judgment_of_Lord_McGhie_FINAL_30012020.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-015",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-06-07",
+    "parties": {
+      "claimant": "AC NETWORK HOLDING LIMITED First",
+      "defendant": "AC POOL HOLDING LIMITED Second Claimant KHALIL MOHAMED BINLADIN Third Claimant DALIA KHALIL BINLADIN Fourth Claimant HORIZON LIGHT INVESTMENTS LLC Fifth Claiman"
+    },
+    "judge": null,
+    "claim_type": "permission_to_appeal",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2020-015_-_Judgment_-_Permission_to_Appeal_07062023_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 5 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (3 verbs, e.g. 'appeal is granted')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2020-015_-_Judgment_-_Permission_to_Appeal_07062023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-051",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2021-05-02",
+    "parties": {
+      "claimant": "GLOBAL PRIVATE INVESTMENTS RSC LIMITED",
+      "defendant": "GLOBAL AEROSPACE UNDERWRITING MANAGERS LIMITED First"
+    },
+    "judge": null,
+    "claim_type": "real_property",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Companies Regulations 2020",
+      "ADGM Court Procedure Rules 2016",
+      "Practice Direction",
+      "practice direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2020-051_-_Judgment_on_Security_for_Costs_Application_02052021.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 27 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (8 verbs, e.g. 'Application granted')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2020-051_-_Judgment_on_Security_for_Costs_Application_02052021.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2021-042",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-06-08",
+    "parties": {
+      "claimant": null,
+      "defendant": null
+    },
+    "judge": "H.E. Justice Andrew Smith Claimants Collateral Use",
+    "claim_type": "interim_relief",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2021042_Judgment_of_Justice_Sir_Andrew_Smith_Claimants_Collateral_Use_Application_Issued_08.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 2 body-dated reference(s)",
+        "PR3=2 17 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (1 verbs, e.g. 'Application refused')",
+        "PR6=2 enforcement bridge: Onshore"
+      ],
+      "notes": "AI-graded from ADGMCFI2021042_Judgment_of_Justice_Sir_Andrew_Smith_Claimants_Collateral_Use_Application_Issued_08.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2021-057",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2019-10-08",
+    "parties": {
+      "claimant": null,
+      "defendant": null
+    },
+    "judge": null,
+    "claim_type": "jurisdictional_challenge",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2021-057_-_A5_v_B5_-_Judgment_19092021.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header (parsed-fields empty)",
+        "PR2=2 issuance date + 2 body-dated reference(s)",
+        "PR3=2 52 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (17 verbs, e.g. 'Costs reserved')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-2021-057_-_A5_v_B5_-_Judgment_19092021.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-002",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-01-25",
+    "parties": {
+      "claimant": null,
+      "defendant": null
+    },
+    "judge": "trained in English or another common law system will, as Mr Gillis submitted, require assistance from a lawyer familiar with the UAE civil legal system. After all, articles of the Civil Code, of w",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-002_-_Judgment_Preliminary_Issue_04012023_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 18 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (9 verbs, e.g. 'Costs reserved')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-002_-_Judgment_Preliminary_Issue_04012023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-017",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2022-05-18",
+    "parties": {
+      "claimant": "MOUSTAFA ASHRAF ABDELGHANI MOHAMMED SHAABAN",
+      "defendant": "AUMET LTD"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Federal Law No 35 of 1992"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-017_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_22112022_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 6 body-dated reference(s)",
+        "PR3=2 18 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (19 verbs, e.g. 'set aside')",
+        "PR6=2 enforcement bridge: Federal Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-017_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_22112022_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-020",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-01-30",
+    "parties": {
+      "claimant": null,
+      "defendant": null
+    },
+    "judge": "acceded to the request, and gave instructions that the enforcement against NMCH be stayed. Noor challenged the stay, and made applications to and requests of the Execution Court to enforce the Payme",
+    "claim_type": "insolvency",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM INSOLVENCY REGULATIONS 2022",
+      "ADGM Insolvency Regulations 2015",
+      "ADGM Insolvency Regulations 2022",
+      "Insolvency Act 1986",
+      "Limitation Act 1980"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-020_-_Judgment_Noor_Application_30012026_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 125 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (16 verbs, e.g. 'application is refused')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-020_-_Judgment_Noor_Application_30012026_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-111",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2022-10-03",
+    "parties": {
+      "claimant": "February 2011 and April 2012 he was the Chief Financial Officer (“CFO”) of Healthcare, and between April 2021 and the en",
+      "defendant": "for the order has a good, arguable case, that there is a real risk that judgment would go unsatisfied by reason of the disposal by the"
+    },
+    "judge": "considers would have a better than 50 per cent chance of success ”. 16. In its Particulars of Claim ADCB has pleaded the claims in considerable detail , alleging that, if the matter is governed by E",
+    "claim_type": "interim_relief",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-111_-_Judgment_03102022.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 14 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (9 verbs, e.g. 'costs of the Application')",
+        "PR6=2 enforcement bridge: Onshore"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-111_-_Judgment_03102022.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-178",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2022-09-14",
+    "parties": {
+      "claimant": "LAILA ABDULLA HASSAN ABDULLA BELHOUSH",
+      "defendant": "ABU DHABI COMMERCIAL BANK"
+    },
+    "judge": "H.E. Justice Hayne",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-178_-_Judgment_of_Justice_Hayne_14092022_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 3 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (12 verbs, e.g. 'costs to be')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-178_-_Judgment_of_Justice_Hayne_14092022_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-225",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-03-28",
+    "parties": {
+      "claimant": "MOHAMMED R A KHALED",
+      "defendant": "3LEEM LTD"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-225_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_28032023_FINAL_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 2 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'I find')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-225_-_Judgment_of_Justice_Sir_Michael_Burton_GBE_28032023_FINAL_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-238",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-03-13",
+    "parties": {
+      "claimant": "A6",
+      "defendant": "B6"
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "jurisdictional_challenge",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Arbitration Regulations 2015",
+      "Abu Dhabi Law No. 4 of 2013",
+      "Federal Law No. 5 of 1985",
+      "Federal Law No. 6 of 2018"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-238_-_Judgment_of_Justice_Stone_SBS_KC_13032023_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 18 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (24 verbs, e.g. 'set aside')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-238_-_Judgment_of_Justice_Stone_SBS_KC_13032023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-299",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-12-04",
+    "parties": {
+      "claimant": null,
+      "defendant": null
+    },
+    "judge": null,
+    "claim_type": "insolvency",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "ADGM INSOLVENCY REGULATIONS 2022",
+      "ADGM Insolvency Regulations 2022",
+      "Abu Dhabi Law No. 4 of 2013",
+      "Cabinet Resolution No. (10) of 2019",
+      "Cabinet Resolution No. 10 of 2019",
+      "Federal Law No 5 of 1985",
+      "Federal Law No. 10 of 1980",
+      "Federal Law No. 12 of 2014",
+      "Federal Law No. 4 of 2002"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2022-299_-_Judgment_STR_Application_Internal_Reports_Application_26112025_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header (parsed-fields empty)",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 91 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (35 verbs, e.g. 'Set Aside')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2022-299_-_Judgment_STR_Application_Internal_Reports_Application_26112025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-013",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-06-26",
+    "parties": {
+      "claimant": "A8",
+      "defendant": "B8"
+    },
+    "judge": null,
+    "claim_type": "arbitration_recognition",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Arbitration Regulations 2015",
+      "Abu Dhabi Law No 4 of 2013",
+      "Abu Dhabi Law No. 12 of 2020",
+      "Abu Dhabi Law No. 4 of 2013",
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-013_-_Judgment_26062023_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 29 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (6 verbs, e.g. 'set aside')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-013_-_Judgment_26062023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-021",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2024-01-15",
+    "parties": {
+      "claimant": "BAI MINGGUO",
+      "defendant": "ANTHONY DARIUS SADEGHNIA"
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-021_-_Judgment_of_Justice_Stone_SBS_KC_-_22052024_-_Re-issued_23052024_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 35 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (3 verbs, e.g. 'declaration that')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-021_-_Judgment_of_Justice_Stone_SBS_KC_-_22052024_-_Re-issued_23052024_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-028",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-01-04",
+    "parties": {
+      "claimant": "JULIE ANNE MCCRAE",
+      "defendant": "THE LOREAU GROUP FZ LLC First"
+    },
+    "judge": "H.E. Justice Wiliam Stone",
+    "claim_type": "insolvency",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-028_-_Judgment_of_Justice_Wiliam_Stone_SBS_KC_19102023_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 4 body-dated reference(s)",
+        "PR3=1 only general references",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=1 no clear operative outcome",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-028_-_Judgment_of_Justice_Wiliam_Stone_SBS_KC_19102023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-071",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2023-12-12",
+    "parties": {
+      "claimant": "ELNAGGAR & PARTNERS LIMITED",
+      "defendant": "ABU DHABI GLOBAL MARKET REGISTRATION AUTHORITY"
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-071_-_Costs_Judgment_of_Justice_Stone_SBS_KC_12122023_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 2 body-dated reference(s)",
+        "PR3=2 5 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'costs to be')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-071_-_Costs_Judgment_of_Justice_Stone_SBS_KC_12122023_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-130",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2024-01-23",
+    "parties": {
+      "claimant": "SI YUAN WU",
+      "defendant": "MEPAY TECHNOLOGY LIMITED"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-130_-_Judgment_2024_ADGMCFI_0001_of_Justice_Sir_Michael_Burton_GBE_23012024_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 16 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (3 verbs, e.g. 'I find')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-130_-_Judgment_2024_ADGMCFI_0001_of_Justice_Sir_Michael_Burton_GBE_23012024_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-180",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2024-02-06",
+    "parties": {
+      "claimant": "FAISAL HAMAD MUBARAK AL AYAR",
+      "defendant": "PAUL KLINKHAMER"
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "jurisdictional_challenge",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No. (12) of 2020",
+      "Abu Dhabi Law No. (4) of 2013"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-180_-_Judgment_2024_ADGMCFI_0002_of_Justice_Stone_SBS_KC_06022024_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 27 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (5 verbs, e.g. 'Application is granted')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-180_-_Judgment_2024_ADGMCFI_0002_of_Justice_Stone_SBS_KC_06022024_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-248",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2019-07-15",
+    "parties": {
+      "claimant": "SOHIR HUSSEIN AL AHMAR First",
+      "defendant": "RADWAN ANAS RADWAN Second Claimant and MESAB LIMITED (A LIMITED LIABILITY COMPANY INCORPORATED IN MASDAR CITY, COMMERCIAL LICENSE NO. MC11461) First"
+    },
+    "judge": null,
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Cabinet Resolution",
+      "Cabinet Resolution No. 41 of 2023",
+      "Cabinet Resolution No. 5 of 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2023-248_-_Judgment_ADGMCFI-2024-0011_29072024_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 2 body-dated reference(s)",
+        "PR3=2 41 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (8 verbs, e.g. 'Judgment is entered')",
+        "PR6=2 enforcement bridge: Cabinet Resolution"
+      ],
+      "notes": "AI-graded from ADGMCFI-2023-248_-_Judgment_ADGMCFI-2024-0011_29072024_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-073",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2024-08-08",
+    "parties": {
+      "claimant": "the Board of Directors or the Global Market’s Courts and those entities”. However, Article 13.14 provides that this does",
+      "defendant": "was that the arbitration agreement stated that the seat of the arbitration should be “internally in Dubai” according to the DIFC-LCIA Rules, which allowed the p"
+    },
+    "judge": "Stone in A8 v B8 (cit sup) at paras 32ff, and would respectfully adopt his reasoning. Nor do I consider that a claimant in a 08 August 2024 03:25 PM case such as this need put before the Court a wit",
+    "claim_type": "arbitration_recognition",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "Abu Dhabi Law No. (12) of 2020",
+      "Abu Dhabi Law No. (4) of 2013",
+      "Federal Law No. (6) of 2018",
+      "Federal Law No. 7 of 2011",
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2024-073-_Judgment_ANONYMISED_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 6 body-dated reference(s)",
+        "PR3=2 90 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (11 verbs, e.g. 'Application is adjourned')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2024-073-_Judgment_ANONYMISED_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2024-179",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2024-06-04",
+    "parties": {
+      "claimant": "CAROLINA DEL VALLE GUZMAN GARCIA MARIN First",
+      "defendant": "LUIS GERARDO FIGUERA LOZADA Second Claimant and KHALED ALI OTHMAN AL AKHRAS First"
+    },
+    "judge": "H.E. Justice Paul Heath",
+    "claim_type": "real_property",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM Court Procedure Rules 2016",
+      "ADGM Real Property Regulations 2024",
+      "Abu Dhabi Law No (4) of 2013",
+      "Cabinet Resolution",
+      "Cabinet Resolution No. (41) of 2023",
+      "Federal Law No. (3) of 2022"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2024-179_-_Judgment_Justice_Paul_Heath_KC_-_15092025_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 69 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (20 verbs, e.g. 'I reject')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-2024-179_-_Judgment_Justice_Paul_Heath_KC_-_15092025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-165",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-07-28",
+    "parties": {
+      "claimant": "ARABYADS HOLDING LIMITED",
+      "defendant": "GULREZ ALAM MARGHOOB ALAM"
+    },
+    "judge": "H.E. Justice Paul Heath",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM Court Procedure Rules 2016",
+      "Practice Direction",
+      "practice direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2025-165_-_Costs_Judgment_-_Justice_Paul_Heath_KC_-_18122025_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 116 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (24 verbs, e.g. 'Defendant shall pay')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-2025-165_-_Costs_Judgment_-_Justice_Paul_Heath_KC_-_18122025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2025-178",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2026-06-20",
+    "parties": {
+      "claimant": "RIAD ZAKI ABDUL RAHIM AL NASHEF",
+      "defendant": "EMPIRE ISLAND TOWER LIMITED FIRST"
+    },
+    "judge": null,
+    "claim_type": "summary_judgment",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "Federal Law No. (5) of 1985"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-2025-178_-_Judgment_Summary_Judgment_-_Strike_Out_Application_21102025_SEALED.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 4 body-dated reference(s)",
+        "PR3=2 10 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (5 verbs, e.g. 'Application is granted')",
+        "PR6=2 enforcement bridge: Federal Law"
+      ],
+      "notes": "AI-graded from ADGMCFI-2025-178_-_Judgment_Summary_Judgment_-_Strike_Out_Application_21102025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-PCA-2025-005_-_Judgment_Interim_Freezing_Injunction_01092025_SEALED.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-06-30",
+    "parties": {
+      "claimant": "SKY PROPERTY HOLDINGS LTD Claimant/",
+      "defendant": "CORPORATE SKY BUSINESS CENTER L.T.D"
+    },
+    "judge": "considers would have a better than 50 per cent chance of success”. 01 September 2025 02:58 PM COURT OF FIRST INSTANCE JUDGMENT ADGMCFI-PCA-2025-005 – Sky Property Holdings LTD v. Cor",
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM Court Procedure Rules 2016",
+      "Abu Dhabi Law No. 12 of 2020",
+      "Abu Dhabi Law No. 20 of 2006",
+      "Abu Dhabi Law No. 4 of 2013"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-PCA-2025-005_-_Judgment_Interim_Freezing_Injunction_01092025_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 26 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (5 verbs, e.g. 'I conclude')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-PCA-2025-005_-_Judgment_Interim_Freezing_Injunction_01092025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-PCA-2025-006_-_Judgment_Preliminary_Application_28112025_SEALED.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2025-11-28",
+    "parties": {
+      "claimant": "NX (AS TRUSTEE OF THE EYZ TRUST)",
+      "defendant": "AA (BENEFICIARY 1) First"
+    },
+    "judge": "is exercising a discretion. As Tugendhat J said in AMM v HXW [2010] EWHC 2457 (QB) of decisions whether to make an order under the English CPR r. 39.2, they are not “ a matter of the court’s discre",
+    "claim_type": "case_management",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Application of English Law Regulations 2015",
+      "ADGM Court Procedure Rules 2016",
+      "Abu Dhabi Law No. 12 of 2020",
+      "Abu Dhabi Law No. 4 of 2013",
+      "Federal Law No. (14) of 2018",
+      "Federal Law no 14 of 2018",
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI-PCA-2025-006_-_Judgment_Preliminary_Application_28112025_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 45 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (14 verbs, e.g. 'order that')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI-PCA-2025-006_-_Judgment_Preliminary_Application_28112025_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-005",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2020-04-21",
+    "parties": {
+      "claimant": "ERIK RUBINGH",
+      "defendant": "VELOQX RSC LIMITED"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Practice Direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2020005_Erik_Rubingh_v_Veloqx_RSC_Limited_Judgment_of_Justice_Sir_Michael_Burton_GBE_11072020.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 2 body-dated reference(s)",
+        "PR3=2 50 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'Judgment for')",
+        "PR6=2 arbitration recognition/enforcement implies NY Convention bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI2020005_Erik_Rubingh_v_Veloqx_RSC_Limited_Judgment_of_Justice_Sir_Michael_Burton_GBE_11072020.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-014",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2020-05-20",
+    "parties": {
+      "claimant": "ALVARO GARCIA TORRES",
+      "defendant": "VELOQX RSC LIMITED"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2020014Alvaro_Garcia_Torres_v_Veloqx_RSC_LimitedJudgment_of_Justice_Sir_Michael_Burton_GBE_22.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 8 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=1 no clear operative outcome",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI2020014Alvaro_Garcia_Torres_v_Veloqx_RSC_LimitedJudgment_of_Justice_Sir_Michael_Burton_GBE_22.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2020-026",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2021-03-23",
+    "parties": {
+      "claimant": "AEFO TECHNICAL SERVICES LLC",
+      "defendant": "AQUARIUS GLOBAL LIMITED"
+    },
+    "judge": "H.E. Justice Stone",
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "practice direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2020026_Judgment_of_Justice_Stone_SBS_QC_07042021_FINAL_Amended_04052021.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 2 body-dated reference(s)",
+        "PR3=2 15 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (3 verbs, e.g. 'costs of the Application')",
+        "PR6=2 enforcement bridge: Application of English Law Regulations"
+      ],
+      "notes": "AI-graded from ADGMCFI2020026_Judgment_of_Justice_Stone_SBS_QC_07042021_FINAL_Amended_04052021.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2021-021",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2022-01-07",
+    "parties": {
+      "claimant": "SAMER YASSER HILAL",
+      "defendant": "HAIRCARE LTD"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2021021_Samer_Yasser_Hilal_v_Haircare_Ltd_Judgment_of_Justice_Sir_Michael_Burton_GBE_070120.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 5 body-dated reference(s)",
+        "PR3=2 19 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (1 verbs, e.g. 'I accept')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI2021021_Samer_Yasser_Hilal_v_Haircare_Ltd_Judgment_of_Justice_Sir_Michael_Burton_GBE_070120.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2022-129",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2022-03-14",
+    "parties": {
+      "claimant": "the parties herein? 2. Whether the loan was taken for business purposes or for personal purposes? 3. Whether the percent",
+      "defendant": "in this Court were set out in in the following sentence on page 3 of the Claim Form: “The parties have agreed in writing to the jurisdiction of ADGM Courts.” 21"
+    },
+    "judge": "was wrong in assuming jurisdiction. 2. The Claimant had failed to discharge its burden to establish the initial borrowing and its true nature and applicable interest rate with proper neutral support",
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016",
+      "Practice Direction",
+      "practice direction"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2022129_Aldarmaki_v_Abu_Dhabi_Commercial_Bank_ADCB_Judgment_of_Lord_Hope_08082022_SEALED.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 10 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (2 verbs, e.g. 'Appeal dismissed')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFI2022129_Aldarmaki_v_Abu_Dhabi_Commercial_Bank_ADCB_Judgment_of_Lord_Hope_08082022_SEALED.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFI-2023-140",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2024-09-04",
+    "parties": {
+      "claimant": "RACHA ALKHAWAJA",
+      "defendant": "TPL INVESTMENT MANAGEMENT LTD First"
+    },
+    "judge": "H.E. Justice Michael Burton",
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Companies Act 2017"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFI2023140_Judgment_2024_ADGMCFI_0009_of_Justice_Sir_Michael_Burton_GBE_04092024_REISSUED_SEALE.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=2 23 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (5 verbs, e.g. 'Defendant shall pay')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from ADGMCFI2023140_Judgment_2024_ADGMCFI_0009_of_Justice_Sir_Michael_Burton_GBE_04092024_REISSUED_SEALE.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "ADGMCFIPCA2021003_ADCB_v_Shetty_Ors_Judgment_22042021.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2020-06-08",
+    "parties": {
+      "claimant": "ABU DHABI COMMERCIAL BANK PJSC",
+      "defendant": "BAVAGUTHU RAGHURAM SHETTY First"
+    },
+    "judge": "in the Chancery Division of the English High Court in Ras Al Khaimah Investment Authority v Bestfort Development LLP , [2015] EWHC 1955 (Ch), who considered the effect of the comparable rule 25.4 of",
+    "claim_type": "interim_relief",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Abu Dhabi Law No (12) of 2020",
+      "Abu Dhabi Law No (4) of 2013",
+      "Insolvency Act 1986"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "ADGMCFIPCA2021003_ADCB_v_Shetty_Ors_Judgment_22042021.txt",
+      "rationale": [
+        "PR1=2 parties + judge identifiable",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 33 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'orders that')",
+        "PR6=2 enforcement bridge: Founding Law"
+      ],
+      "notes": "AI-graded from ADGMCFIPCA2021003_ADCB_v_Shetty_Ors_Judgment_22042021.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-fikry-26112017.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2017-11-26",
+    "parties": {
+      "claimant": "AFKAR CAPITAL LIMITED",
+      "defendant": "SAIFALLAH MOHAMED AMIN MAHMOUD FIKRY"
+    },
+    "judge": null,
+    "claim_type": "interim_relief",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Companies Regulations 2015",
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-fikry-26112017.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 3 body-dated reference(s)",
+        "PR3=2 40 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (9 verbs, e.g. 'I refuse')",
+        "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+      ],
+      "notes": "AI-graded from adgmcfi-2017-003-judgment-afkar-capital-limited-v-fikry-26112017.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-saifallah-fikry-justice-sir-andrew-smith-02052018.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2017-12-07",
+    "parties": {
+      "claimant": "AFKAR CAPITAL LIMITED",
+      "defendant": "SAIFALLAH MOHAMED AMIN MAHMOUD FIKRY"
+    },
+    "judge": null,
+    "claim_type": "arbitration_enforcement",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "ADGM Court Procedure Rules 2016"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-saifallah-fikry-justice-sir-andrew-smith-02052018.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 25 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (26 verbs, e.g. 'application is refused')",
+        "PR6=2 arbitration recognition/enforcement implies NY Convention bridge"
+      ],
+      "notes": "AI-graded from adgmcfi-2017-003-judgment-afkar-capital-limited-v-saifallah-fikry-justice-sir-andrew-smith-02052018.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "adgmcfi-2017-004-judgment-on-application-for-stay-and-costs-of-justice-sir-michael-burton-20042018.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2018-05-01",
+    "parties": {
+      "claimant": "KARIN BERARDO",
+      "defendant": "STUMPF ENERGY LIMITED"
+    },
+    "judge": null,
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "adgmcfi-2017-004-judgment-on-application-for-stay-and-costs-of-justice-sir-michael-burton-20042018.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date present (Judgment Summary header)",
+        "PR3=1 only general references",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=2 operative outcome (4 verbs, e.g. 'Application is adjourned')",
+        "PR6=2 enforcement bridge: Onshore"
+      ],
+      "notes": "AI-graded from adgmcfi-2017-004-judgment-on-application-for-stay-and-costs-of-justice-sir-michael-burton-20042018.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "adgmcfi-2018-011-judgment-of-justice-sir-michael-burton-25022019.txt",
+    "url": "",
+    "tribunal": "ADGM Courts",
+    "division": "Court of First Instance",
+    "date_issued": "2019-02-25",
+    "parties": {
+      "claimant": "TETYANA GLUKHOVA",
+      "defendant": "ESPOIR FLOWER BOUTIQUE LTD"
+    },
+    "judge": null,
+    "claim_type": "other",
+    "outcome": null,
+    "operative_amount_aed": null,
+    "rules_cited": [
+      "Federal Law No 8 of 1980"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "source_file": "adgmcfi-2018-011-judgment-of-justice-sir-michael-burton-25022019.txt",
+      "rationale": [
+        "PR1=2 BETWEEN/role markers in header",
+        "PR2=2 issuance date + 1 body-dated reference(s)",
+        "PR3=2 8 specific clause citations in body",
+        "PR4=2 procedural signals + identity + dated record",
+        "PR5=1 no clear operative outcome",
+        "PR6=2 enforcement bridge: Federal Law"
+      ],
+      "notes": "AI-graded from adgmcfi-2018-011-judgment-of-justice-sir-michael-burton-25022019.txt via scripts/grade_borderline.py. Heuristic scoring against v0.2 rubric; full text scanned for outcome/citation/bridge signals."
+    }
+  },
+  {
+    "case_no": "OA 20/2024",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_20",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-08-06",
+    "parties": {
+      "claimant": "DOI",
+      "defendant": "DOJ and others and another matter"
+    },
+    "judge": "Roger Giles IJ",
+    "neutral_citation": "[2025] SGHC(I) 20",
+    "claim_type": "costs_assessment",
+    "outcome": "other",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "O 22 r 3",
+      "Rules 2021",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure — Costs. Heuristic flags: PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 10/2024",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_21",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-08-04",
+    "parties": {
+      "claimant": "DKB",
+      "defendant": "DKC"
+    },
+    "judge": "Thomas Bathurst IJ",
+    "neutral_citation": "[2025] SGHC(I) 21",
+    "claim_type": "substantive_breach",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Order 2",
+      "O 16 r 8",
+      "O 22 r 2",
+      "O 22 r 3",
+      "Rules 2021",
+      "clause 6",
+      "s 29",
+      "s 6",
+      "International Arbitration Act",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 3/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_22",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-08-12",
+    "parties": {
+      "claimant": "Novo Nordisk A/S",
+      "defendant": "KBP Biosciences Pte Ltd and another"
+    },
+    "judge": "Philip Jeyaretnam J",
+    "neutral_citation": "[2025] SGHC(I) 22",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Rules 2021",
+      "order\n\n103",
+      "order\n\n108",
+      "order\n\n11",
+      "s 12A",
+      "s 2022",
+      "s 4",
+      "section 12A",
+      "International Arbitration Act",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Injunctions — Mareva injunction — Setting aside | Arbitration — Injunction — Court’s powers under section 12A of the International Arbitration Act 1994 (2020 Rev Ed). Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 8/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_23",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-09-05",
+    "parties": {
+      "claimant": "Ebixcash Ltd and others",
+      "defendant": "Ashok Kumar Goel and another"
+    },
+    "judge": "Chua Lee Ming J, Simon Thorley IJ and Thomas Bathurst IJ",
+    "neutral_citation": "[2025] SGHC(I) 23",
+    "claim_type": "arbitration_recognition",
+    "outcome": "other",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Order 16",
+      "Rule 1",
+      "Rule 2",
+      "Rule 21",
+      "Rules 2017",
+      "Rules 2021",
+      "rule 13",
+      "rule 18",
+      "International Arbitration Act",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 1,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Award — Recourse against award — Setting aside — Breach of natural justice. Heuristic flags: PR5(no operative verb / annex / amount in tail). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 4/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_24",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-09-18",
+    "parties": {
+      "claimant": "DNO",
+      "defendant": "DNP"
+    },
+    "judge": "Anthony James Besanko IJ",
+    "neutral_citation": "[2025] SGHC(I) 24",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Order 4",
+      "Rules 2016",
+      "Rules 2021",
+      "Section 138",
+      "Section 366",
+      "s 24",
+      "s 366",
+      "s 59",
+      "International Arbitration Act",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Award — Recourse against award — Setting aside | Partnership’s | DNP’s damages. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 9/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_25",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-10-21",
+    "parties": {
+      "claimant": "GNC Holdings LLC",
+      "defendant": "ONI Global Pte Ltd and another"
+    },
+    "judge": "Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ",
+    "neutral_citation": "[2025] SGHC(I) 25",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Article 35",
+      "Order 3",
+      "Order 48",
+      "Rule 6",
+      "S 840",
+      "Section 19",
+      "s 31",
+      "s 54",
+      "International Arbitration Act",
+      "Rules of Court 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Award — Recourse against award — Setting aside — Jurisdiction | Arbitration — Award — Recourse against award — Setting aside — Breach of natural justice | Arbitration — Award — Recourse against award — Setting aside — Public policy. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 10/2024",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_26",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-11-12",
+    "parties": {
+      "claimant": "DKB",
+      "defendant": "DKC"
+    },
+    "judge": "Thomas Bathurst IJ",
+    "neutral_citation": "[2025] SGHC(I) 26",
+    "claim_type": "substantive_breach",
+    "outcome": "other",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Order 16",
+      "O 16 r 11",
+      "Rules 2021",
+      "s 19",
+      "s 29",
+      "s 19",
+      "s 29",
+      "s 31",
+      "International Arbitration Act"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 5/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_27",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-11-25",
+    "parties": {
+      "claimant": "Hulley Enterprises Ltd and others",
+      "defendant": "The Russian Federation"
+    },
+    "judge": "Andre Maniam J, James Allsop IJ and Anthony Meagher IJ",
+    "neutral_citation": "[2025] SGHC(I) 27",
+    "claim_type": "arbitration_enforcement",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Order 1",
+      "Order 18",
+      "Order 21",
+      "Rules 2021",
+      "rule 11",
+      "rule 2",
+      "rule 21",
+      "rule 3",
+      "International Arbitration Act",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Enforcement — Foreign award | Civil Procedure — Judgments and orders. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 10/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2025_SGHCI_29",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2025-12-01",
+    "parties": {
+      "claimant": "DPT and another",
+      "defendant": "DPV and others"
+    },
+    "judge": "S Mohan J, Roger Giles IJ, Anselmo Reyes IJ",
+    "neutral_citation": "[2025] SGHC(I) 29",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Art 34",
+      "Article 34",
+      "O 23 r 7",
+      "Rules 2021",
+      "s 216",
+      "s 24",
+      "s 3",
+      "s 216",
+      "International Arbitration Act"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Award — Recourse against award — Setting aside | Arbitration — Award — Recourse against award — Breach of natural justice | Country A. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 2/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_1",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2026-01-09",
+    "parties": {
+      "claimant": "DNZ",
+      "defendant": "DOA"
+    },
+    "judge": "Andre Maniam J, Dominique Hascher IJ, Vivian Ramsey IJ",
+    "neutral_citation": "[2026] SGHC(I) 1",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_dismissed",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "Art 19",
+      "Art 26",
+      "Article 19",
+      "Article 267",
+      "s 19",
+      "s 24",
+      "s 3",
+      "s 72",
+      "International Arbitration Act"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Award — Recourse against award — Setting aside. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 4/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_2",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2026-02-12",
+    "parties": {
+      "claimant": "DNO",
+      "defendant": "DNP"
+    },
+    "judge": "Anthony James Besanko IJ",
+    "neutral_citation": "[2026] SGHC(I) 2",
+    "claim_type": "costs_assessment",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "O 110 r 46",
+      "O 21 r 2",
+      "O 21 r 22",
+      "O 22 r 22",
+      "Order 21",
+      "O 21 r 22",
+      "O 21 r 22",
+      "Rule 2",
+      "International Arbitration Act",
+      "SICC Rules 2021"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure — Costs. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 15/2025",
+    "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_3",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2026-03-26",
+    "parties": {
+      "claimant": "Hyatt Terminal and Industrial Corp",
+      "defendant": "Filipinas Third Millenium Realty Corp"
+    },
+    "judge": "Philip Jeyaretnam J, Sir Henry Bernard Eder IJ, Douglas Samuel Jones AO IJ",
+    "neutral_citation": "[2026] SGHC(I) 3",
+    "claim_type": "arbitration_recognition",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [
+      "ARTICLE 14",
+      "ARTICLE 20",
+      "ARTICLE 3",
+      "ARTICLE 7",
+      "Art 34",
+      "article 21",
+      "article 7",
+      "s 3",
+      "International Arbitration Act"
+    ],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 2
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration — Award — Recourse against award — Setting aside — Jurisdiction — Whether proper party to arbitration agreement. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  },
+  {
+    "case_no": "OA 8/2026",
+    "url": "https://www.elitigation.sg/gd/sic/2026_SGHCI_4",
+    "tribunal": "Singapore International Commercial Court",
+    "division": "Singapore International Commercial Court",
+    "date_issued": "2026-04-24",
+    "parties": {
+      "claimant": "DVA and another",
+      "defendant": "DVC"
+    },
+    "judge": "Aidan Xu J, Anthony Meagher IJ and David Goddard IJ",
+    "neutral_citation": "[2026] SGHC(I) 4",
+    "claim_type": "interim_relief",
+    "outcome": "claim_granted",
+    "operative_amount_aed": null,
+    "operative_amount_usd": null,
+    "rules_cited": [],
+    "primitive_scores_v02": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1
+    },
+    "coding": {
+      "coder": "MaximLabs (heuristic-graded)",
+      "coded_on": "2026-04-28",
+      "gold_set": false,
+      "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure — Injunctions — Proprietary injunction | Blockchain B | Platform C. Heuristic flags: PR3(no specific Rule/Order/Section/Article numbers found), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+    }
+  }
+]
