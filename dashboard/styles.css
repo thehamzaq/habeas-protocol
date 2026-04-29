@@ -239,6 +239,26 @@ h1 {
 }
 .filter-row input { flex: 1; min-width: 200px; }
 
+.nav-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav-link:hover { text-decoration: underline; }
+
+.atlas-link {
+  display: inline-block;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+.atlas-link:hover { color: var(--ink); border-color: var(--ink); }
+
 .foot {
   max-width: 880px;
   margin: 0 auto;
