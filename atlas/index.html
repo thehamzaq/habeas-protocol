@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Habeas Atlas — 121 Fingerprints</title>
+<meta name="description" content="One sigil per judgment — 121 generative fingerprints from the coded DIFC + ADGM + SICC corpus. Habeas Protocol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a; --ink-2:#3a3a3a; --ink-3:#6b6b6b; --ink-4:#a3a3a3;
+    --paper:#fafaf7; --paper-2:#f3f1ea; --paper-3:#ece8db; --rule:#d8d4c7;
+    --accent:#7a3b2e;
+    --difc:#7a3b2e;
+    --adgm:#1a1a1a;
+    --sicc:#2f6b3c;
+    --good:#2f6b3c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;padding:48px 32px 96px}
+  .wrap{max-width:1500px;margin:0 auto}
+  header{padding-bottom:32px;border-bottom:1px solid var(--rule);margin-bottom:40px;display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:end}
+  @media (max-width:880px){header{grid-template-columns:1fr;gap:24px}}
+  .title-mark{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px}
+  h1{font-size:clamp(40px,5vw,72px);font-weight:600;letter-spacing:-.02em;line-height:.98}
+  h1 em{font-style:italic;font-weight:400;color:var(--ink-2)}
+  .lede{font-size:18px;line-height:1.5;color:var(--ink-2);max-width:54ch;margin-top:18px}
+  .legend{display:flex;flex-direction:column;gap:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-3);letter-spacing:.04em}
+  .legend .swatch-row{display:flex;align-items:center;gap:10px}
+  .swatch{width:14px;height:14px;border-radius:50%;display:inline-block}
+  .swatch.difc{background:var(--difc)}
+  .swatch.adgm{background:var(--adgm)}
+  .swatch.sicc{background:var(--sicc)}
+  .legend .src{margin-top:6px;color:var(--ink-4);font-size:11px}
+  .legend .src.live{color:var(--good)}
+
+  .panel{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;padding:24px;background:var(--paper-2);border:1px solid var(--rule);margin-bottom:40px}
+  @media (max-width:880px){.panel{grid-template-columns:1fr}}
+  .panel h3{font-size:14px;font-family:'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .panel p{font-size:14.5px;line-height:1.55;color:var(--ink-2);margin-bottom:8px}
+  .anatomy{display:flex;align-items:center;gap:24px}
+  .anatomy svg{flex-shrink:0}
+  .anatomy ol{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:var(--ink-2);list-style:none;counter-reset:a}
+  .anatomy ol li{counter-increment:a;padding-left:24px;position:relative}
+  .anatomy ol li::before{content:counter(a,decimal-leading-zero);position:absolute;left:0;color:var(--ink-4)}
+
+  .controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:16px}
+  .filters{display:flex;gap:6px;flex-wrap:wrap}
+  .filters button{
+    background:transparent;border:1px solid var(--rule);color:var(--ink-3);
+    padding:6px 14px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;cursor:pointer;transition:.15s
+  }
+  .filters button:hover{border-color:var(--ink-2);color:var(--ink)}
+  .filters button.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.06em}
+
+  .grid{display:grid;grid-template-columns:repeat(11,1fr);gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  @media (max-width:1300px){.grid{grid-template-columns:repeat(8,1fr)}}
+  @media (max-width:900px){.grid{grid-template-columns:repeat(5,1fr)}}
+  @media (max-width:600px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .cell{
+    position:relative;aspect-ratio:1/1;
+    border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:var(--paper);transition:.2s;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;overflow:hidden
+  }
+  .cell:hover{background:var(--paper-2);transform:scale(1.02);z-index:2;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+  .cell svg{width:88%;height:88%;display:block}
+  .cell .tag{position:absolute;top:6px;left:8px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.06em;color:var(--ink-4);text-transform:uppercase}
+  .cell .id{position:absolute;bottom:5px;left:8px;right:8px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.04em;color:var(--ink-3);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cell .score{position:absolute;top:6px;right:8px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .cell.hidden{display:none}
+  .cell.pinned::after{
+    content:'';position:absolute;top:8px;right:30px;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 0 2px var(--paper)
+  }
+  .cell.loading{display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-family:'JetBrains Mono',monospace;font-size:10px}
+
+  /* Modal */
+  .modal-bg{
+    position:fixed;inset:0;background:rgba(20,18,12,.55);backdrop-filter:blur(8px);
+    display:none;align-items:center;justify-content:center;z-index:50;padding:32px
+  }
+  .modal-bg.show{display:flex}
+  .modal{
+    background:var(--paper);max-width:880px;width:100%;max-height:90vh;overflow:auto;
+    border:1px solid var(--rule);box-shadow:0 30px 80px rgba(0,0,0,.25);
+    display:grid;grid-template-columns:1fr 1.1fr;gap:0;position:relative
+  }
+  @media (max-width:760px){.modal{grid-template-columns:1fr}}
+  .modal-art{padding:32px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;border-right:1px solid var(--rule)}
+  .modal-art svg{width:100%;max-width:380px;height:auto}
+  .modal-info{padding:32px}
+  .modal-info .meta{margin-bottom:8px}
+  .modal-info h2{font-size:24px;line-height:1.15;letter-spacing:-.01em;margin-bottom:6px;font-weight:600}
+  .modal-info .sub{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-3);letter-spacing:.04em;margin-bottom:12px}
+  .modal-info .field{display:grid;grid-template-columns:90px 1fr;gap:6px 14px;margin-bottom:14px;font-size:13.5px;line-height:1.45}
+  .modal-info .field .k{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;padding-top:2px}
+  .modal-info .field .v{color:var(--ink-2);word-break:break-word}
+  .modal-info .field .v a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .modal-info table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  .modal-info th{text-align:left;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:8px 0;border-bottom:1px solid var(--rule)}
+  .modal-info td{padding:8px 0;border-bottom:1px solid var(--rule);font-family:'Source Serif 4',serif;color:var(--ink-2)}
+  .modal-info td.k{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);width:48px}
+  .modal-info td.v{font-family:'JetBrains Mono',monospace;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);width:38px}
+  .bar{display:inline-block;height:6px;background:var(--paper-3);width:96px;margin-right:8px;vertical-align:middle;position:relative}
+  .bar i{position:absolute;left:0;top:0;height:100%;background:var(--accent)}
+  .notes{margin-top:14px;padding:12px 14px;background:var(--paper-2);border-left:2px solid var(--accent);font-size:13px;line-height:1.5;color:var(--ink-2);font-style:italic}
+  .close{position:absolute;top:14px;right:18px;background:transparent;border:none;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-3);cursor:pointer;letter-spacing:.1em;z-index:2}
+  .close:hover{color:var(--ink)}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--rule);font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div>
+    <div class="title-mark">Habeas Atlas · vol. I</div>
+    <h1>One sigil per judgment.<br><em>The signature of a tribunal.</em></h1>
+    <p class="lede">Each fingerprint below is generated deterministically from the primitive scores of a single judgment in our coded corpus of 121 rulings. Same scores → same shape. Different scores → different shape. Read the rings, and you can read the court.</p>
+  </div>
+  <div class="legend">
+    <div class="swatch-row"><span class="swatch difc"></span><span><b>DIFC Courts</b> · 32 judgments</span></div>
+    <div class="swatch-row"><span class="swatch adgm"></span><span><b>ADGM Courts</b> · 76 judgments</span></div>
+    <div class="swatch-row"><span class="swatch sicc"></span><span><b>SICC</b> · 13 judgments</span></div>
+    <div class="src" id="src">loading judgments…</div>
+  </div>
+</header>
+
+<section class="panel">
+  <div>
+    <h3>How to read a fingerprint</h3>
+    <p>Six concentric rings encode the per-ruling primitives, innermost to outermost: <b>PR1</b> rule source · <b>PR2</b> typed evidence · <b>PR3</b> machine-readable order · <b>PR4</b> procedural state · <b>PR5</b> reasoning trace · <b>PR6</b> replayability.</p>
+    <p>A full ring with eight tick-marks means a perfect score (2). A half-arc with four ticks means a partial score (1). A faint dashed circle means absent (0).</p>
+    <p>Two outer arcs encode the system properties: <b>SP1</b> separation of powers (top), <b>SP2</b> appeal path (bottom). The central rosette is a hash-seeded ornament unique to the case ID — so two judgments with identical scores still wear different faces. A small dot at the upper-right marks one of the four cases that became an executable trace.</p>
+  </div>
+  <div class="anatomy" id="anatomy"></div>
+</section>
+
+<div class="controls">
+  <div class="filters">
+    <button class="on" data-f="all">All · <span data-c="all">…</span></button>
+    <button data-f="DIFC">DIFC · <span data-c="DIFC">…</span></button>
+    <button data-f="ADGM">ADGM · <span data-c="ADGM">…</span></button>
+    <button data-f="SICC">SICC · <span data-c="SICC">…</span></button>
+    <button data-f="pinned">Trace cases</button>
+  </div>
+  <div class="meta" id="meta">loading…</div>
+</div>
+
+<div class="grid" id="grid"><div class="cell loading">LOADING JUDGMENTS…</div></div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <button class="close" id="close">CLOSE ✕</button>
+    <div class="modal-art" id="modal-art"></div>
+    <div class="modal-info" id="modal-info"></div>
+  </div>
+</div>
+
+<footer>
+  <span>HABEAS ATLAS · 121 FINGERPRINTS · <span id="footer-src">DETERMINISTIC SVG · CC BY 4.0</span></span>
+  <span><a href="../">← HABEAS-PROTOCOL ROOT</a> · <a href="../dashboard/">DASHBOARD ↗</a></span>
+</footer>
+
+</div>
+
+<script>
+/* ---------------- helpers ---------------- */
+function strHash(s){
+  let h = 2166136261 >>> 0;
+  for(let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const TRIBUNAL_MAP = {
+  'DIFC Courts': 'DIFC',
+  'ADGM Courts': 'ADGM',
+  'Singapore International Commercial Court': 'SICC',
+  'DIFC': 'DIFC', 'ADGM': 'ADGM', 'SICC': 'SICC'
+};
+const TRACE_MARKERS = ['CFI 058/2024', 'ARB 008/2026', 'ENF 271/2025', 'ADGMCFI-2024-320'];
+function isTraceCase(caseNo){
+  if(!caseNo) return false;
+  const norm = caseNo.replace(/[\s-]/g,'').toLowerCase();
+  return TRACE_MARKERS.some(t => norm.includes(t.replace(/[\s-]/g,'').toLowerCase()));
+}
+
+/* ---------------- corpus loader ---------------- */
+async function loadCorpus(){
+  try {
+    const r = await fetch('../data/judgments.json', { cache: 'no-cache' });
+    if(!r.ok) throw new Error('http ' + r.status);
+    const raw = await r.json();
+    if(!Array.isArray(raw) || raw.length === 0) throw new Error('not an array');
+    const corpus = raw.map(j => {
+      const trib = TRIBUNAL_MAP[j.tribunal] || j.tribunal || 'OTHER';
+      const v02 = j.primitive_scores_v02 || {};
+      const scores = ['PR1','PR2','PR3','PR4','PR5','PR6'].map(k => Number(v02[k] ?? 0));
+      return {
+        id: j.case_no || j.id || 'unknown',
+        tribunal: trib,
+        scores,
+        sp: [2, 2],
+        pinned: isTraceCase(j.case_no),
+        raw: j
+      };
+    });
+    return { corpus, source: 'live' };
+  } catch (e) {
+    console.warn('atlas: live data fetch failed, using synth fallback —', e.message);
+    return { corpus: synthCorpus(), source: 'synth' };
+  }
+}
+
+function synthCorpus(){
+  const rng = mulberry32(20260429);
+  function score(p2, p1){
+    const r = rng();
+    if(r < p2) return 2;
+    if(r < p2+p1) return 1;
+    return 0;
+  }
+  const out = [];
+  // 32 DIFC, mean ~1.72
+  for(let i=0;i<32;i++){
+    const seq = String(i+1).padStart(3,'0');
+    out.push({ id:`CFI ${seq}/2024`, tribunal:'DIFC',
+      scores:[score(.78,.16),score(.78,.16),score(.78,.16),score(.85,.13),score(.72,.20),score(.74,.20)],
+      sp:[2,2], pinned:false, raw:null });
+  }
+  // 76 ADGM, mean ~1.91
+  for(let i=0;i<76;i++){
+    const seq = String(i+1).padStart(3,'0');
+    out.push({ id:`ADGMCFI-${seq}/2024`, tribunal:'ADGM',
+      scores:[score(.93,.06),score(.91,.07),score(.94,.05),score(.92,.07),score(.88,.10),score(.90,.08)],
+      sp:[2,2], pinned:false, raw:null });
+  }
+  // 13 SICC, mean ~1.95
+  for(let i=0;i<13;i++){
+    out.push({ id:`SIC/S/${String(i+1).padStart(3,'0')}/2024`, tribunal:'SICC',
+      scores:[score(.96,.03),score(.96,.03),score(.97,.02),score(.96,.03),score(.94,.05),score(.95,.04)],
+      sp:[2,2], pinned:false, raw:null });
+  }
+  return out;
+}
+
+/* ---------------- fingerprint renderer ---------------- */
+const PALETTE = {
+  DIFC: { hue:'#7a3b2e', soft:'#b88a7c', faint:'#e8d5cc' },
+  ADGM: { hue:'#1a1a1a', soft:'#6b6b6b', faint:'#cfcdc4' },
+  SICC: { hue:'#2f6b3c', soft:'#7ba383', faint:'#cfdcd1' },
+  OTHER:{ hue:'#3a3a3a', soft:'#8a8a8a', faint:'#cfcdc4' }
+};
+
+function fingerprint(j, opts={}){
+  const size = opts.size || 240;
+  const cx = size/2, cy = size/2;
+  const pal = PALETTE[j.tribunal] || PALETTE.OTHER;
+  const seed = strHash((j.id || '') + '·' + j.tribunal);
+  const rng = mulberry32(seed);
+  const k = 3 + (seed % 5);
+  const phase = rng() * Math.PI * 2;
+  const ringRadii = [22, 38, 54, 70, 86, 102];
+  const outerR = 116;
+  const svg = [];
+  svg.push(`<svg viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">`);
+  svg.push(`<circle cx="${cx}" cy="${cy}" r="${outerR-2}" fill="${pal.faint}" fill-opacity="0.08"/>`);
+
+  const sp1 = j.sp[0], sp2 = j.sp[1];
+  function arc(r, sa, ea, stroke, w){
+    const x1 = cx + r*Math.cos(sa), y1 = cy + r*Math.sin(sa);
+    const x2 = cx + r*Math.cos(ea), y2 = cy + r*Math.sin(ea);
+    const large = (ea-sa) > Math.PI ? 1 : 0;
+    return `<path d="M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}" fill="none" stroke="${stroke}" stroke-width="${w}" stroke-linecap="round"/>`;
+  }
+  const sp1Span = sp1===2 ? 150 : sp1===1 ? 90 : 30;
+  const sp1Start = -90 - sp1Span/2;
+  svg.push(arc(outerR, sp1Start*Math.PI/180, (sp1Start+sp1Span)*Math.PI/180, pal.hue, 2.4));
+  const sp2Span = sp2===2 ? 150 : sp2===1 ? 90 : 30;
+  const sp2Start = 90 - sp2Span/2;
+  svg.push(arc(outerR, sp2Start*Math.PI/180, (sp2Start+sp2Span)*Math.PI/180, pal.hue, 2.4));
+  [[-90, sp1Span],[90, sp2Span]].forEach(([cAng, span])=>{
+    [-1,1].forEach(s=>{
+      const a = (cAng + s*span/2) * Math.PI/180;
+      const x1 = cx + (outerR-4)*Math.cos(a), y1 = cy + (outerR-4)*Math.sin(a);
+      const x2 = cx + (outerR+4)*Math.cos(a), y2 = cy + (outerR+4)*Math.sin(a);
+      svg.push(`<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="${pal.hue}" stroke-width="1.4"/>`);
+    });
+  });
+
+  j.scores.forEach((s, i)=>{
+    const r = ringRadii[i];
+    if(s === 0){
+      svg.push(`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${pal.soft}" stroke-width="0.5" stroke-dasharray="2 3" opacity="0.55"/>`);
+    } else if(s === 1){
+      const sa = -Math.PI/2 + phase * 0.3;
+      const ea = sa + Math.PI;
+      svg.push(arc(r, sa, ea, pal.hue, 1.1));
+      for(let t=0;t<4;t++){
+        const a = sa + (t+0.5) * Math.PI/4;
+        const x1 = cx + (r-3.2)*Math.cos(a), y1 = cy + (r-3.2)*Math.sin(a);
+        const x2 = cx + (r+3.2)*Math.cos(a), y2 = cy + (r+3.2)*Math.sin(a);
+        svg.push(`<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="${pal.hue}" stroke-width="0.9"/>`);
+      }
+    } else {
+      svg.push(`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${pal.hue}" stroke-width="1.25"/>`);
+      for(let t=0;t<8;t++){
+        const a = (t/8) * Math.PI*2 + phase*0.15;
+        const x1 = cx + (r-3.2)*Math.cos(a), y1 = cy + (r-3.2)*Math.sin(a);
+        const x2 = cx + (r+3.2)*Math.cos(a), y2 = cy + (r+3.2)*Math.sin(a);
+        svg.push(`<line x1="${x1.toFixed(2)}" y1="${y1.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="${pal.hue}" stroke-width="0.9"/>`);
+      }
+    }
+  });
+
+  const a0 = 8 + rng()*3;
+  const b0 = 3 + rng()*3;
+  const N = 240;
+  const pts = [];
+  for(let i=0;i<=N;i++){
+    const t = (i/N) * Math.PI*2;
+    const rr = a0 + b0*Math.cos(k*t + phase);
+    pts.push([(cx + rr*Math.cos(t)).toFixed(2), (cy + rr*Math.sin(t)).toFixed(2)]);
+  }
+  svg.push(`<path d="M ${pts.map(p=>p.join(' ')).join(' L ')} Z" fill="${pal.hue}" fill-opacity="0.9"/>`);
+
+  const letter = j.tribunal === 'DIFC' ? 'D' : j.tribunal === 'ADGM' ? 'A' : j.tribunal === 'SICC' ? 'S' : '·';
+  svg.push(`<text x="${cx}" y="${cy - outerR - 10}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="${pal.hue}" font-weight="500">${letter}</text>`);
+
+  if(j.pinned){
+    svg.push(`<circle cx="${cx + outerR - 6}" cy="${cy - outerR + 6}" r="2.5" fill="${pal.hue}"/>`);
+  }
+  svg.push(`</svg>`);
+  return svg.join('');
+}
+
+/* ---------------- render anatomy reference ---------------- */
+(function(){
+  const ref = { id:'ANATOMY/REF', tribunal:'DIFC', scores:[2,2,2,2,2,2], sp:[2,2], pinned:false };
+  const html = fingerprint(ref, {size:160}).replace('<svg ', '<svg width="160" height="160" ');
+  document.getElementById('anatomy').innerHTML = `
+    ${html}
+    <ol>
+      <li>nucleus · case-id rosette</li>
+      <li>PR1 · cited rule source</li>
+      <li>PR2 · typed evidence pipeline</li>
+      <li>PR3 · machine-readable order</li>
+      <li>PR4 · procedural state machine</li>
+      <li>PR5 · reasoning trace, facts→result</li>
+      <li>PR6 · counterfactual replayability</li>
+      <li>SP1 + SP2 · system property arcs</li>
+    </ol>
+  `;
+})();
+
+/* ---------------- main ---------------- */
+let CORPUS = [];
+let SOURCE = 'synth';
+
+(async function main(){
+  const { corpus, source } = await loadCorpus();
+  CORPUS = corpus;
+  SOURCE = source;
+  document.getElementById('src').className = source === 'live' ? 'src live' : 'src';
+  document.getElementById('src').textContent = source === 'live'
+    ? '✓ live · loaded from data/judgments.json'
+    : '↺ synth fallback · open via the deployed page for live scores';
+  document.getElementById('footer-src').textContent = source === 'live'
+    ? 'LIVE · COMPILED FROM data/judgments.json · CC BY 4.0'
+    : 'SYNTH FALLBACK · CC BY 4.0';
+  // tribunal counts
+  const counts = { all: corpus.length, DIFC:0, ADGM:0, SICC:0 };
+  corpus.forEach(j => { if(counts[j.tribunal] !== undefined) counts[j.tribunal]++; });
+  document.querySelectorAll('[data-c]').forEach(el => { el.textContent = counts[el.dataset.c] ?? '·'; });
+  renderGrid();
+})();
+
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  CORPUS.forEach((j, idx)=>{
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (j.pinned ? ' pinned' : '');
+    cell.dataset.tribunal = j.tribunal;
+    cell.dataset.idx = idx;
+    cell.dataset.pinned = j.pinned ? '1' : '0';
+    const total = j.scores.reduce((a,b)=>a+b,0);
+    const mean = (total / j.scores.length).toFixed(2);
+    cell.innerHTML = `
+      <span class="tag">${String(idx+1).padStart(3,'0')}</span>
+      <span class="score">${mean}</span>
+      ${fingerprint(j)}
+      <span class="id">${j.id}</span>
+    `;
+    cell.addEventListener('click', ()=>openModal(idx));
+    grid.appendChild(cell);
+  });
+  applyFilter('all');
+}
+
+function applyFilter(f){
+  let visible = 0;
+  document.querySelectorAll('.cell').forEach(c=>{
+    let show = true;
+    if(f === 'all') show = true;
+    else if(f === 'pinned') show = c.dataset.pinned === '1';
+    else show = c.dataset.tribunal === f;
+    c.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+  const visCases = CORPUS.filter((_,i)=>{
+    const c = document.querySelector(`.cell[data-idx="${i}"]`);
+    return c && !c.classList.contains('hidden');
+  });
+  if(visCases.length === 0){
+    document.getElementById('meta').textContent = '0 JUDGMENTS';
+    return;
+  }
+  let total = 0, n = 0;
+  visCases.forEach(j => j.scores.forEach(s => { total += s; n++; }));
+  const m = total / n;
+  document.getElementById('meta').textContent =
+    `${visCases.length} JUDGMENT${visCases.length===1?'':'S'} · MEAN PRIMITIVE SCORE ${m.toFixed(2)} / 2.00`;
+}
+
+document.querySelectorAll('.filters button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    applyFilter(btn.dataset.f);
+  });
+});
+
+/* ---------------- modal ---------------- */
+const modal = document.getElementById('modal');
+const modalArt = document.getElementById('modal-art');
+const modalInfo = document.getElementById('modal-info');
+
+function openModal(idx){
+  const j = CORPUS[idx];
+  modalArt.innerHTML = fingerprint(j, {size:380});
+  const total = j.scores.reduce((a,b)=>a+b,0);
+  const mean = total / j.scores.length;
+  const labels = [
+    ['PR1','Cites a written rule the reader can look up'],
+    ['PR2','Treats evidence as structured, typed records'],
+    ['PR3','States the order in a form software can act on'],
+    ['PR4','Follows a procedure with named, ordered steps'],
+    ['PR5','Shows its working — facts → reasoning → result'],
+    ['PR6','Can be re-run with different facts'],
+  ];
+  const rows = labels.map(([k,desc],i)=>{
+    const s = j.scores[i];
+    const w = (s/2)*100;
+    return `<tr><td class="k">${k}</td><td>${desc}</td><td class="v"><span class="bar"><i style="width:${w}%"></i></span>${s}</td></tr>`;
+  }).join('');
+  const sps = `
+    <tr><td class="k">SP1</td><td>Separation of powers</td><td class="v"><span class="bar"><i style="width:${j.sp[0]/2*100}%"></i></span>${j.sp[0]}</td></tr>
+    <tr><td class="k">SP2</td><td>Composable appeal path</td><td class="v"><span class="bar"><i style="width:${j.sp[1]/2*100}%"></i></span>${j.sp[1]}</td></tr>
+  `;
+
+  // Real-data fields if present
+  const r = j.raw || {};
+  const partyLine = r.parties
+    ? `${r.parties.claimant || '?'}<br><span style="color:var(--ink-3)">v.</span> ${r.parties.defendant || '?'}`
+    : '';
+  const fields = [];
+  if(partyLine) fields.push({k:'Parties', v: partyLine});
+  if(r.judge)   fields.push({k:'Judge',   v: r.judge});
+  if(r.date_issued) fields.push({k:'Date',  v: r.date_issued});
+  if(r.claim_type)  fields.push({k:'Type',  v: r.claim_type.replace(/_/g,' ')});
+  if(r.outcome)     fields.push({k:'Outcome', v: r.outcome.replace(/_/g,' ')});
+  if(typeof r.operative_amount_aed === 'number') fields.push({k:'Amount', v:`AED ${r.operative_amount_aed.toLocaleString()}`});
+  if(Array.isArray(r.rules_cited) && r.rules_cited.length) fields.push({k:'Rules cited', v: r.rules_cited.join(' · ')});
+  if(r.url) fields.push({k:'Source', v: `<a href="${r.url}" target="_blank" rel="noreferrer">${r.url.replace(/^https?:\/\//,'')}</a>`});
+
+  const fieldsHtml = fields.length
+    ? `<div class="field">${fields.map(f=>`<div class="k">${f.k}</div><div class="v">${f.v}</div>`).join('')}</div>`
+    : '';
+  const notesHtml = (r.coding && r.coding.notes) ? `<div class="notes">${r.coding.notes}</div>` : '';
+  const pinnedTag = j.pinned ? `<span style="display:inline-block;margin-left:8px;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;background:var(--accent);color:var(--paper)">TRACE CASE</span>` : '';
+
+  modalInfo.innerHTML = `
+    <div class="meta">${j.tribunal} · CASE ${String(idx+1).padStart(3,'0')} OF ${CORPUS.length}${pinnedTag}</div>
+    <h2>${j.id}</h2>
+    <div class="sub">Composite mean ${mean.toFixed(2)} / 2.00 across six primitives</div>
+    ${fieldsHtml}
+    <table>
+      <thead><tr><th>Code</th><th>Per-ruling primitive</th><th style="text-align:right">Score</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <table style="margin-top:18px">
+      <thead><tr><th>Code</th><th>System property</th><th style="text-align:right">Score</th></tr></thead>
+      <tbody>${sps}</tbody>
+    </table>
+    ${notesHtml}
+  `;
+  modal.classList.add('show');
+}
+document.getElementById('close').addEventListener('click', ()=>modal.classList.remove('show'));
+modal.addEventListener('click', e=>{ if(e.target===modal) modal.classList.remove('show'); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') modal.classList.remove('show'); });
+</script>
+</body>
+</html>
