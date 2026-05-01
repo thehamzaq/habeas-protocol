@@ -1,0 +1,13 @@
+{
+  "disposition": {
+    "ld_uncapped_aed": 9700000.0,
+    "ld_cap_aed": 608521.19,
+    "ld_awarded_aed": 608521.19,
+    "ld_was_capped": true,
+    "counterclaim_sum_aed": 755786.19,
+    "net_to_claimant_aed": 10500.96,
+    "days_to_judgment": 609.0,
+    "interest_aed": 876.0389917808219,
+    "total_judgment_aed": 11376.998991780822
+  }
+}

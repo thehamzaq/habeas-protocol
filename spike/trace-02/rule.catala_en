@@ -25,6 +25,11 @@
 ## the trigger fires and interest is computed retroactively from the
 ## date of the order — not from the deadline. The predicate below
 ## captures that asymmetry directly.
+##
+## Catala 1.1.0 notes:
+##   - Date subtraction returns a `duration`. We convert to `decimal`
+##     number of days via `(d1 - d2) / 1 day`.
+##   - For an integer-N-days duration in a variable, use `N * (1 day)`.
 
 ```catala
 declaration structure CostsAwardOrder:
@@ -41,7 +46,7 @@ declaration structure PaymentStatus:
 declaration structure AmountOwed:
   data deadline content date
   data in_breach content boolean
-  data days_accrued content integer
+  data days_accrued content decimal
   data interest_accrued_aed content decimal
   data total_owed_aed content decimal
 
@@ -52,19 +57,24 @@ declaration scope OutstandingObligation:
 
 scope OutstandingObligation:
   definition owed equals
-    let deadline equals order.order_date + (order.deadline_days day) in
+    let deadline equals order.order_date + (order.deadline_days * (1 day)) in
     let reference_date equals
-      if status.paid then status.payment_date else status.as_of in
+      if status.paid then status.payment_date else status.as_of
+    in
     let in_breach equals reference_date > deadline in
     let days equals
-      if in_breach then (reference_date - order.order_date in days) else 0 in
+      if in_breach
+      then ((reference_date - order.order_date) / 1 day)
+      else 0.0
+    in
     let interest equals
-      order.principal_aed * order.interest_rate_pa * (days / 365) in
+      order.principal_aed * order.interest_rate_pa * (days / 365.0)
+    in
     AmountOwed {
-      -- deadline: deadline;
-      -- in_breach: in_breach;
-      -- days_accrued: days;
-      -- interest_accrued_aed: interest;
+      -- deadline: deadline
+      -- in_breach: in_breach
+      -- days_accrued: days
+      -- interest_accrued_aed: interest
       -- total_owed_aed: order.principal_aed + interest
     }
 ```
@@ -72,51 +82,45 @@ scope OutstandingObligation:
 ## Test — facts of ARB 008/2026
 
 ```catala
-declaration scope TestOberlinPaidOnTime:
-  output obligation content OutstandingObligation
+#[test] declaration scope TestOberlinPaidOnTime:
+  obligation scope OutstandingObligation
+  output owed content AmountOwed
 
 scope TestOberlinPaidOnTime:
-  definition obligation equals
-    OutstandingObligation of {
-      -- order:
-        CostsAwardOrder {
-          -- principal_aed: 76785.81;
-          -- order_date: |2026-03-26|;
-          -- deadline_days: 14;
-          -- interest_rate_pa: 0.09
-        };
-      -- status:
-        PaymentStatus {
-          -- as_of: |2026-04-08|;
-          -- paid: true;
-          -- payment_date: |2026-04-08|
-        }
-    }
+  definition obligation.order equals CostsAwardOrder {
+    -- principal_aed: 76785.81
+    -- order_date: |2026-03-26|
+    -- deadline_days: 14
+    -- interest_rate_pa: 0.09
+  }
+  definition obligation.status equals PaymentStatus {
+    -- as_of: |2026-04-08|
+    -- paid: true
+    -- payment_date: |2026-04-08|
+  }
+  definition owed equals obligation.owed
 
-  assertion obligation.owed.in_breach = false
-  assertion obligation.owed.total_owed_aed = 76785.81
+  assertion owed.in_breach = false
+  assertion owed.total_owed_aed = 76785.81
 
-declaration scope TestOberlinUnpaid61Days:
-  output obligation content OutstandingObligation
+#[test] declaration scope TestOberlinUnpaid61Days:
+  obligation scope OutstandingObligation
+  output owed content AmountOwed
 
 scope TestOberlinUnpaid61Days:
-  definition obligation equals
-    OutstandingObligation of {
-      -- order:
-        CostsAwardOrder {
-          -- principal_aed: 76785.81;
-          -- order_date: |2026-03-26|;
-          -- deadline_days: 14;
-          -- interest_rate_pa: 0.09
-        };
-      -- status:
-        PaymentStatus {
-          -- as_of: |2026-05-26|;
-          -- paid: false;
-          -- payment_date: |2026-05-26|
-        }
-    }
+  definition obligation.order equals CostsAwardOrder {
+    -- principal_aed: 76785.81
+    -- order_date: |2026-03-26|
+    -- deadline_days: 14
+    -- interest_rate_pa: 0.09
+  }
+  definition obligation.status equals PaymentStatus {
+    -- as_of: |2026-05-26|
+    -- paid: false
+    -- payment_date: |2026-05-26|
+  }
+  definition owed equals obligation.owed
 
-  assertion obligation.owed.in_breach = true
-  assertion obligation.owed.days_accrued = 61
+  assertion owed.in_breach = true
+  assertion owed.days_accrued = 61.0
 ```

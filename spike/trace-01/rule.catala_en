@@ -32,8 +32,8 @@ scope StandardBasisAssessment:
     let pt equals claim.hours_worked * claim.hourly_rate_aed in
     let db equals claim.court_fee_aed in
     CostsAward {
-      -- professional_time_aed: pt;
-      -- disbursements_aed: db;
+      -- professional_time_aed: pt
+      -- disbursements_aed: db
       -- total_aed: pt + db
     }
 ```
@@ -41,19 +41,18 @@ scope StandardBasisAssessment:
 ## Test — facts of CFI 058/2024
 
 ```catala
-declaration scope TestDhawan:
-  output assessment content StandardBasisAssessment
+#[test] declaration scope TestDhawan:
+  assessment scope StandardBasisAssessment
+  output award content CostsAward
 
 scope TestDhawan:
-  definition assessment equals
-    StandardBasisAssessment of {
-      -- claim:
-        CostsClaim {
-          -- hours_worked: 3.0;
-          -- hourly_rate_aed: 2000.0;
-          -- court_fee_aed: 1121.75
-        }
-    }
+  definition assessment.claim equals CostsClaim {
+    -- hours_worked: 3.0
+    -- hourly_rate_aed: 2000.0
+    -- court_fee_aed: 1121.75
+  }
 
-  assertion assessment.award.total_aed = 7121.75
+  definition award equals assessment.award
+
+  assertion award.total_aed = 7121.75
 ```

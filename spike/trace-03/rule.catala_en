@@ -48,18 +48,30 @@
 ## AED 8,914.80 (≈6.92% of claim). The protocol mechanically disposes
 ## of objections 1 and 2; the AED 8,914.80 is the structured-discretion
 ## residue.
+##
+## Catala 1.1.0 notes:
+##   - `text` fields replaced by enumerations.
+##   - List comprehension `[x for o among lst if cond]` replaced with
+##     `map each o among lst such that cond to x`.
+##   - `exists o among lst such that cond` replaced with
+##     `(number of (list of o among lst such that cond)) > 0`.
 
 ```catala
-declaration enumeration ObjectionResult:
-  -- mechanically_disposed_no_specific_complaint
-  -- factually_rejected_on_evidence
-  -- factually_accepted_with_named_amount content decimal
-  -- requires_human_judgment
+declaration enumeration ObjectionId:
+  -- ClaimantDidWorkHimself
+  -- DoubleCounselChargedForHearing
+  -- ExcessSeniorAssociateTime
+
+declaration enumeration FactualFinding:
+  -- Rejected_Unspecific
+  -- Rejected_On_Evidence
+  -- Accepted_With_Named_Amount
+  -- Requires_Human_Judgment
 
 declaration structure Objection:
-  data label content text
+  data objection content ObjectionId
   data names_specific_line_item content boolean
-  data factual_finding content text
+  data factual_finding content FactualFinding
   data named_amount_aed content decimal
 
 declaration structure Schedule:
@@ -83,31 +95,38 @@ scope IndemnityBasisReview:
   ##   1. An objection that does not name a specific element of the
   ##      schedule is mechanically disposed (Cooke J., §4).
   ##   2. An objection that names a line item AND has a factual finding
-  ##      "rejected_on_evidence" contributes 0 to the reduction.
+  ##      Rejected_On_Evidence contributes 0 to the reduction.
   ##   3. An objection that names a line item AND has a factual finding
-  ##      "accepted_with_named_amount" contributes its named amount.
+  ##      Accepted_With_Named_Amount contributes its named amount.
   ##   4. Any other category is bounded discretion: the protocol cannot
   ##      derive the reduction.
   definition review equals
     let det_reductions equals
-      sum decimal of [
-        o.named_amount_aed for o among schedule.objections
-        if o.names_specific_line_item
-          and o.factual_finding = "accepted_with_named_amount"
-      ] in
-    let any_residual equals
-      exists o among schedule.objections such that
-        not o.names_specific_line_item
-          or o.factual_finding = "requires_human_judgment" in
-    let lower equals
-      schedule.claimed_aed - det_reductions in
-    let upper equals
-      schedule.claimed_aed - det_reductions in
+      sum decimal of (map each o among schedule.objections
+                      such that (o.names_specific_line_item
+                                 and (match o.factual_finding with pattern
+                                      -- Accepted_With_Named_Amount: true
+                                      -- Rejected_Unspecific: false
+                                      -- Rejected_On_Evidence: false
+                                      -- Requires_Human_Judgment: false))
+                      to o.named_amount_aed)
+    in
+    let residual_count equals
+      number of (list of o among schedule.objections
+                 such that ((not o.names_specific_line_item)
+                            or (match o.factual_finding with pattern
+                                -- Requires_Human_Judgment: true
+                                -- Rejected_Unspecific: false
+                                -- Rejected_On_Evidence: false
+                                -- Accepted_With_Named_Amount: false)))
+    in
+    let any_residual equals residual_count > 0 in
+    let lower equals schedule.claimed_aed - det_reductions in
     ReviewOutcome {
-      -- mechanically_disposed_aed: 0.0;
-      -- deterministic_reductions_aed: det_reductions;
-      -- residual_discretion_lower_aed: 0.0;
-      -- residual_discretion_upper_aed: lower;
+      -- mechanically_disposed_aed: 0.0
+      -- deterministic_reductions_aed: det_reductions
+      -- residual_discretion_lower_aed: 0.0
+      -- residual_discretion_upper_aed: lower
       -- requires_human_judgment: any_residual
     }
 ```
@@ -115,42 +134,41 @@ scope IndemnityBasisReview:
 ## Test — facts of ENF 271/2025
 
 ```catala
-declaration scope TestTaylor:
-  output review content IndemnityBasisReview
+#[test] declaration scope TestTaylor:
+  review_scope scope IndemnityBasisReview
+  output review content ReviewOutcome
 
 scope TestTaylor:
-  definition review equals
-    IndemnityBasisReview of {
-      -- schedule:
-        Schedule {
-          -- claimed_aed: 128914.80;
-          -- objections: [
-            Objection {
-              -- label: "claimant_did_work_himself";
-              -- names_specific_line_item: false;
-              -- factual_finding: "rejected_unspecific";
-              -- named_amount_aed: 0.0
-            };
-            Objection {
-              -- label: "double_counsel_charged_for_hearing";
-              -- names_specific_line_item: true;
-              -- factual_finding: "rejected_on_evidence";
-              -- named_amount_aed: 0.0
-            };
-            Objection {
-              -- label: "excess_senior_associate_time";
-              -- names_specific_line_item: false;
-              -- factual_finding: "requires_human_judgment";
-              -- named_amount_aed: 0.0
-            }
-          ]
-        }
-    }
+  definition review_scope.schedule equals Schedule {
+    -- claimed_aed: 128914.80
+    -- objections: [
+      Objection {
+        -- objection: ClaimantDidWorkHimself
+        -- names_specific_line_item: false
+        -- factual_finding: Rejected_Unspecific
+        -- named_amount_aed: 0.0
+      };
+      Objection {
+        -- objection: DoubleCounselChargedForHearing
+        -- names_specific_line_item: true
+        -- factual_finding: Rejected_On_Evidence
+        -- named_amount_aed: 0.0
+      };
+      Objection {
+        -- objection: ExcessSeniorAssociateTime
+        -- names_specific_line_item: false
+        -- factual_finding: Requires_Human_Judgment
+        -- named_amount_aed: 0.0
+      }
+    ]
+  }
+
+  definition review equals review_scope.review
 
   ## Mechanically: all objections either disposed or held to zero.
   ## Residual: the "excess senior associate time" category — predicate
   ## flags it; cannot resolve it. Human reviewer makes the call,
   ## producing the AED 8,914.80 deduction (claim 128,914.80 → 120,000).
-  assertion review.review.deterministic_reductions_aed = 0.0
-  assertion review.review.requires_human_judgment = true
+  assertion review.deterministic_reductions_aed = 0.0
+  assertion review.requires_human_judgment = true
 ```

@@ -1,0 +1,9 @@
+{
+  "review": {
+    "mechanically_disposed_aed": 0.0,
+    "deterministic_reductions_aed": 0.0,
+    "residual_discretion_lower_aed": 0.0,
+    "residual_discretion_upper_aed": 128914.8,
+    "requires_human_judgment": true
+  }
+}

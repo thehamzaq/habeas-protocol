@@ -38,10 +38,22 @@
 ## to handle by ad-hoc arbitration — the rule decomposes cleanly into
 ## (i) substantive determinations made by a judge and (ii) arithmetic
 ## composition the protocol can verify.
+##
+## Catala 1.1.0 notes:
+##   - Counterclaim labels encoded as enumeration (no `text` primitive).
+##   - List comprehension `[x for o among lst if cond]` replaced with
+##     `map each o among lst such that cond to x`.
+##   - Date subtraction returns a `duration`; `(d1 - d2) / 1 day` gives
+##     decimal number of calendar days between them.
+##   - `decimal of n` converts integer to decimal where required.
 
 ```catala
+declaration enumeration CounterclaimItemId:
+  -- RemediationAndRepair
+  -- SmokeManagementSystemContribution
+
 declaration structure CounterclaimItem:
-  data label content text
+  data item content CounterclaimItemId
   data amount_aed content decimal
   data found_proven content boolean
 
@@ -63,7 +75,7 @@ declaration structure Disposition:
   data ld_was_capped content boolean
   data counterclaim_sum_aed content decimal
   data net_to_claimant_aed content decimal
-  data days_to_judgment content integer
+  data days_to_judgment content decimal
   data interest_aed content decimal
   data total_judgment_aed content decimal
 
@@ -74,32 +86,39 @@ declaration scope CompositeJudgment:
 scope CompositeJudgment:
   definition disposition equals
     let ld_uncapped equals
-      facts.daily_ld_rate_aed * facts.days_of_critical_delay_found in
+      facts.daily_ld_rate_aed * (decimal of facts.days_of_critical_delay_found)
+    in
     let ld_cap equals
-      facts.adjusted_contract_price_aed * facts.ld_cap_pct in
+      facts.adjusted_contract_price_aed * facts.ld_cap_pct
+    in
     let ld_awarded equals
-      if ld_uncapped > ld_cap then ld_cap else ld_uncapped in
+      if ld_uncapped > ld_cap then ld_cap else ld_uncapped
+    in
     let ld_was_capped equals ld_uncapped > ld_cap in
     let counterclaim_sum equals
-      sum decimal of [
-        item.amount_aed for item among facts.counterclaim_items
-        if item.found_proven
-      ] + (if ld_awarded > 0 then ld_awarded else 0) in
+      (sum decimal of (map each item among facts.counterclaim_items
+                       such that item.found_proven
+                       to item.amount_aed))
+        + (if ld_awarded > 0.0 then ld_awarded else 0.0)
+    in
     let net equals
-      facts.amount_withheld_by_defendant_aed - counterclaim_sum in
+      facts.amount_withheld_by_defendant_aed - counterclaim_sum
+    in
     let days equals
-      (facts.judgment_date - facts.handover_date) in days in
+      (facts.judgment_date - facts.handover_date) / 1 day
+    in
     let interest equals
-      net * facts.interest_rate_pa * (days / 365) in
+      net * facts.interest_rate_pa * (days / 365.0)
+    in
     Disposition {
-      -- ld_uncapped_aed: ld_uncapped;
-      -- ld_cap_aed: ld_cap;
-      -- ld_awarded_aed: ld_awarded;
-      -- ld_was_capped: ld_was_capped;
-      -- counterclaim_sum_aed: counterclaim_sum;
-      -- net_to_claimant_aed: net;
-      -- days_to_judgment: days;
-      -- interest_aed: interest;
+      -- ld_uncapped_aed: ld_uncapped
+      -- ld_cap_aed: ld_cap
+      -- ld_awarded_aed: ld_awarded
+      -- ld_was_capped: ld_was_capped
+      -- counterclaim_sum_aed: counterclaim_sum
+      -- net_to_claimant_aed: net
+      -- days_to_judgment: days
+      -- interest_aed: interest
       -- total_judgment_aed: net + interest
     }
 ```
@@ -107,42 +126,41 @@ scope CompositeJudgment:
 ## Test — facts of ADGMCFI-2024-320
 
 ```catala
-declaration scope TestProjeco:
-  output composite content CompositeJudgment
+#[test] declaration scope TestProjeco:
+  composite scope CompositeJudgment
+  output disposition content Disposition
 
 scope TestProjeco:
-  definition composite equals
-    CompositeJudgment of {
-      -- facts:
-        ContractFacts {
-          -- adjusted_contract_price_aed: 6085211.90;
-          -- ld_cap_pct: 0.10;
-          -- daily_ld_rate_aed: 100000.0;  ## hits cap regardless of rate
-          -- days_of_critical_delay_found: 97;  ## human finding
-          -- counterclaim_items: [
-            CounterclaimItem {
-              -- label: "remediation_and_repair";
-              -- amount_aed: 55336.0;
-              -- found_proven: false  ## human finding: not proven
-            };
-            CounterclaimItem {
-              -- label: "smoke_management_system_contribution";
-              -- amount_aed: 147265.0;
-              -- found_proven: true   ## human finding: within scope
-            }
-          ];
-          -- amount_withheld_by_defendant_aed: 766287.15;
-          -- handover_date: |2024-02-29|;
-          -- judgment_date: |2025-10-30|;
-          -- interest_rate_pa: 0.05
-        }
-    }
+  definition composite.facts equals ContractFacts {
+    -- adjusted_contract_price_aed: 6085211.90
+    -- ld_cap_pct: 0.10
+    -- daily_ld_rate_aed: 100000.0
+    -- days_of_critical_delay_found: 97
+    -- counterclaim_items: [
+      CounterclaimItem {
+        -- item: RemediationAndRepair
+        -- amount_aed: 55336.0
+        -- found_proven: false
+      };
+      CounterclaimItem {
+        -- item: SmokeManagementSystemContribution
+        -- amount_aed: 147265.0
+        -- found_proven: true
+      }
+    ]
+    -- amount_withheld_by_defendant_aed: 766287.15
+    -- handover_date: |2024-02-29|
+    -- judgment_date: |2025-10-30|
+    -- interest_rate_pa: 0.05
+  }
+
+  definition disposition equals composite.disposition
 
   ## Court awarded LDs at the cap of AED 608,521.19
-  assertion composite.disposition.ld_was_capped = true
-  assertion composite.disposition.ld_awarded_aed = 608521.19
+  assertion disposition.ld_was_capped = true
+  assertion disposition.ld_awarded_aed = 608521.19
   ## Court found counterclaim sum AED 755,786.19
-  assertion composite.disposition.counterclaim_sum_aed = 755786.19
+  assertion disposition.counterclaim_sum_aed = 755786.19
   ## Court found net principal AED 10,500.96
-  assertion composite.disposition.net_to_claimant_aed = 10500.96
+  assertion disposition.net_to_claimant_aed = 10500.96
 ```

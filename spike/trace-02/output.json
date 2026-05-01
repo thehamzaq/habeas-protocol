@@ -1,0 +1,20 @@
+[
+  {
+    "owed": {
+      "deadline": "2026-04-09",
+      "in_breach": true,
+      "days_accrued": 61.0,
+      "interest_accrued_aed": 1154.9427312328767,
+      "total_owed_aed": 77940.75273123287
+    }
+  },
+  {
+    "owed": {
+      "deadline": "2026-04-09",
+      "in_breach": false,
+      "days_accrued": 0.0,
+      "interest_accrued_aed": 0.0,
+      "total_owed_aed": 76785.81
+    }
+  }
+]
