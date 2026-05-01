@@ -1,0 +1,13 @@
+{
+  "disposition": {
+    "clauses_aligned": true,
+    "interpretation_holding": "XetechEntitledBeforeTransfer",
+    "completion_proven": true,
+    "supporters_count": 6.0,
+    "dissenters_count": 2.0,
+    "new_evidence_admissible": false,
+    "judgment_sum_gbp": 409870.0,
+    "costs_usd": 125483.84,
+    "counterclaim_dismissed": true
+  }
+}

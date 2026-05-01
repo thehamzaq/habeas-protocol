@@ -1,0 +1,110 @@
+{
+  "case_no": "ADGMCFI-2024-158",
+  "neutral_citation": "[2026] ADGMCFI 0006",
+  "parties": {
+    "claimant": "Xetech Solutions Ltd",
+    "defendant": "Pulsar Capital Holdings Limited"
+  },
+  "judge": "Justice Paul Heath KC",
+  "decision_date": "2026-02-19",
+  "rule_source": {
+    "instruments": [
+      "Wood v Capita Insurance Services Ltd [2017] UKSC 24 (applied in Dijllah Jewellery FZE v AVA Trade Middle East Ltd [2026] ADGMCFI 0001) — unitary, holistic approach to contractual interpretation under English law",
+      "Rainy Sky SA v Kookmin Bank [2011] 1 WLR 2900 — business-common-sense reading where rival meanings are tenable",
+      "Ladd v Marshall [1954] 1 WLR 1489 (CA) — three-prong conjunctive test for admissibility of new evidence at trial",
+      "Assignment Agreement (17 February 2023) — clauses 2(b), 7, 10 (substantive); clause 12 (governing law: English)"
+    ],
+    "applicable_law_note": "Substantive law of contract: English (Assignment Agreement clause 12). Procedural/evidential law: ADGM (lex fori)."
+  },
+  "events": [
+    {"t": "2020-12-15", "type": "service_agreement_signed", "parties": "Xetech, TruDoc"},
+    {"t": "2021-05-01", "type": "additional_services_agreement", "parties": "Xetech, TruDoc"},
+    {"t": "2022-05-26", "type": "addendum", "parties": "Xetech, TruDoc"},
+    {"t": "2022-12-31", "type": "trudoc_default", "amount_gbp": 533860.0},
+    {"t": "2023-01-30", "type": "legal_notice_to_trudoc"},
+    {"t": "2023-02-17", "type": "assignment_agreement_signed", "purchase_price_gbp": 500000.0, "interest_rate_per_month": 0.0075},
+    {"t": "2023-02-20", "type": "first_initial_instalment_paid_by_pulsar", "amount_gbp": 100000.0},
+    {"t": "2023-03-19", "type": "second_initial_instalment_paid_by_pulsar", "amount_gbp": 185130.0},
+    {"t": "2023-05-01", "type": "first_service_payment_paid_by_pulsar", "amount_gbp": 65000.0},
+    {"t": "2023-05-29", "type": "change_management_plan_issued"},
+    {"t": "2023-08-12", "type": "pakistan_certificate_expiry", "note": "HealthX Pakistan loses access at 03:27 due to non-renewal of user certificate; Pulsar declined nominal USD 100 fee"},
+    {"t": "2023-08-16", "type": "phase_2_completion_asserted_by_xetech"},
+    {"t": "2023-07-01", "type": "first_unpaid_invoice_issued"},
+    {"t": "2024-01-01", "type": "fifth_unpaid_invoice_issued"},
+    {"t": "2024-07-05", "type": "claim_filed", "amount_usd": 521377.18, "amount_gbp_equivalent": 409870.0},
+    {"t": "2025-01-01", "type": "trial_directions"},
+    {"t": "2025-07-28", "type": "trial_day_1"},
+    {"t": "2025-07-29", "type": "trial_day_2"},
+    {"t": "2025-07-30", "type": "trial_day_3"},
+    {"t": "2025-08-01", "type": "trial_day_4", "note": "Xetech tendered Supplementary Trial Bundle de bene esse"},
+    {"t": "2025-09-19", "type": "pulsar_closing_submissions_filed"},
+    {"t": "2025-09-22", "type": "xetech_closing_submissions_filed"},
+    {"t": "2026-02-19", "type": "judgment_issued", "judge": "Paul Heath KC"}
+  ],
+  "human_findings_required": [
+    "Clause 2(b): the second instalment is payable on 'completion of Phase 2', not on transfer of source code",
+    "Clause 7: source code is transferred AFTER receipt of Purchase Price by Xetech",
+    "Clause 10: transfer of liabilities (and IP) is subject to payment of GBP 500,000",
+    "All three clauses point the same way — payment precedes transfer (judgment para 59-60)",
+    "Burden on Xetech (claimant) to prove 'completion' on the balance of probabilities (para 63)",
+    "Source code reached state of 'completion' at the time payment was demanded (para 92)",
+    "Pulsar's Supplementary Trial Bundle was not 'fresh' — could have been obtained with reasonable diligence (para 48, prong (a) of Ladd v Marshall)",
+    "Probative value of the new evidence did not reach the standard for late admission (para 48, prong (b))"
+  ],
+  "facts": {
+    "clauses": [
+      {"clause_id": "Clause 2(b)", "points_to_payment_before_transfer": true,
+       "court_para_ref": "para 59(a), 60",
+       "note": "second instalment payable 'on completion of Phase 2', not on transfer of source code"},
+      {"clause_id": "Clause 7",    "points_to_payment_before_transfer": true,
+       "court_para_ref": "para 38, 56, 59(b)",
+       "note": "source code transferred 'post the completion of ... receipt of the Purchase Price'"},
+      {"clause_id": "Clause 10",   "points_to_payment_before_transfer": true,
+       "court_para_ref": "para 39, 57, 59(c)",
+       "note": "100% IP ownership 'subject to transfer of Purchase Price'"}
+    ],
+    "witnesses": [
+      {"witness": "Eng. Ahmed Bahgat Hassan",  "role": "expert (Xetech)",          "supports_completion": true,  "accessed_devops": true,  "para_ref": "72-78"},
+      {"witness": "Mr Tara (Nick) Sharma",     "role": "COO (Xetech)",             "supports_completion": true,  "accessed_devops": true,  "para_ref": "88(a)"},
+      {"witness": "Mr Ankit Devrani",          "role": "Delivery Manager (Xetech)","supports_completion": true,  "accessed_devops": true,  "para_ref": "88(b), 89"},
+      {"witness": "Mr Howard Gaugh",           "role": "consultant (TruDoc 2021)", "supports_completion": true,  "accessed_devops": false, "para_ref": "87(a)"},
+      {"witness": "Mr Farrukh Abbas",          "role": "Exec Director, HealthX PK","supports_completion": true,  "accessed_devops": false, "para_ref": "87(b),(c)"},
+      {"witness": "Mr Stephen Smith",          "role": "former COO, HealthX PK",   "supports_completion": true,  "accessed_devops": false, "para_ref": "87(d)"},
+      {"witness": "Mr Aradh Anil",             "role": "expert (Pulsar)",          "supports_completion": false, "accessed_devops": false, "para_ref": "72, 77"},
+      {"witness": "Mr Ahmed Emam",             "role": "former SE Mgr, TruDoc",    "supports_completion": false, "accessed_devops": false, "para_ref": "90"}
+    ],
+    "ladd_prongs": [
+      {"label": "(a) reasonable diligence — could not have been obtained earlier",
+       "satisfied": false,
+       "court_finding": "documents 'always available to reinforce the evidence' — para 48"},
+      {"label": "(b) important influence — would probably influence the result",
+       "satisfied": false,
+       "court_finding": "given the preponderance of evidence on the topic, probative value did not reach the threshold — para 48"},
+      {"label": "(c) presumably credible",
+       "satisfied": true,
+       "court_finding": "not reached — court found prong (a) and (b) failed; no challenge to authenticity per se"}
+    ],
+    "outstanding_invoices": [
+      {"invoice_id": "Inv 1", "label": "second instalment under clause 2(b)",            "principal_gbp": 148203.00},
+      {"invoice_id": "Inv 2", "label": "final instalment under clause 2(c)",             "principal_gbp": 66667.00},
+      {"invoice_id": "Inv 3", "label": "service payment under clause 3 (tranche 2)",     "principal_gbp": 65000.00},
+      {"invoice_id": "Inv 4", "label": "service payment under clause 3 (tranche 3)",     "principal_gbp": 65000.00},
+      {"invoice_id": "Inv 5", "label": "service payment under clause 3 (tranche 4)",     "principal_gbp": 65000.00}
+    ],
+    "claimed_costs_usd": 104056.30,
+    "claimed_court_fees_usd": 21427.54
+  },
+  "human_ruling": {
+    "interpretation_holding": "Xetech entitled to be paid before transfer of source code",
+    "completion_proven": true,
+    "new_evidence_admissible": false,
+    "first_failing_ladd_prong": "(a) reasonable diligence — could not have been obtained earlier",
+    "judgment_sum_gbp": 409870.00,
+    "costs_usd": 125483.84,
+    "counterclaim_dismissed": true,
+    "post_judgment_interest_basis": "0.75% per month from dates of default until full payment, per clause 2 of the Assignment Agreement (para 99(a)(ii)); quantum left with liberty to apply (para 99(b))",
+    "constructive_finding": "The case is methodologically distinct from Traces #1-#4: the rule is *Boolean*, not arithmetic. The court's reasoning is the conjunction of three named conjunctive predicates — clause-alignment (clauses 2(b), 7, 10), evidentiary preponderance (named witnesses for/against), and Ladd v Marshall (three prongs, monotonic and short-circuiting). The protocol does not replace any of the substantive findings — clause meaning, witness credibility, document availability are kept human. What it makes auditable is the *logical structure*: that the court's holding follows from the conjunction of named, individually-recorded findings. This is the boundary the original Maxim brief contemplated for 'ad-hoc arbitration' cases.",
+    "comparator_to_prior_traces": "#1 (formula): pure arithmetic. #2 (deferred conditional): temporal predicate. #3 (bounded discretion): residue is the answer. #4 (composition over findings): arithmetic composition of substantive determinations. #5 (conjunctive logical composition): Boolean composition over named clause/witness/prong findings. Together the five traces span the methodological space the protocol claims — formula, conditional, bounded discretion, arithmetic composition, logical composition.",
+    "diversifies_corpus": "First substantive contract-interpretation trace from ADGM (trace #4 was also ADGM but turned on UAE Civil Code Art. 390 + ADGM CPR; this one turns on English contractual interpretation principles, demonstrating the cross-jurisdictional reach of the protocol within a single tribunal)."
+  }
+}

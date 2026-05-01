@@ -1,0 +1,296 @@
+## Rule of the Court (Contractual interpretation + admissibility + disposition)
+##
+## Source:
+##   - English law of contractual interpretation (Wood v Capita Insurance
+##     Services Ltd [2017] UKSC 24, applying Rainy Sky SA v Kookmin Bank
+##     [2011] 1 WLR 2900) — unitary, holistic, business-common-sense
+##     reading of the contract as a whole.
+##   - Ladd v Marshall [1954] 1 WLR 1489 (CA) — three-prong conjunctive
+##     test for the admissibility of new evidence adduced at trial:
+##       (a) the evidence could not have been obtained with reasonable
+##           diligence for use at trial;
+##       (b) the evidence would probably have an important influence on
+##           the result, though it need not be decisive; and
+##       (c) the evidence is presumably to be believed (apparently
+##           credible, though not incontrovertible).
+##   - Assignment Agreement clauses 2(b), 7 and 10, governed by English
+##     law (Assignment Agreement, clause 12).
+##
+## This file expresses the rule applied in:
+##   ADGMCFI-2024-158 — Xetech Solutions Ltd v Pulsar Capital Holdings Ltd
+##   Judgment of H.E. Justice Paul Heath KC, 19 February 2026
+##   Neutral citation [2026] ADGMCFI 0006.
+##
+## Trace #5 is the first trace whose rule is **structurally Boolean**
+## rather than arithmetic. The court's reasoning composes three discrete
+## conjunctive predicates:
+##
+##   1. ClauseAlignment    — clauses 2(b), 7, 10 each point to the same
+##                           ordering: payment precedes transfer of source
+##                           code. The court's holding is the conjunction.
+##   2. WeightOfEvidence   — burden on Xetech to establish "completion"
+##                           on a balance of probabilities, by aggregating
+##                           witness and expert evidence.
+##   3. LaddMarshallTest   — three prongs, conjunctive. Failure of any
+##                           single prong is dispositive of inadmissibility;
+##                           the test is monotonic and short-circuiting.
+##
+## Disposition is then computed:
+##   - Judgment Sum (GBP) = face-value sum of the five invoices the court
+##                          accepted (judgment, paras 5 and 99(a)(i)).
+##   - Costs (USD)        = claimed costs + claimed court fees
+##                          (the court found these reasonable and
+##                          proportionate, so they pass through unmodified).
+##
+## This is methodologically distinct from Traces #1-#4:
+##   #1 (formula)              — pure arithmetic, no human inputs
+##   #2 (deferred conditional) — temporal predicate over a fixed rule
+##   #3 (bounded discretion)   — rule strips a filter; residue is the answer
+##   #4 (composition over findings) — arithmetic composition of multiple
+##                                    substantive determinations
+##   #5 (conjunctive logical composition) — Boolean composition of
+##                                          named-clause findings, witness
+##                                          aggregation, and a multi-prong
+##                                          test. The protocol does not
+##                                          replace contractual
+##                                          interpretation — it makes the
+##                                          *logical structure* of the
+##                                          interpretation auditable.
+##
+## ---------------------------------------------------------------------
+## CATALA 1.1.0 NOTES
+##
+## Human-readable labels are encoded as Catala enumerations rather than
+## strings, because Catala has no `text` primitive. Each clause, witness,
+## prong and invoice has a corresponding nullary enumeration constructor.
+## The text rendering of those constructors lives in `events.json` and is
+## handled by `evaluate.py`. The semantics — which clause aligned, which
+## witness supported completion, which prong failed — are preserved
+## exactly: the enum captures identity, the structures capture findings.
+
+```catala
+declaration enumeration ClauseId:
+  -- Clause_2b
+  -- Clause_7
+  -- Clause_10
+
+declaration enumeration WitnessId:
+  -- Bahgat
+  -- Sharma
+  -- Devrani
+  -- Gaugh
+  -- Abbas
+  -- Smith
+  -- Anil
+  -- Emam
+
+declaration enumeration LaddProngId:
+  -- ReasonableDiligence
+  -- ImportantInfluence
+  -- PresumablyCredible
+
+declaration enumeration InvoiceId:
+  -- Inv1_SecondInstalment
+  -- Inv2_FinalInstalment
+  -- Inv3_ServiceTranche2
+  -- Inv4_ServiceTranche3
+  -- Inv5_ServiceTranche4
+
+declaration enumeration Holding:
+  -- XetechEntitledBeforeTransfer
+  -- ContestedInterpretation
+
+declaration structure ClauseFinding:
+  data clause content ClauseId
+  data points_to_payment_before_transfer content boolean
+
+declaration structure WitnessSupport:
+  data witness content WitnessId
+  data supports_completion content boolean
+  data accessed_devops content boolean
+
+declaration structure LaddProng:
+  data prong content LaddProngId
+  data satisfied content boolean
+
+declaration structure InvoiceClaim:
+  data invoice content InvoiceId
+  data principal_gbp content decimal
+
+declaration structure Disposition:
+  data clauses_aligned content boolean
+  data interpretation_holding content Holding
+  data completion_proven content boolean
+  data supporters_count content integer
+  data dissenters_count content integer
+  data new_evidence_admissible content boolean
+  data judgment_sum_gbp content decimal
+  data costs_usd content decimal
+  data counterclaim_dismissed content boolean
+
+declaration scope CompositeJudgment:
+  input clauses content list of ClauseFinding
+  input witnesses content list of WitnessSupport
+  input ladd_prongs content list of LaddProng
+  input outstanding_invoices content list of InvoiceClaim
+  input claimed_costs_usd content decimal
+  input claimed_court_fees_usd content decimal
+  output disposition content Disposition
+
+scope CompositeJudgment:
+  definition disposition equals
+    ## (1) ClauseAlignment - conjunction over named clauses.
+    let aligned equals
+      (number of (list of c among clauses
+                  such that not c.points_to_payment_before_transfer)) = 0
+    in
+    let holding equals
+      if aligned then XetechEntitledBeforeTransfer
+      else ContestedInterpretation
+    in
+    ## (2) WeightOfEvidence - named-witness preponderance.
+    let supporters equals
+      number of (list of w among witnesses
+                 such that w.supports_completion)
+    in
+    let dissenters equals
+      number of (list of w among witnesses
+                 such that not w.supports_completion)
+    in
+    let proven equals supporters > dissenters in
+    ## (3) Ladd v Marshall - conjunctive, short-circuiting.
+    let admissible equals
+      (number of (list of p among ladd_prongs
+                  such that not p.satisfied)) = 0
+    in
+    ## (4) Disposition arithmetic.
+    let judgment_sum equals
+      sum decimal of (map each inv among outstanding_invoices
+                      to inv.principal_gbp)
+    in
+    let costs equals claimed_costs_usd + claimed_court_fees_usd in
+    Disposition {
+      -- clauses_aligned: aligned
+      -- interpretation_holding: holding
+      -- completion_proven: proven
+      -- supporters_count: supporters
+      -- dissenters_count: dissenters
+      -- new_evidence_admissible: admissible
+      -- judgment_sum_gbp: judgment_sum
+      -- costs_usd: costs
+      -- counterclaim_dismissed: aligned and proven
+    }
+```
+
+## Test — facts of ADGMCFI-2024-158
+
+```catala
+#[test] declaration scope TestXetech:
+  composite scope CompositeJudgment
+  output disposition content Disposition
+
+scope TestXetech:
+  definition disposition equals composite.disposition
+  definition composite.clauses equals [
+    ClauseFinding {
+      -- clause: Clause_2b
+      -- points_to_payment_before_transfer: true
+    };
+    ClauseFinding {
+      -- clause: Clause_7
+      -- points_to_payment_before_transfer: true
+    };
+    ClauseFinding {
+      -- clause: Clause_10
+      -- points_to_payment_before_transfer: true
+    }
+  ]
+
+  definition composite.witnesses equals [
+    WitnessSupport {
+      -- witness: Bahgat
+      -- supports_completion: true
+      -- accessed_devops: true
+    };
+    WitnessSupport {
+      -- witness: Sharma
+      -- supports_completion: true
+      -- accessed_devops: true
+    };
+    WitnessSupport {
+      -- witness: Devrani
+      -- supports_completion: true
+      -- accessed_devops: true
+    };
+    WitnessSupport {
+      -- witness: Gaugh
+      -- supports_completion: true
+      -- accessed_devops: false
+    };
+    WitnessSupport {
+      -- witness: Abbas
+      -- supports_completion: true
+      -- accessed_devops: false
+    };
+    WitnessSupport {
+      -- witness: Smith
+      -- supports_completion: true
+      -- accessed_devops: false
+    };
+    WitnessSupport {
+      -- witness: Anil
+      -- supports_completion: false
+      -- accessed_devops: false
+    };
+    WitnessSupport {
+      -- witness: Emam
+      -- supports_completion: false
+      -- accessed_devops: false
+    }
+  ]
+
+  definition composite.ladd_prongs equals [
+    LaddProng { -- prong: ReasonableDiligence -- satisfied: false };
+    LaddProng { -- prong: ImportantInfluence  -- satisfied: false };
+    LaddProng { -- prong: PresumablyCredible  -- satisfied: true  }
+  ]
+
+  definition composite.outstanding_invoices equals [
+    InvoiceClaim {
+      -- invoice: Inv1_SecondInstalment
+      -- principal_gbp: 148203.00
+    };
+    InvoiceClaim {
+      -- invoice: Inv2_FinalInstalment
+      -- principal_gbp: 66667.00
+    };
+    InvoiceClaim {
+      -- invoice: Inv3_ServiceTranche2
+      -- principal_gbp: 65000.00
+    };
+    InvoiceClaim {
+      -- invoice: Inv4_ServiceTranche3
+      -- principal_gbp: 65000.00
+    };
+    InvoiceClaim {
+      -- invoice: Inv5_ServiceTranche4
+      -- principal_gbp: 65000.00
+    }
+  ]
+
+  definition composite.claimed_costs_usd equals 104056.30
+  definition composite.claimed_court_fees_usd equals 21427.54
+
+  ## Court held clauses align (paras 59-60)
+  assertion disposition.clauses_aligned = true
+  ## Court held source code completed on the balance of probabilities (para 92)
+  assertion disposition.completion_proven = true
+  ## Court held documents inadmissible (para 49) - first prong fails (para 48)
+  assertion disposition.new_evidence_admissible = false
+  ## Court entered judgment in favour of Xetech, dismissed counterclaim (para 99)
+  assertion disposition.counterclaim_dismissed = true
+  ## Court entered judgment in GBP 409,870 (para 99(a)(i))
+  assertion disposition.judgment_sum_gbp = 409870.00
+  ## Court awarded costs of USD 125,483.84 (para 99(c))
+  assertion disposition.costs_usd = 125483.84
+```
