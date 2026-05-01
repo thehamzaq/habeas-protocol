@@ -215,7 +215,12 @@ The "Legal Operating System for Digital Worlds" thesis is correct in its diagnos
 - Trace #2 predicate at 92 days late: **AED 78,527.69** (principal AED 76,785.81)
 - Trace #3 structured-discretion residue: **AED 8,914.80** (≈ 6.92% of AED 128,914.80 claimed)
 - Trace #4 net principal: **AED 10,500.96** (court matched exactly); interest at 609 calendar days = AED 876.04 vs court's 610-day inclusive-endpoint = AED 877.48
+- Trace #5 Xetech v Pulsar (DIFC) — Boolean composition over Wood v Capita / Ladd v Marshall: judgment, costs, counterclaim all reproduced
+- Trace #6 GNC Holdings v ONI Global ([2025] SGHC(I) 25, SICC) — partial NY Convention refusal under Singapore IAA s 31; para 185(a)–(c) reproduced exactly
+- Trace #7 Techteryx v IG (DIFC Digital Economy Court) — third-party-jurisdiction gate (Norwich Pharmacal + Bankers Trust + RDC 28.52); USD 456M stablecoin tracing; all 9 checks reproduce para 24
 - Saturation-pattern delta on 10× ADGM expansion: **−0.02** (1.93 → 1.91)
+- Rule library: **12 Catala modules** (13 named scopes), all green under `catala interpret --no-stdlib`; **744 property-test invariants** pass under random inputs against conjunctive / monotonicity / disposition properties
+- Corpus linking after May 2026 sweep: SICC **100%** (26/26 raw docs linked), ADGM **90.8%** (316/348), DIFC **28.2%** (166/588 — structural ceiling: 32 coded of 142 discoverable)
 
 ## Appendix B — Files
 
@@ -223,9 +228,15 @@ The "Legal Operating System for Digital Worlds" thesis is correct in its diagnos
 - `data/primitives.json` — v0.2 rubric + v0.1→v0.2 mapping
 - `data/schema.json` — JSON Schema for entries
 - `data/sources.md` — corpus provenance
-- `spike/trace-01/`, `spike/trace-02/`, `spike/trace-03/`, `spike/trace-04/` — Catala source, Python evaluator, event log per trace
-- `dashboard/index.html` — interactive view
-- `scripts/{fetch_difc,fetch_adgm_firecrawl,strip_html,migrate_v02,triage_adgm,build_digests,grade_borderline,merge_adgm_codings}.py` — corpus pipeline
+- `spike/trace-01/` through `spike/trace-07/` — Catala source, Python evaluator, event log, and JSON output per trace; the original four traces (1–4) span the methodological spectrum claimed in §5.5; traces 5–7 extend coverage to Boolean composition over contractual interpretation (DIFC), partial NY Convention refusal in a different legal family (SICC), and a third-party-jurisdiction gate over a digital-asset dispute (DIFC Digital Economy Court).
+- `rules/` — 12 Catala rule modules (13 scopes) lifted out of the trace library: `difc_rdc_part_38`, `difc_rdc_38_7_indemnity`, `difc_practice_direction_4_2017`, `difc_third_party_disclosure`, `adgm_cpr_admissions`, `adgm_cpr_summary_judgment`, `adgm_arbitration_regulations_2015`, `english_contract_interpretation`, `caparo_three_stage_test`, `ladd_v_marshall`, `sg_iaa_s_31` (two scopes: `IAA_S31_Refusal` + `DKTvDKUChallenge`), `uae_civil_code_art_390`. Each module ships with a metadata file (`<module>_metadata.json`) and an auto-generated input/output JSON Schema; certification spec at `rules/_certification.yaml`; claim-type registry at `rules/_claims.json`; jurisdiction map at `rules/_jurisdictions.json`.
+- `dashboard/` — 7 interactive pages: Atlas (`index.html`), single-rule playground, multi-rule dispute simulator, rule authoring wizard, evidence ingestion, cross-border conflict-of-laws routing, OpenAPI 3.0 reference (`api.html`).
+- `api/server.py` — 17-endpoint Postgres-backed read-only API; `api/openapi.yaml` — OpenAPI 3.0 spec.
+- `clients/python/`, `clients/typescript/` — first-party clients wrapping every endpoint.
+- `db/schema.sql` — 8 tables, 3 views, FTS index; `rule_runs` audit table.
+- `tests/property_tests.py` — 744 property invariants exercised against random inputs.
+- `LICENSE`, `LICENSES/`, `CONTRIBUTING.md`, `SECURITY.md`, `TRADEMARK.md` — open-source governance: MIT (code) + CC-BY-4.0 (data) + Mozilla/Rust-style trademark policy + private vulnerability disclosure.
+- `scripts/{fetch_difc,fetch_adgm_firecrawl,fetch_adgm_pages,strip_html,migrate_to_postgres,triage_adgm,build_digests,grade_borderline,merge_adgm_codings,build_trace_outputs,build_rule_schemas,bootstrap_rule_metadata}.{py,sh}` — corpus pipeline and reproducibility scripts.
 
 ## References
 
@@ -252,6 +263,24 @@ The "Legal Operating System for Digital Worlds" thesis is correct in its diagnos
 [^hedley]: *Hedley Byrne & Co Ltd v Heller & Partners Ltd* [1963] UKHL 4, [1964] AC 465. Liability for negligent misstatement causing pure economic loss.
 
 [^arnold]: *Arnold v Britton* [2015] UKSC 36, [2015] AC 1619. Principles of contractual interpretation; objective meaning + business common sense.
+
+[^wood]: *Wood v Capita Insurance Services Ltd* [2017] UKSC 24, [2017] AC 1173. Iterative process of contractual interpretation — language, business common sense, factual matrix; refines the *Rainy Sky* / *Arnold* framework. Applied wholesale by ADGM Courts via the AELR.
+
+[^rainy]: *Rainy Sky SA v Kookmin Bank* [2011] UKSC 50, [2011] 1 WLR 2900. Where contract language has two possible meanings, the court adopts the one consistent with business common sense.
+
+[^ladd]: *Ladd v Marshall* [1954] EWCA Civ 1, [1954] 1 WLR 1489. Three-prong test for admitting fresh evidence on appeal: (i) reasonable diligence, (ii) important influence, (iii) presumably credible. Conjunctive — failure of any one prong defeats admission.
+
+[^iaa]: Singapore *International Arbitration Act* (Cap 143A, 1995 Rev Ed; subsequent revisions). Section 31 enacts the New York Convention Article V refusal grounds for foreign-arbitral-award enforcement in Singapore.
+
+[^dktdku]: *DKT v DKU* [2024] SGHC(I) 9. Four-condition framework for "infra petita" challenges to arbitral awards under SG IAA s 31(2)(d).
+
+[^gnc]: *GNC Holdings LLC v ONI Global Pte Ltd* [2025] SGHC(I) 25 (Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ; 21 October 2025). SICC OA 9/2025. Partial refusal of enforcement of a foreign arbitral award under SG IAA s 31; first SICC trace in this corpus (Trace #6).
+
+[^techteryx]: *Techteryx Ltd v IG (BVI) Limited and others*, DIFC Digital Economy Court, Black KC (3 April 2026). USD 456M stablecoin-reserves tracing dispute; conjunctive jurisdictional gates of Norwich Pharmacal + Bankers Trust + RDC 28.52 over a non-party financial institution. Trace #7; the first trace in DIFC's Digital Economy Court — purpose-built for digital-asset cross-border commercial disputes.
+
+[^norwich]: *Norwich Pharmacal Co v Customs and Excise Commissioners* [1974] AC 133 (HL). Equitable jurisdiction to compel a non-party who has become "mixed up" in wrongdoing to disclose information.
+
+[^bankers]: *Bankers Trust Co v Shapira* [1980] 1 WLR 1274 (CA). Pre-action discovery against banks where claimant alleges fraud and seeks to trace funds.
 
 [^vara]: Dubai Virtual Assets Regulatory Authority, established by Dubai Law No. 4 of 2022 Regulating Virtual Assets. https://www.vara.ae
 
