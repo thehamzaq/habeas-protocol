@@ -1,10 +1,24 @@
 # Habeas Protocol
 
-A constitutional reframing of the "Legal Operating System for Digital Worlds" thesis, grounded in empirical analysis of three operating special-jurisdiction commercial courts: the **DIFC Courts** in Dubai, the **ADGM Courts** in Abu Dhabi, and the **Singapore International Commercial Court (SICC)**.
+A measurement framework + open-source rule library for the *computational legitimacy* of commercial courts that already handle digital and cross-border disputes. Built on three working tribunals: the **DIFC Courts** in Dubai, the **ADGM Courts** in Abu Dhabi, and the **Singapore International Commercial Court (SICC)**.
 
-## Thesis in one paragraph
+## In plain English
 
-Most "Web3 dispute resolution" proposals try to invent a tribunal from scratch. The thesis here is the inverse: **the tribunals already exist; what is missing is the computational layer.** DIFC and ADGM are common-law courts inside special economic zones in the United Arab Emirates; SICC is a division of the Singapore High Court staffed partly by international judges. All three operate with versioned rules, dated evidence, separation of powers, and rulings enforceable across borders under the New York Convention.[^nyc] This repository codes 121 judgments from the three tribunals against six per-ruling primitives a digital tribunal must satisfy, compiles **six rules from the corpus into executable Catala predicates that reproduce the courts' arithmetic**, and exposes the deterministic predicate cores as a reusable rule library plus a public dashboard, a Postgres-backed read-only API, and a schema-driven rule playground.
+When a deal goes wrong online — a smart-contract exit gone sideways, a SaaS dispute across three continents, a digital-asset hack — courts struggle to keep up. The usual response is to invent a brand-new "Web3 tribunal." This project takes the opposite view.
+
+**The tribunals already exist; what's missing is the software.** DIFC, ADGM, and SICC are real common-law courts inside special economic zones. They publish their judgments, cite specific rules, and produce orders enforceable in 170+ countries under the New York Convention.[^nyc] What they don't yet have is a way for software to *replay their reasoning* — to take a fact pattern, run it through the rule the court applied, and surface the same answer.
+
+This repo does three things to fix that:
+
+1. **Measures.** It scores 121 real judgments from the three tribunals against six "per-ruling primitives" a digital court must satisfy (Are the parties identified? Is the evidence dated? Is the rule cited with version? etc.) plus two architectural properties (separation of powers, appeal path).
+2. **Encodes.** It rewrites 12 of those rules in Catala — a programming language designed for legal text — so they can be executed against fact patterns. Seven full case "traces" run end-to-end and reproduce the court's arithmetic to the cent.
+3. **Ships.** A 17-endpoint API, a 7-page dashboard with an interactive rule playground, a Postgres mirror of the corpus, and a Python + TypeScript client. Everything is open-source: code under MIT, data under CC-BY-4.0.
+
+The headline finding is simple: **all three tribunals score at near-ceiling on every primitive**, and the result survives a 10× sample expansion plus replication on a third tribunal in a different legal family. The computational layer is buildable today — the legal substrate is already there.
+
+## Thesis in one paragraph (academic version)
+
+Most "Web3 dispute resolution" proposals try to invent a tribunal from scratch. The thesis here is the inverse: **the tribunals already exist; what is missing is the computational layer.** DIFC and ADGM are common-law courts inside special economic zones in the United Arab Emirates; SICC is a division of the Singapore High Court staffed partly by international judges. All three operate with versioned rules, dated evidence, separation of powers, and rulings enforceable across borders under the New York Convention. This repository codes 121 judgments from the three tribunals against six per-ruling primitives a digital tribunal must satisfy, compiles **twelve rules from the corpus into executable Catala predicates and seven full case traces that reproduce the courts' arithmetic**, and exposes the deterministic predicate cores as a reusable rule library plus a public dashboard, a Postgres-backed read-only API, a schema-driven rule playground, and first-party Python + TypeScript clients.
 
 ## What's inside
 
@@ -31,9 +45,9 @@ System properties (architectural, scored once per institution):
 
 **Headline.** All three operating tribunals score at or near ceiling on every per-ruling primitive. The saturation pattern survived two stress tests during this work: a 10× expansion of the ADGM sample (1.93 at n=7 hand-coded → 1.91 at n=76 hand+AI), and a replication on a third tribunal in a different legal family (SICC at 1.95). All three score 2/2 on both system properties. **Three operating commercial tribunals, all implementing the full protocol at near-ceiling, available to plug in today.**
 
-### Constructive: six executable traces
+### Constructive: seven executable traces
 
-Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Python predicate evaluator and runs it against an event log of the case facts. The six traces span the rule-shape spectrum and now cross legal-family boundaries (DIFC + ADGM English-law-via-statute + Singapore IAA + NY Convention):
+Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Python predicate evaluator and runs it against an event log of the case facts. The seven traces span the rule-shape spectrum and cross legal-family boundaries (DIFC + ADGM English-law-via-statute + Singapore IAA + NY Convention):
 
 - **Trace #1 — pure formula.** [`spike/trace-01/`](./spike/trace-01/). DIFC RDC[^rdc] Part 38 standard-basis costs, applied to *Atul Dhawan v Ramzi El Jaouhari* (CFI 058/2024). Predicate computes **AED 7,121.75** matching the Schedule of Reasons exactly. The operative paragraph states AED 7,127.75 — **a 6 AED clerical-error gap** the protocol mechanically surfaces.
 
@@ -47,17 +61,26 @@ Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Pyt
 
 - **Trace #6 — partial statutory refusal (cross-tribunal).** [`spike/trace-06/`](./spike/trace-06/). NY Convention recognition under Singapore IAA s 31 from *GNC Holdings v ONI Global Pte Ltd* (SIC/OA 9/2025, [2025] SGHC(I) 25; Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ). The first SICC trace and the first to express a *partial* refusal of enforcement: of four pleaded grounds, three dismissed in full, one allowed in part — with three named sub-paragraphs of the Tribunal's Order 3 excised because the parties were not afforded an opportunity to be heard on their specific terms. Disposition reproduces para 185(a)–(c) exactly: application allowed in part; Order 3(d)(ii), (d)(iii), (f) not enforced; the rest enforced. **Demonstrates the protocol crosses legal-family boundaries** (Singapore IAA + NY Convention vs DIFC/ADGM English-law-via-statute).
 
-### Rule library — five reusable Catala modules
+- **Trace #7 — third-party-jurisdiction gate.** [`spike/trace-07/`](./spike/trace-07/). *Norwich Pharmacal* + *Bankers Trust* + DIFC RDC 28.52, applied to a digital-asset tracing dispute (DEC 001/2025) before DIFC's *Digital Economy Court*. The first trace to combine a constructive-trust threshold, an innocent-mixed-up-party gate, and the DIFC's third-party disclosure rule into one decision tree. **Demonstrates protocol coverage of the FinTech/digital-asset vertical** the courts increasingly handle.
+
+### Rule library — twelve reusable Catala modules
 
 [`rules/`](./rules/) factors the deterministic computational cores out of the traces into reusable Catala modules — the seed of the Stage-2 dispute simulator. Each module ships with a Clerk-compatible test suite (`#[test]` scopes, both the canonical case and contrary-branch demonstrations), a generated JSON schema (input/output shapes for tooling), and is wired into CI alongside the traces.
 
 | Module | Source | Used in |
 |---|---|---|
 | `difc_rdc_part_38` | DIFC RDC Part 38 standard-basis costs assessment | Trace #1 |
-| `sg_iaa_s_31` | Singapore IAA s 31 (NY Convention Article V grounds) + DKT v DKU four-condition framework | Trace #6 |
-| `ladd_v_marshall` | *Ladd v Marshall* [1954] 1 WLR 1489 fresh-evidence three-prong test | Trace #5 |
+| `difc_practice_direction_4_2017` | DIFC Practice Direction 4/2017 — arbitration costs deadline + interest | Trace #2 |
+| `difc_rdc_38_7_indemnity` | DIFC RDC 38.7 — indemnity-basis costs (proportionality stripped) | Trace #3 |
 | `uae_civil_code_art_390` | UAE Civil Transactions Law Art 390(2) — liquidated-damages cap | Trace #4 |
 | `adgm_cpr_admissions` | ADGM Court Procedure Rules 2016 — admissions and set-off arithmetic | Trace #4 |
+| `english_contract_interpretation` | *Wood v Capita* / *Rainy Sky* contractual-interpretation test | Trace #5 |
+| `ladd_v_marshall` | *Ladd v Marshall* [1954] 1 WLR 1489 fresh-evidence three-prong test | Trace #5 |
+| `sg_iaa_s_31` | Singapore IAA s 31 (NY Convention Article V grounds) + DKT v DKU four-condition framework | Trace #6 |
+| `difc_third_party_disclosure` | *Norwich Pharmacal* + *Bankers Trust* + RDC 28.52 third-party gate | Trace #7 |
+| `adgm_cpr_summary_judgment` | ADGM CPR summary-judgment threshold | reusable |
+| `adgm_arbitration_regulations_2015` | ADGM Arbitration Regulations 2015 — set-aside and recognition | reusable |
+| `caparo_three_stage_test` | *Caparo v Dickman* [1990] duty-of-care three-stage test | reusable |
 
 ## Why these three tribunals
 
@@ -90,7 +113,7 @@ The whole corpus also lives in a local Postgres instance (118 judgments + 978 ra
 
 ### Rule playground
 
-[`dashboard/playground.html`](./dashboard/playground.html) is a schema-driven UI: pick any of the five rule modules, enter inputs through an auto-generated form (forms come from `catala json-schema` per module), and the predicate runs server-side via `catala interpret -F json`. The first concrete piece of the Stage-2 dispute simulator.
+[`dashboard/playground.html`](./dashboard/playground.html) is a schema-driven UI: pick any of the twelve rule modules, enter inputs through an auto-generated form (forms come from `catala json-schema` per module), and the predicate runs server-side via `catala interpret -F json`. The first concrete piece of the Stage-2 dispute simulator.
 
 ## Layout
 
@@ -113,7 +136,7 @@ habeas-protocol/
 │       └── sicc/{html,text}/       # SICC raw + extracted
 ├── rules/
 │   ├── clerk.toml                  # Clerk project for the rule library
-│   ├── *.catala_en                 # five reusable rule modules
+│   ├── *.catala_en                 # twelve reusable rule modules
 │   ├── *.schema.json               # generated JSON schemas (input + output shapes)
 │   └── _index.json                 # module/scope catalogue, consumed by playground
 ├── db/
@@ -136,13 +159,13 @@ habeas-protocol/
 │   ├── grade_borderline.py         # rubric-applying grader
 │   └── merge_adgm_codings.py       # merger into judgments.json
 ├── spike/
-│   └── trace-0{1,2,3,4,5,6}/       # Catala rule + events.json + evaluate.py + output.json
+│   └── trace-0{1,2,3,4,5,6,7}/     # Catala rule + events.json + evaluate.py + output.json
 ├── dashboard/                      # interactive view (vanilla JS, hand-rolled SVG)
 │   ├── index.html  app.js  styles.css
 │   └── playground.html             # schema-driven rule playground
 └── .github/workflows/
-    └── test.yml                    # CI: typecheck + interpret 6 traces + 5 rule modules,
-                                    # run 6 evaluate.py, regenerate output/schema files,
+    └── test.yml                    # CI: typecheck + interpret 7 traces + 12 rule modules,
+                                    # run 7 evaluate.py, regenerate output/schema files,
                                     # fail on drift
 ```
 
@@ -160,7 +183,7 @@ python3 scripts/build_digests.py
 python3 scripts/grade_borderline.py
 python3 scripts/merge_adgm_codings.py
 
-# Catala traces — typecheck, interpret, and Python evaluator
+# Catala traces — typecheck, interpret, and Python evaluator (7 traces)
 eval $(opam env --switch=catala)       # if installed via opam
 for d in spike/trace-*/; do
   catala typecheck --no-stdlib "$d/rule.catala_en"
@@ -189,8 +212,8 @@ python3 -m http.server 8001 &        # serves dashboard at 127.0.0.1:8001/dashbo
 ## Phase status
 
 - **Phase 0–2** done.
-- **Phase 3 (current)** done: Catala 1.1.0 toolchain installed; all six traces compile and interpret under `catala interpret --no-stdlib`; rule library extracted as five reusable modules with auto-generated JSON schemas; corpus migrated to local Postgres (118 judgments, 978 raw documents, 355 linked); read-only API + schema-driven rule playground shipped; CI exercises the full matrix on every push.
-- **Open (optional)**: court-convention surfacer wired across the trace set (live on dashboard); larger SICC pull; trace #7 in the DIFC FinTech vertical; stratified hand-validation of ~30 AI-coded entries.
+- **Phase 3 (current)** done: Catala 1.1.0 toolchain installed; all seven traces compile and interpret under `catala interpret --no-stdlib`; rule library extracted as twelve reusable modules with auto-generated JSON schemas; corpus migrated to local Postgres (118 judgments, 978 raw documents, 355 linked); 17-endpoint read-only API + schema-driven rule playground + first-party Python and TypeScript clients shipped; CI exercises the full matrix on every push.
+- **Open (optional)**: larger SICC pull; further FinTech-vertical traces; stratified hand-validation of ~30 AI-coded entries.
 
 ## License
 
