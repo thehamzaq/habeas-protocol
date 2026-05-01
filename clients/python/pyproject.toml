@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "habeas"
+version = "0.1.0"
+description = "Python client for the Habeas Protocol API"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Maxim Labs" }]
+keywords = ["legal-tech", "catala", "difc", "adgm", "sicc", "habeas-protocol"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Legal Industry",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+]
+# stdlib only — no runtime dependencies
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/thehamzaq/habeas-protocol"
+Source = "https://github.com/thehamzaq/habeas-protocol/tree/main/clients/python"
+Issues = "https://github.com/thehamzaq/habeas-protocol/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["habeas*"]

@@ -1,0 +1,22 @@
+{
+  "name": "@habeas/client",
+  "version": "0.1.0",
+  "description": "TypeScript client for the Habeas Protocol API",
+  "type": "module",
+  "main": "habeas.ts",
+  "types": "habeas.ts",
+  "files": ["habeas.ts", "README.md"],
+  "scripts": {
+    "smoke": "node smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thehamzaq/habeas-protocol",
+    "directory": "clients/typescript"
+  },
+  "keywords": ["legal-tech", "catala", "difc", "adgm", "sicc", "habeas-protocol"]
+}
