@@ -377,6 +377,7 @@ function heatColor(v) {
 }
 
 function renderHeatmaps() {
+  if (!document.getElementById('heatmapDIFC')) return;
   const difc = judgments.filter(j => j.tribunal === 'DIFC Courts');
   const adgm = judgments.filter(j => j.tribunal === 'ADGM Courts');
   const sicc = judgments.filter(j => j.tribunal === 'Singapore International Commercial Court');
@@ -387,6 +388,7 @@ function renderHeatmaps() {
 
 function drawHeatmap(id, rows, panelTitle) {
   const target = document.getElementById(id);
+  if (!target) return;
   target.innerHTML = '';
   const labelW = 220;
   const colW = 70;
@@ -452,6 +454,7 @@ function drawHeatmap(id, rows, panelTitle) {
 
 function renderMeanComparison() {
   const target = document.getElementById('meanComparison');
+  if (!target) return;
   target.innerHTML = '';
   const w = 800;
   const labelW = 200;
@@ -525,6 +528,7 @@ function renderSystemProps() {
 }
 
 function renderRules() {
+  if (!document.getElementById('rulesChart')) return;
   const counts = {};
   judgments.forEach(j => (j.rules_cited || []).forEach(r => { counts[r] = (counts[r] || 0) + 1; }));
   const data = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 14);
@@ -533,6 +537,7 @@ function renderRules() {
 
 function drawHBar(targetId, data, opts = {}) {
   const target = document.getElementById(targetId);
+  if (!target) return;
   target.innerHTML = '';
   const rowH = 26;
   const labelW = 320;
