@@ -1,0 +1,551 @@
+openapi: 3.0.3
+info:
+  title: Habeas Protocol API
+  version: "0.1.0"
+  description: |
+    Read + write API over the Habeas Protocol corpus and rule library.
+
+    The API is local-dev-shaped: stdlib-only Python `http.server`,
+    Postgres-backed, no auth (loopback only). For production deployment,
+    front it with a real reverse proxy and add auth at that layer.
+
+    Data shapes:
+      - **Judgments** (`/api/judgments`) return the same shape as
+        `data/judgments.json` — drop-in for the dashboard's static
+        fallback.
+      - **Rule modules** (`/api/rule_modules`) enumerate the modules
+        in `rules/`, each with a JSON schema (input + output structs).
+      - **Rule runs** (`POST /api/rule_run`) execute Catala-encoded
+        rules over user-supplied inputs and write an audit row.
+  license:
+    name: MIT (code) + CC-BY-4.0 (data)
+  contact:
+    name: Maxim Labs
+    url: https://github.com/thehamzaq/habeas-protocol
+
+servers:
+  - url: http://127.0.0.1:5544
+    description: Local dev server (stdlib http.server)
+
+tags:
+  - name: corpus
+    description: Read-only queries over the structured + raw layers (Postgres-backed).
+  - name: rules
+    description: The rule library — modules, schemas, claim-type registry, jurisdictions.
+  - name: rule-runs
+    description: Predicate execution + audit log. Every POST /api/rule_run writes an audit row.
+  - name: routing
+    description: Multi-jurisdiction conflict-of-laws resolver.
+  - name: authoring
+    description: Rule validation + admin-mode save-back.
+  - name: ingestion
+    description: Heuristic regex sweep over pasted plain text or HTML.
+
+paths:
+  /api/health:
+    get:
+      tags: [corpus]
+      summary: Health probe
+      description: Returns ok + judgment count from Postgres.
+      responses:
+        "200":
+          description: API is up and Postgres is reachable.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: object
+                    properties:
+                      ok: { type: boolean }
+                      judgments: { type: integer }
+              example:
+                status:
+                  ok: true
+                  judgments: 119
+
+  /api/judgments:
+    get:
+      tags: [corpus]
+      summary: List coded judgments
+      description: |
+        Returns judgments in the same shape as `data/judgments.json` so the
+        dashboard can swap the static fetch for the API without changing
+        any rendering code.
+      parameters:
+        - name: tribunal
+          in: query
+          schema: { type: string, enum: [DIFC, ADGM, SICC] }
+          description: Filter to a single tribunal (whitelisted).
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 500 }
+      responses:
+        "200":
+          description: Array of judgment records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Judgment" }
+
+  /api/rules:
+    get:
+      tags: [corpus]
+      summary: Top-cited instruments across the corpus
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 200, default: 20 }
+      responses:
+        "200":
+          description: Array of (instrument, count-by-tribunal) rows.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    instrument: { type: string }
+                    n_judgments: { type: integer }
+                    n_difc: { type: integer }
+                    n_adgm: { type: integer }
+                    n_sicc: { type: integer }
+
+  /api/tribunal_means:
+    get:
+      tags: [corpus]
+      summary: Per-tribunal mean primitive scores
+      description: |
+        Reproduces the paper's headline numbers:
+          - SICC ≈ 1.95 / 2.00
+          - ADGM ≈ 1.91
+          - DIFC ≈ 1.72
+      responses:
+        "200":
+          description: Per-tribunal aggregate scores under v0.2.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tribunal_code: { type: string }
+                    n_judgments: { type: integer }
+                    mean_pr: { type: number }
+                    mean_sp: { type: number, nullable: true }
+
+  /api/search:
+    get:
+      tags: [corpus]
+      summary: Full-text search over extracted document text
+      description: |
+        Runs `plainto_tsquery` against the FTS index and returns
+        ranked rows with `ts_headline` snippets. Query alphabet is
+        restricted to `[A-Za-z0-9 -._/]` (defence-in-depth) and the
+        sanitised value is single-quote-escaped before splicing.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema: { type: string, maxLength: 200 }
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 50, default: 10 }
+      responses:
+        "200":
+          description: Ranked search hits with snippets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    case_no: { type: string }
+                    tribunal_code: { type: string }
+                    date_issued: { type: string, format: date, nullable: true }
+                    filename: { type: string }
+                    rank: { type: number }
+                    snippet: { type: string, description: "ts_headline output with <<>> markers around matched terms" }
+
+  /api/rule_modules:
+    get:
+      tags: [rules]
+      summary: List rule modules + their public scopes
+      description: |
+        Enumerates `rules/*.catala_en` modules. For each non-test scope,
+        returns a pointer to its JSON schema (input + output shapes
+        generated by `catala json-schema`).
+      responses:
+        "200":
+          description: Array of (module, scope, schema-file) entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    module: { type: string }
+                    scope: { type: string }
+                    file: { type: string, description: "rules/<module>.catala_en" }
+                    schema: { type: string, description: "rules/<module>__<scope>.schema.json" }
+
+  /api/claims:
+    get:
+      tags: [rules]
+      summary: Claim-type → applicable rule registry
+      description: |
+        Maps `claim_type` (e.g. `costs_assessment`, `arbitration_recognition`)
+        to the rule modules that apply, with per-tribunal routing and
+        role classification (gate / arithmetic / disposition / interpretation).
+        Drives the dispute simulator.
+      responses:
+        "200":
+          description: The full claims registry.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version: { type: string }
+                  claim_types:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        claim_type: { type: string }
+                        label: { type: string }
+                        n_in_corpus: { type: integer }
+                        tribunals:
+                          type: array
+                          items: { type: string }
+                        applicable_rules:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              module: { type: string }
+                              scope: { type: string }
+                              role: { type: string }
+                              tribunal: { type: string }
+                              when: { type: string }
+
+  /api/jurisdictions:
+    get:
+      tags: [routing]
+      summary: Multi-jurisdiction routing data
+      description: |
+        Per-tribunal posture (default rule of decision, recognition path,
+        public-policy authority), per-rule jurisdiction map (primary
+        jurisdiction, applies_in list, role class, recognition gate +
+        public-policy override flags), and the cross-border path
+        catalogue. Drives `/api/conflict_route` and the cross-border
+        dashboard view.
+      responses:
+        "200":
+          description: The jurisdictions registry.
+
+  /api/runs/recent:
+    get:
+      tags: [rule-runs]
+      summary: Most recent rule_run rows
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 500, default: 50 }
+      responses:
+        "200":
+          description: Slim row list (no input/output bodies).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: integer }
+                    ts: { type: string, format: date-time }
+                    module: { type: string }
+                    scope: { type: string }
+                    success: { type: boolean }
+                    error: { type: string, nullable: true }
+                    duration_ms: { type: integer }
+                    source_label: { type: string, nullable: true }
+                    inputs_sha256: { type: string }
+
+  /api/runs/stats:
+    get:
+      tags: [rule-runs]
+      summary: Per-(module, scope) audit-log aggregates
+      responses:
+        "200":
+          description: Run count, success count, median latency, last-ts per module/scope.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    module: { type: string }
+                    scope: { type: string }
+                    runs: { type: integer }
+                    successes: { type: integer }
+                    median_ms: { type: integer, nullable: true }
+                    last_ts: { type: string, format: date-time }
+
+  /api/rule_run:
+    post:
+      tags: [rule-runs]
+      summary: Execute a rule module over user inputs
+      description: |
+        Runs `catala interpret -F json --no-stdlib --scope=<scope>
+        --input=- rules/<module>.catala_en` with the JSON inputs piped
+        over stdin. Writes an audit row to `rule_runs` with the canonical
+        SHA256 of the inputs.
+
+        Module/scope names are alphabet-restricted (`^[a-z][a-z0-9_]+$`
+        and `^[A-Za-z][A-Za-z0-9_]*$`) — `../etc/passwd` is rejected.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [module, scope, inputs]
+              properties:
+                module: { type: string, pattern: "^[a-z][a-z0-9_]+$" }
+                scope: { type: string, pattern: "^[A-Za-z][A-Za-z0-9_]*$" }
+                inputs: { type: object, additionalProperties: true }
+                source_label: { type: string, maxLength: 64, description: "Optional UI-source tag for the audit row (e.g. 'simulator', 'playground')" }
+            example:
+              module: difc_rdc_part_38
+              scope: StandardBasisAssessment
+              inputs:
+                claim:
+                  hours_worked: "24"
+                  hourly_rate_aed: "250"
+                  reasonable_disbursements_aed: "1121.75"
+              source_label: simulator
+      responses:
+        "200":
+          description: Catala JSON output of the scope.
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+              example:
+                award:
+                  professional_time_aed: 6000.0
+                  disbursements_aed: 1121.75
+                  total_aed: 7121.75
+        "500":
+          description: Catala raised a typecheck or interpret error.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error: { type: string }
+
+  /api/rule_validate:
+    post:
+      tags: [authoring]
+      summary: Typecheck + interpret arbitrary Catala source
+      description: |
+        Used by the rule authoring wizard (`dashboard/authoring.html`).
+        Source is written to a tempfile (so error line numbers stay
+        legible) and discarded. No rules/ side-effects.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [source]
+              properties:
+                source: { type: string, maxLength: 200000 }
+      responses:
+        "200":
+          description: Result of typecheck + interpret.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean }
+                  stage: { type: string, enum: [typecheck, interpret], nullable: true }
+                  errors: { type: string, nullable: true }
+                  interpret_output: { type: string, nullable: true }
+
+  /api/rule_save:
+    post:
+      tags: [authoring]
+      summary: Save a validated rule module to rules/ (admin-mode only)
+      description: |
+        Writes `rules/<filename>` if and only if `HABEAS_ADMIN_MODE=1`
+        is set in the API server's environment. Filename whitelisted
+        to `^[a-z][a-z0-9_]+\.catala_en$`. Refuses any source that
+        does not pass `/api/rule_validate` first.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [filename, source]
+              properties:
+                filename: { type: string, pattern: "^[a-z][a-z0-9_]+\\.catala_en$" }
+                source: { type: string, maxLength: 200000 }
+      responses:
+        "200":
+          description: Save outcome.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  saved: { type: boolean }
+                  path: { type: string, nullable: true }
+                  overwrote_existing: { type: boolean, nullable: true }
+                  validation: { type: object, nullable: true }
+
+  /api/ingest:
+    post:
+      tags: [ingestion]
+      summary: Heuristic regex sweep over pasted text or HTML
+      description: |
+        Extracts dates (six formats), monetary amounts (multi-currency
+        with million/billion suffix), citations (`[YYYY] SGHC(I) N`,
+        `ADGMCFI-YYYY-NNN`, `CFI/ARB/ENF/DEC NNN/YYYY`, `OA N/YYYY`),
+        instruments cited, party pairs (the `v` pattern), and a tribunal
+        hint. Returns an `events.json`-shaped skeleton ready to drop
+        into a new `spike/trace-N/` directory.
+
+        Heuristic-only — no LLM, no API credits. Intended as a starting
+        point for a human author, not a final extraction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [text]
+              properties:
+                text: { type: string, maxLength: 1000000 }
+      responses:
+        "200":
+          description: Extracted events.json skeleton.
+
+  /api/conflict_route:
+    post:
+      tags: [routing]
+      summary: Multi-jurisdiction conflict-of-laws resolver
+      description: |
+        Three-layer resolver:
+          1. Local forum's posture (default rule of decision, recognition
+             path, public-policy authority).
+          2. Substantive rules from the claim registry filtered by
+             forum + governing-law lift-ins.
+          3. Recognition chain from the cross-border path catalogue —
+             these gates must clear before the substantive layer binds.
+
+        Public-policy overrides (rules carrying the last-resort refusal
+        limb of NY Convention Article V(2)(b) or its parallels) are
+        surfaced as a separate list.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [forum]
+              properties:
+                forum: { type: string, enum: [DIFC, ADGM, SICC, FOREIGN_ARBITRAL_TRIBUNAL, HONG_KONG_HIGH_COURT, ANY] }
+                originating_forum: { type: string, nullable: true, enum: [DIFC, ADGM, SICC, FOREIGN_ARBITRAL_TRIBUNAL, HONG_KONG_HIGH_COURT, ANY] }
+                claim_type: { type: string }
+                governing_law: { type: string, nullable: true }
+            example:
+              forum: SICC
+              originating_forum: FOREIGN_ARBITRAL_TRIBUNAL
+              claim_type: arbitration_recognition
+      responses:
+        "200":
+          description: Routing path.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  forum: { type: string }
+                  originating_forum: { type: string, nullable: true }
+                  claim_type: { type: string }
+                  governing_law: { type: string, nullable: true }
+                  forum_posture: { type: object }
+                  cross_border_path: { type: object, nullable: true }
+                  recognition_chain: { type: array, items: { $ref: "#/components/schemas/RuleRef" } }
+                  applicable_rules: { type: array, items: { $ref: "#/components/schemas/RuleRef" } }
+                  public_policy_overrides: { type: array, items: { $ref: "#/components/schemas/RuleRef" } }
+                  narrative: { type: array, items: { type: string } }
+
+components:
+  schemas:
+    Judgment:
+      type: object
+      description: Single coded judgment (mirrors data/judgments.json).
+      properties:
+        case_no: { type: string }
+        url: { type: string, format: uri, nullable: true }
+        tribunal: { type: string, enum: ["DIFC Courts", "ADGM Courts", "Singapore International Commercial Court"] }
+        division: { type: string, nullable: true }
+        date_issued: { type: string, format: date, nullable: true }
+        parties:
+          type: object
+          properties:
+            claimant: { type: string }
+            defendant: { type: string }
+        judge: { type: string, nullable: true }
+        claim_type: { type: string, nullable: true }
+        outcome: { type: string, nullable: true }
+        operative_amount_aed: { type: number, nullable: true }
+        rules_cited:
+          type: array
+          items: { type: string }
+        primitive_scores_v02:
+          type: object
+          properties:
+            PR1: { type: integer, minimum: 0, maximum: 2 }
+            PR2: { type: integer, minimum: 0, maximum: 2 }
+            PR3: { type: integer, minimum: 0, maximum: 2 }
+            PR4: { type: integer, minimum: 0, maximum: 2 }
+            PR5: { type: integer, minimum: 0, maximum: 2 }
+            PR6: { type: integer, minimum: 0, maximum: 2 }
+        coding:
+          type: object
+          properties:
+            coder: { type: string }
+            coded_on: { type: string, format: date }
+            gold_set: { type: boolean }
+            notes: { type: string }
+
+    RuleRef:
+      type: object
+      description: Reference to a rule module + scope, with routing metadata.
+      properties:
+        module: { type: string }
+        scope: { type: string }
+        role: { type: string, nullable: true, enum: [gate, arithmetic, disposition, interpretation] }
+        role_class: { type: string, nullable: true }
+        tribunal: { type: string, nullable: true }
+        primary_jurisdiction: { type: string, nullable: true }
+        applies_in:
+          type: array
+          items: { type: string }
+        public_policy_gate: { type: boolean, nullable: true }
+        is_recognition_gate: { type: boolean, nullable: true }
+        applied_via: { type: string, nullable: true }
+        when: { type: string, nullable: true }
