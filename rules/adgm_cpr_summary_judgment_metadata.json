@@ -1,0 +1,18 @@
+{
+  "module_name": "adgm_cpr_summary_judgment",
+  "human_label": "ADGM CPR Rule 24 \u2014 summary judgment two-limb test",
+  "source_authorities": [
+    {
+      "kind": "rules_of_court",
+      "citation": "ADGM Court Procedure Rules 2016, Rule 24"
+    }
+  ],
+  "test_scopes": [
+    "TestSummaryJudgmentBothLimbs",
+    "TestSummaryJudgmentRefusedOnCompellingReason"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  }
+}

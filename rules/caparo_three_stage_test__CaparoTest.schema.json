@@ -1,0 +1,63 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope CaparoTest input",
+    "description": "Input structure of scope CaparoTest",
+    "$ref": "#/definitions/CaparoTest_in",
+    "definitions": {
+      "CaparoFacts": {
+        "type": "object",
+        "properties": {
+          "harm_reasonably_foreseeable": { "type": "boolean" },
+          "sufficient_proximity": { "type": "boolean" },
+          "fair_just_reasonable_to_impose": { "type": "boolean" }
+        },
+        "required": [
+          "fair_just_reasonable_to_impose", "sufficient_proximity",
+          "harm_reasonably_foreseeable"
+        ],
+        "additionalProperties": false
+      },
+      "CaparoTest_in": {
+        "type": "object",
+        "properties": { "facts": { "$ref": "#/definitions/CaparoFacts" } },
+        "required": [ "facts" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope CaparoTest output",
+    "description": "Output structure of scope CaparoTest",
+    "$ref": "#/definitions/CaparoTest",
+    "definitions": {
+      "CaparoTest": {
+        "type": "object",
+        "properties": {
+          "disposition": { "$ref": "#/definitions/DutyOfCareDisposition" }
+        },
+        "required": [ "disposition" ],
+        "additionalProperties": false
+      },
+      "DutyOfCareDisposition": {
+        "type": "object",
+        "properties": {
+          "n_stages_satisfied": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "duty_of_care_owed": { "type": "boolean" }
+        },
+        "required": [ "duty_of_care_owed", "n_stages_satisfied" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

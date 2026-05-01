@@ -1,0 +1,89 @@
+# Clerk project for the habeas-protocol rule library.
+#
+# These five modules are the deterministic computational cores of the
+# rules of decision applied in the working traces under spike/. They
+# are kept here, separate from the traces, so they can be reused by the
+# Stage-2 dispute simulator and so that each rule's tests run in CI
+# independently of any specific trace.
+#
+# Build / run:
+#     eval $(opam env --switch=catala)
+#     clerk test --no-stdlib rules/
+#
+# Per-rule interpretation:
+#     catala interpret --no-stdlib rules/difc_rdc_part_38.catala_en
+#     catala interpret --no-stdlib rules/sg_iaa_s_31.catala_en
+#     catala interpret --no-stdlib rules/ladd_v_marshall.catala_en
+#     catala interpret --no-stdlib rules/uae_civil_code_art_390.catala_en
+#     catala interpret --no-stdlib rules/adgm_cpr_admissions.catala_en
+#
+# JSON-mode output for any module (drop into Stage-2 services):
+#     catala interpret -F json --no-stdlib rules/<file>.catala_en
+#
+# All modules use --no-stdlib because they do not import Stdlib_en —
+# they are self-contained predicate cores.
+
+[project]
+include_dirs = ["."]
+build_dir = "_build"
+catala_opts = ["--no-stdlib"]
+
+[[modules]]
+name = "difc_rdc_part_38"
+description = "DIFC Rules of the Court Part 38 — standard-basis costs assessment"
+file = "difc_rdc_part_38.catala_en"
+
+[[modules]]
+name = "sg_iaa_s_31"
+description = "Singapore IAA s 31 — refusal of foreign-arbitral-award enforcement (NY Convention Art V); plus DKT v DKU four-condition framework"
+file = "sg_iaa_s_31.catala_en"
+
+[[modules]]
+name = "ladd_v_marshall"
+description = "Ladd v Marshall [1954] 1 WLR 1489 — fresh evidence three-prong test"
+file = "ladd_v_marshall.catala_en"
+
+[[modules]]
+name = "uae_civil_code_art_390"
+description = "UAE Civil Code Article 390(2) — liquidated damages reduction for grossly exaggerated agreed compensation"
+file = "uae_civil_code_art_390.catala_en"
+
+[[modules]]
+name = "adgm_cpr_admissions"
+description = "ADGM Court Procedure Rules 2016 — admissions and set-off arithmetic"
+file = "adgm_cpr_admissions.catala_en"
+
+[[modules]]
+name = "difc_rdc_38_7_indemnity"
+description = "DIFC RDC 38.7 — indemnity-basis costs review (bounded discretion: residue is the human-judgment limb)"
+file = "difc_rdc_38_7_indemnity.catala_en"
+
+[[modules]]
+name = "adgm_cpr_summary_judgment"
+description = "ADGM CPR Rule 24 — summary judgment two-limb conjunctive test"
+file = "adgm_cpr_summary_judgment.catala_en"
+
+[[modules]]
+name = "difc_practice_direction_4_2017"
+description = "DIFC Practice Direction No. 4 of 2017 — arbitration costs framework (80% discretion / 14-day deadline / 9% interest)"
+file = "difc_practice_direction_4_2017.catala_en"
+
+[[modules]]
+name = "english_contract_interpretation"
+description = "Wood v Capita / Rainy Sky / Arnold v Britton — unitary contractual-interpretation test (applied wholesale by ADGM)"
+file = "english_contract_interpretation.catala_en"
+
+[[modules]]
+name = "caparo_three_stage_test"
+description = "Caparo Industries v Dickman — three-stage duty-of-care test"
+file = "caparo_three_stage_test.catala_en"
+
+[[modules]]
+name = "adgm_arbitration_regulations_2015"
+description = "ADGM Arbitration Regulations 2015 — recognition and enforcement of foreign arbitral awards (parallels SG IAA s 31)"
+file = "adgm_arbitration_regulations_2015.catala_en"
+
+[[modules]]
+name = "difc_third_party_disclosure"
+description = "DIFC Norwich Pharmacal + Bankers Trust + RDC 28.52 — three conjunctive jurisdictional gates for compelled disclosure against a non-party financial institution"
+file = "difc_third_party_disclosure.catala_en"

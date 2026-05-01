@@ -1,0 +1,83 @@
+## ADGM Court Procedure Rules 2016 — Rule 24 (summary judgment)
+##
+## Source: ADGM Court Procedure Rules 2016, Rule 24 (Summary Judgment).
+## The court may give summary judgment against a party (claimant or
+## defendant) on the whole of a claim, or on a particular issue, if it
+## considers that:
+##
+##   (a) that party has *no realistic prospect of succeeding* on the
+##       claim or issue (or, for a defendant, of successfully defending
+##       it); AND
+##   (b) there is *no other compelling reason* why the case or issue
+##       should be disposed of at trial.
+##
+## Both limbs must be satisfied — the test is conjunctive. The "no
+## realistic prospect" limb is read against the *Easyair* gloss
+## (ICI Chemicals Industries v Tesco Plc): the prospect must be more
+## than fanciful but the court must avoid conducting a mini-trial.
+##
+## Used by ADGM CFI for early disposal across the contract-dispute
+## docket. Reciprocal in shape to DIFC RDC Rule 24 (which uses the
+## identical English-CPR-derived test).
+##
+## Applies in:
+##   ADGM contract disputes; default-judgment contests; jurisdictional
+##   summary applications.
+
+```catala
+declaration structure SummaryJudgmentApplication:
+  data no_realistic_prospect content boolean
+  data no_compelling_reason content boolean
+
+declaration structure SummaryJudgmentDisposition:
+  data both_limbs_made_out content boolean
+  data summary_judgment_granted content boolean
+
+declaration scope SummaryJudgmentTest:
+  input application content SummaryJudgmentApplication
+  output disposition content SummaryJudgmentDisposition
+
+scope SummaryJudgmentTest:
+  definition disposition equals
+    let both equals
+      application.no_realistic_prospect
+      and application.no_compelling_reason
+    in
+    SummaryJudgmentDisposition {
+      -- both_limbs_made_out: both
+      -- summary_judgment_granted: both
+    }
+```
+
+## Tests — both limbs convolved.
+
+```catala
+#[test] declaration scope TestSummaryJudgmentBothLimbs:
+  composite scope SummaryJudgmentTest
+  output disposition content SummaryJudgmentDisposition
+
+scope TestSummaryJudgmentBothLimbs:
+  definition disposition equals composite.disposition
+  definition composite.application equals
+    SummaryJudgmentApplication {
+      -- no_realistic_prospect: true
+      -- no_compelling_reason: true
+    }
+  assertion disposition.summary_judgment_granted = true
+
+#[test] declaration scope TestSummaryJudgmentRefusedOnCompellingReason:
+  composite scope SummaryJudgmentTest
+  output disposition content SummaryJudgmentDisposition
+
+scope TestSummaryJudgmentRefusedOnCompellingReason:
+  definition disposition equals composite.disposition
+  ## Even where the prospect limb is made out, a compelling reason for
+  ## trial (e.g. credibility issues that need cross-examination) is
+  ## sufficient to refuse summary judgment.
+  definition composite.application equals
+    SummaryJudgmentApplication {
+      -- no_realistic_prospect: true
+      -- no_compelling_reason: false
+    }
+  assertion disposition.summary_judgment_granted = false
+```

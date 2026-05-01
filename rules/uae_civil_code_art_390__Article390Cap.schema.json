@@ -1,0 +1,104 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope Article390Cap input",
+    "description": "Input structure of scope Article390Cap",
+    "$ref": "#/definitions/Article390Cap_in",
+    "definitions": {
+      "Article390Cap_in": {
+        "type": "object",
+        "properties": { "claim": { "$ref": "#/definitions/LDClaim" } },
+        "required": [ "claim" ],
+        "additionalProperties": false
+      },
+      "LDClaim": {
+        "type": "object",
+        "properties": {
+          "uncapped_amount_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "contract_value_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "cap_rate": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "court_finds_grossly_exaggerated": { "type": "boolean" }
+        },
+        "required": [
+          "court_finds_grossly_exaggerated", "cap_rate",
+          "contract_value_aed", "uncapped_amount_aed"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope Article390Cap output",
+    "description": "Output structure of scope Article390Cap",
+    "$ref": "#/definitions/Article390Cap",
+    "definitions": {
+      "Article390Cap": {
+        "type": "object",
+        "properties": { "award": { "$ref": "#/definitions/LDAward" } },
+        "required": [ "award" ],
+        "additionalProperties": false
+      },
+      "LDAward": {
+        "type": "object",
+        "properties": {
+          "cap_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "awarded_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "was_capped": { "type": "boolean" }
+        },
+        "required": [ "was_capped", "awarded_aed", "cap_aed" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

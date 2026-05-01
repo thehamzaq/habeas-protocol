@@ -1,0 +1,17 @@
+{
+  "module_name": "difc_rdc_part_38",
+  "human_label": "DIFC RDC Part 38 \u2014 standard-basis costs assessment",
+  "source_authorities": [
+    {
+      "kind": "rules_of_court",
+      "citation": "Rules of the DIFC Courts (RDC), Part 38"
+    }
+  ],
+  "test_scopes": [
+    "TestRDC38StandardBasis"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  }
+}

@@ -1,0 +1,121 @@
+## DIFC Rules of the Court — RDC 38.7 (indemnity-basis costs review)
+##
+## Source: Rules of the DIFC Courts, RDC 38.7. Where the court orders
+## costs on the *indemnity basis*, the proportionality limb of the
+## standard-basis assessment is stripped: only **reasonableness** of the
+## sum claimed remains, and any doubt is resolved in favour of the
+## receiving party (the inverse of the standard-basis convention).
+##
+## The structure of the review is:
+##
+##   1. The court walks each defendant's *named objection* and triages
+##      it into one of four buckets:
+##        Mechanically_disposed    — no specific line item named;
+##                                   the objection cannot move the sum.
+##        Held_to_zero             — held to zero on evidence (e.g.
+##                                   line item is unsupported).
+##        Deterministic_reduction  — named amount reduced by named amount.
+##        Requires_human_judgment  — proportionality-style argument that
+##                                   does not fall through the
+##                                   reasonableness gate alone.
+##
+##   2. The award is the original claim minus the deterministic
+##      reductions and the held-to-zero items. The *residue* is the sum
+##      that would only be reachable through human judgment.
+##
+## Used in:
+##   trace-03 — ENF 271/2025 *Taylor v Yao Affi* (Cooke J).
+##
+## This rule is the canonical *bounded-discretion* shape: the predicate
+## says exactly what it can decide and exactly what it cannot.
+
+```catala
+declaration enumeration ObjectionBucket:
+  -- Mechanically_disposed
+  -- Held_to_zero
+  -- Deterministic_reduction
+  -- Requires_human_judgment
+
+declaration structure Objection:
+  data objection_no content integer
+  data bucket content ObjectionBucket
+  data named_amount_aed content decimal
+
+declaration structure IndemnityReview:
+  data claim_aed content decimal
+  data mechanically_disposed_aed content decimal
+  data held_to_zero_aed content decimal
+  data deterministic_reductions_aed content decimal
+  data residual_lower_aed content decimal
+  data residual_upper_aed content decimal
+  data requires_human_judgment content boolean
+
+declaration scope IndemnityBasisReview:
+  input claim_aed content decimal
+  input objections content list of Objection
+  output review content IndemnityReview
+
+scope IndemnityBasisReview:
+  definition review equals
+    let mech equals
+      sum decimal of (map each o among objections
+                      such that o.bucket = Mechanically_disposed
+                      to o.named_amount_aed)
+    in
+    let zero equals
+      sum decimal of (map each o among objections
+                      such that o.bucket = Held_to_zero
+                      to o.named_amount_aed)
+    in
+    let det equals
+      sum decimal of (map each o among objections
+                      such that o.bucket = Deterministic_reduction
+                      to o.named_amount_aed)
+    in
+    let human equals
+      (number of (list of o among objections
+                  such that o.bucket = Requires_human_judgment)) > 0
+    in
+    let upper equals claim_aed - zero - det in
+    ## Lower bound is the same upper bound *if* no human-judgment
+    ## objections were raised — the rule has nothing more to subtract.
+    let lower equals
+      if human then 0.00 else upper
+    in
+    IndemnityReview {
+      -- claim_aed: claim_aed
+      -- mechanically_disposed_aed: mech
+      -- held_to_zero_aed: zero
+      -- deterministic_reductions_aed: det
+      -- residual_lower_aed: lower
+      -- residual_upper_aed: upper
+      -- requires_human_judgment: human
+    }
+```
+
+## Test — replays trace-03's headline disposition.
+
+```catala
+#[test] declaration scope TestRDC38_7Taylor:
+  composite scope IndemnityBasisReview
+  output review content IndemnityReview
+
+scope TestRDC38_7Taylor:
+  definition review equals composite.review
+  ## Claim AED 128,914.80; objections from Taylor v Yao Affi:
+  ## (1) generic "fees too high" — mechanically disposed.
+  ## (2) duplicated paralegal hours — held to zero AED 0.
+  ## (3) excess senior associate time — proportionality-style,
+  ##     requires human judgment.
+  definition composite.claim_aed equals 128914.80
+  definition composite.objections equals [
+    Objection { -- objection_no: 1 -- bucket: Mechanically_disposed   -- named_amount_aed: 0.00 };
+    Objection { -- objection_no: 2 -- bucket: Held_to_zero            -- named_amount_aed: 0.00 };
+    Objection { -- objection_no: 3 -- bucket: Requires_human_judgment -- named_amount_aed: 0.00 }
+  ]
+  ## Cooke J reduced AED 128,914.80 → AED 120,000 — a residue of
+  ## AED 8,914.80 (≈6.92%) reachable only through human judgment.
+  assertion review.requires_human_judgment = true
+  assertion review.residual_upper_aed = 128914.80
+  assertion review.residual_lower_aed = 0.00
+```

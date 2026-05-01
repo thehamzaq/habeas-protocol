@@ -1,0 +1,174 @@
+## Singapore International Arbitration Act 1994 (2020 Rev Ed) — s 31
+##
+## Source: International Arbitration Act 1994, s 31, Singapore. This is
+## Singapore's domestic implementation of New York Convention 1958 Article
+## V (recognition and enforcement of foreign arbitral awards). The
+## enumerated grounds for refusing enforcement are:
+##   s 31(2)(a)   incapacity / invalid agreement
+##   s 31(2)(b)   improper notice / unable to present case
+##   s 31(2)(c)   composition of tribunal not in accordance with party agreement
+##   s 31(2)(d)   award deals with matter outside the scope of the submission
+##   s 31(2)(e)   award not yet binding / set aside / suspended
+##   s 31(2)(f)   subject matter not arbitrable in Singapore
+##   s 31(4)(a)   matter not capable of settlement by arbitration
+##   s 31(4)(b)   enforcement contrary to Singapore public policy
+##
+## DKT v DKU [2025] 1 SLR 806 (CA) supplies the four-condition framework
+## for "infra petita" natural-justice challenges (a sub-flavour of
+## s 31(2)(b) / s 31(2)(c)).
+##
+## Used in:
+##   trace-06 — SIC/OA 9/2025 GNC Holdings v ONI Global ([2025] SGHC(I) 25).
+##
+## The disposition can be: ApplicationDismissedEntirely (no ground made
+## out), ApplicationAllowedInPart (some grounds partially made out, with
+## a per-paragraph excision list for the relevant order), or
+## AwardSetAside (one or more grounds fully allowed, no enforcement at
+## all).
+
+```catala
+declaration enumeration IAAGroundId:
+  -- S31_2_a_Incapacity
+  -- S31_2_b_NaturalJustice
+  -- S31_2_c_TribunalComposition
+  -- S31_2_d_OutsideScope
+  -- S31_2_e_NotBindingOrSetAside
+  -- S31_2_f_NotArbitrable
+  -- S31_4_b_PublicPolicy
+
+declaration enumeration GroundOutcome:
+  -- Dismissed
+  -- AllowedInPart
+  -- AllowedInFull
+
+declaration enumeration ApplicationDisposition:
+  -- ApplicationDismissedEntirely
+  -- ApplicationAllowedInPart
+  -- AwardSetAside
+
+declaration structure GroundFinding:
+  data ground content IAAGroundId
+  data court_outcome content GroundOutcome
+
+declaration structure RefusalDisposition:
+  data n_grounds_pleaded content integer
+  data n_grounds_dismissed content integer
+  data n_grounds_partial content integer
+  data n_grounds_full content integer
+  data application_disposition content ApplicationDisposition
+  data award_enforced content boolean
+
+declaration scope IAA_S31_Refusal:
+  input grounds content list of GroundFinding
+  output disposition content RefusalDisposition
+
+scope IAA_S31_Refusal:
+  definition disposition equals
+    let dismissed equals
+      number of (list of g among grounds
+                 such that g.court_outcome = Dismissed)
+    in
+    let partial equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInPart)
+    in
+    let full equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInFull)
+    in
+    let app equals
+      if full > 0 then AwardSetAside
+      else (if partial > 0 then ApplicationAllowedInPart
+            else ApplicationDismissedEntirely)
+    in
+    RefusalDisposition {
+      -- n_grounds_pleaded: number of grounds
+      -- n_grounds_dismissed: dismissed
+      -- n_grounds_partial: partial
+      -- n_grounds_full: full
+      -- application_disposition: app
+      -- award_enforced: full = 0
+    }
+```
+
+## DKT v DKU four-condition framework for "infra petita" natural-justice
+## challenges. All four conditions must be satisfied for the challenge
+## under s 31(2)(b)/(c) to succeed.
+
+```catala
+declaration structure DKTConditions:
+  data point_properly_before_tribunal content boolean
+  data point_essential_to_dispute content boolean
+  data tribunal_completely_failed_to_consider content boolean
+  data prejudice_demonstrated content boolean
+
+declaration scope DKTvDKUChallenge:
+  input conditions content DKTConditions
+  output challenge_succeeds content boolean
+
+scope DKTvDKUChallenge:
+  definition challenge_succeeds equals
+    conditions.point_properly_before_tribunal
+    and conditions.point_essential_to_dispute
+    and conditions.tribunal_completely_failed_to_consider
+    and conditions.prejudice_demonstrated
+```
+
+## Test — replays the disposition shape from trace-06.
+
+```catala
+#[test] declaration scope TestIAA_S31_TraceShape:
+  composite scope IAA_S31_Refusal
+  output disposition content RefusalDisposition
+
+scope TestIAA_S31_TraceShape:
+  definition disposition equals composite.disposition
+  ## Four grounds pleaded, three dismissed, one allowed in part — the
+  ## same shape as SIC/OA 9/2025 (trace-06). The IDs differ from the
+  ## trace's local enum (trace-06 packs the natural-justice and
+  ## scope-of-submission natures of Ground 4 into a single bespoke
+  ## identifier; here we use the canonical statutory identifiers).
+  definition composite.grounds equals [
+    GroundFinding { -- ground: S31_4_b_PublicPolicy        -- court_outcome: Dismissed };
+    GroundFinding { -- ground: S31_2_b_NaturalJustice      -- court_outcome: Dismissed };
+    GroundFinding { -- ground: S31_2_d_OutsideScope        -- court_outcome: Dismissed };
+    GroundFinding { -- ground: S31_2_d_OutsideScope        -- court_outcome: AllowedInPart }
+  ]
+  assertion disposition.application_disposition = ApplicationAllowedInPart
+  assertion disposition.award_enforced = true
+  assertion disposition.n_grounds_dismissed = 3
+  assertion disposition.n_grounds_partial = 1
+
+#[test] declaration scope TestDKTvDKU_AllConditionsMet:
+  composite scope DKTvDKUChallenge
+  output challenge_succeeds content boolean
+
+scope TestDKTvDKU_AllConditionsMet:
+  definition challenge_succeeds equals composite.challenge_succeeds
+  definition composite.conditions equals
+    DKTConditions {
+      -- point_properly_before_tribunal: true
+      -- point_essential_to_dispute: true
+      -- tribunal_completely_failed_to_consider: true
+      -- prejudice_demonstrated: true
+    }
+  assertion challenge_succeeds = true
+
+#[test] declaration scope TestDKTvDKU_OneConditionFails:
+  composite scope DKTvDKUChallenge
+  output challenge_succeeds content boolean
+
+scope TestDKTvDKU_OneConditionFails:
+  definition challenge_succeeds equals composite.challenge_succeeds
+  ## In trace-06, the second condition (point essential to the dispute)
+  ## was not made out — the "take back Singapore" point was not put
+  ## as an issue distinct from the broader plan to recover the stores.
+  definition composite.conditions equals
+    DKTConditions {
+      -- point_properly_before_tribunal: true
+      -- point_essential_to_dispute: false
+      -- tribunal_completely_failed_to_consider: false
+      -- prejudice_demonstrated: false
+    }
+  assertion challenge_succeeds = false
+```

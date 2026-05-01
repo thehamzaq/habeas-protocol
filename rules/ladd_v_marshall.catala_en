@@ -1,0 +1,102 @@
+## Ladd v Marshall [1954] 1 WLR 1489 (CA) — fresh evidence test
+##
+## Source: Ladd v Marshall [1954] 1 WLR 1489 (Court of Appeal of England
+## and Wales). Fresh evidence may only be adduced on appeal (or
+## equivalent) where three conjunctive conditions are satisfied:
+##   (a) ReasonableDiligence — the evidence could not have been obtained
+##       with reasonable diligence for use at trial;
+##   (b) ImportantInfluence — the evidence would probably have an
+##       important influence on the result, though it need not be
+##       decisive;
+##   (c) PresumablyCredible — the evidence is presumably to be believed
+##       (apparently credible, though not incontrovertible).
+##
+## The test is conjunctive and short-circuiting: failure of *any* prong
+## is dispositive. ADGM applies it as the gatekeeping test for new
+## evidence by force of the ADGM Application of English Law Regulations
+## 2015.
+##
+## Used in:
+##   trace-05 — ADGMCFI-2024-158 Xetech v Pulsar (Heath KC, paras 47-49).
+
+```catala
+declaration enumeration LaddProngId:
+  -- ReasonableDiligence
+  -- ImportantInfluence
+  -- PresumablyCredible
+
+declaration structure LaddProng:
+  data prong content LaddProngId
+  data satisfied content boolean
+
+declaration structure LaddDisposition:
+  data n_prongs_satisfied content integer
+  data first_failing_prong content LaddProngId
+  data evidence_admissible content boolean
+
+declaration scope LaddMarshallTest:
+  input prongs content list of LaddProng
+  output disposition content LaddDisposition
+
+scope LaddMarshallTest:
+  definition disposition equals
+    let satisfied_count equals
+      number of (list of p among prongs such that p.satisfied)
+    in
+    let rd_failed equals
+      (number of (list of p among prongs
+                  such that p.prong = ReasonableDiligence and not p.satisfied)) > 0
+    in
+    let ii_failed equals
+      (number of (list of p among prongs
+                  such that p.prong = ImportantInfluence and not p.satisfied)) > 0
+    in
+    let first_failing equals
+      ## Prongs evaluate in order (a) → (b) → (c); if all satisfied
+      ## we return ReasonableDiligence as a sentinel and the caller
+      ## checks `evidence_admissible` to interpret the field.
+      if rd_failed then ReasonableDiligence
+      else (if ii_failed then ImportantInfluence
+            else PresumablyCredible)
+    in
+    LaddDisposition {
+      -- n_prongs_satisfied: satisfied_count
+      -- first_failing_prong: first_failing
+      -- evidence_admissible: satisfied_count = 3
+    }
+```
+
+## Test — replays trace-05's finding that prong (a) fails.
+
+```catala
+#[test] declaration scope TestLaddInadmissibleAtFirstProng:
+  composite scope LaddMarshallTest
+  output disposition content LaddDisposition
+
+scope TestLaddInadmissibleAtFirstProng:
+  definition disposition equals composite.disposition
+  ## In trace-05, the documents were produced by Pulsar's own DevOps
+  ## environment at trial — diligence is the canonical fail.
+  definition composite.prongs equals [
+    LaddProng { -- prong: ReasonableDiligence -- satisfied: false };
+    LaddProng { -- prong: ImportantInfluence  -- satisfied: false };
+    LaddProng { -- prong: PresumablyCredible  -- satisfied: true  }
+  ]
+  assertion disposition.evidence_admissible = false
+  assertion disposition.first_failing_prong = ReasonableDiligence
+  assertion disposition.n_prongs_satisfied = 1
+
+#[test] declaration scope TestLaddAllProngsSatisfied:
+  composite scope LaddMarshallTest
+  output disposition content LaddDisposition
+
+scope TestLaddAllProngsSatisfied:
+  definition disposition equals composite.disposition
+  definition composite.prongs equals [
+    LaddProng { -- prong: ReasonableDiligence -- satisfied: true };
+    LaddProng { -- prong: ImportantInfluence  -- satisfied: true };
+    LaddProng { -- prong: PresumablyCredible  -- satisfied: true }
+  ]
+  assertion disposition.evidence_admissible = true
+  assertion disposition.n_prongs_satisfied = 3
+```

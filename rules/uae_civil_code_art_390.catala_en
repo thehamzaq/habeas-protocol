@@ -1,0 +1,96 @@
+## UAE Civil Transactions Law (Federal Law No. 5 of 1985), Article 390 —
+## Liquidated damages cap
+##
+## Source: Federal Law No. 5 of 1985 (UAE), Article 390(2). Where the
+## parties have agreed an amount of compensation in advance (a
+## "liquidated damages" / "agreed compensation" clause), the court may
+## reduce the amount if the obligor proves that the agreed sum is
+## *grossly exaggerated* relative to the actual loss, *or* increase it
+## if grossly inadequate. ADGM CFI applies this article to commercial
+## contracts governed by UAE law (sometimes alongside the federal cap
+## doctrine in case-law).
+##
+## Used in:
+##   trace-04 — ADGMCFI-2024-320 Projeco v Ideacrate.
+##
+## The 10% cap convention applied in trace-04 reflects ADGM CFI's
+## case-law treatment of the "grossly exaggerated" limb in standard
+## commercial-contract LD clauses; the *cap rate* is a parameter,
+## not a universal of Article 390 itself.
+
+```catala
+declaration structure LDClaim:
+  data uncapped_amount_aed content decimal
+  data contract_value_aed content decimal
+  data cap_rate content decimal
+  ## The court must have determined that the agreed sum is grossly
+  ## exaggerated relative to the actual loss before the cap engages.
+  ## This is a human-judgment input, not a deterministic predicate.
+  data court_finds_grossly_exaggerated content boolean
+
+declaration structure LDAward:
+  data cap_aed content decimal
+  data awarded_aed content decimal
+  data was_capped content boolean
+
+declaration scope Article390Cap:
+  input claim content LDClaim
+  output award content LDAward
+
+scope Article390Cap:
+  definition award equals
+    let cap equals claim.contract_value_aed * claim.cap_rate in
+    let awarded equals
+      if claim.court_finds_grossly_exaggerated then
+        (if claim.uncapped_amount_aed > cap then cap
+         else claim.uncapped_amount_aed)
+      else claim.uncapped_amount_aed
+    in
+    LDAward {
+      -- cap_aed: cap
+      -- awarded_aed: awarded
+      -- was_capped: awarded < claim.uncapped_amount_aed
+    }
+```
+
+## Test — replays the 10% cap from trace-04.
+
+```catala
+#[test] declaration scope TestArt390CapEngages:
+  composite scope Article390Cap
+  output award content LDAward
+
+scope TestArt390CapEngages:
+  definition award equals composite.award
+  ## trace-04: contract value AED 6,085,211.90; uncapped LDs AED
+  ## 9,700,000. Court applied 10% cap → AED 608,521.19. The court
+  ## made the "grossly exaggerated" finding, so the cap engages.
+  definition composite.claim equals
+    LDClaim {
+      -- uncapped_amount_aed: 9700000.00
+      -- contract_value_aed: 6085211.90
+      -- cap_rate: 0.10
+      -- court_finds_grossly_exaggerated: true
+    }
+  assertion award.cap_aed = 608521.19
+  assertion award.awarded_aed = 608521.19
+  assertion award.was_capped = true
+
+#[test] declaration scope TestArt390NoExaggerationFinding:
+  composite scope Article390Cap
+  output award content LDAward
+
+scope TestArt390NoExaggerationFinding:
+  definition award equals composite.award
+  ## If the court does not find the LD grossly exaggerated, Article
+  ## 390(2) does not engage and the agreed sum stands.
+  definition composite.claim equals
+    LDClaim {
+      -- uncapped_amount_aed: 50000.00
+      -- contract_value_aed: 1000000.00
+      -- cap_rate: 0.10
+      -- court_finds_grossly_exaggerated: false
+    }
+  assertion award.awarded_aed = 50000.00
+  assertion award.was_capped = false
+```

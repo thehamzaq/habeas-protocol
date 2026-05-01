@@ -1,0 +1,90 @@
+{
+  "comment": "Multi-jurisdiction routing layer. Three things this models: (a) what each tribunal applies as its default rule of decision (the 'governing law' question — ADGM applies English law wholesale; DIFC applies its own RDC + Damages Law; SICC applies Singapore law unless parties choose otherwise); (b) which rule modules act as 'recognition gates' for foreign judgments / arbitral awards (the NY Convention path); and (c) which rule modules carry a public-policy override (the last-resort refusal of enforcement). The conflict-of-laws resolver in /api/conflict_route consumes this file alongside _claims.json.",
+  "version": "0.1",
+  "tribunals": [
+    {
+      "code": "DIFC",
+      "label": "DIFC Courts (incl. Digital Economy Court)",
+      "default_governing_law": "DIFC own statutes (RDC, DIFC Damages Law, DIFC Contract Law) + UAE Federal Law",
+      "english_law_via_statute": false,
+      "ny_convention_signatory": true,
+      "recognition_path": "DIFC Courts Law Articles 15(1), 24(D); DIFC Damages Law Article 36; RDC 25.1(10), 28.51-52; common-law Norwich Pharmacal + Bankers Trust",
+      "public_policy_authority": "DIFC public policy; UAE federal public policy as subsidiary"
+    },
+    {
+      "code": "ADGM",
+      "label": "ADGM Courts",
+      "default_governing_law": "English common law via the Application of English Law Regulations 2015",
+      "english_law_via_statute": true,
+      "ny_convention_signatory": true,
+      "recognition_path": "ADGM Arbitration Regulations 2015 (parallels SG IAA s 31)",
+      "public_policy_authority": "ADGM public policy under s 56(3)(b) of the Arbitration Regulations"
+    },
+    {
+      "code": "SICC",
+      "label": "Singapore International Commercial Court",
+      "default_governing_law": "Singapore law (or parties' chosen law per IAA / Choice of Court Act)",
+      "english_law_via_statute": false,
+      "ny_convention_signatory": true,
+      "recognition_path": "International Arbitration Act s 31 (NY Convention Article V)",
+      "public_policy_authority": "Singapore public policy under s 31(4)(b) IAA"
+    }
+  ],
+  "rule_jurisdictions": [
+    {"module": "difc_rdc_part_38",                "scope": "StandardBasisAssessment",       "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "arithmetic",     "public_policy_gate": false},
+    {"module": "difc_rdc_38_7_indemnity",         "scope": "IndemnityBasisReview",          "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "disposition",    "public_policy_gate": false},
+    {"module": "difc_practice_direction_4_2017",  "scope": "OutstandingArbitrationCosts",   "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "arithmetic",     "public_policy_gate": false},
+    {"module": "difc_third_party_disclosure",     "scope": "ThirdPartyDisclosureGates",     "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "gate",           "public_policy_gate": false, "is_recognition_gate": true},
+    {"module": "adgm_cpr_admissions",             "scope": "AdmissionsAndSetOff",           "primary_jurisdiction": "ADGM", "applies_in": ["ADGM"],         "role_class": "arithmetic",     "public_policy_gate": false},
+    {"module": "adgm_cpr_summary_judgment",       "scope": "SummaryJudgmentTest",           "primary_jurisdiction": "ADGM", "applies_in": ["ADGM", "DIFC"], "role_class": "disposition",    "public_policy_gate": false},
+    {"module": "adgm_arbitration_regulations_2015","scope": "ADGMRecognition",              "primary_jurisdiction": "ADGM", "applies_in": ["ADGM"],         "role_class": "disposition",    "public_policy_gate": true,  "is_recognition_gate": true},
+    {"module": "english_contract_interpretation", "scope": "WoodVCapita",                   "primary_jurisdiction": "ENG",  "applies_in": ["ADGM", "DIFC", "SICC"], "role_class": "interpretation", "public_policy_gate": false, "applied_via": "Common-law / English-law-via-statute (ADGM AELR)"},
+    {"module": "caparo_three_stage_test",         "scope": "CaparoTest",                    "primary_jurisdiction": "ENG",  "applies_in": ["ADGM", "DIFC", "SICC"], "role_class": "gate",           "public_policy_gate": false, "applied_via": "Common-law"},
+    {"module": "ladd_v_marshall",                 "scope": "LaddMarshallTest",              "primary_jurisdiction": "ENG",  "applies_in": ["ADGM", "DIFC", "SICC"], "role_class": "gate",           "public_policy_gate": false, "applied_via": "Common-law"},
+    {"module": "sg_iaa_s_31",                     "scope": "IAA_S31_Refusal",               "primary_jurisdiction": "SICC", "applies_in": ["SICC"],         "role_class": "disposition",    "public_policy_gate": true,  "is_recognition_gate": true},
+    {"module": "sg_iaa_s_31",                     "scope": "DKTvDKUChallenge",              "primary_jurisdiction": "SICC", "applies_in": ["SICC"],         "role_class": "gate",           "public_policy_gate": false},
+    {"module": "uae_civil_code_art_390",          "scope": "Article390Cap",                 "primary_jurisdiction": "UAE",  "applies_in": ["ADGM", "DIFC"], "role_class": "arithmetic",     "public_policy_gate": false, "applied_via": "UAE federal law as subsidiary to ADGM/DIFC zone law"}
+  ],
+  "cross_border_paths": [
+    {
+      "name": "Foreign arbitral award → DIFC seat",
+      "originating_forum": "FOREIGN_ARBITRAL_TRIBUNAL",
+      "local_forum": "DIFC",
+      "claim_type": "arbitration_recognition",
+      "recognition_chain": ["difc_third_party_disclosure"],
+      "note": "DIFC's recognition path for foreign arbitral awards routes through the New York Convention (the UAE is a signatory). Substantive challenges go through DIFC Damages Law / DIFC Courts Law; ancillary disclosure and tracing orders use Norwich Pharmacal + Bankers Trust + RDC 28.52 (the trace-07 path)."
+    },
+    {
+      "name": "Foreign arbitral award → ADGM seat",
+      "originating_forum": "FOREIGN_ARBITRAL_TRIBUNAL",
+      "local_forum": "ADGM",
+      "claim_type": "arbitration_recognition",
+      "recognition_chain": ["adgm_arbitration_regulations_2015"],
+      "note": "ADGM Arbitration Regulations 2015 s 56 parallels SG IAA s 31 and NY Convention Article V; same conjunctive-grounds shape. Substantive contract layer applies English common law via the AELR."
+    },
+    {
+      "name": "Foreign arbitral award → SICC seat",
+      "originating_forum": "FOREIGN_ARBITRAL_TRIBUNAL",
+      "local_forum": "SICC",
+      "claim_type": "arbitration_recognition",
+      "recognition_chain": ["sg_iaa_s_31"],
+      "note": "Singapore IAA s 31 is the canonical NY Convention implementation; trace-06 reproduces it on a US-seated FA. DKT v DKU four-condition framework supplies the natural-justice sub-gate."
+    },
+    {
+      "name": "Cross-tribunal contract dispute (ADGM ↔ DIFC)",
+      "originating_forum": "ADGM",
+      "local_forum": "DIFC",
+      "claim_type": "substantive_breach",
+      "recognition_chain": ["english_contract_interpretation", "uae_civil_code_art_390"],
+      "note": "ADGM applies English law wholesale; DIFC applies its own statutes plus UAE federal law as subsidiary. A contract subject to ADGM law sued in DIFC will see English contract interpretation principles applied through the lens of DIFC's Conflict of Laws Law, with UAE Art 390 LD-cap available as a federal overlay."
+    },
+    {
+      "name": "Stablecoin reserves tracing — Hong Kong primary, DIFC ancillary",
+      "originating_forum": "HONG_KONG_HIGH_COURT",
+      "local_forum": "DIFC",
+      "claim_type": "interim_relief",
+      "recognition_chain": ["difc_third_party_disclosure"],
+      "note": "The trace-07 pattern (Techteryx v IG): primary fraud action in HK; DIFC issues WFO + disclosure orders against UAE-domiciled assets and accounts at international trading platforms. Cross-border recognition is achieved via DIFC's interim-relief jurisdiction (Articles 15(1), 24(D) of the Courts Law) rather than NY Convention."
+    }
+  ]
+}

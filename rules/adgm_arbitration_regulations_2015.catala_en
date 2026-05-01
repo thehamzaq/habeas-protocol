@@ -1,0 +1,122 @@
+## ADGM Arbitration Regulations 2015 — recognition and enforcement of
+## foreign arbitral awards
+##
+## Source: ADGM Arbitration Regulations 2015. Sections 56–58 implement
+## the New York Convention 1958 in ADGM, in close parallel to Singapore
+## IAA s 31. The grounds for refusing recognition / enforcement of a
+## foreign arbitral award track Article V of the Convention:
+##
+##   s 56(2)(a)  incapacity / invalid arbitration agreement
+##   s 56(2)(b)  improper notice / unable to present case
+##   s 56(2)(c)  award beyond scope of submission to arbitration
+##   s 56(2)(d)  composition of tribunal not in accordance with
+##               party agreement
+##   s 56(2)(e)  award not yet binding / set aside / suspended at seat
+##   s 56(3)(a)  subject matter not arbitrable in ADGM
+##   s 56(3)(b)  enforcement contrary to ADGM public policy
+##
+## The shape of refusal is identical to the Singapore IAA s 31 shape
+## (see `sg_iaa_s_31.catala_en`); both modules exist because (a) the
+## statutory references differ and a Stage-2 simulator routes by
+## tribunal-of-filing, and (b) the public-policy gate in particular is
+## tribunal-specific.
+##
+## Used in:
+##   ADGM arbitration_recognition / arbitration_enforcement claims (10
+##   coded judgments cite this instrument).
+
+```catala
+declaration enumeration ADGMArbitrationGroundId:
+  -- S56_2_a_Incapacity
+  -- S56_2_b_NaturalJustice
+  -- S56_2_c_OutsideScope
+  -- S56_2_d_TribunalComposition
+  -- S56_2_e_NotBinding
+  -- S56_3_a_NotArbitrable
+  -- S56_3_b_PublicPolicy
+
+declaration enumeration ADGMGroundOutcome:
+  -- Dismissed
+  -- AllowedInPart
+  -- AllowedInFull
+
+declaration enumeration ADGMRecognitionDisposition:
+  -- RecognitionGranted
+  -- RecognitionGrantedInPart
+  -- RecognitionRefused
+
+declaration structure ADGMGroundFinding:
+  data ground content ADGMArbitrationGroundId
+  data court_outcome content ADGMGroundOutcome
+
+declaration structure ADGMRefusalDisposition:
+  data n_grounds_pleaded content integer
+  data n_grounds_dismissed content integer
+  data n_grounds_partial content integer
+  data n_grounds_full content integer
+  data overall_disposition content ADGMRecognitionDisposition
+  data award_recognised content boolean
+
+declaration scope ADGMRecognition:
+  input grounds content list of ADGMGroundFinding
+  output disposition content ADGMRefusalDisposition
+
+scope ADGMRecognition:
+  definition disposition equals
+    let dismissed equals
+      number of (list of g among grounds
+                 such that g.court_outcome = Dismissed)
+    in
+    let partial equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInPart)
+    in
+    let full equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInFull)
+    in
+    let overall equals
+      if full > 0 then RecognitionRefused
+      else (if partial > 0 then RecognitionGrantedInPart
+            else RecognitionGranted)
+    in
+    ADGMRefusalDisposition {
+      -- n_grounds_pleaded: number of grounds
+      -- n_grounds_dismissed: dismissed
+      -- n_grounds_partial: partial
+      -- n_grounds_full: full
+      -- overall_disposition: overall
+      -- award_recognised: full = 0
+    }
+```
+
+## Tests — recognition granted, partial, refused.
+
+```catala
+#[test] declaration scope TestADGMRecognitionGranted:
+  composite scope ADGMRecognition
+  output disposition content ADGMRefusalDisposition
+
+scope TestADGMRecognitionGranted:
+  definition disposition equals composite.disposition
+  definition composite.grounds equals [
+    ADGMGroundFinding { -- ground: S56_3_b_PublicPolicy   -- court_outcome: Dismissed };
+    ADGMGroundFinding { -- ground: S56_2_c_OutsideScope   -- court_outcome: Dismissed }
+  ]
+  assertion disposition.overall_disposition = RecognitionGranted
+  assertion disposition.award_recognised = true
+
+#[test] declaration scope TestADGMRecognitionRefused:
+  composite scope ADGMRecognition
+  output disposition content ADGMRefusalDisposition
+
+scope TestADGMRecognitionRefused:
+  definition disposition equals composite.disposition
+  ## A single fully-allowed public-policy ground is dispositive.
+  definition composite.grounds equals [
+    ADGMGroundFinding { -- ground: S56_3_b_PublicPolicy   -- court_outcome: AllowedInFull };
+    ADGMGroundFinding { -- ground: S56_2_c_OutsideScope   -- court_outcome: Dismissed }
+  ]
+  assertion disposition.overall_disposition = RecognitionRefused
+  assertion disposition.award_recognised = false
+```

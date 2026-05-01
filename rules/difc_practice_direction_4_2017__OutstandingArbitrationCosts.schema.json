@@ -1,0 +1,165 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope OutstandingArbitrationCosts input",
+    "description": "Input structure of scope OutstandingArbitrationCosts",
+    "$ref": "#/definitions/OutstandingArbitrationCosts_in",
+    "definitions": {
+      "ArbitrationCostsClaim": {
+        "type": "object",
+        "properties": {
+          "reasonable_costs_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "discount_rate": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "deadline_days": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "days_paid_after_order": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "simple_interest_rate": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [
+          "simple_interest_rate", "days_paid_after_order", "deadline_days",
+          "discount_rate", "reasonable_costs_aed"
+        ],
+        "additionalProperties": false
+      },
+      "OutstandingArbitrationCosts_in": {
+        "type": "object",
+        "properties": {
+          "claim": { "$ref": "#/definitions/ArbitrationCostsClaim" }
+        },
+        "required": [ "claim" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope OutstandingArbitrationCosts output",
+    "description": "Output structure of scope OutstandingArbitrationCosts",
+    "$ref": "#/definitions/OutstandingArbitrationCosts",
+    "definitions": {
+      "ArbitrationCostsAward": {
+        "type": "object",
+        "properties": {
+          "principal_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "deadline_days": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "in_breach": { "type": "boolean" },
+          "days_accrued": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "interest_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "total_owed_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [
+          "total_owed_aed", "interest_aed", "days_accrued", "in_breach",
+          "deadline_days", "principal_aed"
+        ],
+        "additionalProperties": false
+      },
+      "OutstandingArbitrationCosts": {
+        "type": "object",
+        "properties": {
+          "award": { "$ref": "#/definitions/ArbitrationCostsAward" }
+        },
+        "required": [ "award" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

@@ -1,0 +1,94 @@
+## *Caparo Industries plc v Dickman* — three-stage duty-of-care test
+##
+## Source: *Caparo Industries plc v Dickman* [1990] UKHL 2, [1990] 2 AC
+## 605. The House of Lords laid down the modern English test for the
+## existence of a duty of care: a duty arises only where all three
+## stages are made out conjunctively:
+##
+##   (a) Foreseeability — harm to the claimant was reasonably
+##       foreseeable.
+##   (b) Proximity — there was a relationship of sufficient proximity
+##       (or "neighbourhood") between the parties.
+##   (c) Fair, just and reasonable — it is fair, just and reasonable in
+##       all the circumstances to impose a duty.
+##
+## The third limb is the policy gate: even if foreseeability and
+## proximity are made out, the court may decline to impose a duty
+## where doing so would be incoherent or open the floodgates.
+##
+## ADGM CFI applies *Caparo* directly via the *Application of English
+## Law Regulations 2015* in every negligent-misstatement and
+## professional-negligence claim. *Hedley Byrne v Heller* (a separate
+## module) supplies the special-relationship rule for liability for
+## words rather than acts.
+##
+## Used implicitly across:
+##   - ADGM negligent-misstatement / professional-negligence cases
+##     in the gold set (auditor liability, financial advice, etc.).
+
+```catala
+declaration structure CaparoFacts:
+  data harm_reasonably_foreseeable content boolean
+  data sufficient_proximity content boolean
+  data fair_just_reasonable_to_impose content boolean
+
+declaration structure DutyOfCareDisposition:
+  data n_stages_satisfied content integer
+  data duty_of_care_owed content boolean
+
+declaration scope CaparoTest:
+  input facts content CaparoFacts
+  output disposition content DutyOfCareDisposition
+
+scope CaparoTest:
+  definition disposition equals
+    let foreseeable equals facts.harm_reasonably_foreseeable in
+    let proximity equals facts.sufficient_proximity in
+    let fjr equals facts.fair_just_reasonable_to_impose in
+    let satisfied equals
+      (if foreseeable then 1 else 0)
+      + (if proximity then 1 else 0)
+      + (if fjr then 1 else 0)
+    in
+    DutyOfCareDisposition {
+      -- n_stages_satisfied: satisfied
+      -- duty_of_care_owed: foreseeable and proximity and fjr
+    }
+```
+
+## Tests — all three stages and the policy-gate fallthrough.
+
+```catala
+#[test] declaration scope TestCaparoAllStagesMet:
+  composite scope CaparoTest
+  output disposition content DutyOfCareDisposition
+
+scope TestCaparoAllStagesMet:
+  definition disposition equals composite.disposition
+  definition composite.facts equals
+    CaparoFacts {
+      -- harm_reasonably_foreseeable: true
+      -- sufficient_proximity: true
+      -- fair_just_reasonable_to_impose: true
+    }
+  assertion disposition.duty_of_care_owed = true
+  assertion disposition.n_stages_satisfied = 3
+
+#[test] declaration scope TestCaparoFailsOnPolicyGate:
+  composite scope CaparoTest
+  output disposition content DutyOfCareDisposition
+
+scope TestCaparoFailsOnPolicyGate:
+  definition disposition equals composite.disposition
+  ## Foreseeability + proximity made out, but the policy gate (fair,
+  ## just, reasonable) cuts the duty — Caparo itself was decided this
+  ## way against the auditor.
+  definition composite.facts equals
+    CaparoFacts {
+      -- harm_reasonably_foreseeable: true
+      -- sufficient_proximity: true
+      -- fair_just_reasonable_to_impose: false
+    }
+  assertion disposition.duty_of_care_owed = false
+  assertion disposition.n_stages_satisfied = 2
+```

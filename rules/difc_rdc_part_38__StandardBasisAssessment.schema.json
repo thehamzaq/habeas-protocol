@@ -1,0 +1,116 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope StandardBasisAssessment input",
+    "description": "Input structure of scope StandardBasisAssessment",
+    "$ref": "#/definitions/StandardBasisAssessment_in",
+    "definitions": {
+      "CostsClaim": {
+        "type": "object",
+        "properties": {
+          "hours_worked": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "hourly_rate_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "reasonable_disbursements_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [
+          "reasonable_disbursements_aed", "hourly_rate_aed", "hours_worked"
+        ],
+        "additionalProperties": false
+      },
+      "StandardBasisAssessment_in": {
+        "type": "object",
+        "properties": { "claim": { "$ref": "#/definitions/CostsClaim" } },
+        "required": [ "claim" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope StandardBasisAssessment output",
+    "description": "Output structure of scope StandardBasisAssessment",
+    "$ref": "#/definitions/StandardBasisAssessment",
+    "definitions": {
+      "StandardBasisAssessment": {
+        "type": "object",
+        "properties": {
+          "award": { "$ref": "#/definitions/StandardBasisAward" }
+        },
+        "required": [ "award" ],
+        "additionalProperties": false
+      },
+      "StandardBasisAward": {
+        "type": "object",
+        "properties": {
+          "professional_time_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "disbursements_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "total_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [
+          "total_aed", "disbursements_aed", "professional_time_aed"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

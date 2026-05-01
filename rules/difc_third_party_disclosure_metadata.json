@@ -1,0 +1,34 @@
+{
+  "module_name": "difc_third_party_disclosure",
+  "human_label": "DIFC Norwich Pharmacal + Bankers Trust + RDC 28.52 \u2014 third-party disclosure jurisdiction",
+  "source_authorities": [
+    {
+      "kind": "statute",
+      "citation": "DIFC Courts Law (Law No. 2 of 2025), Articles 15(1), 24(D)"
+    },
+    {
+      "kind": "statute",
+      "citation": "DIFC Law of Damages and Remedies (Law No. 7 of 2005), Article 36"
+    },
+    {
+      "kind": "rules_of_court",
+      "citation": "RDC 25.1(10), 28.51, 28.52"
+    },
+    {
+      "kind": "case",
+      "citation": "Norwich Pharmacal Co v Customs and Excise Commissioners [1974] AC 133 (HL)"
+    },
+    {
+      "kind": "case",
+      "citation": "Bankers Trust Co v Shapira [1980] 1 WLR 1274 (CA)"
+    }
+  ],
+  "test_scopes": [
+    "TestThirdPartyDisclosureGranted",
+    "TestThirdPartyDisclosureRefused"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  }
+}

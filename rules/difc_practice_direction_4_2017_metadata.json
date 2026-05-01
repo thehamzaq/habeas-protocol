@@ -1,0 +1,18 @@
+{
+  "module_name": "difc_practice_direction_4_2017",
+  "human_label": "DIFC PD 4/2017 \u2014 arbitration costs framework (80% / 14-day / 9%)",
+  "source_authorities": [
+    {
+      "kind": "practice_direction",
+      "citation": "DIFC Courts Practice Direction No. 4 of 2017"
+    }
+  ],
+  "test_scopes": [
+    "TestPD4_PaidOnTime",
+    "TestPD4_Unpaid61Days"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  }
+}

@@ -1,0 +1,93 @@
+## ADGM Court Procedure Rules 2016 — admissions framework
+##
+## Source: ADGM Court Procedure Rules 2016 ("ADGM CPR"). The rules
+## include an admissions framework whereby a party who admits a fact
+## or a sum may have judgment entered for that admitted amount without
+## further proof; disputed amounts proceed to trial. Combined with the
+## ADGM Civil Evidence, Judgments, Enforcement and Judicial Cooperation
+## Regulations 2015, the court may apply set-off between admitted sums
+## and counterclaim sums proven on the balance of probabilities.
+##
+## Used in:
+##   trace-04 — ADGMCFI-2024-320 Projeco v Ideacrate (admissions on
+##              individual contract items, set-off against counterclaim).
+##
+## This module captures the *arithmetic* of the admissions/set-off
+## composition. The "what was admitted" and "what counterclaim items
+## were proven" are human-judgment inputs.
+
+```catala
+declaration structure AdmittedItem:
+  data item_no content integer
+  data admitted_aed content decimal
+
+declaration structure CounterclaimItem:
+  data item_no content integer
+  data proven_aed content decimal
+
+declaration structure AdmissionsAward:
+  data admissions_total_aed content decimal
+  data counterclaim_total_aed content decimal
+  data net_to_claimant_aed content decimal
+  data counterclaim_exceeds_admissions content boolean
+
+declaration scope AdmissionsAndSetOff:
+  input admitted_items content list of AdmittedItem
+  input counterclaim_items content list of CounterclaimItem
+  output award content AdmissionsAward
+
+scope AdmissionsAndSetOff:
+  definition award equals
+    let admitted_total equals
+      sum decimal of (map each a among admitted_items
+                      to a.admitted_aed)
+    in
+    let counter_total equals
+      sum decimal of (map each c among counterclaim_items
+                      to c.proven_aed)
+    in
+    let net equals admitted_total - counter_total in
+    AdmissionsAward {
+      -- admissions_total_aed: admitted_total
+      -- counterclaim_total_aed: counter_total
+      -- net_to_claimant_aed: net
+      -- counterclaim_exceeds_admissions: net < 0.00
+    }
+```
+
+## Test — toy admissions/counterclaim arithmetic.
+
+```catala
+#[test] declaration scope TestAdmissionsNetPositive:
+  composite scope AdmissionsAndSetOff
+  output award content AdmissionsAward
+
+scope TestAdmissionsNetPositive:
+  definition award equals composite.award
+  definition composite.admitted_items equals [
+    AdmittedItem { -- item_no: 1 -- admitted_aed: 100000.00 };
+    AdmittedItem { -- item_no: 2 -- admitted_aed: 50000.00 }
+  ]
+  definition composite.counterclaim_items equals [
+    CounterclaimItem { -- item_no: 1 -- proven_aed: 30000.00 }
+  ]
+  assertion award.admissions_total_aed = 150000.00
+  assertion award.counterclaim_total_aed = 30000.00
+  assertion award.net_to_claimant_aed = 120000.00
+  assertion award.counterclaim_exceeds_admissions = false
+
+#[test] declaration scope TestCounterclaimSwallowsAdmissions:
+  composite scope AdmissionsAndSetOff
+  output award content AdmissionsAward
+
+scope TestCounterclaimSwallowsAdmissions:
+  definition award equals composite.award
+  definition composite.admitted_items equals [
+    AdmittedItem { -- item_no: 1 -- admitted_aed: 100000.00 }
+  ]
+  definition composite.counterclaim_items equals [
+    CounterclaimItem { -- item_no: 1 -- proven_aed: 250000.00 }
+  ]
+  assertion award.net_to_claimant_aed = -150000.00
+  assertion award.counterclaim_exceeds_admissions = true
+```

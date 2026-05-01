@@ -1,0 +1,162 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope IndemnityBasisReview input",
+    "description": "Input structure of scope IndemnityBasisReview",
+    "$ref": "#/definitions/IndemnityBasisReview_in",
+    "definitions": {
+      "IndemnityBasisReview_in": {
+        "type": "object",
+        "properties": {
+          "claim_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "objections": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/Objection" }
+          }
+        },
+        "required": [ "objections", "claim_aed" ],
+        "additionalProperties": false
+      },
+      "Objection": {
+        "type": "object",
+        "properties": {
+          "objection_no": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "bucket": { "$ref": "#/definitions/ObjectionBucket" },
+          "named_amount_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [ "named_amount_aed", "bucket", "objection_no" ],
+        "additionalProperties": false
+      },
+      "ObjectionBucket": {
+        "type": "string",
+        "enum": [
+          "Mechanically_disposed", "Held_to_zero", "Deterministic_reduction",
+          "Requires_human_judgment"
+        ]
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope IndemnityBasisReview output",
+    "description": "Output structure of scope IndemnityBasisReview",
+    "$ref": "#/definitions/IndemnityBasisReview",
+    "definitions": {
+      "IndemnityBasisReview": {
+        "type": "object",
+        "properties": {
+          "review": { "$ref": "#/definitions/IndemnityReview" }
+        },
+        "required": [ "review" ],
+        "additionalProperties": false
+      },
+      "IndemnityReview": {
+        "type": "object",
+        "properties": {
+          "claim_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "mechanically_disposed_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "held_to_zero_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "deterministic_reductions_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "residual_lower_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "residual_upper_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "requires_human_judgment": { "type": "boolean" }
+        },
+        "required": [
+          "requires_human_judgment", "residual_upper_aed",
+          "residual_lower_aed", "deterministic_reductions_aed",
+          "held_to_zero_aed", "mechanically_disposed_aed", "claim_aed"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

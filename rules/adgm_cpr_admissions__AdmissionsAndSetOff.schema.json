@@ -1,0 +1,141 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope AdmissionsAndSetOff input",
+    "description": "Input structure of scope AdmissionsAndSetOff",
+    "$ref": "#/definitions/AdmissionsAndSetOff_in",
+    "definitions": {
+      "AdmissionsAndSetOff_in": {
+        "type": "object",
+        "properties": {
+          "admitted_items": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/AdmittedItem" }
+          },
+          "counterclaim_items": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/CounterclaimItem" }
+          }
+        },
+        "required": [ "counterclaim_items", "admitted_items" ],
+        "additionalProperties": false
+      },
+      "AdmittedItem": {
+        "type": "object",
+        "properties": {
+          "item_no": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "admitted_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [ "admitted_aed", "item_no" ],
+        "additionalProperties": false
+      },
+      "CounterclaimItem": {
+        "type": "object",
+        "properties": {
+          "item_no": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "proven_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
+        },
+        "required": [ "proven_aed", "item_no" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope AdmissionsAndSetOff output",
+    "description": "Output structure of scope AdmissionsAndSetOff",
+    "$ref": "#/definitions/AdmissionsAndSetOff",
+    "definitions": {
+      "AdmissionsAndSetOff": {
+        "type": "object",
+        "properties": {
+          "award": { "$ref": "#/definitions/AdmissionsAward" }
+        },
+        "required": [ "award" ],
+        "additionalProperties": false
+      },
+      "AdmissionsAward": {
+        "type": "object",
+        "properties": {
+          "admissions_total_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "counterclaim_total_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "net_to_claimant_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "counterclaim_exceeds_admissions": { "type": "boolean" }
+        },
+        "required": [
+          "counterclaim_exceeds_admissions", "net_to_claimant_aed",
+          "counterclaim_total_aed", "admissions_total_aed"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

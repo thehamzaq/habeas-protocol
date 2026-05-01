@@ -1,0 +1,22 @@
+{
+  "module_name": "adgm_cpr_admissions",
+  "human_label": "ADGM CPR 2016 \u2014 admissions and set-off arithmetic",
+  "source_authorities": [
+    {
+      "kind": "rules_of_court",
+      "citation": "ADGM Court Procedure Rules 2016"
+    },
+    {
+      "kind": "statute",
+      "citation": "ADGM Civil Evidence, Judgments, Enforcement and Judicial Cooperation Regulations 2015"
+    }
+  ],
+  "test_scopes": [
+    "TestAdmissionsNetPositive",
+    "TestCounterclaimSwallowsAdmissions"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  }
+}

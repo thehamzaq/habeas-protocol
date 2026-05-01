@@ -1,0 +1,19 @@
+{
+  "module_name": "uae_civil_code_art_390",
+  "human_label": "UAE Civil Transactions Law Article 390(2) \u2014 liquidated-damages cap",
+  "source_authorities": [
+    {
+      "kind": "statute",
+      "citation": "UAE Civil Transactions Law (Federal Law No. 5 of 1985), Article 390"
+    }
+  ],
+  "test_scopes": [
+    "TestArt390CapEngages",
+    "TestArt390NoExaggerationFinding"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "cross_jurisdiction_note": "Applied as subsidiary federal law in both ADGM and DIFC, parametric on cap rate (commonly 10% in ADGM CFI commercial disputes)."
+}

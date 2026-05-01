@@ -1,0 +1,69 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope WoodVCapita input",
+    "description": "Input structure of scope WoodVCapita",
+    "$ref": "#/definitions/WoodVCapita_in",
+    "definitions": {
+      "ClauseEvidence": {
+        "type": "object",
+        "properties": {
+          "clauses_unambiguously_aligned": { "type": "boolean" },
+          "common_sense_supports_one_reading": { "type": "boolean" },
+          "factual_matrix_supports_that_reading": { "type": "boolean" }
+        },
+        "required": [
+          "factual_matrix_supports_that_reading",
+          "common_sense_supports_one_reading",
+          "clauses_unambiguously_aligned"
+        ],
+        "additionalProperties": false
+      },
+      "WoodVCapita_in": {
+        "type": "object",
+        "properties": {
+          "evidence": { "$ref": "#/definitions/ClauseEvidence" }
+        },
+        "required": [ "evidence" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope WoodVCapita output",
+    "description": "Output structure of scope WoodVCapita",
+    "$ref": "#/definitions/WoodVCapita",
+    "definitions": {
+      "InterpretationDisposition": {
+        "type": "object",
+        "properties": {
+          "limb": { "$ref": "#/definitions/InterpretationLimb" },
+          "unambiguous_carries": { "type": "boolean" },
+          "business_sense_carries": { "type": "boolean" }
+        },
+        "required": [
+          "business_sense_carries", "unambiguous_carries", "limb"
+        ],
+        "additionalProperties": false
+      },
+      "InterpretationLimb": {
+        "type": "string",
+        "enum": [
+          "PlainMeaningCarries", "BusinessCommonSenseCarries",
+          "GenuinelyAmbiguous"
+        ]
+      },
+      "WoodVCapita": {
+        "type": "object",
+        "properties": {
+          "disposition": {
+            "$ref": "#/definitions/InterpretationDisposition"
+          }
+        },
+        "required": [ "disposition" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

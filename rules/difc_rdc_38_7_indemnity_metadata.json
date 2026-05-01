@@ -1,0 +1,17 @@
+{
+  "module_name": "difc_rdc_38_7_indemnity",
+  "human_label": "DIFC RDC 38.7 \u2014 indemnity-basis costs review (bounded discretion)",
+  "source_authorities": [
+    {
+      "kind": "rules_of_court",
+      "citation": "Rules of the DIFC Courts (RDC) 38.7"
+    }
+  ],
+  "test_scopes": [
+    "TestRDC38_7Taylor"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  }
+}

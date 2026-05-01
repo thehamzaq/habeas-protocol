@@ -1,0 +1,32 @@
+{
+  "module_name": "sg_iaa_s_31",
+  "human_label": "Singapore IAA s 31 (NY Convention Art V refusal grounds) + DKT v DKU framework",
+  "source_authorities": [
+    {
+      "kind": "statute",
+      "citation": "International Arbitration Act 1994 (2020 Rev Ed), s 31"
+    },
+    {
+      "kind": "international_convention",
+      "citation": "New York Convention 1958, Article V"
+    },
+    {
+      "kind": "case",
+      "citation": "DKT v DKU [2025] 1 SLR 806 (CA)"
+    },
+    {
+      "kind": "case",
+      "citation": "COD v COE [2023] 4 SLR 708"
+    }
+  ],
+  "test_scopes": [
+    "TestIAA_S31_TraceShape",
+    "TestDKTvDKU_AllConditionsMet",
+    "TestDKTvDKU_OneConditionFails"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "cross_jurisdiction_note": "Structurally parallel to adgm_arbitration_regulations_2015."
+}

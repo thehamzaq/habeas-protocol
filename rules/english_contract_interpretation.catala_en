@@ -1,0 +1,115 @@
+## English law of contractual interpretation
+##
+## Source: *Wood v Capita Insurance Services Ltd* [2017] UKSC 24,
+## applying *Rainy Sky SA v Kookmin Bank* [2011] UKSC 50, with
+## *Arnold v Britton* [2015] UKSC 36 supplying the textual-emphasis
+## limb. The unitary approach: read the contract as a whole, balance
+## the *natural meaning* of the words against business common sense
+## and the *factual matrix*. Where the language is unambiguous, the
+## court enforces it; where rival readings are equally arguable, the
+## one that better accords with business common sense prevails.
+##
+## ADGM applies this body of law wholesale via the *Application of
+## English Law Regulations 2015*, so this module is the rule-of-decision
+## for every ADGM contract dispute. DIFC reaches the same place by
+## analogy through DIFC Contract Law (which codifies the same
+## principles).
+##
+## Used in:
+##   trace-05 — ADGMCFI-2024-158 *Xetech v Pulsar* (Heath KC).
+##              Clauses 2(b), 7, 10 unambiguously aligned ⇒ unitary
+##              reading carries the day, business-common-sense limb
+##              never reached.
+##
+## The rule is decision-shaped: the court picks one of {Plain meaning
+## carries, Business common sense carries, Genuinely ambiguous} and
+## decides accordingly.
+
+```catala
+declaration enumeration InterpretationLimb:
+  -- PlainMeaningCarries
+  -- BusinessCommonSenseCarries
+  -- GenuinelyAmbiguous
+
+declaration structure ClauseEvidence:
+  data clauses_unambiguously_aligned content boolean
+  data common_sense_supports_one_reading content boolean
+  data factual_matrix_supports_that_reading content boolean
+
+declaration structure InterpretationDisposition:
+  data limb content InterpretationLimb
+  data unambiguous_carries content boolean
+  data business_sense_carries content boolean
+
+declaration scope WoodVCapita:
+  input evidence content ClauseEvidence
+  output disposition content InterpretationDisposition
+
+scope WoodVCapita:
+  definition disposition equals
+    let plain equals evidence.clauses_unambiguously_aligned in
+    let bcs equals
+      (not plain)
+      and evidence.common_sense_supports_one_reading
+      and evidence.factual_matrix_supports_that_reading
+    in
+    let ambig equals (not plain) and (not bcs) in
+    let chosen equals
+      if plain then PlainMeaningCarries
+      else (if bcs then BusinessCommonSenseCarries
+            else GenuinelyAmbiguous)
+    in
+    InterpretationDisposition {
+      -- limb: chosen
+      -- unambiguous_carries: plain
+      -- business_sense_carries: bcs
+    }
+```
+
+## Tests — three rule-of-decision branches.
+
+```catala
+#[test] declaration scope TestWoodVCapita_PlainMeaning:
+  composite scope WoodVCapita
+  output disposition content InterpretationDisposition
+
+scope TestWoodVCapita_PlainMeaning:
+  definition disposition equals composite.disposition
+  ## trace-05 clause findings: 2(b), 7, 10 all point to
+  ## payment-before-transfer. Plain meaning carries (Heath KC, paras 59-60).
+  definition composite.evidence equals
+    ClauseEvidence {
+      -- clauses_unambiguously_aligned: true
+      -- common_sense_supports_one_reading: true
+      -- factual_matrix_supports_that_reading: true
+    }
+  assertion disposition.limb = PlainMeaningCarries
+
+#[test] declaration scope TestWoodVCapita_BusinessSenseCarries:
+  composite scope WoodVCapita
+  output disposition content InterpretationDisposition
+
+scope TestWoodVCapita_BusinessSenseCarries:
+  definition disposition equals composite.disposition
+  definition composite.evidence equals
+    ClauseEvidence {
+      -- clauses_unambiguously_aligned: false
+      -- common_sense_supports_one_reading: true
+      -- factual_matrix_supports_that_reading: true
+    }
+  assertion disposition.limb = BusinessCommonSenseCarries
+
+#[test] declaration scope TestWoodVCapita_Ambiguous:
+  composite scope WoodVCapita
+  output disposition content InterpretationDisposition
+
+scope TestWoodVCapita_Ambiguous:
+  definition disposition equals composite.disposition
+  definition composite.evidence equals
+    ClauseEvidence {
+      -- clauses_unambiguously_aligned: false
+      -- common_sense_supports_one_reading: false
+      -- factual_matrix_supports_that_reading: false
+    }
+  assertion disposition.limb = GenuinelyAmbiguous
+```

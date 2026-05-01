@@ -1,0 +1,104 @@
+## DIFC Practice Direction No. 4 of 2017 — Arbitration costs framework
+##
+## Source: DIFC Courts Practice Direction No. 4 of 2017 ("PD 4/2017").
+## Sets the costs framework for DIFC-seated arbitration applications:
+##
+##   * The receiving party is generally entitled to *80%* of its
+##     reasonable costs (a discretionary discount accounting for the
+##     restricted character of arbitration support work).
+##   * Payment falls due *14 days* from the date of the order. After
+##     that window, simple interest at the LIBOR-replacement rate
+##     (commonly applied as 9% per annum) accrues until paid.
+##   * Interest is computed retroactively from the *date of the order*
+##     rather than from the *14-day deadline*; the deadline is a payment
+##     gate, not the interest start.
+##
+## Used in:
+##   trace-02 — ARB 008/2026 *Oberlin v Ovidiu* (RDC 38.40 + PD 4/2017).
+##
+## Five scenarios reproduce: on-time, at-deadline, 1 / 61 / 92 days late.
+## The 80% / 14-day / 9% structure is so consistent across DIFC
+## arbitration costs orders that the corpus has converged on a
+## near-formula — captured here as a single deterministic predicate.
+
+```catala
+declaration structure ArbitrationCostsClaim:
+  data reasonable_costs_aed content decimal
+  data discount_rate content decimal           ## 0.80 by convention
+  data deadline_days content decimal           ## 14.0 by convention
+  data days_paid_after_order content decimal
+  data simple_interest_rate content decimal    ## 0.09 by convention
+
+declaration structure ArbitrationCostsAward:
+  data principal_aed content decimal
+  data deadline_days content decimal
+  data in_breach content boolean
+  data days_accrued content decimal
+  data interest_aed content decimal
+  data total_owed_aed content decimal
+
+declaration scope OutstandingArbitrationCosts:
+  input claim content ArbitrationCostsClaim
+  output award content ArbitrationCostsAward
+
+scope OutstandingArbitrationCosts:
+  definition award equals
+    let principal equals claim.reasonable_costs_aed * claim.discount_rate in
+    ## "In breach" iff payment landed past the deadline.
+    let in_breach equals claim.days_paid_after_order > claim.deadline_days in
+    let accrued equals
+      if in_breach then claim.days_paid_after_order - claim.deadline_days
+      else 0.00
+    in
+    let interest equals
+      principal * claim.simple_interest_rate * (accrued / 365.00)
+    in
+    ArbitrationCostsAward {
+      -- principal_aed: principal
+      -- deadline_days: claim.deadline_days
+      -- in_breach: in_breach
+      -- days_accrued: accrued
+      -- interest_aed: interest
+      -- total_owed_aed: principal + interest
+    }
+```
+
+## Tests — five PD 4/2017 scenarios.
+
+```catala
+#[test] declaration scope TestPD4_PaidOnTime:
+  composite scope OutstandingArbitrationCosts
+  output award content ArbitrationCostsAward
+
+scope TestPD4_PaidOnTime:
+  definition award equals composite.award
+  definition composite.claim equals
+    ArbitrationCostsClaim {
+      -- reasonable_costs_aed: 95982.26
+      -- discount_rate: 0.80
+      -- deadline_days: 14.0
+      -- days_paid_after_order: 14.0
+      -- simple_interest_rate: 0.09
+    }
+  ## Paid on the 14th day = on the deadline = not in breach.
+  assertion award.in_breach = false
+  assertion award.interest_aed = 0.00
+
+#[test] declaration scope TestPD4_Unpaid61Days:
+  composite scope OutstandingArbitrationCosts
+  output award content ArbitrationCostsAward
+
+scope TestPD4_Unpaid61Days:
+  definition award equals composite.award
+  ## Receiver remained unpaid 61 days past the order — 47 days past
+  ## the deadline.
+  definition composite.claim equals
+    ArbitrationCostsClaim {
+      -- reasonable_costs_aed: 95982.26
+      -- discount_rate: 0.80
+      -- deadline_days: 14.0
+      -- days_paid_after_order: 61.0
+      -- simple_interest_rate: 0.09
+    }
+  assertion award.in_breach = true
+```

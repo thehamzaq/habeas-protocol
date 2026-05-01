@@ -1,0 +1,79 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope LaddMarshallTest input",
+    "description": "Input structure of scope LaddMarshallTest",
+    "$ref": "#/definitions/LaddMarshallTest_in",
+    "definitions": {
+      "LaddMarshallTest_in": {
+        "type": "object",
+        "properties": {
+          "prongs": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/LaddProng" }
+          }
+        },
+        "required": [ "prongs" ],
+        "additionalProperties": false
+      },
+      "LaddProng": {
+        "type": "object",
+        "properties": {
+          "prong": { "$ref": "#/definitions/LaddProngId" },
+          "satisfied": { "type": "boolean" }
+        },
+        "required": [ "satisfied", "prong" ],
+        "additionalProperties": false
+      },
+      "LaddProngId": {
+        "type": "string",
+        "enum": [
+          "ReasonableDiligence", "ImportantInfluence", "PresumablyCredible"
+        ]
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope LaddMarshallTest output",
+    "description": "Output structure of scope LaddMarshallTest",
+    "$ref": "#/definitions/LaddMarshallTest",
+    "definitions": {
+      "LaddDisposition": {
+        "type": "object",
+        "properties": {
+          "n_prongs_satisfied": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "first_failing_prong": { "$ref": "#/definitions/LaddProngId" },
+          "evidence_admissible": { "type": "boolean" }
+        },
+        "required": [
+          "evidence_admissible", "first_failing_prong", "n_prongs_satisfied"
+        ],
+        "additionalProperties": false
+      },
+      "LaddMarshallTest": {
+        "type": "object",
+        "properties": {
+          "disposition": { "$ref": "#/definitions/LaddDisposition" }
+        },
+        "required": [ "disposition" ],
+        "additionalProperties": false
+      },
+      "LaddProngId": {
+        "type": "string",
+        "enum": [
+          "ReasonableDiligence", "ImportantInfluence", "PresumablyCredible"
+        ]
+      }
+    }
+  }
+]

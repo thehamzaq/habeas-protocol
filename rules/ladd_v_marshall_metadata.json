@@ -1,0 +1,19 @@
+{
+  "module_name": "ladd_v_marshall",
+  "human_label": "Ladd v Marshall \u2014 fresh evidence three-prong test",
+  "source_authorities": [
+    {
+      "kind": "case",
+      "citation": "Ladd v Marshall [1954] 1 WLR 1489 (CA)"
+    }
+  ],
+  "test_scopes": [
+    "TestLaddInadmissibleAtFirstProng",
+    "TestLaddAllProngsSatisfied"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "cross_jurisdiction_note": "Applied by ADGM via the AELR. Persuasive in DIFC and SICC."
+}

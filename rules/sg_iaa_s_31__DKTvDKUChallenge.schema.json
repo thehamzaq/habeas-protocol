@@ -1,0 +1,46 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope DKTvDKUChallenge input",
+    "description": "Input structure of scope DKTvDKUChallenge",
+    "$ref": "#/definitions/DKTvDKUChallenge_in",
+    "definitions": {
+      "DKTConditions": {
+        "type": "object",
+        "properties": {
+          "point_properly_before_tribunal": { "type": "boolean" },
+          "point_essential_to_dispute": { "type": "boolean" },
+          "tribunal_completely_failed_to_consider": { "type": "boolean" },
+          "prejudice_demonstrated": { "type": "boolean" }
+        },
+        "required": [
+          "prejudice_demonstrated", "tribunal_completely_failed_to_consider",
+          "point_essential_to_dispute", "point_properly_before_tribunal"
+        ],
+        "additionalProperties": false
+      },
+      "DKTvDKUChallenge_in": {
+        "type": "object",
+        "properties": {
+          "conditions": { "$ref": "#/definitions/DKTConditions" }
+        },
+        "required": [ "conditions" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope DKTvDKUChallenge output",
+    "description": "Output structure of scope DKTvDKUChallenge",
+    "$ref": "#/definitions/DKTvDKUChallenge",
+    "definitions": {
+      "DKTvDKUChallenge": {
+        "type": "object",
+        "properties": { "challenge_succeeds": { "type": "boolean" } },
+        "required": [ "challenge_succeeds" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

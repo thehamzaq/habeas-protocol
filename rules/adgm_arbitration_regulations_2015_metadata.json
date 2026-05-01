@@ -1,0 +1,23 @@
+{
+  "module_name": "adgm_arbitration_regulations_2015",
+  "human_label": "ADGM Arbitration Regulations 2015 \u2014 recognition of foreign awards (parallel of SG IAA s 31)",
+  "source_authorities": [
+    {
+      "kind": "statute",
+      "citation": "ADGM Arbitration Regulations 2015, ss 56-58"
+    },
+    {
+      "kind": "international_convention",
+      "citation": "New York Convention 1958, Article V"
+    }
+  ],
+  "test_scopes": [
+    "TestADGMRecognitionGranted",
+    "TestADGMRecognitionRefused"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "cross_jurisdiction_note": "Structurally parallel to sg_iaa_s_31. Statutory references and public-policy authority differ."
+}

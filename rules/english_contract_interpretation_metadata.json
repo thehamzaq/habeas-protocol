@@ -1,0 +1,28 @@
+{
+  "module_name": "english_contract_interpretation",
+  "human_label": "Wood v Capita / Rainy Sky / Arnold v Britton \u2014 unitary contractual interpretation",
+  "source_authorities": [
+    {
+      "kind": "case",
+      "citation": "Wood v Capita Insurance Services Ltd [2017] UKSC 24"
+    },
+    {
+      "kind": "case",
+      "citation": "Rainy Sky SA v Kookmin Bank [2011] UKSC 50"
+    },
+    {
+      "kind": "case",
+      "citation": "Arnold v Britton [2015] UKSC 36"
+    }
+  ],
+  "test_scopes": [
+    "TestWoodVCapita_PlainMeaning",
+    "TestWoodVCapita_BusinessSenseCarries",
+    "TestWoodVCapita_Ambiguous"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "cross_jurisdiction_note": "Applied wholesale by ADGM via the Application of English Law Regulations 2015. Reaches DIFC by analogy through DIFC Contract Law."
+}

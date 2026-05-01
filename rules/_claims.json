@@ -1,0 +1,167 @@
+{
+  "comment": "Maps claim_type → applicable rule modules per tribunal. The simulator routes a fact pattern through these mappings: pick claim type + tribunal, fill in inputs for each applicable rule, aggregate the per-rule outputs into a verdict. Each rule entry is a {module, scope} pair into rules/_index.json. The 'role' field tells the simulator how the rule contributes to the verdict (gate / arithmetic / disposition / interpretation). Frequencies after each row are how many corpus judgments code that claim_type.",
+  "version": "0.1",
+  "claim_types": [
+    {
+      "claim_type": "costs_assessment",
+      "label": "Costs assessment",
+      "n_in_corpus": 15,
+      "tribunals": ["DIFC", "ADGM"],
+      "applicable_rules": [
+        {
+          "module": "difc_rdc_part_38",
+          "scope": "StandardBasisAssessment",
+          "role": "arithmetic",
+          "tribunal": "DIFC",
+          "when": "Standard-basis assessment ordered. Hours allowed × hourly rate + reasonable disbursements."
+        },
+        {
+          "module": "difc_rdc_38_7_indemnity",
+          "scope": "IndemnityBasisReview",
+          "role": "disposition",
+          "tribunal": "DIFC",
+          "when": "Indemnity-basis review ordered. Triages each defendant objection into mechanically_disposed / held_to_zero / deterministic_reduction / requires_human_judgment."
+        },
+        {
+          "module": "difc_practice_direction_4_2017",
+          "scope": "OutstandingArbitrationCosts",
+          "role": "arithmetic",
+          "tribunal": "DIFC",
+          "when": "DIFC-seated arbitration costs order under PD 4/2017. 80% discretion + 14-day deadline + 9% interest if late."
+        }
+      ]
+    },
+    {
+      "claim_type": "arbitration_recognition",
+      "label": "Recognition / enforcement of a foreign arbitral award (NY Convention)",
+      "n_in_corpus": 11,
+      "tribunals": ["SICC", "ADGM"],
+      "applicable_rules": [
+        {
+          "module": "sg_iaa_s_31",
+          "scope": "IAA_S31_Refusal",
+          "role": "disposition",
+          "tribunal": "SICC",
+          "when": "Foreign award presented for recognition in Singapore. Defendant pleads grounds under IAA s 31 (NY Convention Art V); court rules on each."
+        },
+        {
+          "module": "sg_iaa_s_31",
+          "scope": "DKTvDKUChallenge",
+          "role": "gate",
+          "tribunal": "SICC",
+          "when": "An 'infra petita' natural-justice challenge is pleaded. DKT v DKU four-condition framework applies."
+        },
+        {
+          "module": "adgm_arbitration_regulations_2015",
+          "scope": "ADGMRecognition",
+          "role": "disposition",
+          "tribunal": "ADGM",
+          "when": "Foreign award presented for recognition in ADGM. Defendant pleads grounds under Arbitration Regulations s 56."
+        }
+      ]
+    },
+    {
+      "claim_type": "arbitration_enforcement",
+      "label": "Enforcement of a foreign arbitral award (post-recognition)",
+      "n_in_corpus": 10,
+      "tribunals": ["SICC", "ADGM"],
+      "applicable_rules": [
+        {
+          "module": "sg_iaa_s_31",
+          "scope": "IAA_S31_Refusal",
+          "role": "disposition",
+          "tribunal": "SICC",
+          "when": "Defendant resists enforcement. Same grounds as recognition."
+        },
+        {
+          "module": "adgm_arbitration_regulations_2015",
+          "scope": "ADGMRecognition",
+          "role": "disposition",
+          "tribunal": "ADGM",
+          "when": "Defendant resists ADGM enforcement."
+        }
+      ]
+    },
+    {
+      "claim_type": "substantive_breach",
+      "label": "Contract — substantive breach (English-law-via-statute)",
+      "n_in_corpus": 2,
+      "tribunals": ["ADGM", "DIFC"],
+      "applicable_rules": [
+        {
+          "module": "english_contract_interpretation",
+          "scope": "WoodVCapita",
+          "role": "interpretation",
+          "tribunal": "ADGM",
+          "when": "The contract's meaning is contested. Wood v Capita unitary approach decides between plain meaning, business common sense, or genuine ambiguity."
+        },
+        {
+          "module": "uae_civil_code_art_390",
+          "scope": "Article390Cap",
+          "role": "arithmetic",
+          "tribunal": "ADGM",
+          "when": "A liquidated-damages clause is engaged and the claimant seeks payment under it. Court may cap at proportionate amount under Art 390(2) if grossly exaggerated."
+        },
+        {
+          "module": "adgm_cpr_admissions",
+          "scope": "AdmissionsAndSetOff",
+          "role": "arithmetic",
+          "tribunal": "ADGM",
+          "when": "One or more contract items are admitted. Court enters judgment for admitted sums minus proven counterclaim sums."
+        },
+        {
+          "module": "ladd_v_marshall",
+          "scope": "LaddMarshallTest",
+          "role": "gate",
+          "tribunal": "ADGM",
+          "when": "A party seeks to adduce fresh evidence. Three-prong conjunctive test gates admissibility."
+        }
+      ]
+    },
+    {
+      "claim_type": "summary_judgment",
+      "label": "Summary judgment application",
+      "n_in_corpus": 2,
+      "tribunals": ["ADGM", "DIFC"],
+      "applicable_rules": [
+        {
+          "module": "adgm_cpr_summary_judgment",
+          "scope": "SummaryJudgmentTest",
+          "role": "disposition",
+          "tribunal": "ADGM",
+          "when": "Court is asked to give summary judgment under ADGM CPR Rule 24. Conjunctive test: no realistic prospect AND no other compelling reason for trial."
+        }
+      ]
+    },
+    {
+      "claim_type": "fraud",
+      "label": "Negligent misstatement / fraud (English-law-via-statute)",
+      "n_in_corpus": 1,
+      "tribunals": ["ADGM"],
+      "applicable_rules": [
+        {
+          "module": "caparo_three_stage_test",
+          "scope": "CaparoTest",
+          "role": "gate",
+          "tribunal": "ADGM",
+          "when": "A duty of care is in dispute. Caparo three-stage test: foreseeability + proximity + fair, just, reasonable."
+        }
+      ]
+    },
+    {
+      "claim_type": "interim_relief",
+      "label": "Interim relief — third-party disclosure / freezing / proprietary injunction",
+      "n_in_corpus": 9,
+      "tribunals": ["DIFC", "ADGM"],
+      "applicable_rules": [
+        {
+          "module": "difc_third_party_disclosure",
+          "scope": "ThirdPartyDisclosureGates",
+          "role": "gate",
+          "tribunal": "DIFC",
+          "when": "Applicant seeks disclosure against a non-party (typically a financial institution holding traceable proceeds). Three conjunctive jurisdictional gates — Norwich Pharmacal, Bankers Trust, RDC 28.52 — all required."
+        }
+      ]
+    }
+  ]
+}

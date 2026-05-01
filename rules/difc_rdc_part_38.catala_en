@@ -1,0 +1,65 @@
+## DIFC Rules of the Court — Part 38 (Costs)
+##
+## Source: Rules of the DIFC Courts ("RDC"), Part 38. The Court conducting
+## a detailed assessment on the standard basis allows costs that are
+## proportionate to the matter, and resolves doubt in favour of the
+## paying party. The costs allowed are the sum of the assessed
+## professional time (hours × hourly rate) and reasonable disbursements
+## (court fees, travel, expert reports, etc.).
+##
+## Used in:
+##   trace-01 — CFI 058/2024 Atul Dhawan v Ramzi Wahib El Jaouhari
+##              (RDC 38.7 standard-basis assessment).
+##
+## This module is the deterministic computational core. Discretionary
+## limbs (proportionality, doubt resolution) are *not* encoded here —
+## they are the human-judgment limb. The module returns the arithmetic
+## once the human inputs (hours allowed, hourly rate, reasonable
+## disbursements) are fixed.
+
+```catala
+declaration structure CostsClaim:
+  data hours_worked content decimal
+  data hourly_rate_aed content decimal
+  data reasonable_disbursements_aed content decimal
+
+declaration structure StandardBasisAward:
+  data professional_time_aed content decimal
+  data disbursements_aed content decimal
+  data total_aed content decimal
+
+declaration scope StandardBasisAssessment:
+  input claim content CostsClaim
+  output award content StandardBasisAward
+
+scope StandardBasisAssessment:
+  definition award equals
+    let pt equals claim.hours_worked * claim.hourly_rate_aed in
+    let db equals claim.reasonable_disbursements_aed in
+    StandardBasisAward {
+      -- professional_time_aed: pt
+      -- disbursements_aed: db
+      -- total_aed: pt + db
+    }
+```
+
+## Test — replays the headline computation from trace-01.
+
+```catala
+#[test] declaration scope TestRDC38StandardBasis:
+  composite scope StandardBasisAssessment
+  output award content StandardBasisAward
+
+scope TestRDC38StandardBasis:
+  definition award equals composite.award
+  definition composite.claim equals
+    CostsClaim {
+      -- hours_worked: 24.00
+      -- hourly_rate_aed: 250.00
+      -- reasonable_disbursements_aed: 1121.75
+    }
+  ## RDC 38.7 standard-basis arithmetic from trace-01.
+  assertion award.professional_time_aed = 6000.00
+  assertion award.disbursements_aed = 1121.75
+  assertion award.total_aed = 7121.75
+```

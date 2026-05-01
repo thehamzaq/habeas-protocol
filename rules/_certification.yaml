@@ -1,0 +1,296 @@
+# Habeas Protocol — Rule Module Certification Spec
+#
+# Anyone can write a Catala module that the wizard accepts. Certification
+# is the orthogonal layer: a vetting process that determines whether a
+# module is *trusted* enough to ship in a recognized rule library.
+#
+# This file defines the spec — the lifecycle states, the metadata each
+# module must carry, the transitions between states, the criteria for
+# each transition, and the artefacts the certification process produces.
+#
+# A separate `_metadata.json` file accompanies each certified rule
+# module and captures its current state. A module without a
+# `_metadata.json` is treated as `draft`.
+#
+# This spec is itself a living artefact and may be amended; amendments
+# are versioned via the `version` field at the top.
+
+version: "0.1.0"
+last_amended: 2026-05-01
+spec_authority: "Maxim Labs — Habeas Protocol working group"
+
+# ---------------------------------------------------------------------
+# 1. Lifecycle states
+# ---------------------------------------------------------------------
+
+states:
+  - id: draft
+    description: |
+      The module exists in `rules/` but has not been submitted for
+      review. May be incomplete; may have failing tests; may have only
+      one #[test] scope. The default state for any newly-authored module.
+    badge_label: "draft"
+    badge_color: "#6b6b6b"
+
+  - id: submitted
+    description: |
+      The author has explicitly submitted the module for certification
+      review. Submission is signalled by setting
+      `_metadata.json.certification.state = "submitted"` and supplying
+      the required metadata fields (see `metadata_schema` below). At
+      this point the module enters the review queue.
+    badge_label: "submitted"
+    badge_color: "#b08821"
+
+  - id: reviewed
+    description: |
+      A nominated reviewer (a lawyer admitted in a relevant jurisdiction
+      or a domain expert in the rule's subject) has read the module and
+      its source citations, run the #[test] scopes, and either approved
+      it or returned comments. A `reviewed` module has at least one
+      passing review attached.
+    badge_label: "under review"
+    badge_color: "#1a4a73"
+
+  - id: certified
+    description: |
+      The module has cleared the review process. CI runs the #[test]
+      scopes on every push (drift-checked). The module is published with
+      a `certified` badge in the playground / simulator and is included
+      by default in any rule-library distribution.
+    badge_label: "certified"
+    badge_color: "#1a7a4a"
+
+  - id: deprecated
+    description: |
+      The module is retained for historical / provenance reasons but is
+      no longer recommended for use. Typical reasons: the underlying
+      statute or case has been superseded; a follow-on module is the
+      canonical encoding. CI continues to run the #[test] scopes so the
+      historical reading remains verifiable.
+    badge_label: "deprecated"
+    badge_color: "#7a3a1a"
+
+# ---------------------------------------------------------------------
+# 2. Allowed transitions
+# ---------------------------------------------------------------------
+
+transitions:
+  - { from: draft,       to: submitted,  who: author }
+  - { from: submitted,   to: reviewed,   who: reviewer }
+  - { from: submitted,   to: draft,      who: reviewer, note: "Returned with comments." }
+  - { from: reviewed,    to: certified,  who: spec_authority }
+  - { from: reviewed,    to: draft,      who: spec_authority, note: "Material issues require re-authoring." }
+  - { from: certified,   to: deprecated, who: spec_authority }
+  - { from: deprecated,  to: certified,  who: spec_authority, note: "Rare — unwind a deprecation." }
+
+# ---------------------------------------------------------------------
+# 3. Required metadata per state
+# ---------------------------------------------------------------------
+#
+# A module's _metadata.json is validated against the requirements of
+# its declared state. Submitting a module without the `submitted`-state
+# fields populated is invalid; promoting to `certified` without all
+# `certified`-state fields is invalid.
+
+metadata_schema:
+  always_required:
+    - module_name        # string, must equal the .catala_en filename stem
+    - human_label        # string, ≤ 80 chars; the human-readable rule name
+    - source_authorities # list of {kind, citation, url?} — the legal sources
+
+  required_for_submitted:
+    - author             # string, "Name <email>"
+    - submitted_at       # ISO-8601 timestamp
+    - source_authorities # at least one entry, must include kind="case" or kind="statute"
+    - test_scopes        # list of string scope names (must include ≥ 1 #[test] scope)
+    - cross_jurisdiction_note?  # optional, but recommended where the rule applies in
+                                # multiple forums (e.g. English-law-via-statute imports)
+
+  required_for_reviewed:
+    - reviewer           # string, "Name <email>", admitted in or expert on the relevant jurisdiction
+    - reviewed_at        # ISO-8601 timestamp
+    - review_artifact    # path or URL to the review notes (markdown / PR comment / etc.)
+    - reviewer_assertion # one of: approved | returned_with_comments
+    - reviewer_qualification  # short prose: "DIFC-admitted barrister", "Catala maintainer", etc.
+
+  required_for_certified:
+    - certified_at       # ISO-8601 timestamp
+    - certified_by       # spec_authority entity (string)
+    - certificate_sha256 # SHA256 of the rule.catala_en file at the moment of certification
+                         # — invalidated if the file is edited; CI must check.
+
+  required_for_deprecated:
+    - deprecated_at         # ISO-8601 timestamp
+    - deprecation_reason    # short prose
+    - deprecated_in_favour_of # optional: another module's name
+
+# ---------------------------------------------------------------------
+# 4. Source-authority kinds (drives the `kind` field of `source_authorities`)
+# ---------------------------------------------------------------------
+
+source_authority_kinds:
+  - id: case
+    description: A reported judgment of a court (any jurisdiction).
+    example_citation: "[2025] SGHC(I) 25"
+  - id: statute
+    description: A primary statute or regulation.
+    example_citation: "DIFC Courts Law (Law No. 2 of 2025), Article 15(1)"
+  - id: rules_of_court
+    description: Procedural rules of a specific tribunal.
+    example_citation: "RDC 28.51"
+  - id: practice_direction
+    description: Tribunal-issued guidance with formal effect.
+    example_citation: "DIFC Courts Practice Direction No. 4 of 2017"
+  - id: international_convention
+    description: A multilateral instrument the relevant state is a signatory to.
+    example_citation: "Convention on the Recognition and Enforcement of Foreign Arbitral Awards (1958)"
+  - id: secondary_authority
+    description: Treatise or textbook (admissible as persuasive only).
+    example_citation: "Dicey, Morris & Collins, The Conflict of Laws (16th ed)"
+  - id: bespoke
+    description: |
+      A novel encoding without direct binding authority — used when a
+      rule of decision is the synthesis of multiple authorities, or
+      when the rule is contractual rather than statutory. Requires
+      a `cross_jurisdiction_note` explaining the synthesis.
+
+# ---------------------------------------------------------------------
+# 5. Review checklist
+# ---------------------------------------------------------------------
+#
+# A reviewer reads a `submitted` module and walks this checklist; the
+# review_artifact records each check's outcome.
+
+review_checklist:
+  - id: source_legitimacy
+    question: |
+      Does every assertion in the rule trace back to a source authority
+      listed in source_authorities? Is the citation accurate?
+    severity: blocking
+
+  - id: scope_match
+    question: |
+      Does the public scope's input/output shape correspond to the rule
+      of decision as actually applied by the cited authority? In
+      particular: does the rule split human-judgment inputs (which the
+      court must determine) from deterministic computation (which the
+      module performs)?
+    severity: blocking
+
+  - id: test_coverage
+    question: |
+      At least one #[test] scope reproduces a known case's outcome.
+      Are the test values consistent with the cited judgment? Are
+      meaningful contrary-branch cases included (e.g. a test where the
+      conjunctive test fails on one prong)?
+    severity: blocking
+
+  - id: jurisdiction_tagging
+    question: |
+      Is the module's jurisdiction declared correctly in
+      `rules/_jurisdictions.json` (primary_jurisdiction, applies_in,
+      role_class, recognition-gate / public-policy-override flags)?
+    severity: blocking
+
+  - id: claim_routing
+    question: |
+      For relevant claim types in `rules/_claims.json`, does the routing
+      list this module under the correct (forum, role) pair?
+    severity: should_have
+
+  - id: docstring_quality
+    question: |
+      Is the module's leading docstring sufficient for a non-author
+      reader to understand the rule's structure, sources, and the
+      methodologically distinct aspect it captures?
+    severity: should_have
+
+  - id: property_invariants
+    question: |
+      If the module fits an existing property-test pattern (conjunctive
+      test, multi-ground disposition, formula), is it covered by
+      `tests/property_tests.py`? If a new pattern, are property tests
+      added?
+    severity: should_have
+
+# ---------------------------------------------------------------------
+# 6. Per-module metadata file shape
+# ---------------------------------------------------------------------
+#
+# Each module SHOULD ship with a sibling `<module>_metadata.json` file
+# in `rules/`. Until present, the module is treated as `draft` with
+# minimal metadata derived from the .catala_en docstring.
+
+metadata_file_example: |
+  # rules/sg_iaa_s_31_metadata.json
+  {
+    "module_name": "sg_iaa_s_31",
+    "human_label": "Singapore International Arbitration Act 1994 — s 31 (NY Convention Article V refusal grounds) + DKT v DKU four-condition framework",
+    "source_authorities": [
+      {"kind": "statute",  "citation": "International Arbitration Act 1994 (2020 Rev Ed), s 31"},
+      {"kind": "international_convention", "citation": "New York Convention 1958, Article V"},
+      {"kind": "case",     "citation": "DKT v DKU [2025] 1 SLR 806 (CA)"}
+    ],
+    "test_scopes": [
+      "TestIAA_S31_TraceShape",
+      "TestDKTvDKU_AllConditionsMet",
+      "TestDKTvDKU_OneConditionFails"
+    ],
+    "cross_jurisdiction_note": "ADGM has a parallel module (adgm_arbitration_regulations_2015) with the same structural shape but different statutory references and public-policy authority.",
+    "certification": {
+      "state": "draft",
+      "states_history": []
+    }
+  }
+
+# ---------------------------------------------------------------------
+# 7. Distribution + commercial layer
+# ---------------------------------------------------------------------
+#
+# The certification spec is the wedge for the Stage 3 roadmap line:
+# "open-source the core, charge for the hosted version + the rule
+# library + the certification process."
+#
+# Three distribution tiers:
+
+distribution_tiers:
+  - id: community
+    description: |
+      Anyone can write modules and submit them; certification is
+      community-driven. Ships under the same MIT license as the rest of
+      the codebase. The certified set is curated by the spec_authority.
+    license: MIT
+    inclusion_default: certified
+    audit_log_visibility: public
+
+  - id: hosted
+    description: |
+      A hosted instance for a customer (a law firm, a tribunal, a
+      regulator). The customer can include their own internal rule
+      modules without going through public certification, while still
+      benefitting from the certified library.
+    license: MIT (core) + per-customer terms (deployment)
+    inclusion_default: certified + customer_internal
+    audit_log_visibility: customer_only
+
+  - id: certified_authoring_seat
+    description: |
+      A reviewer seat in the certification process. Holders are listed
+      as authorised reviewers in `_certification.yaml`'s
+      `reviewer_qualifications` directory and can promote modules from
+      `submitted` → `reviewed`. Annual fee.
+    license: per-seat
+    inclusion_default: full library
+    audit_log_visibility: public + per-review attribution
+
+# ---------------------------------------------------------------------
+# 8. Open questions (this is v0.1)
+# ---------------------------------------------------------------------
+
+open_questions:
+  - "Should a deprecated module's #[test] scopes be allowed to fail in CI? Current spec says no — historical readings remain verifiable."
+  - "Multi-jurisdiction rules (like english_contract_interpretation, applied in ADGM/DIFC/SICC) — does each forum need its own review, or one unified review?"
+  - "Reviewer conflict-of-interest disclosure — needed if a reviewer is litigating before the same tribunal whose rule they certify?"
+  - "Granularity of certification — is it per-scope (a single .catala_en file may have multiple scopes; sg_iaa_s_31 has IAA_S31_Refusal + DKTvDKUChallenge) or per-module?"
+  - "Cross-references between certified modules: should a certified module be allowed to depend on a `submitted` module via Catala's module system?"

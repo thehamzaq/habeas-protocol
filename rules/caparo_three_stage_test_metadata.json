@@ -1,0 +1,19 @@
+{
+  "module_name": "caparo_three_stage_test",
+  "human_label": "Caparo v Dickman \u2014 three-stage duty-of-care test",
+  "source_authorities": [
+    {
+      "kind": "case",
+      "citation": "Caparo Industries plc v Dickman [1990] UKHL 2, [1990] 2 AC 605"
+    }
+  ],
+  "test_scopes": [
+    "TestCaparoAllStagesMet",
+    "TestCaparoFailsOnPolicyGate"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "cross_jurisdiction_note": "Applied wholesale by ADGM via the AELR. Persuasive in DIFC and SICC."
+}
