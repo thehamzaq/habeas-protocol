@@ -4,7 +4,7 @@ A constitutional reframing of the "Legal Operating System for Digital Worlds" th
 
 ## Thesis in one paragraph
 
-Most "Web3 dispute resolution" proposals try to invent a tribunal from scratch. The thesis here is the inverse: **the tribunals already exist; what is missing is the computational layer.** DIFC and ADGM are common-law courts inside special economic zones in the United Arab Emirates; SICC is a division of the Singapore High Court staffed partly by international judges. All three operate with versioned rules, dated evidence, separation of powers, and rulings enforceable across borders under the New York Convention.[^nyc] This repository codes 121 judgments from the three tribunals against six per-ruling primitives a digital tribunal must satisfy, and compiles four rules from the corpus into executable predicates that reproduce the courts' arithmetic.
+Most "Web3 dispute resolution" proposals try to invent a tribunal from scratch. The thesis here is the inverse: **the tribunals already exist; what is missing is the computational layer.** DIFC and ADGM are common-law courts inside special economic zones in the United Arab Emirates; SICC is a division of the Singapore High Court staffed partly by international judges. All three operate with versioned rules, dated evidence, separation of powers, and rulings enforceable across borders under the New York Convention.[^nyc] This repository codes 121 judgments from the three tribunals against six per-ruling primitives a digital tribunal must satisfy, compiles **six rules from the corpus into executable Catala predicates that reproduce the courts' arithmetic**, and exposes the deterministic predicate cores as a reusable rule library plus a public dashboard, a Postgres-backed read-only API, and a schema-driven rule playground.
 
 ## What's inside
 
@@ -31,9 +31,9 @@ System properties (architectural, scored once per institution):
 
 **Headline.** All three operating tribunals score at or near ceiling on every per-ruling primitive. The saturation pattern survived two stress tests during this work: a 10× expansion of the ADGM sample (1.93 at n=7 hand-coded → 1.91 at n=76 hand+AI), and a replication on a third tribunal in a different legal family (SICC at 1.95). All three score 2/2 on both system properties. **Three operating commercial tribunals, all implementing the full protocol at near-ceiling, available to plug in today.**
 
-### Constructive: four executable traces
+### Constructive: six executable traces
 
-Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Python predicate evaluator and runs it against an event log of the case facts. The four traces span the rule-shape spectrum:
+Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Python predicate evaluator and runs it against an event log of the case facts. The six traces span the rule-shape spectrum and now cross legal-family boundaries (DIFC + ADGM English-law-via-statute + Singapore IAA + NY Convention):
 
 - **Trace #1 — pure formula.** [`spike/trace-01/`](./spike/trace-01/). DIFC RDC[^rdc] Part 38 standard-basis costs, applied to *Atul Dhawan v Ramzi El Jaouhari* (CFI 058/2024). Predicate computes **AED 7,121.75** matching the Schedule of Reasons exactly. The operative paragraph states AED 7,127.75 — **a 6 AED clerical-error gap** the protocol mechanically surfaces.
 
@@ -42,6 +42,22 @@ Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Pyt
 - **Trace #3 — bounded discretion.** [`spike/trace-03/`](./spike/trace-03/). Indemnity-basis costs review from *Taylor v Yao Affi* (ENF 271/2025). In English costs law, the *standard basis* allows the court to disallow disproportionate costs even if reasonably incurred; the *indemnity basis* strips proportionality and leaves only reasonableness, which is not formulaic. The predicate triages each defendant objection into one of four buckets: mechanically disposed (no specific line item named), held to zero on evidence, deterministic reduction with named amount, or requires human judgment. Court reduced AED 128,914.80 → AED 120,000 — the **AED 8,914.80, ≈6.92% of the claim**, is the structured-discretion residue. **The honest case for what executable rules cannot fully decide.**
 
 - **Trace #4 — composition over substantive findings.** [`spike/trace-04/`](./spike/trace-04/). Substantive contract dispute from *Projeco v Ideacrate* (ADGMCFI-2024-320, Justice Heath KC). UAE Civil Transactions Law Article 390 (liquidated-damages cap)[^uae-civil] + ADGM CPR Rule 42 (admissions)[^adgm-cpr] + ADGM Civil Evidence Regulations §§ 181–182 (set-off). Predicate takes human substantive findings as inputs (97 days of critical delay, smoke management within scope, repair counterclaim not proven) and composes them deterministically: liquidated-damages cap → counterclaim set-off → net principal → pre-judgment interest. **Net principal AED 10,500.96 reproduces the court exactly.** Pre-judgment interest at 609 calendar days computes AED 876.04; court's stated AED 877.48 corresponds to 610 days — protocol surfaces the daycount convention.
+
+- **Trace #5 — conjunctive logical composition.** [`spike/trace-05/`](./spike/trace-05/). Software-development contract dispute from *Xetech v Pulsar* (ADGMCFI-2024-158, Justice Heath KC, [2026] ADGMCFI 0006). English contractual interpretation (*Wood v Capita Insurance Services* applying *Rainy Sky*) + *Ladd v Marshall* three-prong fresh-evidence test + Assignment Agreement clauses 2(b), 7, 10. The first trace whose rule is **structurally Boolean** rather than arithmetic. Predicate composes three conjunctive tests: clause alignment (3/3 point to payment-before-transfer), named-witness preponderance (6:2; both dissenters lacked DevOps access), Ladd v Marshall (fails on prong (a) — short-circuits). **Judgment Sum GBP 409,870, costs USD 125,483.84, counterclaim dismissed — all match.** The protocol does not replace contractual interpretation; it makes the *logical structure* of that interpretation auditable.
+
+- **Trace #6 — partial statutory refusal (cross-tribunal).** [`spike/trace-06/`](./spike/trace-06/). NY Convention recognition under Singapore IAA s 31 from *GNC Holdings v ONI Global Pte Ltd* (SIC/OA 9/2025, [2025] SGHC(I) 25; Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ). The first SICC trace and the first to express a *partial* refusal of enforcement: of four pleaded grounds, three dismissed in full, one allowed in part — with three named sub-paragraphs of the Tribunal's Order 3 excised because the parties were not afforded an opportunity to be heard on their specific terms. Disposition reproduces para 185(a)–(c) exactly: application allowed in part; Order 3(d)(ii), (d)(iii), (f) not enforced; the rest enforced. **Demonstrates the protocol crosses legal-family boundaries** (Singapore IAA + NY Convention vs DIFC/ADGM English-law-via-statute).
+
+### Rule library — five reusable Catala modules
+
+[`rules/`](./rules/) factors the deterministic computational cores out of the traces into reusable Catala modules — the seed of the Stage-2 dispute simulator. Each module ships with a Clerk-compatible test suite (`#[test]` scopes, both the canonical case and contrary-branch demonstrations), a generated JSON schema (input/output shapes for tooling), and is wired into CI alongside the traces.
+
+| Module | Source | Used in |
+|---|---|---|
+| `difc_rdc_part_38` | DIFC RDC Part 38 standard-basis costs assessment | Trace #1 |
+| `sg_iaa_s_31` | Singapore IAA s 31 (NY Convention Article V grounds) + DKT v DKU four-condition framework | Trace #6 |
+| `ladd_v_marshall` | *Ladd v Marshall* [1954] 1 WLR 1489 fresh-evidence three-prong test | Trace #5 |
+| `uae_civil_code_art_390` | UAE Civil Transactions Law Art 390(2) — liquidated-damages cap | Trace #4 |
+| `adgm_cpr_admissions` | ADGM Court Procedure Rules 2016 — admissions and set-off arithmetic | Trace #4 |
 
 ## Why these three tribunals
 
@@ -61,6 +77,21 @@ The six per-ruling primitives + two system properties replaced v0.1's seven prim
 
 See [`data/primitives.json`](./data/primitives.json) for full definitions and the v0.1 → v0.2 mapping.
 
+## Infrastructure
+
+### Local Postgres + read-only API
+
+The whole corpus also lives in a local Postgres instance (118 judgments + 978 raw documents, 355 auto-linked) so it can be queried beyond what `judgments.json` exposes:
+
+- [`db/schema.sql`](./db/schema.sql) — 8 tables, 3 views, FTS index on extracted text
+- [`scripts/postgres_local.sh`](./scripts/postgres_local.sh) — install-free control script (initdb / start / psql / schema / reset / nuke). Runs without sudo or Homebrew under `~/.local/`.
+- [`scripts/migrate_to_postgres.py`](./scripts/migrate_to_postgres.py) — loads structured judgments, scrapes raw documents, infers case_no per tribunal, links raw → structured.
+- [`api/server.py`](./api/server.py) — stdlib-only read-only JSON API on `127.0.0.1:5544`. Endpoints: `/api/health`, `/api/judgments`, `/api/rules`, `/api/tribunal_means`, `/api/search?q=…` (FTS), `/api/rule_modules`, `POST /api/rule_run`. The dashboard tries the API first and silently falls back to the static JSON when the server isn't running, so the public Pages build keeps working unchanged.
+
+### Rule playground
+
+[`dashboard/playground.html`](./dashboard/playground.html) is a schema-driven UI: pick any of the five rule modules, enter inputs through an auto-generated form (forms come from `catala json-schema` per module), and the predicate runs server-side via `catala interpret -F json`. The first concrete piece of the Stage-2 dispute simulator.
+
 ## Layout
 
 ```
@@ -78,30 +109,50 @@ habeas-protocol/
 │   └── raw/
 │       ├── judgments/              # 294 DIFC HTML pulls
 │       ├── text/                   # DIFC stripped to plain text
-│       ├── adgm/{pdfs,text}/       # 172 ADGM PDFs + extracted text
+│       ├── adgm/{pdfs,text,pages}/ # 175 ADGM PDFs + extracted text + page HTMLs
 │       └── sicc/{html,text}/       # SICC raw + extracted
+├── rules/
+│   ├── clerk.toml                  # Clerk project for the rule library
+│   ├── *.catala_en                 # five reusable rule modules
+│   ├── *.schema.json               # generated JSON schemas (input + output shapes)
+│   └── _index.json                 # module/scope catalogue, consumed by playground
+├── db/
+│   ├── schema.sql                  # 8 tables + 3 views + FTS index
+│   └── queries.sql                 # 15 sample queries reproducing paper headlines
+├── api/
+│   └── server.py                   # stdlib-only read-only JSON API + rule runner
 ├── scripts/
 │   ├── fetch_difc.py               # DIFC scraper
-│   ├── fetch_adgm_firecrawl.py     # ADGM full-corpus scraper
+│   ├── fetch_adgm_pages.py         # ADGM scraper (plain HTTP, no API key)
+│   ├── fetch_adgm_firecrawl.py     # ADGM scraper (Firecrawl fallback)
 │   ├── strip_html.py               # HTML → text
 │   ├── migrate_v02.py              # v0.1 → v0.2 schema migration
+│   ├── migrate_to_postgres.py      # corpus → Postgres
+│   ├── postgres_local.sh           # local Postgres control
+│   ├── build_trace_outputs.sh      # regenerate spike/trace-*/output.json
+│   ├── build_rule_schemas.sh       # regenerate rules/*.schema.json + _index.json
 │   ├── triage_adgm.py              # AI three-bucket classifier
 │   ├── build_digests.py            # per-case digest extractor
 │   ├── grade_borderline.py         # rubric-applying grader
 │   └── merge_adgm_codings.py       # merger into judgments.json
 ├── spike/
-│   ├── trace-01/   trace-02/       # Catala source + Python evaluator
-│   └── trace-03/   trace-04/       #   per trace
-└── dashboard/                      # interactive view (vanilla JS, hand-rolled SVG)
+│   └── trace-0{1,2,3,4,5,6}/       # Catala rule + events.json + evaluate.py + output.json
+├── dashboard/                      # interactive view (vanilla JS, hand-rolled SVG)
+│   ├── index.html  app.js  styles.css
+│   └── playground.html             # schema-driven rule playground
+└── .github/workflows/
+    └── test.yml                    # CI: typecheck + interpret 6 traces + 5 rule modules,
+                                    # run 6 evaluate.py, regenerate output/schema files,
+                                    # fail on drift
 ```
 
 ## Reproduce
 
 ```bash
-# Corpus pull
+# Corpus pull (incremental — skips files already on disk)
 python3 scripts/fetch_difc.py 25
 python3 scripts/strip_html.py
-python3 scripts/fetch_adgm_firecrawl.py    # uses Firecrawl API; plain ?page=N also works
+python3 scripts/fetch_adgm_pages.py    # plain HTTP, no API key required
 
 # AI codings
 python3 scripts/triage_adgm.py
@@ -109,26 +160,48 @@ python3 scripts/build_digests.py
 python3 scripts/grade_borderline.py
 python3 scripts/merge_adgm_codings.py
 
-# Run all four traces
-python3 spike/trace-01/evaluate.py
-python3 spike/trace-02/evaluate.py
-python3 spike/trace-03/evaluate.py
-python3 spike/trace-04/evaluate.py
+# Catala traces — typecheck, interpret, and Python evaluator
+eval $(opam env --switch=catala)       # if installed via opam
+for d in spike/trace-*/; do
+  catala typecheck --no-stdlib "$d/rule.catala_en"
+  catala interpret --no-stdlib "$d/rule.catala_en"
+  python3 "$d/evaluate.py"
+done
 
-# Local dashboard
-python3 -m http.server 8001
-# open http://127.0.0.1:8001/dashboard/
+# Rule library
+for f in rules/*.catala_en; do
+  catala typecheck --no-stdlib "$f"
+  catala interpret --no-stdlib "$f"
+done
+
+# Local Postgres + corpus migration (~15 sec)
+./scripts/postgres_local.sh init
+./scripts/postgres_local.sh start
+./scripts/postgres_local.sh schema
+python3 scripts/migrate_to_postgres.py
+
+# Read-only API + dashboard
+eval $(./scripts/postgres_local.sh env)
+python3 api/server.py &              # 127.0.0.1:5544
+python3 -m http.server 8001 &        # serves dashboard at 127.0.0.1:8001/dashboard/
 ```
 
 ## Phase status
 
-- **Phase 0–1.5** done: DIFC scraping, 39-judgment hand-coded gold set, v0.1 → v0.2 framework refactor, all 32 DIFC re-scored under v0.2, 7 ADGM coded.
-- **Phase 2** done: all four traces compiled and passing; deeper ADGM pull (172 PDFs); 76 ADGM cases coded (7 hand + 16 AI-triaged + 53 AI-graded); SICC sample (13 cases) added; saturation pattern survives the 10× ADGM expansion and replicates on SICC; dashboard and paper updated.
-- **Open (optional)**: Catala runtime install + bisimilarity check; stratified hand-validation of ~30 AI-coded entries to harden methodological provenance; larger SICC pull.
+- **Phase 0–2** done.
+- **Phase 3 (current)** done: Catala 1.1.0 toolchain installed; all six traces compile and interpret under `catala interpret --no-stdlib`; rule library extracted as five reusable modules with auto-generated JSON schemas; corpus migrated to local Postgres (118 judgments, 978 raw documents, 355 linked); read-only API + schema-driven rule playground shipped; CI exercises the full matrix on every push.
+- **Open (optional)**: court-convention surfacer wired across the trace set (live on dashboard); larger SICC pull; trace #7 in the DIFC FinTech vertical; stratified hand-validation of ~30 AI-coded entries.
 
 ## License
 
-Code: MIT. Dataset: CC-BY-4.0.
+Code: MIT. Dataset: CC-BY-4.0. Full texts in [`LICENSE`](./LICENSE) and [`LICENSES/`](./LICENSES/).
+
+## Project policies
+
+- [`CONTRIBUTING.md`](./CONTRIBUTING.md) — how to file issues, submit rule modules, and engage with the certification lifecycle.
+- [`SECURITY.md`](./SECURITY.md) — vulnerability disclosure (private email, coordinated release).
+- [`TRADEMARK.md`](./TRADEMARK.md) — informal policy on the *Habeas Protocol* and *Maxim Labs* names; the open licences cover code and data, not the brand.
+- [`rules/_certification.yaml`](./rules/_certification.yaml) — the spec for how rules move from `draft` → `submitted` → `reviewed` → `certified`.
 
 ## Citation
 
