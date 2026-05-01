@@ -1,0 +1,112 @@
+{
+  "case_no": "SIC/OA 9/2025",
+  "neutral_citation": "[2025] SGHC(I) 25",
+  "tribunal": "Singapore International Commercial Court",
+  "panel": [
+    "Chua Lee Ming J (Judge of the High Court)",
+    "Simon Thorley IJ (International Judge)",
+    "James Allsop IJ (International Judge, delivering the judgment)"
+  ],
+  "hearing_date": "2025-07-21",
+  "judgment_date": "2025-10-21",
+  "underlying_award": {
+    "tribunal_seat": "Pittsburgh, Pennsylvania, USA",
+    "tribunal_size": 3,
+    "award_date": "2024-08-14",
+    "award_label": "Final Award (FA)"
+  },
+  "ex_parte_enforcement_order": {
+    "label": "HC/ORC 1222/2025",
+    "date": "2025-03-04"
+  },
+  "set_aside_summons": {
+    "label": "Summons No 777 of 2025",
+    "filed_date": "2025-03-24"
+  },
+  "claimant": {
+    "label": "Franchisor",
+    "entity": "GNC Holdings, LLC"
+  },
+  "defendants": [
+    {
+      "label": "Franchisee",
+      "entity": "ONI Global Pte Ltd"
+    },
+    {
+      "label": "Related Company",
+      "entity": "LAC Global (Singapore) Pte Ltd"
+    }
+  ],
+  "statutory_framework": {
+    "act": "International Arbitration Act 1994 (2020 Rev Ed)",
+    "section": "s 31",
+    "implements": "New York Convention 1958, Article V",
+    "grounds_pleaded": ["s 31(2)(c)", "s 31(2)(d)", "s 31(4)(b)"]
+  },
+  "event_log": [
+    { "date": "2024-08-14", "event": "Final Award rendered in Pittsburgh by 3-member panel" },
+    { "date": "2025-03-04", "event": "Singapore court grants ex parte enforcement order HC/ORC 1222/2025" },
+    { "date": "2025-03-24", "event": "Defendants file Summons 777/2025 to set aside on Grounds 1-4" },
+    { "date": "2025-07-21", "event": "Hearing before Chua J, Thorley IJ, Allsop IJ" },
+    { "date": "2025-10-21", "event": "Judgment reserved and delivered: application allowed in part" }
+  ],
+  "grounds": [
+    {
+      "id": "G1",
+      "label": "Public policy (spoliation/fraud)",
+      "statute": "s 31(4)(b)",
+      "defendants_assertion": "Franchisor destroyed/concealed evidence; Award contrary to public policy",
+      "court_finding": "Dismissed",
+      "court_reasoning_paras": "148-184",
+      "court_outcome": "Dismissed",
+      "key_paragraphs": "184"
+    },
+    {
+      "id": "G2",
+      "label": "Natural justice (failed to address argument)",
+      "statute": "s 31(2)(c)",
+      "defendants_assertion": "Tribunal failed to apply its mind to the 'take back Singapore' adverse-inference argument",
+      "court_finding": "DKT v DKU 4-condition framework not satisfied — argument not properly before Tribunal as separate issue, not essential, considered, no prejudice",
+      "court_reasoning_paras": "182-184",
+      "court_outcome": "Dismissed",
+      "key_paragraphs": "184"
+    },
+    {
+      "id": "G3",
+      "label": "Outside scope of submission (damages)",
+      "statute": "s 31(2)(d)",
+      "defendants_assertion": "Damages claim in Post-Hearing Brief was new and unpleaded",
+      "court_finding": "Damages alternative was within the pleadings (COD v COE); strike-out properly refused",
+      "court_reasoning_paras": "133-146",
+      "court_outcome": "Dismissed",
+      "key_paragraphs": "146"
+    },
+    {
+      "id": "G4",
+      "label": "Outside scope / natural justice on Order 3 specific performance",
+      "statute": "s 31(2)(c) and (d)",
+      "defendants_assertion": "Specific-performance Order 3 was outside submission and breached natural justice",
+      "court_finding": "Tribunal was authorised to fashion a just regime to enforce cl 13.4; but on sub-paragraphs (d)(ii), (d)(iii), (f) the parties were deprived of an opportunity to be heard on the specific terms",
+      "court_reasoning_paras": "67-107",
+      "court_outcome": "AllowedInPart",
+      "excised_paragraphs": ["Order 3(d)(ii)", "Order 3(d)(iii)", "Order 3(f)"],
+      "enforced_paragraphs": ["Order 3(a)", "Order 3(b)", "Order 3(c)", "Order 3(d)(i)", "Order 3(e)", "Order 3(g)"],
+      "key_paragraphs": "107"
+    }
+  ],
+  "human_findings": [
+    "Tribunal had jurisdiction over the substantive dispute (Franchise Agreements containing arbitration clauses).",
+    "The Final Award did not fall foul of Singapore public policy on the spoliation issue: the Tribunal made findings against Mr Wong on the evidence.",
+    "The DKT v DKU 4-condition framework for 'infra petita' challenges was not made out.",
+    "The damages alternative was within the pleadings under COD v COE — strike-out properly refused.",
+    "The Tribunal was free to fashion a just regime to enforce cl 13.4 specifically and could go beyond a yes/no answer.",
+    "But three sub-paragraphs of Order 3 were not put to the parties for submission on their specific terms (paras 103-105), and so the order is varied to remove (d)(ii), (d)(iii) and (f)."
+  ],
+  "court_orders_para_185": {
+    "(a)": "Application set aside HC/ORC 1222/2025 allowed in part as set out in (b) and (c) below; otherwise dismissed.",
+    "(b)": "HC/ORC 1222/2025 varied so that Order 3(d)(ii), Order 3(d)(iii) and Order 3(f) of the Final Award are not enforced.",
+    "(c)": "The orders of the Tribunal otherwise set out in para 752 of the Final Award be enforced.",
+    "(d-f)": "Costs schedule and submissions to follow within 14 days; costs to be decided on the papers if parties agree."
+  },
+  "fact_summary": "GNC Holdings (US franchisor) obtained a Final Award in Pittsburgh against its Singapore franchisee ONI Global and its related company LAC Global, including specific-performance orders requiring assignment of 54 retail leases. GNC obtained ex parte enforcement in Singapore (HC/ORC 1222/2025). The defendants applied to set aside under Singapore IAA s 31 on four grounds: public policy, natural justice, scope of submission (damages), and scope/natural justice (specific performance). The SICC dismissed three of the four grounds in full but allowed Ground 4 in part: the Tribunal was authorised to fashion a just regime to enforce the post-termination covenant, but did not afford the parties a meaningful opportunity to make submissions on three specific sub-paragraphs of Order 3, which are excised. The award is enforced as varied."
+}

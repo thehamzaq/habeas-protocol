@@ -1,0 +1,253 @@
+## Rule of the Court (NY Convention recognition under Singapore IAA s 31)
+##
+## Source:
+##   - International Arbitration Act 1994 (2020 Rev Ed), Singapore ("IAA").
+##     Section 31 implements Article V of the New York Convention 1958
+##     (recognition and enforcement of foreign arbitral awards) for
+##     Singapore. The grounds for refusing enforcement that are pleaded
+##     in this matter are:
+##       s 31(2)(c) — "a breach of the rules of natural justice occurred
+##                     in connection with the making of the award by which
+##                     the rights of any party have been prejudiced";
+##       s 31(2)(d) — "the award deals with a difference not contemplated
+##                     by or not falling within the terms of the submission
+##                     to arbitration, or contains a decision on a matter
+##                     beyond the scope of the submission to arbitration";
+##       s 31(4)(b) — "enforcement of the award would be contrary to the
+##                     public policy of Singapore".
+##   - DKT v DKU [2025] 1 SLR 806 (CA) — four-condition framework for
+##     "infra petita" natural justice challenges (point properly before
+##     the tribunal; essential to the dispute; tribunal completely failed
+##     to consider it; prejudice).
+##   - COD v COE [2023] 4 SLR 708 — alternative cases "buried" in
+##     pleadings can still be within the submission.
+##
+## This file expresses the rule applied in:
+##   SIC/OA 9/2025 — GNC Holdings LLC v ONI Global Pte Ltd
+##                   and LAC Global (Singapore) Pte Ltd
+##   Judgment of Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ
+##   (delivered by Allsop IJ), 21 October 2025
+##   Neutral citation [2025] SGHC(I) 25.
+##
+## Trace #6 is the first SICC trace and the first to express a
+## *partial* refusal of enforcement: Order 3 of the Tribunal's Final
+## Award is enforced *except for* sub-paragraphs (d)(ii), (d)(iii) and
+## (f), which are excised because the parties were not afforded a
+## meaningful opportunity to make submissions on those specific terms.
+##
+## Methodologically:
+##   #1 (formula)              — pure arithmetic
+##   #2 (deferred conditional) — temporal predicate
+##   #3 (bounded discretion)   — rule strips a filter
+##   #4 (composition over findings) — arithmetic + Booleans
+##   #5 (conjunctive logical composition) — clauses + witnesses + Ladd
+##   #6 (partial statutory refusal) — Boolean disjunction over named
+##                                    statutory grounds, *and* a
+##                                    sub-order excision list. The
+##                                    enforcement decision is no longer
+##                                    binary; it returns a *subset* of
+##                                    the operative paragraphs.
+##
+## This is also the first trace whose rule of decision is a different
+## *legal family* from the other five (Singapore IAA + NY Convention
+## vs DIFC/ADGM English-law-via-statute).
+##
+## ---------------------------------------------------------------------
+## CATALA 1.1.0 NOTES
+##
+## Statutory grounds and order paragraphs are encoded as enumerations
+## (Catala has no `text` primitive). The reasoning shape is:
+##
+##   for each pleaded ground:
+##     defendant supplies a boolean assertion (the ground is made out);
+##     court returns one of {Dismissed, AllowedInFull, AllowedInPart};
+##   the application is allowed iff *at least one* ground is not
+##   Dismissed; the order is varied to remove paragraphs flagged as
+##   AllowedInPart.
+
+```catala
+declaration enumeration GroundId:
+  -- G1_PublicPolicy_S31_4_b
+  -- G2_NaturalJustice_S31_2_c
+  -- G3_OutsideScope_Damages_S31_2_d
+  -- G4_PartialOrder3_S31_2_c_d
+
+declaration enumeration GroundOutcome:
+  -- Dismissed
+  -- AllowedInFull
+  -- AllowedInPart
+
+declaration enumeration Order3Para:
+  -- Para_a
+  -- Para_b
+  -- Para_c
+  -- Para_d_i
+  -- Para_d_ii
+  -- Para_d_iii
+  -- Para_e
+  -- Para_f
+  -- Para_g
+
+declaration enumeration ApplicationDisposition:
+  -- ApplicationDismissedEntirely
+  -- ApplicationAllowedInPart
+  -- AwardSetAside
+
+declaration structure GroundFinding:
+  data ground content GroundId
+  data defendant_made_out content boolean
+  data court_outcome content GroundOutcome
+
+declaration structure ParaFinding:
+  data para content Order3Para
+  data tribunal_heard_party_on_specifics content boolean
+
+declaration structure Disposition:
+  data n_grounds_pleaded content integer
+  data n_grounds_dismissed content integer
+  data n_grounds_partial content integer
+  data n_grounds_full content integer
+  data application_disposition content ApplicationDisposition
+  data award_enforced content boolean
+  data n_paras_excised content integer
+
+declaration scope CompositeJudgment:
+  input grounds content list of GroundFinding
+  input order3_paras content list of ParaFinding
+  output disposition content Disposition
+  output excised_paras content list of Order3Para
+  output enforced_paras content list of Order3Para
+
+scope CompositeJudgment:
+  ## Excise an Order 3 paragraph iff the Tribunal did *not* hear the
+  ## parties on its specific terms — the partial-refusal logic from
+  ## paras 103-107 of the judgment.
+  definition excised_paras equals
+    map each p among order3_paras
+    such that not p.tribunal_heard_party_on_specifics
+    to p.para
+  definition enforced_paras equals
+    map each p among order3_paras
+    such that p.tribunal_heard_party_on_specifics
+    to p.para
+  definition disposition equals
+    let dismissed equals
+      number of (list of g among grounds
+                 such that g.court_outcome = Dismissed)
+    in
+    let partial equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInPart)
+    in
+    let full equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInFull)
+    in
+    let pleaded equals number of grounds in
+    let app equals
+      if full > 0 then AwardSetAside
+      else (if partial > 0 then ApplicationAllowedInPart
+            else ApplicationDismissedEntirely)
+    in
+    Disposition {
+      -- n_grounds_pleaded: pleaded
+      -- n_grounds_dismissed: dismissed
+      -- n_grounds_partial: partial
+      -- n_grounds_full: full
+      -- application_disposition: app
+      -- award_enforced: full = 0
+      -- n_paras_excised:
+           number of (list of p among order3_paras
+                      such that not p.tribunal_heard_party_on_specifics)
+    }
+```
+
+## Test — facts of SIC/OA 9/2025
+
+```catala
+#[test] declaration scope TestGNCHoldings:
+  composite scope CompositeJudgment
+  output disposition content Disposition
+  output excised_paras content list of Order3Para
+  output enforced_paras content list of Order3Para
+
+scope TestGNCHoldings:
+  definition disposition equals composite.disposition
+  definition excised_paras equals composite.excised_paras
+  definition enforced_paras equals composite.enforced_paras
+
+  ## The four grounds of resistance to enforcement (paras 14, 16).
+  ## Defendants asserted each ground was made out; the court ruled.
+  ##
+  ## Ground 1 — public policy (spoliation/fraud), s 31(4)(b).
+  ##   Court held no public-policy violation: the Tribunal thoroughly
+  ##   addressed the spoliation evidence (paras 148-184).
+  ## Ground 2 — natural justice, s 31(2)(c).
+  ##   DKT v DKU four-condition framework not satisfied (para 182):
+  ##   the "take back Singapore" argument was not properly before the
+  ##   Tribunal as a separate issue, was not essential, was considered,
+  ##   no prejudice. Claim fails (para 184).
+  ## Ground 3 — outside scope, s 31(2)(d) (damages).
+  ##   Court held the alternative damages case fell within the pleadings
+  ##   as understood under COD v COE (paras 135-138).
+  ## Ground 4 — outside scope / natural justice on Order 3 sub-paragraphs,
+  ##   s 31(2)(c) and (d). Court held the Tribunal was authorised to
+  ##   fashion a just regime for cl 13.4 generally (paras 99-102), but
+  ##   did not afford the parties an opportunity to be heard on certain
+  ##   specific sub-paragraphs (paras 103-105). Allowed in part (para 107).
+  definition composite.grounds equals [
+    GroundFinding {
+      -- ground: G1_PublicPolicy_S31_4_b
+      -- defendant_made_out: false
+      -- court_outcome: Dismissed
+    };
+    GroundFinding {
+      -- ground: G2_NaturalJustice_S31_2_c
+      -- defendant_made_out: false
+      -- court_outcome: Dismissed
+    };
+    GroundFinding {
+      -- ground: G3_OutsideScope_Damages_S31_2_d
+      -- defendant_made_out: false
+      -- court_outcome: Dismissed
+    };
+    GroundFinding {
+      -- ground: G4_PartialOrder3_S31_2_c_d
+      -- defendant_made_out: true
+      -- court_outcome: AllowedInPart
+    }
+  ]
+
+  ## Order 3 of the Tribunal's Final Award (para 752 of the FA).
+  ## A paragraph is excised iff the Tribunal did *not* hear the
+  ## parties on its specific terms (paras 103-105).
+  definition composite.order3_paras equals [
+    ParaFinding { -- para: Para_a      -- tribunal_heard_party_on_specifics: true  };
+    ParaFinding { -- para: Para_b      -- tribunal_heard_party_on_specifics: true  };
+    ParaFinding { -- para: Para_c      -- tribunal_heard_party_on_specifics: true  };
+    ParaFinding { -- para: Para_d_i    -- tribunal_heard_party_on_specifics: true  };
+    ParaFinding { -- para: Para_d_ii   -- tribunal_heard_party_on_specifics: false };
+    ParaFinding { -- para: Para_d_iii  -- tribunal_heard_party_on_specifics: false };
+    ParaFinding { -- para: Para_e      -- tribunal_heard_party_on_specifics: true  };
+    ParaFinding { -- para: Para_f      -- tribunal_heard_party_on_specifics: false };
+    ParaFinding { -- para: Para_g      -- tribunal_heard_party_on_specifics: true  }
+  ]
+
+  ## --- Court holdings, transcribed from para 185(a)-(c) ---
+  ## (a) "the application by the Defendants ... is allowed in part as
+  ##     set out in (b) and (c) below, but is otherwise dismissed."
+  assertion disposition.application_disposition = ApplicationAllowedInPart
+  ## (b) "HC/ORC 1222/2025 be varied such that the parts of the
+  ##     orders of the Tribunal in Order 3(d)(ii) and Order 3(d)(iii)
+  ##     ... and Order 3(f) ... not be enforced."
+  assertion disposition.n_paras_excised = 3
+  ## (c) "The orders of the Tribunal otherwise set out in para 752 of
+  ##     the Final Award be enforced." => the Award itself stands.
+  assertion disposition.award_enforced = true
+  ## Three of the four grounds were dismissed.
+  assertion disposition.n_grounds_dismissed = 3
+  ## One ground was allowed in part.
+  assertion disposition.n_grounds_partial = 1
+  ## No ground was fully allowed.
+  assertion disposition.n_grounds_full = 0
+```

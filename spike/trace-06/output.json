@@ -1,0 +1,24 @@
+{
+  "disposition": {
+    "n_grounds_pleaded": 4.0,
+    "n_grounds_dismissed": 3.0,
+    "n_grounds_partial": 1.0,
+    "n_grounds_full": 0.0,
+    "application_disposition": "ApplicationAllowedInPart",
+    "award_enforced": true,
+    "n_paras_excised": 3.0
+  },
+  "excised_paras": [
+    "Para_d_ii",
+    "Para_d_iii",
+    "Para_f"
+  ],
+  "enforced_paras": [
+    "Para_a",
+    "Para_b",
+    "Para_c",
+    "Para_d_i",
+    "Para_e",
+    "Para_g"
+  ]
+}
