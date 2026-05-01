@@ -116,14 +116,98 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <header class="hero">
-  <div class="kicker">Maxim Labs · Working Paper v0.2 · <a href="#atlas" class="nav-link">Habeas Atlas ↓</a></div>
+  <div class="kicker">Maxim Labs · Working Paper v0.2 · <a href="#atlas" class="nav-link">Atlas ↓</a> · <a href="playground.html" class="nav-link">Playground →</a> · <a href="simulator.html" class="nav-link">Simulator →</a> · <a href="authoring.html" class="nav-link">Authoring →</a> · <a href="ingest.html" class="nav-link">Ingestion →</a> · <a href="conflicts.html" class="nav-link">Cross-border →</a> · <a href="api.html" class="nav-link">API →</a> <span class="source-badge" id="sourceBadge" title="Data source"></span></div>
   <h1>Habeas Protocol</h1>
-  <p class="subhead">A constitutional reframing of the “Legal Operating System for Digital Worlds” thesis, grounded in empirical analysis of three operating special-jurisdiction tribunals: the <strong>DIFC Courts</strong> in Dubai, the <strong>ADGM Courts</strong> in Abu Dhabi, and the <strong>Singapore International Commercial Court (SICC)</strong>. <span class="muted">Updated April 28, 2026.</span></p>
-  <p class="abstract">
-    121 judgments coded against six per-ruling primitives a digital tribunal must satisfy, plus two architectural system properties. 39 form a hand-coded gold set (32 DIFC + 7 ADGM); the remaining 82 entries (69 ADGM + 13 SICC) are AI-triaged and AI-graded against the same rubric, with per-entry provenance. All three tribunals score at near-ceiling: SICC averages 1.95 / 2.00, ADGM 1.91, DIFC 1.72. The saturation pattern survives the 10× ADGM sample expansion (1.93 at n=7 → 1.91 at n=76) and replicates across a third operating tribunal in a different legal family (English-law-via-statute vs Singapore common law). All three score 2/2 on both system properties. Four executable traces from the corpus demonstrate the protocol covers static rules, deferred conditionals, rule-bounded human judgment, and arithmetic composition over substantive findings. The tribunals already exist; what is missing is the computational layer.
-  </p>
+  <p class="subhead">A computational layer for three operating commercial tribunals — the <strong>DIFC Courts</strong> in Dubai, the <strong>ADGM Courts</strong> in Abu Dhabi, and the <strong>Singapore International Commercial Court (SICC)</strong>. <span class="muted">Updated April 28, 2026.</span></p>
 </header>
+
+<main id="main">
+
+<aside class="howto" id="start-here">
+  <span class="howto-tag">Start here</span>
+  <h2>What this is, in plain words</h2>
+  <p>
+    The <strong>Habeas Protocol</strong> is a software layer for international commercial courts. When two businesses in different countries have a contract dispute — say a Dubai-based fintech and a UK supplier — they take it to a specialised commercial court like <strong>DIFC</strong> (Dubai), <strong>ADGM</strong> (Abu Dhabi), or <strong>SICC</strong> (Singapore). Those courts publish their rules and their judgments, but they live in PDFs. There is no way today for software to ask <em>"what would this court do with this case?"</em> This dashboard demonstrates a working answer to that question.
+  </p>
+  <p>
+    Below you will find <strong>121 real judgments</strong> from those three courts, each scored against six properties a digital tribunal needs to satisfy. Twelve real legal rules from those judgments have been encoded in <strong>Catala</strong>, an open-source programming language designed for law. Seven worked examples reproduce real courts' real arithmetic on real fact patterns. You can run the rules yourself, draft new ones, and route hypothetical cross-border cases — without needing to read a line of legalese.
+  </p>
+  <p>
+    The bet of this project is the <em>opposite</em> of most "Web3 court" proposals: the courts already exist and are excellent. What is missing is the computational layer.
+  </p>
+
+  <h3>Pages on this dashboard</h3>
+  <p style="font-size:13.5px;margin-bottom:10px;">Seven pages. Start with the Atlas below if you are exploring the data; jump straight to the Playground if you want to see a rule run.</p>
+  <div class="howto-grid">
+    <div class="howto-card">
+      <div class="howto-card-h">01 — Atlas <span style="color:var(--ink-soft);">(this page)</span></div>
+      <a class="howto-card-link" href="#atlas">The 121 fingerprints</a>
+      <p>One sigil per judgment. The fingerprint is generated deterministically from how that ruling scored on the six primitives. Same scores → same shape. Click any cell to see the full record.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-card-h">02 — Playground</div>
+      <a class="howto-card-link" href="playground.html">Run a single rule →</a>
+      <p>Pick one of the 12 encoded rules, fill in a fact pattern, see the rule's verdict — and the trace of why it reached that conclusion.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-card-h">03 — Simulator</div>
+      <a class="howto-card-link" href="simulator.html">Run a whole dispute →</a>
+      <p>Pick a claim type and a tribunal. Every applicable rule runs against the same fact pattern; the simulator aggregates them into a predicted disposition.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-card-h">04 — Authoring</div>
+      <a class="howto-card-link" href="authoring.html">Draft a new rule →</a>
+      <p>A wizard that emits a Catala module from a form. Validates against the live typechecker before saving back to the rule library.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-card-h">05 — Ingestion</div>
+      <a class="howto-card-link" href="ingest.html">Extract facts from text →</a>
+      <p>Paste a judgment, contract, or pleading. A regex sweep returns a structured fact skeleton you can drop into a new trace.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-card-h">06 — Cross-border</div>
+      <a class="howto-card-link" href="conflicts.html">Route a multi-jurisdiction dispute →</a>
+      <p>Pick a local forum, an originating forum (if a foreign judgment is in play), and a claim type. The router returns the rule chain — recognition gates first, then substantive rules.</p>
+    </div>
+    <div class="howto-card">
+      <div class="howto-card-h">07 — API</div>
+      <a class="howto-card-link" href="api.html">Read the API spec →</a>
+      <p>Everything on this dashboard is backed by a 17-endpoint API. The page renders the OpenAPI 3.0 spec via Redoc. First-party Python and TypeScript clients live under <code>clients/</code>.</p>
+    </div>
+  </div>
+
+  <h3>How to read the page below</h3>
+  <ol>
+    <li><strong>At a glance</strong> — headline numbers: judgment count per tribunal, mean scores, working traces.</li>
+    <li><strong>The Atlas</strong> — every judgment, one sigil each. Filter by tribunal; click a sigil for the full record. Same scores produce the same fingerprint, so duplicates and outliers are visible at a glance.</li>
+    <li><strong>The six primitives</strong> — the rubric every ruling is scored against. Each primitive is a Yes / Partial / No question about the judgment's structure.</li>
+    <li><strong>Heatmap + bar chart</strong> — how each tribunal scores on each primitive, then a side-by-side mean comparison.</li>
+    <li><strong>System properties</strong> — two architectural checks (separation of powers, enforceability) at the tribunal level rather than per-ruling.</li>
+    <li><strong>Working traces</strong> — seven worked examples. Each is a rule + a fact pattern + the calculation. Click "view trace" to step through.</li>
+    <li><strong>All judgments</strong> — searchable, sortable table of the full corpus.</li>
+  </ol>
+
+  <h3>Glossary — quick definitions</h3>
+  <dl class="howto-glossary">
+    <dt>Tribunal</dt><dd>A court that hears a particular kind of dispute. <code>DIFC</code>, <code>ADGM</code>, and <code>SICC</code> are the three commercial tribunals coded in this corpus.</dd>
+    <dt>Primitive</dt><dd>One of six properties — for example "rule clearly stated", "evidence dated", "calculation reproducible" — that we score every judgment on. The full rubric is in <code>data/primitives.json</code>.</dd>
+    <dt>System property</dt><dd>An architectural check at the tribunal level — separation of powers, enforceability under the New York Convention. Not per-ruling.</dd>
+    <dt>Catala</dt><dd>An open-source programming language designed for encoding legal rules. It compiles prose-and-formula source into a typechecked, executable predicate.</dd>
+    <dt>Trace</dt><dd>A worked example: rule + fact pattern + step-by-step output that reproduces a real judgment's calculation.</dd>
+    <dt>Rule library</dt><dd>The 12 Catala modules under <code>rules/</code>. Each one encodes a specific legal rule from a specific tribunal.</dd>
+    <dt>Certification</dt><dd>The lifecycle a rule passes through (<code>draft → submitted → reviewed → certified</code>) before it is safe to rely on. Defined in <code>rules/_certification.yaml</code>.</dd>
+    <dt>Conflict of laws</dt><dd>The rules that decide which jurisdiction's law applies to a cross-border dispute, and which court hears it.</dd>
+    <dt>Coded vs raw</dt><dd>"Coded" judgments have structured primitive scores; "raw" judgments are scraped court documents that are searchable but not yet scored.</dd>
+  </dl>
+
+  <h3>If something looks broken</h3>
+  <p>
+    The dashboard talks to a local API server. If a section says "API unavailable" or a control is greyed out, the API server is not running. From the repo root: <code>python3 api/server.py</code>. The dashboard reaches it at <code>http://127.0.0.1:5544</code>. The static pages still work without the API — only interactive pages (Playground, Simulator, Authoring, Ingestion, Cross-border) need it.
+  </p>
+</aside>
 
 <section class="section">
   <h2>At a glance</h2>
@@ -136,8 +220,21 @@
     <div class="stat"><div class="stat-num" id="siccMean">—</div><div class="stat-label">SICC mean / 2.00</div></div>
     <div class="stat"><div class="stat-num" id="adgmMean">—</div><div class="stat-label">ADGM mean / 2.00</div></div>
     <div class="stat"><div class="stat-num" id="difcMean">—</div><div class="stat-label">DIFC mean / 2.00</div></div>
-    <div class="stat"><div class="stat-num" id="tracesWorking">4</div><div class="stat-label">Working traces</div></div>
+    <div class="stat"><div class="stat-num" id="tracesWorking">7</div><div class="stat-label">Working traces</div></div>
   </div>
+</section>
+
+<section class="section">
+  <h2>Empirical findings</h2>
+  <p class="finding">All three tribunals score at near-ceiling on every per-ruling primitive, and 2/2 on both architectural system properties. The pattern is robust to two stress tests, and four executable traces from the corpus demonstrate the protocol's methodological coverage.</p>
+  <p>Of the 121 judgments scored, <strong>39 form a hand-coded gold set</strong> (32 DIFC + 7 ADGM); the remaining 82 entries (69 ADGM + 13 SICC) are AI-triaged and AI-graded against the same rubric, with per-entry provenance recorded in the <code>coding.coder</code> field.</p>
+  <ul>
+    <li><strong>Sample-size robustness.</strong> The ADGM saturation pattern survives a 10× expansion: mean primitive score drifts from <strong>1.93 at n=7</strong> (hand-coded) to <strong>1.91 at n=76</strong> (hand + AI). The near-ceiling reading isn't an artefact of small-sample noise.</li>
+    <li><strong>Cross-family replication.</strong> SICC at <strong>1.95 / 2.00</strong> replicates the saturation in a third operating tribunal in a different legal family — Singapore common law via the IAA, vs DIFC's own statutes and ADGM's English-law-via-statute. The protocol is not court-specific.</li>
+    <li><strong>Architectural system properties.</strong> All three tribunals score <strong>2/2</strong> on separation of powers (SP1) and enforceability under the New York Convention (SP2). These are the structural pre-conditions for plugging software into the bench.</li>
+    <li><strong>Methodological coverage.</strong> Four executable traces from the corpus show the protocol covers (i) static-rule arithmetic, (ii) deferred conditionals, (iii) rule-bounded human judgment, and (iv) arithmetic composition over substantive findings. Three further traces extend to Boolean composition over contractual interpretation, NY-Convention partial refusal under Singapore IAA s 31, and a third-party-jurisdiction gate under <em>Norwich Pharmacal</em> + <em>Bankers Trust</em> + RDC 28.52.</li>
+  </ul>
+  <p class="finding">The tribunals already exist; what is missing is the computational layer.</p>
 </section>
 
 <section class="section" id="atlas">
@@ -238,12 +335,45 @@
 </section>
 
 <section class="section">
-  <h2>Three working traces</h2>
-  <p>Each trace lifts a rule from the corpus into Catala source plus a Python predicate evaluator and runs it against an event log of the case facts. The three traces span the full spectrum of what the protocol can encode — and, in the case of trace #3, what it cannot.</p>
+  <h2>Seven working traces</h2>
+  <p>Each trace lifts a rule from the corpus into Catala source plus a Python predicate evaluator and runs it against an event log of the case facts. The seven traces span the full methodological spectrum the protocol claims — formula, deferred conditional, bounded discretion, arithmetic composition over substantive findings, Boolean composition over contractual-interpretation findings, partial statutory refusal of NY Convention enforcement under Singapore IAA s 31, and a third-party-jurisdiction gate (Norwich Pharmacal + Bankers Trust + RDC 28.52) over a digital-asset tracing dispute in DIFC's <em>Digital Economy Court</em>. Three tribunals (DIFC + ADGM + SICC) and three legal families (DIFC own statutes, ADGM English-law-via-statute, Singapore IAA + NY Convention) all run through the same predicate engine. Trace #3 is the methodologically necessary one: it shows what the rules <em>cannot</em> fully decide.</p>
   <div class="trace-grid" id="tracesGrid"></div>
-  <p class="finding">
-    <strong>Methodology note:</strong> the third trace is the methodologically necessary one — it shows what the rules <em>cannot</em> fully decide. The protocol bounds, but does not eliminate, the human-judgment residue.
+</section>
+
+<section class="section">
+  <h2>Trace viewer</h2>
+  <p>Pick a trace. The left column is the <strong>rule</strong> as Catala source — the formal specification. The middle column is the <strong>event log</strong> — what happened, with the facts the human judge had to determine. The right column is the <strong>output</strong> — what the predicate produces when run against those facts, with assertions checked against the court's ruling.</p>
+  <div class="viewer">
+    <div class="viewer-tabs" id="viewerTabs"></div>
+    <div class="viewer-meta" id="viewerMeta"></div>
+    <div class="viewer-cols">
+      <div class="viewer-col">
+        <div class="viewer-label">Rule <span class="viewer-sublabel">rule.catala_en</span></div>
+        <pre class="viewer-pre" id="viewerRule"></pre>
+      </div>
+      <div class="viewer-col">
+        <div class="viewer-label">Events <span class="viewer-sublabel">events.json</span></div>
+        <div class="viewer-pre" id="viewerEvents"></div>
+      </div>
+      <div class="viewer-col">
+        <div class="viewer-label">Output <span class="viewer-sublabel">predicate ⟶ court</span></div>
+        <div class="viewer-pre" id="viewerOutput"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Court-convention divergences</h2>
+  <div id="conventionDivergences"></div>
+</section>
+
+<section class="section">
+  <h2>Audit log — recent rule runs</h2>
+  <p class="muted" style="font-size:13.5px;line-height:1.5;max-width:780px;">
+    Every <code>POST /api/rule_run</code> writes a row to <code>rule_runs</code> with the inputs, output, success/failure, latency, and a SHA256 of the canonical inputs. The trail lets the same fact pattern run twice be matched mechanically; failed runs (typecheck errors, malformed inputs) are captured alongside successful ones. Drives the "moat" — every rule's history is auditable back to the call that produced it.
   </p>
+  <div id="auditPanel"></div>
 </section>
 
 <section class="section">
@@ -274,6 +404,8 @@
     <tbody></tbody>
   </table>
 </section>
+
+</main>
 
 <footer class="foot">
   <p><strong>Citation.</strong> Maxim Labs, “Habeas Protocol: An Empirical Analysis of DIFC + ADGM Courts as Working Prototypes for Constitutional Digital Tribunals,” v0.2 (April 2026).</p>

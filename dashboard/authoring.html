@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeas Protocol — Rule Authoring</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .au-wrap { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+  .au-back { font-size: 12.5px; }
+  .au-grid { display: grid; grid-template-columns: 420px 1fr; gap: 24px; margin-top: 18px; }
+  @media (max-width: 980px) { .au-grid { grid-template-columns: 1fr; } }
+
+  .au-panel { border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; background: #fff; }
+  .au-panel h3 { margin: 0 0 10px; font-family: "Helvetica Neue","Arial",sans-serif; font-size: 13px; letter-spacing: 0.10em; text-transform: uppercase; }
+
+  .au-field { margin: 8px 0; }
+  .au-field label { display: block; font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--muted); margin-bottom: 3px; }
+  .au-field input, .au-field select, .au-field textarea {
+    width: 100%; box-sizing: border-box;
+    font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+    padding: 5px 7px; border: 1px solid var(--border); border-radius: 3px; background: #fff;
+  }
+  .au-field textarea { resize: vertical; }
+
+  .au-templates { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .au-tmpl { padding: 6px 12px; border: 1px solid var(--border); border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; font-family: "JetBrains Mono", monospace; }
+  .au-tmpl[data-selected="1"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .au-row { display: flex; align-items: center; gap: 6px; margin: 4px 0; }
+  .au-row input { flex: 1; }
+  .au-row button { font-size: 11px; padding: 3px 8px; cursor: pointer; background: #fff; color: #c33; border: 1px solid var(--border); border-radius: 3px; }
+  .au-add { font-size: 11.5px; padding: 4px 10px; cursor: pointer; background: #fff; border: 1px solid var(--border); border-radius: 3px; margin-top: 6px; }
+
+  .au-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .au-actions button { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 6px 12px; cursor: pointer; border: none; border-radius: 3px; }
+  .au-actions button.primary { background: var(--ink); color: #fff; }
+  .au-actions button.secondary { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+  .au-actions button[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+  .au-source {
+    background: #1a1d24; color: #e8e8e0; padding: 12px 14px; border-radius: 4px;
+    font-family: "JetBrains Mono", monospace; font-size: 11.5px; line-height: 1.5;
+    white-space: pre; overflow-x: auto; min-height: 480px;
+    max-height: 720px; overflow-y: auto;
+  }
+  .au-status { margin-top: 10px; padding: 10px 12px; border-radius: 3px; font-size: 12.5px; font-family: "JetBrains Mono", monospace; }
+  .au-status-ok { background: #e6f5ec; color: #1a4a2a; border: 1px solid #b9deb9; }
+  .au-status-err { background: #fdebec; color: #7a2a2a; border: 1px solid #f0a3a3; white-space: pre-wrap; word-break: break-word; }
+  .au-status-info { background: #f3f1ea; color: var(--ink); border: 1px solid var(--border); }
+
+  .au-tmpl-blurb { font-size: 12px; color: var(--muted); line-height: 1.45; margin: 4px 0 12px; padding: 8px 10px; background: #fafaf6; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="au-wrap">
+  <p class="au-back"><a href="index.html">← back to dashboard</a> · <a href="playground.html">playground</a> · <a href="simulator.html">simulator</a></p>
+  <h1>Rule authoring</h1>
+  <p class="muted" style="font-size:13.5px;line-height:1.55;max-width:780px;">
+    Pick a rule shape, fill in the form, and the wizard emits a Catala module. Validate against the live <code>catala typecheck</code> + <code>catala interpret</code>. Save back to <code>rules/</code> if the API is started in admin mode (<code>HABEAS_ADMIN_MODE=1 python3 api/server.py</code>) — otherwise download the file. The generated module ships with a single <code>#[test]</code> scope using the values you entered, so saving immediately wires it into CI alongside the existing rule library.
+  </p>
+
+  <aside class="howto">
+    <span class="howto-tag">How to use this page</span>
+    <h2>Draft a new rule, validate it, add it to the library</h2>
+    <p>
+      Most legal rules fall into a small number of <strong>shapes</strong>: threshold tests (does X exceed Y?), multi-prong tests (do all of A, B, C hold?), arithmetic awards (rate × period), gate-and-act (admissibility before substance). This page lets you produce a working Catala rule by picking a shape and filling in a form — no Catala syntax required. The result is a real, typechecked rule module identical in structure to the 12 already in the library.
+    </p>
+    <h3>Three steps</h3>
+    <ol>
+      <li><strong>Pick a shape</strong> on the left. Each shape comes with a short blurb explaining when to use it. The form below adapts to the shape.</li>
+      <li><strong>Fill in the form</strong> — rule name, jurisdiction, source citation, the actual logic (prongs / threshold / formula), and at least one test case.</li>
+      <li><strong>Validate.</strong> The right-hand panel shows the live Catala source as you type. "Validate" runs <code>catala typecheck</code> against it. "Download" gives you the <code>.catala_en</code> file. "Save to rules/" writes it directly into the repo (admin mode only).</li>
+    </ol>
+    <h3>What you'll get</h3>
+    <ul>
+      <li>A Catala module under <code>rules/&lt;your_rule_id&gt;.catala_en</code> with a typechecked predicate.</li>
+      <li>A metadata file <code>rules/&lt;your_rule_id&gt;_metadata.json</code> with the rule's state set to <code>draft</code> and your authorship recorded.</li>
+      <li>A <code>#[test]</code> scope using the test inputs you entered, which CI runs on every push.</li>
+      <li>Auto-registration in the playground and simulator's rule pickers.</li>
+    </ul>
+    <p style="font-size:13px;margin-top:10px;">New rules enter the certification lifecycle at <code>draft</code>. To advance to <code>submitted</code>, open a PR. See <code>rules/_certification.yaml</code> for the full process.</p>
+  </aside>
+
+  <div class="au-grid">
+    <!-- Left: form -->
+    <div class="au-panel" id="formPanel">
+      <h3>Shape</h3>
+      <div class="au-templates" id="templates"></div>
+      <div class="au-tmpl-blurb" id="tmplBlurb"></div>
+      <div id="formBody"></div>
+      <div class="au-actions">
+        <button class="primary" id="validateBtn">Validate</button>
+        <button class="secondary" id="downloadBtn" disabled>Download .catala_en</button>
+        <button class="secondary" id="saveBtn" disabled>Save to rules/</button>
+      </div>
+      <div class="au-status au-status-info" id="status">Edit the form on the left, then validate.</div>
+    </div>
+
+    <!-- Right: live source -->
+    <div class="au-panel">
+      <h3>Generated Catala source</h3>
+      <pre class="au-source" id="source">(pick a shape on the left)</pre>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+let API_BASE = null;
+let CURRENT_TMPL = null;
+let LAST_SOURCE = null;
+
+const escape = s => String(s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+async function findApi() {
+  for (const base of API_BASE_CANDIDATES) {
+    const root = base.endsWith('/api') ? base.slice(0, -4) : base;
+    try {
+      const r = await fetch(`${root}/api/health`);
+      if (r.ok) return root;
+    } catch (e) {}
+  }
+  return null;
+}
+
+// ---- templates ----
+//
+// Each template knows: how to render the form, how to extract values
+// from it, and how to render Catala source from those values. A few
+// shapes cover most of the existing rule library.
+
+const TEMPLATES = {
+  conjunctive: {
+    label: 'Conjunctive test',
+    blurb: 'A conjunctive logical test (e.g. Caparo three-stage, Ladd v Marshall, summary-judgment two-limb). Output is true iff every named element is satisfied.',
+    defaults: () => ({
+      module_name: 'my_conjunctive_rule',
+      scope_name: 'MyTest',
+      source: 'Source citation here (case / statute / rule)',
+      element_struct: 'Facts',
+      output_struct: 'Disposition',
+      output_field: 'all_satisfied',
+      elements: ['element_one', 'element_two'],
+      test_values: [true, true],
+      test_expected_satisfied: true,
+    }),
+    render: (v) => `
+      <div class="au-field"><label>module name (filename: rules/&lt;module_name&gt;.catala_en)</label><input id="f-module_name" value="${escape(v.module_name)}"></div>
+      <div class="au-field"><label>scope name (PascalCase)</label><input id="f-scope_name" value="${escape(v.scope_name)}"></div>
+      <div class="au-field"><label>source citation (free text — appears in the docstring)</label><input id="f-source" value="${escape(v.source)}"></div>
+      <div class="au-field"><label>input struct name (PascalCase)</label><input id="f-element_struct" value="${escape(v.element_struct)}"></div>
+      <div class="au-field"><label>output struct name (PascalCase)</label><input id="f-output_struct" value="${escape(v.output_struct)}"></div>
+      <div class="au-field"><label>output field (snake_case boolean)</label><input id="f-output_field" value="${escape(v.output_field)}"></div>
+      <div class="au-field"><label>elements (snake_case boolean inputs)</label>
+        <div id="elements-list">
+          ${v.elements.map((e, i) => `<div class="au-row"><input data-elem="${i}" value="${escape(e)}"><button data-action="rm-elem" data-i="${i}">×</button></div>`).join('')}
+        </div>
+        <button class="au-add" data-action="add-elem">+ element</button>
+      </div>
+      <div class="au-field"><label>#[test] scope: which inputs are true?</label>
+        <div id="test-list">
+          ${v.elements.map((e, i) => `<div class="au-row"><span style="flex:1;font-family:JetBrains Mono,monospace;font-size:12px">${escape(e)}</span>
+            <select data-test="${i}">
+              <option value="true"${v.test_values[i] ? ' selected' : ''}>true</option>
+              <option value="false"${!v.test_values[i] ? ' selected' : ''}>false</option>
+            </select></div>`).join('')}
+        </div>
+      </div>
+      <div class="au-field"><label>expected result (assertion)</label>
+        <select id="f-test_expected_satisfied">
+          <option value="true"${v.test_expected_satisfied ? ' selected' : ''}>true</option>
+          <option value="false"${!v.test_expected_satisfied ? ' selected' : ''}>false</option>
+        </select>
+      </div>
+    `,
+    collect: () => ({
+      module_name: document.getElementById('f-module_name').value.trim(),
+      scope_name: document.getElementById('f-scope_name').value.trim(),
+      source: document.getElementById('f-source').value.trim(),
+      element_struct: document.getElementById('f-element_struct').value.trim(),
+      output_struct: document.getElementById('f-output_struct').value.trim(),
+      output_field: document.getElementById('f-output_field').value.trim(),
+      elements: Array.from(document.querySelectorAll('[data-elem]')).map(e => e.value.trim()).filter(Boolean),
+      test_values: Array.from(document.querySelectorAll('[data-test]')).map(e => e.value === 'true'),
+      test_expected_satisfied: document.getElementById('f-test_expected_satisfied').value === 'true',
+    }),
+    emit: (v) => {
+      const elemFields = v.elements.map(e => `  data ${e} content boolean`).join('\n');
+      const conjunction = v.elements.map(e => `facts.${e}`).join('\n      and ');
+      const testValues = v.elements.map((e, i) => `      -- ${e}: ${v.test_values[i]}`).join('\n');
+      return `## ${v.module_name} — auto-generated by the rule authoring wizard
+##
+## Source: ${v.source || '(unspecified)'}
+##
+## Edit this docstring to capture the legal source and reasoning. The
+## ${v.scope_name} scope is a conjunctive test over the named elements;
+## ${v.output_field} is true iff every element is satisfied.
+
+\`\`\`catala
+declaration structure ${v.element_struct}:
+${elemFields}
+
+declaration structure ${v.output_struct}:
+  data ${v.output_field} content boolean
+
+declaration scope ${v.scope_name}:
+  input facts content ${v.element_struct}
+  output disposition content ${v.output_struct}
+
+scope ${v.scope_name}:
+  definition disposition equals
+    ${v.output_struct} {
+      -- ${v.output_field}:
+        ${conjunction}
+    }
+\`\`\`
+
+## Test — generated from the values above. Adjust the values before
+## saving if you want a different worked example.
+
+\`\`\`catala
+#[test] declaration scope Test${v.scope_name}:
+  composite scope ${v.scope_name}
+  output disposition content ${v.output_struct}
+
+scope Test${v.scope_name}:
+  definition disposition equals composite.disposition
+  definition composite.facts equals
+    ${v.element_struct} {
+${testValues}
+    }
+  assertion disposition.${v.output_field} = ${v.test_expected_satisfied}
+\`\`\`
+`;
+    },
+  },
+
+  formula: {
+    label: 'Formula',
+    blurb: 'A pure arithmetic formula over named decimal inputs (e.g. RDC Part 38 standard-basis costs, simple interest accruals). Pick a formula shape; the wizard wires the arithmetic.',
+    defaults: () => ({
+      module_name: 'my_formula_rule',
+      scope_name: 'MyAssessment',
+      source: 'Source citation',
+      input_struct: 'Claim',
+      output_struct: 'Award',
+      inputs: ['hours_worked', 'hourly_rate_aed', 'reasonable_disbursements_aed'],
+      output_field: 'total_aed',
+      formula: 'hours_worked * hourly_rate_aed + reasonable_disbursements_aed',
+      test_values: [24.0, 250.0, 1121.75],
+      test_expected: 7121.75,
+    }),
+    render: (v) => `
+      <div class="au-field"><label>module name</label><input id="f-module_name" value="${escape(v.module_name)}"></div>
+      <div class="au-field"><label>scope name</label><input id="f-scope_name" value="${escape(v.scope_name)}"></div>
+      <div class="au-field"><label>source citation</label><input id="f-source" value="${escape(v.source)}"></div>
+      <div class="au-field"><label>input struct name</label><input id="f-input_struct" value="${escape(v.input_struct)}"></div>
+      <div class="au-field"><label>output struct name</label><input id="f-output_struct" value="${escape(v.output_struct)}"></div>
+      <div class="au-field"><label>inputs (decimal, snake_case)</label>
+        <div id="inputs-list">${v.inputs.map((x, i) => `<div class="au-row"><input data-input="${i}" value="${escape(x)}"><button data-action="rm-input" data-i="${i}">×</button></div>`).join('')}</div>
+        <button class="au-add" data-action="add-input">+ input</button>
+      </div>
+      <div class="au-field"><label>output field</label><input id="f-output_field" value="${escape(v.output_field)}"></div>
+      <div class="au-field"><label>formula (use the input names exactly; Catala arithmetic ops: + - * /)</label><input id="f-formula" value="${escape(v.formula)}"></div>
+      <div class="au-field"><label>#[test] scope: input values</label>
+        <div id="test-list">${v.inputs.map((x, i) => `<div class="au-row"><span style="flex:1;font-family:JetBrains Mono,monospace;font-size:12px">${escape(x)}</span><input data-test="${i}" value="${v.test_values[i] ?? '0'}" style="flex:1"></div>`).join('')}</div>
+      </div>
+      <div class="au-field"><label>expected output value</label><input id="f-test_expected" value="${v.test_expected}"></div>
+    `,
+    collect: () => ({
+      module_name: document.getElementById('f-module_name').value.trim(),
+      scope_name: document.getElementById('f-scope_name').value.trim(),
+      source: document.getElementById('f-source').value.trim(),
+      input_struct: document.getElementById('f-input_struct').value.trim(),
+      output_struct: document.getElementById('f-output_struct').value.trim(),
+      inputs: Array.from(document.querySelectorAll('[data-input]')).map(e => e.value.trim()).filter(Boolean),
+      output_field: document.getElementById('f-output_field').value.trim(),
+      formula: document.getElementById('f-formula').value.trim(),
+      test_values: Array.from(document.querySelectorAll('[data-test]')).map(e => e.value.trim()),
+      test_expected: document.getElementById('f-test_expected').value.trim(),
+    }),
+    emit: (v) => {
+      const inFields = v.inputs.map(x => `  data ${x} content decimal`).join('\n');
+      const refFormula = v.inputs.reduce((acc, x) => acc.split(x).join(`claim.${x}`), v.formula);
+      const testValues = v.inputs.map((x, i) => `      -- ${x}: ${v.test_values[i]}`).join('\n');
+      return `## ${v.module_name} — auto-generated by the rule authoring wizard
+##
+## Source: ${v.source || '(unspecified)'}
+##
+## A pure-arithmetic predicate. Edit the formula or the test values
+## before saving to capture the rule of decision precisely.
+
+\`\`\`catala
+declaration structure ${v.input_struct}:
+${inFields}
+
+declaration structure ${v.output_struct}:
+  data ${v.output_field} content decimal
+
+declaration scope ${v.scope_name}:
+  input claim content ${v.input_struct}
+  output award content ${v.output_struct}
+
+scope ${v.scope_name}:
+  definition award equals
+    ${v.output_struct} {
+      -- ${v.output_field}: ${refFormula}
+    }
+\`\`\`
+
+## Test — generated from the values above.
+
+\`\`\`catala
+#[test] declaration scope Test${v.scope_name}:
+  composite scope ${v.scope_name}
+  output award content ${v.output_struct}
+
+scope Test${v.scope_name}:
+  definition award equals composite.award
+  definition composite.claim equals
+    ${v.input_struct} {
+${testValues}
+    }
+  assertion award.${v.output_field} = ${v.test_expected}
+\`\`\`
+`;
+    },
+  },
+
+  multi_ground: {
+    label: 'Multi-ground disposition',
+    blurb: 'Several named statutory grounds, each with an enum outcome (Dismissed / AllowedInPart / AllowedInFull). The application disposition is computed: AwardSetAside if any full, else InPart if any partial, else DismissedEntirely. Mirrors the IAA s 31 / ADGM Arbitration Regulations shape.',
+    defaults: () => ({
+      module_name: 'my_multiground_rule',
+      scope_name: 'MyRefusal',
+      source: 'Source citation',
+      ground_enum: 'GroundId',
+      ground_values: ['Ground_A', 'Ground_B', 'Ground_C'],
+      test_outcomes: ['Dismissed', 'Dismissed', 'AllowedInPart'],
+    }),
+    render: (v) => `
+      <div class="au-field"><label>module name</label><input id="f-module_name" value="${escape(v.module_name)}"></div>
+      <div class="au-field"><label>scope name</label><input id="f-scope_name" value="${escape(v.scope_name)}"></div>
+      <div class="au-field"><label>source citation</label><input id="f-source" value="${escape(v.source)}"></div>
+      <div class="au-field"><label>ground enum name (PascalCase)</label><input id="f-ground_enum" value="${escape(v.ground_enum)}"></div>
+      <div class="au-field"><label>ground values (PascalCase enum constructors)</label>
+        <div id="grounds-list">${v.ground_values.map((g, i) => `<div class="au-row"><input data-ground="${i}" value="${escape(g)}"><button data-action="rm-ground" data-i="${i}">×</button></div>`).join('')}</div>
+        <button class="au-add" data-action="add-ground">+ ground</button>
+      </div>
+      <div class="au-field"><label>#[test] scope: outcome per ground</label>
+        <div id="test-list">${v.ground_values.map((g, i) => `<div class="au-row"><span style="flex:1;font-family:JetBrains Mono,monospace;font-size:12px">${escape(g)}</span>
+          <select data-test="${i}">
+            <option value="Dismissed"${v.test_outcomes[i] === 'Dismissed' ? ' selected' : ''}>Dismissed</option>
+            <option value="AllowedInPart"${v.test_outcomes[i] === 'AllowedInPart' ? ' selected' : ''}>AllowedInPart</option>
+            <option value="AllowedInFull"${v.test_outcomes[i] === 'AllowedInFull' ? ' selected' : ''}>AllowedInFull</option>
+          </select></div>`).join('')}</div>
+      </div>
+    `,
+    collect: () => ({
+      module_name: document.getElementById('f-module_name').value.trim(),
+      scope_name: document.getElementById('f-scope_name').value.trim(),
+      source: document.getElementById('f-source').value.trim(),
+      ground_enum: document.getElementById('f-ground_enum').value.trim(),
+      ground_values: Array.from(document.querySelectorAll('[data-ground]')).map(e => e.value.trim()).filter(Boolean),
+      test_outcomes: Array.from(document.querySelectorAll('[data-test]')).map(e => e.value),
+    }),
+    emit: (v) => {
+      const groundCtors = v.ground_values.map(g => `  -- ${g}`).join('\n');
+      const testFindings = v.ground_values.map((g, i) =>
+        `    GroundFinding { -- ground: ${g} -- court_outcome: ${v.test_outcomes[i] || 'Dismissed'} }`
+      ).join(';\n');
+      // Compute the expected disposition deterministically from the test values
+      const fullCount = v.test_outcomes.filter(o => o === 'AllowedInFull').length;
+      const partCount = v.test_outcomes.filter(o => o === 'AllowedInPart').length;
+      let expectedDisposition;
+      if (fullCount > 0) expectedDisposition = 'ApplicationSetAside';
+      else if (partCount > 0) expectedDisposition = 'ApplicationAllowedInPart';
+      else expectedDisposition = 'ApplicationDismissedEntirely';
+      return `## ${v.module_name} — auto-generated by the rule authoring wizard
+##
+## Source: ${v.source || '(unspecified)'}
+##
+## Each pleaded ground is dismissed, allowed in part, or fully allowed;
+## the application disposition is the rolled-up reading.
+
+\`\`\`catala
+declaration enumeration ${v.ground_enum}:
+${groundCtors}
+
+declaration enumeration GroundOutcome:
+  -- Dismissed
+  -- AllowedInPart
+  -- AllowedInFull
+
+declaration enumeration ApplicationDisposition:
+  -- ApplicationDismissedEntirely
+  -- ApplicationAllowedInPart
+  -- ApplicationSetAside
+
+declaration structure GroundFinding:
+  data ground content ${v.ground_enum}
+  data court_outcome content GroundOutcome
+
+declaration structure RefusalDisposition:
+  data n_grounds_pleaded content integer
+  data n_grounds_dismissed content integer
+  data n_grounds_partial content integer
+  data n_grounds_full content integer
+  data application_disposition content ApplicationDisposition
+
+declaration scope ${v.scope_name}:
+  input grounds content list of GroundFinding
+  output disposition content RefusalDisposition
+
+scope ${v.scope_name}:
+  definition disposition equals
+    let dismissed equals
+      number of (list of g among grounds
+                 such that g.court_outcome = Dismissed)
+    in
+    let partial equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInPart)
+    in
+    let full equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInFull)
+    in
+    let app equals
+      if full > 0 then ApplicationSetAside
+      else (if partial > 0 then ApplicationAllowedInPart
+            else ApplicationDismissedEntirely)
+    in
+    RefusalDisposition {
+      -- n_grounds_pleaded: number of grounds
+      -- n_grounds_dismissed: dismissed
+      -- n_grounds_partial: partial
+      -- n_grounds_full: full
+      -- application_disposition: app
+    }
+\`\`\`
+
+## Test — generated from the outcomes above.
+
+\`\`\`catala
+#[test] declaration scope Test${v.scope_name}:
+  composite scope ${v.scope_name}
+  output disposition content RefusalDisposition
+
+scope Test${v.scope_name}:
+  definition disposition equals composite.disposition
+  definition composite.grounds equals [
+${testFindings}
+  ]
+  assertion disposition.application_disposition = ${expectedDisposition}
+\`\`\`
+`;
+    },
+  },
+};
+
+// ---- form ↔ source plumbing ----
+
+let CURRENT_VALUES = null;
+
+function selectTemplate(key) {
+  CURRENT_TMPL = key;
+  CURRENT_VALUES = TEMPLATES[key].defaults();
+  document.querySelectorAll('.au-tmpl').forEach(el => el.dataset.selected = (el.dataset.tmpl === key) ? '1' : '0');
+  document.getElementById('tmplBlurb').textContent = TEMPLATES[key].blurb;
+  rerenderForm();
+}
+
+function rerenderForm() {
+  document.getElementById('formBody').innerHTML = TEMPLATES[CURRENT_TMPL].render(CURRENT_VALUES);
+  bindFormEvents();
+  updateSource();
+}
+
+function bindFormEvents() {
+  document.querySelectorAll('input, select').forEach(el => {
+    el.oninput = updateSource;
+    el.onchange = updateSource;
+  });
+  document.querySelectorAll('button[data-action]').forEach(btn => {
+    btn.onclick = () => handleAction(btn.dataset.action, btn.dataset.i);
+  });
+}
+
+function handleAction(action, idx) {
+  const v = TEMPLATES[CURRENT_TMPL].collect();
+  CURRENT_VALUES = v;
+  if (action === 'add-elem') {
+    v.elements = [...(v.elements || []), 'new_element'];
+    v.test_values = [...(v.test_values || []), true];
+  } else if (action === 'rm-elem') {
+    const i = parseInt(idx, 10);
+    v.elements.splice(i, 1);
+    v.test_values.splice(i, 1);
+  } else if (action === 'add-input') {
+    v.inputs = [...(v.inputs || []), 'new_input'];
+    v.test_values = [...(v.test_values || []), '0'];
+  } else if (action === 'rm-input') {
+    const i = parseInt(idx, 10);
+    v.inputs.splice(i, 1);
+    v.test_values.splice(i, 1);
+  } else if (action === 'add-ground') {
+    v.ground_values = [...(v.ground_values || []), 'New_Ground'];
+    v.test_outcomes = [...(v.test_outcomes || []), 'Dismissed'];
+  } else if (action === 'rm-ground') {
+    const i = parseInt(idx, 10);
+    v.ground_values.splice(i, 1);
+    v.test_outcomes.splice(i, 1);
+  }
+  rerenderForm();
+}
+
+function updateSource() {
+  if (!CURRENT_TMPL) return;
+  CURRENT_VALUES = TEMPLATES[CURRENT_TMPL].collect();
+  LAST_SOURCE = TEMPLATES[CURRENT_TMPL].emit(CURRENT_VALUES);
+  document.getElementById('source').textContent = LAST_SOURCE;
+  document.getElementById('downloadBtn').disabled = false;
+  setStatus('info', 'Edits live below. Click Validate to typecheck against the live Catala compiler.');
+  document.getElementById('saveBtn').disabled = true;  // re-validate before save
+}
+
+function setStatus(kind, msg) {
+  const el = document.getElementById('status');
+  el.className = `au-status au-status-${kind}`;
+  el.textContent = msg;
+}
+
+// ---- actions ----
+
+// Catala identifier rules: snake_case for fields/values, PascalCase for
+// types/enums. These regexes catch the most common authoring mistakes
+// before the server roundtrip.
+const SNAKE_RE = /^[a-z][a-z0-9_]*$/;
+const PASCAL_RE = /^[A-Z][A-Za-z0-9_]*$/;
+
+function preflightValidate(values) {
+  const errs = [];
+  if (CURRENT_TMPL === 'conjunctive') {
+    if (!SNAKE_RE.test(values.module_name || '')) errs.push(`module_name "${values.module_name}" must be snake_case (^[a-z][a-z0-9_]*$).`);
+    if (!PASCAL_RE.test(values.scope_name || '')) errs.push(`scope_name "${values.scope_name}" must be PascalCase.`);
+    if (!PASCAL_RE.test(values.element_struct || '')) errs.push(`element_struct "${values.element_struct}" must be PascalCase.`);
+    if (!PASCAL_RE.test(values.output_struct || '')) errs.push(`output_struct "${values.output_struct}" must be PascalCase.`);
+    if (!SNAKE_RE.test(values.output_field || '')) errs.push(`output_field "${values.output_field}" must be snake_case.`);
+    if (!values.elements || values.elements.length === 0) errs.push('At least one element is required.');
+    (values.elements || []).forEach(e => { if (!SNAKE_RE.test(e)) errs.push(`element "${e}" must be snake_case.`); });
+    const dup = (values.elements || []).filter((v, i, a) => a.indexOf(v) !== i);
+    if (dup.length) errs.push(`duplicate element name(s): ${[...new Set(dup)].join(', ')}.`);
+  } else if (CURRENT_TMPL === 'formula') {
+    if (!SNAKE_RE.test(values.module_name || '')) errs.push(`module_name "${values.module_name}" must be snake_case.`);
+    if (!PASCAL_RE.test(values.scope_name || '')) errs.push(`scope_name "${values.scope_name}" must be PascalCase.`);
+    if (!PASCAL_RE.test(values.input_struct || '')) errs.push(`input_struct must be PascalCase.`);
+    if (!PASCAL_RE.test(values.output_struct || '')) errs.push(`output_struct must be PascalCase.`);
+    if (!SNAKE_RE.test(values.output_field || '')) errs.push(`output_field must be snake_case.`);
+    if (!values.inputs || values.inputs.length === 0) errs.push('At least one input is required.');
+    (values.inputs || []).forEach(i => { if (!SNAKE_RE.test(i)) errs.push(`input "${i}" must be snake_case.`); });
+    const dup = (values.inputs || []).filter((v, i, a) => a.indexOf(v) !== i);
+    if (dup.length) errs.push(`duplicate input name(s): ${[...new Set(dup)].join(', ')}.`);
+    if (!values.formula || !values.formula.trim()) errs.push('formula is required.');
+  } else if (CURRENT_TMPL === 'multi_ground') {
+    if (!SNAKE_RE.test(values.module_name || '')) errs.push(`module_name must be snake_case.`);
+    if (!PASCAL_RE.test(values.scope_name || '')) errs.push(`scope_name must be PascalCase.`);
+    if (!PASCAL_RE.test(values.ground_enum || '')) errs.push(`ground_enum must be PascalCase.`);
+    if (!values.ground_values || values.ground_values.length === 0) errs.push('At least one ground value is required.');
+    (values.ground_values || []).forEach(g => { if (!PASCAL_RE.test(g)) errs.push(`ground value "${g}" must be PascalCase.`); });
+    const dup = (values.ground_values || []).filter((v, i, a) => a.indexOf(v) !== i);
+    if (dup.length) errs.push(`duplicate ground value(s): ${[...new Set(dup)].join(', ')}.`);
+  }
+  return errs;
+}
+
+async function validateRule() {
+  if (!LAST_SOURCE) return;
+  // Preflight: catch identifier shape errors locally first, since
+  // typecheck error messages on those are noisy.
+  const v = TEMPLATES[CURRENT_TMPL].collect();
+  const localErrs = preflightValidate(v);
+  if (localErrs.length) {
+    setStatus('err', 'preflight check failed:\n  • ' + localErrs.join('\n  • '));
+    document.getElementById('saveBtn').disabled = true;
+    return;
+  }
+  setStatus('info', 'validating…');
+  document.getElementById('saveBtn').disabled = true;
+  if (!API_BASE) {
+    setStatus('err', 'API unavailable — cannot validate. Start with `python3 api/server.py`.');
+    return;
+  }
+  try {
+    const r = await fetch(`${API_BASE}/api/rule_validate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: LAST_SOURCE }),
+    });
+    const data = await r.json();
+    if (!r.ok || !data.ok) {
+      setStatus('err', `validation failed (stage: ${data.stage || 'unknown'}):\n${data.errors || data.error || ''}`);
+      return;
+    }
+    setStatus('ok', `typecheck OK · interpret OK · #[test] scope passed`);
+    document.getElementById('saveBtn').disabled = false;
+  } catch (e) {
+    setStatus('err', String(e));
+  }
+}
+
+function downloadFile() {
+  if (!LAST_SOURCE) return;
+  const v = TEMPLATES[CURRENT_TMPL].collect();
+  const filename = (v.module_name || 'rule') + '.catala_en';
+  const blob = new Blob([LAST_SOURCE], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function saveBack() {
+  if (!LAST_SOURCE) return;
+  const v = TEMPLATES[CURRENT_TMPL].collect();
+  const filename = (v.module_name || 'rule') + '.catala_en';
+  if (!confirm(`Save to rules/${filename}?\nThis writes a file to disk and (if existing) overwrites it.`)) return;
+  setStatus('info', `saving to rules/${filename}…`);
+  try {
+    const r = await fetch(`${API_BASE}/api/rule_save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, source: LAST_SOURCE }),
+    });
+    const data = await r.json();
+    if (!r.ok) {
+      setStatus('err', `save failed: ${data.error || ''}`);
+      return;
+    }
+    if (!data.saved) {
+      setStatus('err', `save refused: ${JSON.stringify(data.validation || {})}`);
+      return;
+    }
+    setStatus('ok', `saved to ${data.path}${data.overwrote_existing ? ' (overwrote existing file)' : ''}. Run \`bash scripts/build_rule_schemas.sh\` to refresh the schema index, then the simulator/playground will see the new rule.`);
+  } catch (e) {
+    setStatus('err', String(e));
+  }
+}
+
+// ---- bootstrap ----
+
+async function bootstrap() {
+  API_BASE = await findApi();
+  if (!API_BASE) {
+    setStatus('err', 'API unavailable. Validation and save-back disabled. Start with `python3 api/server.py` (and `HABEAS_ADMIN_MODE=1` for save-back).');
+  }
+  const tmplDiv = document.getElementById('templates');
+  Object.entries(TEMPLATES).forEach(([k, t]) => {
+    const el = document.createElement('div');
+    el.className = 'au-tmpl';
+    el.dataset.tmpl = k;
+    el.textContent = t.label;
+    el.onclick = () => selectTemplate(k);
+    tmplDiv.appendChild(el);
+  });
+  document.getElementById('validateBtn').onclick = validateRule;
+  document.getElementById('downloadBtn').onclick = downloadFile;
+  document.getElementById('saveBtn').onclick = saveBack;
+  selectTemplate('conjunctive');
+}
+
+bootstrap();
+</script>
+
+</body>
+</html>

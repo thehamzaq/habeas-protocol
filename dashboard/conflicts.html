@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeas Protocol — Cross-Border Routing</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .cb-wrap { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+  .cb-back { font-size: 12.5px; }
+
+  .cb-grid { display: grid; grid-template-columns: 360px 1fr; gap: 24px; margin-top: 18px; }
+  @media (max-width: 980px) { .cb-grid { grid-template-columns: 1fr; } }
+
+  .cb-panel { border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; background: #fff; }
+  .cb-panel h3 { margin: 0 0 10px; font-family: "Helvetica Neue","Arial",sans-serif; font-size: 13px; letter-spacing: 0.10em; text-transform: uppercase; }
+
+  .cb-field { margin: 10px 0; }
+  .cb-field label { display: block; font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+  .cb-field select, .cb-field input { width: 100%; box-sizing: border-box; font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 3px; }
+
+  .cb-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .cb-actions button { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 6px 12px; cursor: pointer; border: none; border-radius: 3px; background: var(--ink); color: #fff; }
+
+  .cb-narrative {
+    background: #fafaf6; border: 1px solid var(--border); border-radius: 4px;
+    padding: 12px 16px; font-family: "Source Serif 4", Georgia, serif; font-size: 13.5px;
+    line-height: 1.6; color: var(--ink);
+  }
+  .cb-narrative-h { font-family: "Helvetica Neue","Arial",sans-serif; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+
+  .cb-flow {
+    margin-top: 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .cb-step {
+    border-left: 3px solid var(--border);
+    padding: 10px 14px;
+    background: #fafaf6; border-radius: 0 3px 3px 0;
+  }
+  .cb-step-h { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .cb-step-num { font-family: "JetBrains Mono", monospace; font-size: 11px; padding: 1px 7px; background: var(--ink); color: #fff; border-radius: 8px; letter-spacing: 0.04em; }
+  .cb-step-title { font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
+  .cb-step-meta { font-size: 11px; color: var(--muted); margin-left: auto; }
+  .cb-step-when { font-size: 12.5px; color: var(--ink); margin-top: 4px; line-height: 1.45; }
+  .cb-step-tag { font-size: 9.5px; padding: 1px 7px; border-radius: 8px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .cb-tag-recognition { background: rgba(220,140,40,0.18); color: #7a4a10; }
+  .cb-tag-substantive { background: rgba(60,120,180,0.16); color: #1a4a73; }
+  .cb-tag-interpretation { background: rgba(80,180,120,0.16); color: #1f5e2e; }
+  .cb-tag-policy { background: rgba(192,73,44,0.18); color: #7a2a1a; }
+
+  .cb-section h4 { font-family: "Helvetica Neue","Arial",sans-serif; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
+
+  .cb-tribunals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 14px; }
+  .cb-trib { padding: 12px 14px; border: 1px solid var(--border); border-radius: 4px; background: #fafaf6; }
+  .cb-trib-h { font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
+  .cb-trib-meta { font-size: 11.5px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+  .cb-blurb { font-size: 13.5px; line-height: 1.55; color: var(--ink); max-width: 820px; }
+  .cb-error { color: #c33; font-size: 12.5px; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="cb-wrap">
+  <p class="cb-back"><a href="index.html">← back to dashboard</a> · <a href="simulator.html">simulator</a> · <a href="playground.html">playground</a></p>
+  <h1>Cross-border dispute routing</h1>
+  <p class="cb-blurb muted">
+    Pick the local forum (where the case is filed), the originating forum (where a foreign judgment / award came from, if any), the claim type, and the governing law. The resolver returns the rule chain — recognition gates first, then substantive rules, with public-policy overrides flagged. Driven by <code>rules/_jurisdictions.json</code> (per-tribunal posture, per-rule jurisdiction, cross-border path catalogue) plus the existing claim-type registry. Encodes the multi-jurisdiction tech of Stage 4: the protocol routes by tribunal-of-filing, and the rule modules tag which jurisdictions they apply in.
+  </p>
+
+  <aside class="howto">
+    <span class="howto-tag">How to use this page</span>
+    <h2>Work out which rules apply when a case crosses borders</h2>
+    <p>
+      Cross-border cases involve more than one legal system. A Singapore arbitral award being enforced in DIFC, for example, has to clear DIFC's <strong>recognition gates</strong> before any substantive rule even gets to apply. This page works out, given a fact pattern, the full <strong>rule chain</strong>: which gates have to be cleared, in what order, with which substantive rules behind them, and which public-policy overrides could trump the result.
+    </p>
+    <h3>Four inputs</h3>
+    <ol>
+      <li><strong>Local forum</strong> — where the case is being filed (DIFC, ADGM, or SICC).</li>
+      <li><strong>Originating forum</strong> — where a foreign judgment or arbitral award came from, if any. Leave blank for purely local disputes.</li>
+      <li><strong>Claim type</strong> — what kind of dispute (e.g. enforcement of a foreign award, summary judgment, fresh-evidence application).</li>
+      <li><strong>Governing law</strong> — the law that governs the substantive contract or instrument, if relevant.</li>
+    </ol>
+    <h3>What you get back</h3>
+    <ul>
+      <li><strong>Recognition gates</strong> — the threshold rules that decide whether the foreign instrument is even admitted (e.g. New York Convention enforceability, public-policy gates).</li>
+      <li><strong>Substantive rules</strong> — the rules that actually decide the dispute, listed in the order the local forum applies them.</li>
+      <li><strong>Public-policy overrides</strong> — any rules flagged as capable of overriding the chain on local-policy grounds. These are highlighted.</li>
+      <li><strong>Source citations</strong> — every rule in the chain links back to its source and its Catala module in the library.</li>
+    </ul>
+    <p style="font-size:13px;margin-top:10px;">The routing graph is curated. Currently three tribunals and a handful of cross-border paths; will expand as the corpus grows.</p>
+  </aside>
+
+  <div class="cb-grid">
+    <div class="cb-panel">
+      <h3>Inputs</h3>
+      <div class="cb-field">
+        <label>local forum (tribunal of filing)</label>
+        <select id="cbForum"></select>
+      </div>
+      <div class="cb-field">
+        <label>originating forum (where the foreign judgment / award came from — leave blank for purely local disputes)</label>
+        <select id="cbOriginating">
+          <option value="">— none / local —</option>
+          <option value="FOREIGN_ARBITRAL_TRIBUNAL">FOREIGN_ARBITRAL_TRIBUNAL</option>
+          <option value="HONG_KONG_HIGH_COURT">HONG_KONG_HIGH_COURT</option>
+          <option value="DIFC">DIFC</option>
+          <option value="ADGM">ADGM</option>
+          <option value="SICC">SICC</option>
+        </select>
+      </div>
+      <div class="cb-field">
+        <label>claim type</label>
+        <select id="cbClaim"></select>
+      </div>
+      <div class="cb-field">
+        <label>governing law (substantive law of decision; defaults to forum's own)</label>
+        <select id="cbLaw">
+          <option value="">— forum default —</option>
+          <option value="ENG">ENG · English common law</option>
+          <option value="DIFC">DIFC · DIFC own statutes</option>
+          <option value="ADGM">ADGM · ADGM regulations</option>
+          <option value="SICC">SICC · Singapore law</option>
+          <option value="UAE">UAE · UAE federal law</option>
+        </select>
+      </div>
+      <div class="cb-actions">
+        <button id="resolveBtn">Resolve routing</button>
+      </div>
+      <div id="cbErr" class="cb-error"></div>
+    </div>
+
+    <div class="cb-panel">
+      <h3>Routing</h3>
+      <div id="cbResult"><p class="muted" style="font-size:12.5px;">Pick inputs on the left and click Resolve.</p></div>
+    </div>
+  </div>
+
+  <div class="cb-panel" style="margin-top:24px;">
+    <h3>Tribunal posture catalogue</h3>
+    <div id="cbTribunals"></div>
+  </div>
+</div>
+
+<script>
+const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+let API_BASE = null;
+let CLAIMS = null;
+let JURIS = null;
+
+const escape = s => String(s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+async function findApi() {
+  for (const base of API_BASE_CANDIDATES) {
+    const root = base.endsWith('/api') ? base.slice(0, -4) : base;
+    try {
+      const r = await fetch(`${root}/api/health`);
+      if (r.ok) return root;
+    } catch (e) {}
+  }
+  return null;
+}
+
+async function load() {
+  API_BASE = await findApi();
+  if (!API_BASE) {
+    document.body.insertAdjacentHTML('afterbegin',
+      '<div style="padding:14px;background:#fee;border:1px solid #c33;color:#900;font-family:sans-serif;font-size:13px;">' +
+      '<strong>API unavailable.</strong> Start with <code>python3 api/server.py</code>.' +
+      '</div>');
+    return;
+  }
+  const [c, j] = await Promise.all([
+    fetch(`${API_BASE}/api/claims`).then(x => x.json()),
+    fetch(`${API_BASE}/api/jurisdictions`).then(x => x.json()),
+  ]);
+  CLAIMS = c;
+  JURIS = j;
+  populateInputs();
+  renderTribunals();
+}
+
+function populateInputs() {
+  const forum = document.getElementById('cbForum');
+  const claim = document.getElementById('cbClaim');
+  forum.innerHTML = (JURIS.tribunals || []).map(t => `<option value="${escape(t.code)}">${escape(t.code)} · ${escape(t.label)}</option>`).join('');
+  claim.innerHTML = '<option value="">— any (governing-law-only routing) —</option>' +
+    (CLAIMS.claim_types || []).map(c => `<option value="${escape(c.claim_type)}">${escape(c.claim_type)} — ${escape(c.label)}</option>`).join('');
+}
+
+function renderTribunals() {
+  const root = document.getElementById('cbTribunals');
+  let html = '<div class="cb-tribunals">';
+  (JURIS.tribunals || []).forEach(t => {
+    html += `<div class="cb-trib">
+      <div class="cb-trib-h">${escape(t.code)} · ${escape(t.label)}</div>
+      <div class="cb-trib-meta">
+        <strong>default law:</strong> ${escape(t.default_governing_law)}<br>
+        <strong>recognition path:</strong> ${escape(t.recognition_path)}<br>
+        <strong>public policy:</strong> ${escape(t.public_policy_authority)}
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+  root.innerHTML = html;
+}
+
+async function resolve() {
+  const forum = document.getElementById('cbForum').value;
+  const originating = document.getElementById('cbOriginating').value;
+  const claim_type = document.getElementById('cbClaim').value;
+  const governing_law = document.getElementById('cbLaw').value;
+  document.getElementById('cbErr').textContent = '';
+  try {
+    const r = await fetch(`${API_BASE}/api/conflict_route`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ forum, originating_forum: originating || null, claim_type, governing_law: governing_law || null }),
+    });
+    const data = await r.json();
+    if (!r.ok) {
+      document.getElementById('cbErr').textContent = data.error || 'error';
+      return;
+    }
+    renderResult(data);
+  } catch (e) {
+    document.getElementById('cbErr').textContent = String(e);
+  }
+}
+
+function ruleTag(role) {
+  if (role === 'gate') return '<span class="cb-step-tag cb-tag-recognition">gate</span>';
+  if (role === 'arithmetic') return '<span class="cb-step-tag cb-tag-substantive">arithmetic</span>';
+  if (role === 'disposition') return '<span class="cb-step-tag cb-tag-substantive">disposition</span>';
+  if (role === 'interpretation') return '<span class="cb-step-tag cb-tag-interpretation">interpretation</span>';
+  return `<span class="cb-step-tag">${escape(role || 'unknown')}</span>`;
+}
+
+function policyTag(rule) {
+  return rule.public_policy_gate ? '<span class="cb-step-tag cb-tag-policy">public-policy override</span>' : '';
+}
+
+function renderResult(d) {
+  const root = document.getElementById('cbResult');
+  let html = '';
+
+  if (d.narrative && d.narrative.length) {
+    html += `<div class="cb-narrative"><div class="cb-narrative-h">Forum posture</div>` +
+      d.narrative.filter(Boolean).map(line => `<div>${escape(line)}</div>`).join('') +
+      `</div>`;
+  }
+
+  if (d.cross_border_path) {
+    html += `<div class="cb-section"><h4>Cross-border path</h4>
+      <div class="cb-step" style="border-left-color:#7a4a10;">
+        <div class="cb-step-h">
+          <span class="cb-step-num">match</span>
+          <span class="cb-step-title">${escape(d.cross_border_path.name)}</span>
+          <span class="cb-step-meta">${escape(d.cross_border_path.originating_forum)} → ${escape(d.cross_border_path.local_forum)}</span>
+        </div>
+        <div class="cb-step-when">${escape(d.cross_border_path.note)}</div>
+      </div>
+    </div>`;
+  }
+
+  if (d.recognition_chain && d.recognition_chain.length) {
+    html += `<div class="cb-section"><h4>Recognition chain (must clear before substantive rules bind)</h4>`;
+    html += `<div class="cb-flow">`;
+    d.recognition_chain.forEach((r, i) => {
+      html += `<div class="cb-step">
+        <div class="cb-step-h">
+          <span class="cb-step-num">R${i+1}</span>
+          <span class="cb-step-title">${escape(r.module)} · ${escape(r.scope)}</span>
+          ${ruleTag(r.role_class)}
+          ${policyTag(r)}
+          <span class="cb-step-meta">primary jurisdiction: ${escape(r.primary_jurisdiction || '?')}</span>
+        </div>
+        <div class="cb-step-when">${escape(r.reason || '')}</div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  if (d.applicable_rules && d.applicable_rules.length) {
+    html += `<div class="cb-section"><h4>Substantive rules (applicable_rules from claim registry, filtered by forum + governing law)</h4>`;
+    html += `<div class="cb-flow">`;
+    d.applicable_rules.forEach((r, i) => {
+      html += `<div class="cb-step">
+        <div class="cb-step-h">
+          <span class="cb-step-num">${i+1}</span>
+          <span class="cb-step-title">${escape(r.module)} · ${escape(r.scope)}</span>
+          ${ruleTag(r.role || r.role_class)}
+          ${policyTag(r)}
+          <span class="cb-step-meta">${escape((r.applies_in || []).join(', '))}</span>
+        </div>
+        ${r.when ? `<div class="cb-step-when">${escape(r.when)}</div>` : ''}
+        ${r.applied_via ? `<div class="cb-step-when" style="color:var(--muted);font-size:11.5px;">applied via: ${escape(r.applied_via)}</div>` : ''}
+      </div>`;
+    });
+    html += `</div></div>`;
+  } else if (!d.recognition_chain || !d.recognition_chain.length) {
+    html += `<div class="cb-section"><p class="muted" style="font-size:12.5px;">No rules registered for this combination. Try: (a) a different claim type, (b) adding the originating forum, or (c) selecting a governing law that differs from the forum to lift in cross-border interpretation rules.</p></div>`;
+  }
+
+  if (d.public_policy_overrides && d.public_policy_overrides.length) {
+    html += `<div class="cb-section"><h4>Public-policy overrides</h4>
+      <p class="muted" style="font-size:12.5px;">These rules carry the last-resort refusal limb (NY Convention Article V(2)(b) or its statutory parallels). The forum may refuse to recognize a foreign judgment / award even where the recognition chain otherwise clears.</p>`;
+    html += `<div class="cb-flow">`;
+    d.public_policy_overrides.forEach(r => {
+      html += `<div class="cb-step" style="border-left-color:#c0492c;">
+        <div class="cb-step-h">
+          <span class="cb-step-title">${escape(r.module)} · ${escape(r.scope)}</span>
+          ${policyTag(r)}
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  }
+
+  root.innerHTML = html || '<p class="muted" style="font-size:12.5px;">No routing produced.</p>';
+}
+
+document.getElementById('resolveBtn').onclick = resolve;
+load();
+</script>
+
+</body>
+</html>

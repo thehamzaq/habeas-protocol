@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeas Protocol — Rule Playground</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .pg-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+  .pg-h1 { margin: 0 0 4px; }
+  .pg-back { font-size: 12.5px; }
+  .pg-controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 18px 0 6px; }
+  .pg-controls label { font-size: 12.5px; color: var(--muted); }
+  .pg-controls select, .pg-controls button {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    background: #fff;
+    border-radius: 4px;
+  }
+  .pg-controls button { background: var(--ink); color: #fff; cursor: pointer; }
+  .pg-controls button[disabled] { background: var(--muted); cursor: not-allowed; }
+  .pg-meta { font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+  .pg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 22px; }
+  @media (max-width: 900px) { .pg-grid { grid-template-columns: 1fr; } }
+
+  .pg-panel { border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px; background: #fff; }
+  .pg-panel h3 { margin: 0 0 14px; font-family: "Helvetica Neue", "Arial", sans-serif; font-size: 13px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink); }
+
+  /* ---------- input form ---------- */
+  .pg-fieldgroup { margin: 0 0 14px; padding: 12px 14px; background: #fafaf6; border-left: 3px solid var(--rule); border-radius: 3px; }
+  .pg-fieldgroup .pg-fieldgroup { margin-top: 8px; background: #f4f3ec; }
+  .pg-fieldgroup-h { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--accent); margin-bottom: 8px; text-transform: lowercase; letter-spacing: 0.06em; font-weight: 500; }
+  .pg-field { display: grid; grid-template-columns: minmax(150px, 1fr) 2fr; gap: 14px; margin: 8px 0; align-items: center; }
+  .pg-field-k { font-family: "JetBrains Mono", monospace; font-size: 12.5px; color: var(--ink); font-weight: 500; line-height: 1.4; word-break: break-word; }
+  .pg-field-input input, .pg-field-input select {
+    width: 100%;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    padding: 6px 9px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fff;
+    color: var(--ink);
+  }
+  .pg-field-input input:focus, .pg-field-input select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(176, 48, 48, 0.10);
+  }
+  .pg-field-input input[type="text"][inputmode="decimal"] { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .pg-array { padding: 4px 0; }
+  .pg-list-controls { margin-top: 6px; display: flex; gap: 6px; }
+  .pg-list-controls button {
+    font-size: 11.5px; padding: 4px 12px;
+    background: #fff; color: var(--ink-soft);
+    border: 1px dashed var(--rule); cursor: pointer; border-radius: 3px;
+    font-family: "JetBrains Mono", monospace; letter-spacing: 0.04em;
+  }
+  .pg-list-controls button:hover { border-style: solid; border-color: var(--accent); color: var(--accent); }
+  .pg-list-item { padding: 10px 12px; background: #fff; border: 1px solid var(--border); border-radius: 3px; margin: 6px 0; }
+  .pg-list-item-h { display: flex; justify-content: space-between; align-items: center; font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--muted); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px dashed var(--rule); letter-spacing: 0.06em; text-transform: uppercase; }
+  .pg-list-item-rm { color: #c33; cursor: pointer; background: none; border: none; font-size: 10.5px; padding: 0; letter-spacing: 0.04em; text-transform: uppercase; }
+  .pg-list-item-rm:hover { text-decoration: underline; }
+
+  /* ---------- output panel ---------- */
+  .pg-out-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: -20px -22px 14px;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border);
+    background: #fafaf6;
+    border-radius: 6px 6px 0 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .pg-out-bar-left { display: flex; align-items: center; gap: 10px; }
+  .pg-out-bar-right { display: flex; gap: 8px; }
+  .pg-out-bar button {
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+    padding: 4px 9px; background: #fff; color: var(--ink-soft);
+    border: 1px solid var(--rule); border-radius: 3px; cursor: pointer;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .pg-out-bar button:hover { color: var(--accent); border-color: var(--accent); }
+  .pg-out-bar button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .pg-out-status {
+    display: inline-block;
+    padding: 2px 9px; border-radius: 10px;
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .pg-out-status.idle { background: rgba(0,0,0,0.05); color: var(--muted); }
+  .pg-out-status.running { background: rgba(176,48,48,0.12); color: var(--accent); }
+  .pg-out-status.ok { background: rgba(47,107,60,0.14); color: #2f6b3c; }
+  .pg-out-status.err { background: rgba(176,48,48,0.18); color: var(--accent); }
+
+  .pg-out {
+    background: #1a1d24; color: #e8e8e0; border-radius: 4px;
+    padding: 14px 16px; min-height: 80px;
+    font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+    line-height: 1.55; overflow-x: auto;
+  }
+  .pg-out-empty { color: #6b7280; font-style: italic; }
+  .pg-out-err { color: #fda4af; white-space: pre-wrap; word-break: break-word; }
+  .pg-error { color: #c33; font-size: 12.5px; margin-top: 8px; line-height: 1.5; }
+
+  /* ---------- pretty-rendered JSON tree (output) ---------- */
+  .pg-tree { color: #e8e8e0; }
+  .pg-tree .pg-row {
+    display: grid; grid-template-columns: minmax(140px, max-content) 1fr;
+    gap: 14px; align-items: baseline;
+    padding: 3px 6px; margin: 1px 0; border-radius: 2px;
+  }
+  .pg-tree .pg-row:hover { background: rgba(255,255,255,0.03); }
+  .pg-tree .pg-k {
+    color: #93c5fd; font-weight: 500;
+    word-break: break-word; line-height: 1.45;
+  }
+  .pg-tree .pg-nested { padding-left: 14px; border-left: 2px solid rgba(255,255,255,0.07); margin: 4px 0 4px 6px; }
+  .pg-tree .pg-listrow { padding: 2px 0; }
+  .pg-tree .pg-listidx {
+    color: #6b7280; font-size: 10.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .pg-tree .pg-empty { color: #6b7280; font-style: italic; }
+
+  /* primitive value badges */
+  .pg-v { display: inline-block; line-height: 1.3; }
+  .pg-v-num { color: #fde68a; font-variant-numeric: tabular-nums; }
+  .pg-v-str { color: #fde68a; }
+  .pg-v-null { color: #6b7280; font-style: italic; }
+  .pg-v-bool {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 1px 8px; border-radius: 10px; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
+  }
+  .pg-v-bool.t { background: rgba(80,180,120,0.18); color: #86efac; }
+  .pg-v-bool.f { background: rgba(220,80,80,0.16); color: #fda4af; }
+  .pg-v-enum {
+    display: inline-block; padding: 1px 8px; border-radius: 3px;
+    background: rgba(147,197,253,0.10); color: #c4d9f7;
+    font-size: 11.5px; letter-spacing: 0.02em;
+  }
+  .pg-v-disposition {
+    display: inline-block; padding: 2px 10px; border-radius: 3px;
+    background: rgba(253,230,138,0.16); color: #fde68a;
+    font-size: 12.5px; letter-spacing: 0.02em; font-weight: 600;
+  }
+
+  /* verdict card — top-level disposition rendered prominently */
+  .pg-verdict {
+    margin-bottom: 14px; padding: 12px 14px;
+    background: rgba(255,255,255,0.04);
+    border-left: 3px solid #fde68a;
+    border-radius: 0 3px 3px 0;
+  }
+  .pg-verdict-h {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #94a3b8; margin-bottom: 6px;
+  }
+  .pg-verdict-body { display: grid; grid-template-columns: minmax(120px, max-content) 1fr; gap: 8px 14px; align-items: baseline; }
+  .pg-verdict-body .pg-k { font-size: 12px; color: #93c5fd; }
+
+  .pg-raw {
+    color: #e8e8e0; white-space: pre-wrap; word-break: break-word;
+    font-size: 12px; line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+
+<div class="pg-wrap">
+  <div class="pg-back"><a href="index.html">← back to dashboard</a></div>
+  <h1 class="pg-h1">Rule playground</h1>
+  <p class="muted" style="font-size:13.5px;line-height:1.5;">
+    Each rule below is a Catala module from <code>rules/</code>. Pick a rule, edit the inputs, and the predicate runs server-side via <code>catala interpret -F json</code> and returns the structural reading. The shape of every input field comes from <code>catala json-schema</code>; the form is auto-generated.
+    Required: <code>api/server.py</code> running locally with <code>catala</code> on <code>PATH</code>.
+  </p>
+
+  <aside class="howto">
+    <span class="howto-tag">How to use this page</span>
+    <h2>Run a single legal rule, end to end</h2>
+    <p>
+      A "rule" here is a real legal test from a real tribunal — for example, the <em>Ladd v Marshall</em> three-prong test for admitting fresh evidence on appeal, or DIFC's <em>RDC 38</em> indemnity-costs rule. Each rule has been written in Catala (a programming language for law). On this page you supply the facts, the rule runs, and you see the verdict plus the step-by-step trace of how it got there.
+    </p>
+    <h3>Three steps</h3>
+    <ol>
+      <li><strong>Pick a rule</strong> from the dropdown above. The form below auto-generates from the rule's input schema — every field corresponds to a fact the rule needs.</li>
+      <li><strong>Fill in the facts.</strong> Booleans render as dropdowns, enums as picklists, numbers as text inputs, and lists let you add or remove items. Defaults are pre-seeded so you can experiment quickly.</li>
+      <li><strong>Click "Run rule".</strong> The right-hand panel shows the rule's output (the disposition) and the trace — a step-by-step record of which clauses fired and which inputs they read.</li>
+    </ol>
+    <h3>What the output means</h3>
+    <ul>
+      <li><strong>Disposition</strong> — the rule's verdict (admissible / not admissible, costs awarded, claim succeeds, etc.). Shape varies per rule.</li>
+      <li><strong>Trace</strong> — every clause the interpreter visited, in order. This is what makes the result <em>auditable</em>: you can show a judge exactly why the rule said what it said.</li>
+      <li><strong>Schema view</strong> — toggle on to see the rule's input/output JSON schema, which is what the form is built from.</li>
+    </ul>
+    <p style="font-size:13px;margin-top:10px;">If the dropdown is empty or "Run rule" is greyed out, the API server is not running. From the repo root: <code>python3 api/server.py</code>.</p>
+  </aside>
+
+  <div class="pg-controls">
+    <label for="ruleSel">Rule</label>
+    <select id="ruleSel"><option>Loading…</option></select>
+    <button id="runBtn" disabled>Run rule</button>
+    <button id="resetBtn" disabled>Reset to schema defaults</button>
+  </div>
+  <div class="pg-meta" id="ruleMeta"></div>
+
+  <div class="pg-grid">
+    <div class="pg-panel">
+      <h3>Inputs</h3>
+      <div id="pgForm"></div>
+    </div>
+    <div class="pg-panel">
+      <div class="pg-out-bar">
+        <div class="pg-out-bar-left">
+          <span>Predicate output</span>
+          <span class="pg-out-status idle" id="pgOutStatus">idle</span>
+        </div>
+        <div class="pg-out-bar-right">
+          <button id="pgViewToggle" type="button" title="Toggle pretty / raw JSON">raw</button>
+          <button id="pgCopyBtn" type="button" title="Copy JSON to clipboard" disabled>copy</button>
+        </div>
+      </div>
+      <div class="pg-out" id="pgOut"><span class="pg-out-empty">Run the rule to see the predicate's reading.</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+let API_BASE = null;
+let CURRENT_SCHEMA = null;
+let CURRENT_RULE = null;
+let CERT_STATES = {};
+const CERT_BADGE_STYLE = {
+  draft:       { label: 'draft',       bg: 'rgba(107,107,107,0.18)', fg: '#3a3a3a' },
+  submitted:   { label: 'submitted',   bg: 'rgba(176,136,33,0.20)',  fg: '#7a5a10' },
+  reviewed:    { label: 'under review', bg: 'rgba(26,74,115,0.18)',  fg: '#1a4a73' },
+  certified:   { label: 'certified',   bg: 'rgba(26,122,74,0.20)',   fg: '#1a7a4a' },
+  deprecated:  { label: 'deprecated',  bg: 'rgba(122,58,26,0.18)',   fg: '#7a3a1a' },
+};
+
+const escape = s => String(s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+async function findApi() {
+  for (const base of API_BASE_CANDIDATES) {
+    const root = base.endsWith('/api') ? base.slice(0, -4) : base;
+    try {
+      const r = await fetch(`${root}/api/health`);
+      if (r.ok) return root;
+    } catch (e) {}
+  }
+  return null;
+}
+
+async function loadIndex() {
+  const r = await fetch(`${API_BASE}/api/rule_modules`);
+  return r.json();
+}
+
+async function loadCertificationStates() {
+  try {
+    const r = await fetch(`${API_BASE}/api/certification_states`);
+    if (r.ok) CERT_STATES = await r.json();
+  } catch (e) { /* missing certification states is non-fatal */ }
+}
+
+function certBadge(module) {
+  const meta = CERT_STATES[module];
+  const state = (meta && meta.certification && meta.certification.state) || 'draft';
+  const s = CERT_BADGE_STYLE[state] || CERT_BADGE_STYLE.draft;
+  return `<span style="display:inline-block;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;padding:1px 7px;border-radius:8px;background:${s.bg};color:${s.fg};margin-left:8px;font-family:JetBrains Mono,monospace;">${s.label}</span>`;
+}
+
+async function loadSchema(file) {
+  const r = await fetch(`../rules/${file}`);
+  const data = await r.json();
+  // catala json-schema emits [input, output]. We render forms from the input
+  // schema (index 0). Older single-object schemas pass through unchanged.
+  if (Array.isArray(data)) return data[0];
+  return data;
+}
+
+// JSON-schema → form rendering. We support the shape catala emits:
+//   - top-level object with named fields
+//   - each field is either a primitive (string/number/integer/boolean),
+//     a $ref to a struct, an enum, or an array of one of the above.
+function resolveRef(schema, ref) {
+  if (!ref || !ref.startsWith('#/definitions/')) return null;
+  return schema.definitions[ref.slice('#/definitions/'.length)];
+}
+
+function nameForRef(ref) {
+  return ref ? ref.split('/').pop() : '';
+}
+
+function isEnum(def) { return def && Array.isArray(def.enum); }
+function isStruct(def) { return def && def.type === 'object' && def.properties; }
+function isArray(def) { return def && def.type === 'array' && def.items; }
+
+// catala numbers are oneOf [number, integer, string]; we render them as
+// a single text input and the server will accept the string form.
+function isNumberish(prop) {
+  if (!prop) return false;
+  if (prop.type === 'number' || prop.type === 'integer') return true;
+  if (Array.isArray(prop.oneOf)) {
+    return prop.oneOf.some(o => o.type === 'number' || o.type === 'integer');
+  }
+  return false;
+}
+
+function renderField(schema, name, prop, value, path) {
+  const id = path.join('.');
+  if (prop.$ref) {
+    const def = resolveRef(schema, prop.$ref);
+    if (isEnum(def)) {
+      const opts = def.enum.map(e => `<option value="${escape(e)}"${e === value ? ' selected' : ''}>${escape(e)}</option>`).join('');
+      return `<select data-path="${escape(id)}" data-kind="enum">${opts}</select>`;
+    }
+    if (isStruct(def)) {
+      return renderStruct(schema, def, value || {}, path);
+    }
+  }
+  if (prop.type === 'boolean') {
+    const checked = !!value;
+    return `<select data-path="${escape(id)}" data-kind="bool">
+      <option value="false"${!checked ? ' selected' : ''}>false</option>
+      <option value="true"${checked ? ' selected' : ''}>true</option>
+    </select>`;
+  }
+  if (isNumberish(prop)) {
+    const v = value === undefined ? '' : String(value);
+    return `<input type="text" inputmode="decimal" data-path="${escape(id)}" data-kind="number" value="${escape(v)}">`;
+  }
+  if (isArray(prop)) {
+    const def = prop.items && prop.items.$ref ? resolveRef(schema, prop.items.$ref) : prop.items;
+    const arr = Array.isArray(value) ? value : [];
+    let html = `<div class="pg-array" data-path="${escape(id)}" data-item-ref="${escape(prop.items.$ref || '')}">`;
+    arr.forEach((item, i) => {
+      html += `<div class="pg-list-item" data-idx="${i}">
+        <div class="pg-list-item-h"><span>[${i}]</span><button class="pg-list-item-rm" data-action="remove" data-idx="${i}">remove</button></div>`;
+      if (def && isStruct(def)) {
+        html += renderStruct(schema, def, item || {}, path.concat([i]));
+      } else if (def && isEnum(def)) {
+        const opts = def.enum.map(e => `<option value="${escape(e)}"${e === item ? ' selected' : ''}>${escape(e)}</option>`).join('');
+        html += `<select data-path="${escape(path.concat([i]).join('.'))}" data-kind="enum">${opts}</select>`;
+      } else if (def && isNumberish(def)) {
+        html += `<input type="text" inputmode="decimal" data-path="${escape(path.concat([i]).join('.'))}" data-kind="number" value="${escape(item ?? '')}">`;
+      } else {
+        html += `<input type="text" data-path="${escape(path.concat([i]).join('.'))}" data-kind="string" value="${escape(item ?? '')}">`;
+      }
+      html += `</div>`;
+    });
+    html += `<div class="pg-list-controls"><button data-action="add">+ add item</button></div>`;
+    html += `</div>`;
+    return html;
+  }
+  // string fallback
+  const v = value === undefined ? '' : String(value);
+  return `<input type="text" data-path="${escape(id)}" data-kind="string" value="${escape(v)}">`;
+}
+
+function renderStruct(schema, def, value, path) {
+  let html = `<div class="pg-fieldgroup">`;
+  if (path.length > 0) {
+    html += `<div class="pg-fieldgroup-h">${escape(path.join('.'))}</div>`;
+  }
+  Object.entries(def.properties).forEach(([k, prop]) => {
+    html += `<div class="pg-field">
+      <div class="pg-field-k">${escape(k)}</div>
+      <div class="pg-field-input">${renderField(schema, k, prop, value && value[k], path.concat([k]))}</div>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function defaultValueForRef(schema, ref) {
+  const def = resolveRef(schema, ref);
+  if (!def) return null;
+  if (isEnum(def)) return def.enum[0];
+  if (isStruct(def)) {
+    const out = {};
+    Object.entries(def.properties).forEach(([k, p]) => {
+      out[k] = defaultValueForProp(schema, p);
+    });
+    return out;
+  }
+  return null;
+}
+
+function defaultValueForProp(schema, prop) {
+  if (prop.$ref) return defaultValueForRef(schema, prop.$ref);
+  if (prop.type === 'boolean') return false;
+  if (isNumberish(prop)) return '0';
+  if (isArray(prop)) {
+    // Pre-populate one item when array elements are structs, so users see
+    // fillable fields immediately instead of an empty list.
+    if (prop.items && prop.items.$ref) {
+      const def = resolveRef(schema, prop.items.$ref);
+      if (def && isStruct(def)) {
+        return [defaultValueForRef(schema, prop.items.$ref)];
+      }
+    }
+    return [];
+  }
+  return '';
+}
+
+function defaultsFromSchema(schema) {
+  // Top-level $ref points at the input struct; build defaults from it.
+  const def = resolveRef(schema, schema.$ref);
+  if (!def || !isStruct(def)) return {};
+  const out = {};
+  Object.entries(def.properties).forEach(([k, p]) => {
+    out[k] = defaultValueForProp(schema, p);
+  });
+  return out;
+}
+
+function renderForm(schema, values) {
+  const def = resolveRef(schema, schema.$ref);
+  if (!def) return '<p class="pg-error">Could not parse schema.</p>';
+  return renderStruct(schema, def, values, []);
+}
+
+// --- input collection ---
+
+function setByPath(obj, path, value) {
+  let cur = obj;
+  for (let i = 0; i < path.length - 1; i++) {
+    const p = path[i];
+    if (cur[p] === undefined || cur[p] === null) cur[p] = (typeof path[i + 1] === 'number' ? [] : {});
+    cur = cur[p];
+  }
+  cur[path[path.length - 1]] = value;
+}
+
+function collectInputs() {
+  // Walk every primitive widget, write its value into a fresh object using
+  // its data-path. Lists are reconstructed implicitly by integer indices
+  // appearing in paths.
+  const out = {};
+  // Seed every array container first so required-array fields serialize as
+  // [] even when the user hasn't added any items. Item walks below overwrite
+  // indices into the seeded array.
+  document.querySelectorAll('.pg-array[data-path]').forEach(el => {
+    const path = el.dataset.path.split('.').map(p => /^\d+$/.test(p) ? parseInt(p, 10) : p);
+    setByPath(out, path, []);
+  });
+  document.querySelectorAll('[data-path][data-kind]').forEach(el => {
+    const path = el.dataset.path.split('.').map(p => /^\d+$/.test(p) ? parseInt(p, 10) : p);
+    const kind = el.dataset.kind;
+    let value;
+    if (kind === 'bool') value = el.value === 'true';
+    else if (kind === 'enum') value = el.value;
+    else if (kind === 'number') value = el.value;          // pass strings through; catala accepts them
+    else value = el.value;
+    setByPath(out, path, value);
+  });
+  return out;
+}
+
+// --- list add/remove ---
+
+function bindListActions() {
+  document.querySelectorAll('.pg-array').forEach(arr => {
+    arr.querySelectorAll('button[data-action="add"]').forEach(btn => {
+      btn.onclick = () => {
+        const refKey = arr.dataset.itemRef;
+        const def = resolveRef(CURRENT_SCHEMA, refKey);
+        const fresh = def && isStruct(def) ? defaultValueForRef(CURRENT_SCHEMA, refKey) : '';
+        // Re-render: build full values, append fresh, re-render form.
+        const values = collectInputs();
+        const path = arr.dataset.path.split('.');
+        let cur = values;
+        for (const p of path) {
+          if (cur[p] === undefined) cur[p] = [];
+          cur = cur[p];
+        }
+        cur.push(fresh);
+        document.getElementById('pgForm').innerHTML = renderForm(CURRENT_SCHEMA, values);
+        bindListActions();
+      };
+    });
+    arr.querySelectorAll('button[data-action="remove"]').forEach(btn => {
+      btn.onclick = () => {
+        const idx = parseInt(btn.dataset.idx, 10);
+        const values = collectInputs();
+        const path = arr.dataset.path.split('.');
+        let cur = values;
+        for (const p of path) cur = cur[p];
+        cur.splice(idx, 1);
+        document.getElementById('pgForm').innerHTML = renderForm(CURRENT_SCHEMA, values);
+        bindListActions();
+      };
+    });
+  });
+}
+
+// --- output ---
+
+// Pretty-render a primitive (boolean / number / enum-string / null) as a
+// styled badge. Strings that look like enum constructors (PascalCase or
+// SHOUTY_SNAKE) get the enum pill; free-form strings render plain.
+function renderPrimitive(v, opts) {
+  opts = opts || {};
+  if (v === null || v === undefined) return '<span class="pg-v pg-v-null">null</span>';
+  if (typeof v === 'boolean') {
+    const cls = v ? 't' : 'f';
+    const label = v ? '✓ true' : '✗ false';
+    return `<span class="pg-v pg-v-bool ${cls}">${label}</span>`;
+  }
+  if (typeof v === 'number') {
+    const txt = Number.isInteger(v) ? String(v) : parseFloat(v.toPrecision(12)).toString();
+    return `<span class="pg-v pg-v-num">${escape(txt)}</span>`;
+  }
+  if (typeof v === 'string') {
+    // Enum-shaped: PascalCase or SHOUTY_SNAKE_CASE (no spaces, mixed/upper).
+    const isEnum = /^[A-Z][A-Za-z0-9]*$/.test(v) || /^[A-Z][A-Z0-9_]*$/.test(v);
+    if (opts.disposition) {
+      return `<span class="pg-v pg-v-disposition">${escape(v)}</span>`;
+    }
+    if (isEnum) return `<span class="pg-v pg-v-enum">${escape(v)}</span>`;
+    return `<span class="pg-v pg-v-str">"${escape(v)}"</span>`;
+  }
+  return `<span class="pg-v pg-v-str">${escape(JSON.stringify(v))}</span>`;
+}
+
+// Recursive pretty-print of the predicate output. Top-level "disposition"
+// fields are rendered as a verdict card; everything else is a row tree.
+function renderJsonTree(value, opts) {
+  opts = opts || {};
+  // Primitive at the leaf
+  if (value === null || typeof value !== 'object') {
+    return renderPrimitive(value, opts);
+  }
+  // Array
+  if (Array.isArray(value)) {
+    if (!value.length) return '<span class="pg-empty">(empty list)</span>';
+    return '<div class="pg-nested">' + value.map((v, i) =>
+      `<div class="pg-listrow"><div class="pg-listidx">item ${i + 1}</div>${renderJsonTree(v)}</div>`
+    ).join('') + '</div>';
+  }
+  // Object
+  const entries = Object.entries(value);
+  if (!entries.length) return '<span class="pg-empty">(empty)</span>';
+  let html = '<div class="pg-nested">';
+  for (const [k, v] of entries) {
+    const leaf = (v === null || typeof v !== 'object');
+    const isDispositionKey = /disposition$/i.test(k) && typeof v === 'string';
+    const childOpts = isDispositionKey ? { disposition: true } : {};
+    if (leaf) {
+      html += `<div class="pg-row"><span class="pg-k">${escape(k)}</span>${renderPrimitive(v, childOpts)}</div>`;
+    } else {
+      html += `<div class="pg-row"><span class="pg-k">${escape(k)}</span><span></span></div>` + renderJsonTree(v, opts);
+    }
+  }
+  html += '</div>';
+  return html;
+}
+
+// If the response has a top-level "disposition" object whose fields are all
+// primitives, hoist it into a verdict card. Otherwise return null and the
+// caller renders the whole thing as a tree.
+function renderVerdictCard(data) {
+  if (!data || typeof data !== 'object') return null;
+  const keys = Object.keys(data);
+  if (keys.length !== 1) return null;
+  const dispositionKey = keys[0];
+  const inner = data[dispositionKey];
+  if (!inner || typeof inner !== 'object' || Array.isArray(inner)) return null;
+  const innerEntries = Object.entries(inner);
+  if (!innerEntries.length) return null;
+  // Allow at most one nested object level (skip card if too complex)
+  const allShallow = innerEntries.every(([k, v]) => v === null || typeof v !== 'object' || Array.isArray(v));
+  if (!allShallow) return null;
+  let html = `<div class="pg-verdict"><div class="pg-verdict-h">${escape(dispositionKey)}</div><div class="pg-verdict-body">`;
+  for (const [k, v] of innerEntries) {
+    const isDispositionKey = /disposition$/i.test(k) && typeof v === 'string';
+    const opts = isDispositionKey ? { disposition: true } : {};
+    if (Array.isArray(v)) {
+      html += `<span class="pg-k">${escape(k)}</span><span>${renderJsonTree(v)}</span>`;
+    } else {
+      html += `<span class="pg-k">${escape(k)}</span>${renderPrimitive(v, opts)}`;
+    }
+  }
+  html += '</div></div>';
+  return html;
+}
+
+// --- run ---
+
+let LAST_RESULT = null;     // raw JSON of last successful run
+let SHOW_RAW = false;        // pretty (default) vs raw-JSON toggle
+
+function setStatus(state, label) {
+  const el = document.getElementById('pgOutStatus');
+  if (!el) return;
+  el.className = `pg-out-status ${state}`;
+  el.textContent = label;
+}
+
+function renderResultPanel() {
+  const out = document.getElementById('pgOut');
+  if (!LAST_RESULT) return;
+  if (SHOW_RAW) {
+    out.innerHTML = `<pre class="pg-raw">${escape(JSON.stringify(LAST_RESULT, null, 2))}</pre>`;
+    return;
+  }
+  const card = renderVerdictCard(LAST_RESULT);
+  // When the card surfaces the full disposition, the tree below is
+  // redundant. Render the tree only when the response is too nested to
+  // fit a card.
+  const tree = card ? '' : renderJsonTree(LAST_RESULT);
+  out.innerHTML = '<div class="pg-tree">' + (card || '') + tree + '</div>';
+}
+
+async function runRule() {
+  const out = document.getElementById('pgOut');
+  const copyBtn = document.getElementById('pgCopyBtn');
+  setStatus('running', 'running…');
+  out.innerHTML = '<span class="pg-out-empty">running…</span>';
+  copyBtn.disabled = true;
+  const inputs = collectInputs();
+  try {
+    const r = await fetch(`${API_BASE}/api/rule_run`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ module: CURRENT_RULE.module, scope: CURRENT_RULE.scope, inputs }),
+    });
+    const data = await r.json();
+    if (!r.ok) {
+      LAST_RESULT = null;
+      setStatus('err', 'error');
+      copyBtn.disabled = true;
+      out.innerHTML = `<div class="pg-out-err">${escape(data.error || 'error')}</div>`;
+      return;
+    }
+    LAST_RESULT = data;
+    setStatus('ok', 'ok');
+    copyBtn.disabled = false;
+    renderResultPanel();
+  } catch (e) {
+    LAST_RESULT = null;
+    setStatus('err', 'error');
+    copyBtn.disabled = true;
+    out.innerHTML = `<div class="pg-out-err">${escape(String(e))}</div>`;
+  }
+}
+
+function bindOutputControls() {
+  const toggle = document.getElementById('pgViewToggle');
+  const copy = document.getElementById('pgCopyBtn');
+  toggle.onclick = () => {
+    SHOW_RAW = !SHOW_RAW;
+    toggle.textContent = SHOW_RAW ? 'pretty' : 'raw';
+    toggle.classList.toggle('on', SHOW_RAW);
+    if (LAST_RESULT) renderResultPanel();
+  };
+  copy.onclick = async () => {
+    if (!LAST_RESULT) return;
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(LAST_RESULT, null, 2));
+      const orig = copy.textContent;
+      copy.textContent = 'copied';
+      setTimeout(() => { copy.textContent = orig; }, 1200);
+    } catch (e) {
+      copy.textContent = 'copy failed';
+      setTimeout(() => { copy.textContent = 'copy'; }, 1500);
+    }
+  };
+}
+
+// --- bootstrap ---
+
+async function selectRule(idx, rules) {
+  const rule = rules[idx];
+  CURRENT_RULE = rule;
+  CURRENT_SCHEMA = await loadSchema(rule.schema);
+  const values = defaultsFromSchema(CURRENT_SCHEMA);
+  document.getElementById('pgForm').innerHTML = renderForm(CURRENT_SCHEMA, values);
+  document.getElementById('pgOut').innerHTML = '<span class="pg-out-empty">Run the rule to see the predicate\'s reading.</span>';
+  LAST_RESULT = null;
+  document.getElementById('pgCopyBtn').disabled = true;
+  setStatus('idle', 'idle');
+  const meta = CERT_STATES[rule.module];
+  const human = meta && meta.human_label ? ` · ${escape(meta.human_label)}` : '';
+  document.getElementById('ruleMeta').innerHTML =
+    `module ${escape(rule.module)} · scope ${escape(rule.scope)} · file rules/${escape(rule.file)}${certBadge(rule.module)}${human}`;
+  bindListActions();
+  document.getElementById('runBtn').disabled = false;
+  document.getElementById('resetBtn').disabled = false;
+}
+
+async function bootstrap() {
+  API_BASE = await findApi();
+  const sel = document.getElementById('ruleSel');
+  if (!API_BASE) {
+    sel.innerHTML = '<option>API unavailable</option>';
+    document.getElementById('pgForm').innerHTML = `<p class="pg-error">Could not reach the local API. Start it with:<br><code>eval $(./scripts/postgres_local.sh env) &amp;&amp; eval $(opam env --switch=catala) &amp;&amp; python3 api/server.py</code></p>`;
+    return;
+  }
+  await loadCertificationStates();
+  const rules = await loadIndex();
+  sel.innerHTML = '';
+  rules.forEach((r, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    const meta = CERT_STATES[r.module];
+    const state = (meta && meta.certification && meta.certification.state) || 'draft';
+    opt.textContent = `[${state}] ${r.module} · ${r.scope}`;
+    sel.appendChild(opt);
+  });
+  sel.onchange = () => selectRule(parseInt(sel.value, 10), rules);
+  document.getElementById('runBtn').onclick = runRule;
+  document.getElementById('resetBtn').onclick = () => selectRule(parseInt(sel.value, 10), rules);
+  bindOutputControls();
+  if (rules.length) await selectRule(0, rules);
+}
+
+bootstrap();
+</script>
+
+</body>
+</html>

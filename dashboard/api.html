@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeas Protocol — API reference</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Keep the Redoc embed in its own column; the page header above it
+     uses the same Habeas typography as every other page. */
+  .api-header { max-width: 1200px; margin: 0 auto; padding: 28px 24px 12px; }
+  .api-header h1 { margin: 0 0 6px; }
+  .api-back { font-size: 12.5px; }
+  .api-blurb { font-size: 13.5px; line-height: 1.55; max-width: 820px; color: var(--ink); }
+  .api-meta {
+    display: inline-block; padding: 4px 10px; font-family: "JetBrains Mono", monospace;
+    font-size: 12px; background: #fafaf6; border: 1px solid var(--border); border-radius: 3px;
+    margin-top: 8px;
+  }
+  .api-redoc-host {
+    border-top: 1px solid var(--border);
+    margin-top: 18px;
+  }
+  /* Redoc supplies its own styling; we only constrain the host. */
+  redoc { display: block; width: 100%; }
+  /* Fallback view for environments without network access — links to the raw spec. */
+  .api-fallback {
+    padding: 24px; max-width: 800px; margin: 24px auto; background: #fafaf6;
+    border: 1px solid var(--border); border-radius: 6px; font-family: "Source Serif 4", Georgia, serif;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="api-header">
+  <p class="api-back"><a href="index.html">← back to dashboard</a> · <a href="playground.html">playground</a> · <a href="simulator.html">simulator</a> · <a href="conflicts.html">cross-border</a></p>
+  <h1>API reference</h1>
+  <p class="api-blurb muted">
+    The API is local-dev-shaped: stdlib-only Python <code>http.server</code>, Postgres-backed, no auth (loopback only). Fifteen endpoints across six tags (corpus / rules / rule-runs / routing / authoring / ingestion). Every <code>POST /api/rule_run</code> writes a row to the audit log; module/scope/filename inputs are alphabet-restricted; <code>/api/rule_save</code> is gated by <code>HABEAS_ADMIN_MODE=1</code>.
+  </p>
+  <div class="api-meta">spec: <a href="../api/openapi.yaml">api/openapi.yaml</a> · base url: <code>http://127.0.0.1:5544</code></div>
+
+  <aside class="howto" style="margin-top:24px;">
+    <span class="howto-tag">How to read this page</span>
+    <h2>Everything on the dashboard is reachable through this API</h2>
+    <p>
+      The Habeas Protocol API is the bridge between the static dashboard and the running rule library. The spec below is rendered with <a href="https://github.com/Redocly/redoc">Redoc</a>; every endpoint shows its inputs, outputs, and an example response.
+    </p>
+    <h3>Three quick paths</h3>
+    <ol>
+      <li><strong>Browse the corpus</strong> — start with <code>GET /api/corpus/coverage</code> for headline counts; then <code>GET /api/search?q=&lt;term&gt;</code> to search judgments.</li>
+      <li><strong>Run a rule</strong> — <code>GET /api/rule_modules</code> lists all 12 rules; <code>POST /api/rule_run</code> executes one with a JSON body of inputs and returns the disposition + trace.</li>
+      <li><strong>Route a cross-border dispute</strong> — <code>POST /api/conflict_route</code> with the four routing inputs returns the rule chain.</li>
+    </ol>
+    <h3>Clients</h3>
+    <p>
+      First-party clients live under <code>clients/</code>: a stdlib-only <strong>Python</strong> client (<code>pip install -e clients/python</code>) and a zero-build <strong>TypeScript</strong> client that runs in browsers and Node directly. Both wrap every endpoint below.
+    </p>
+    <h3>If the spec doesn't render</h3>
+    <p style="font-size:13px;">Redoc loads from a CDN. Offline / CSP-blocked? The fallback link to the raw YAML appears below. The spec is also viewable with <code>npx @redocly/cli preview-docs api/openapi.yaml</code>.</p>
+  </aside>
+</div>
+
+<div class="api-redoc-host">
+  <redoc spec-url="../api/openapi.yaml"
+         hide-download-button="false"
+         path-in-middle-panel="true"
+         expand-default-server-variables="true"
+         theme='{"colors":{"primary":{"main":"#1a1a1a"}},"typography":{"fontSize":"14px","headings":{"fontFamily":"Helvetica Neue, Arial, sans-serif"}}}'></redoc>
+</div>
+
+<noscript>
+  <div class="api-fallback">
+    <p>This page renders the API reference using <a href="https://github.com/Redocly/redoc">Redoc</a>, which requires JavaScript. The raw spec is at <a href="../api/openapi.yaml"><code>api/openapi.yaml</code></a>.</p>
+  </div>
+</noscript>
+
+<script>
+// Redoc loads from a public CDN. If unreachable (offline / CSP / etc),
+// the page degrades to a link to the raw YAML.
+(function loadRedoc() {
+  const s = document.createElement('script');
+  s.src = 'https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js';
+  s.async = true;
+  s.onerror = function () {
+    document.querySelector('.api-redoc-host').innerHTML =
+      '<div class="api-fallback">' +
+      '<p>The Redoc bundle could not load (likely offline or CSP-blocked). The raw OpenAPI 3.0 spec is at <a href="../api/openapi.yaml"><code>api/openapi.yaml</code></a> — open it in any compatible viewer (e.g. <code>npx @redocly/cli preview-docs api/openapi.yaml</code>).</p>' +
+      '</div>';
+  };
+  document.head.appendChild(s);
+})();
+</script>
+
+</body>
+</html>

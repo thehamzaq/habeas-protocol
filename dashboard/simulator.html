@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habeas Protocol — Dispute Simulator</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .sim-wrap { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+  .sim-step { border-left: 3px solid var(--border); padding: 0 0 18px 18px; margin-left: 6px; position: relative; }
+  .sim-step::before { content: ""; position: absolute; left: -9px; top: 4px; width: 14px; height: 14px; background: #fff; border: 3px solid var(--border); border-radius: 50%; }
+  .sim-step[data-active="1"]::before { border-color: var(--ink); background: var(--ink); }
+  .sim-step[data-done="1"]::before  { border-color: var(--good, #2f6b3c); background: var(--good, #2f6b3c); }
+  .sim-step-h { font-family: "Helvetica Neue","Arial",sans-serif; font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .sim-step-h .sim-num { color: var(--ink); margin-right: 6px; font-family: "JetBrains Mono", monospace; }
+  .sim-step h2 { font-size: 20px; margin: 0 0 6px; }
+  .sim-step p.muted { font-size: 13px; line-height: 1.5; }
+
+  .sim-claims { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+  .sim-claim {
+    cursor: pointer; padding: 10px 14px; border: 1px solid var(--border); border-radius: 4px;
+    background: #fff; min-width: 220px;
+  }
+  .sim-claim[data-selected="1"] { border-color: var(--ink); background: var(--paper-2, #f3f1ea); }
+  .sim-claim-h { font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
+  .sim-claim-l { font-size: 13px; margin-top: 2px; }
+  .sim-claim-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .sim-tribs { display: flex; gap: 8px; margin-top: 8px; }
+  .sim-trib { padding: 4px 10px; border: 1px solid var(--border); border-radius: 12px; background: #fff; cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 11.5px; }
+  .sim-trib[data-selected="1"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+  .sim-rules { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+  .sim-rule { border: 1px solid var(--border); border-radius: 5px; padding: 14px 16px; background: #fafaf6; }
+  .sim-rule-h { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .sim-rule-mod { font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
+  .sim-rule-role { font-size: 10.5px; padding: 1px 7px; border-radius: 8px; background: var(--ink); color: #fff; letter-spacing: 0.04em; text-transform: uppercase; }
+  .sim-rule-trib { font-size: 11px; color: var(--muted); }
+  .sim-rule-when { font-size: 12.5px; margin-bottom: 8px; }
+  .sim-rule-form { background: #fff; padding: 8px 10px; border: 1px solid var(--border); border-radius: 3px; margin-top: 6px; }
+  .sim-rule-form .pg-fieldgroup { background: transparent; padding: 4px 0; }
+  .sim-rule-out { background: #1a1d24; color: #e8e8e0; border-radius: 3px; padding: 8px 10px; margin-top: 8px; font-family: "JetBrains Mono", monospace; font-size: 11.5px; min-height: 24px; }
+  .sim-rule-out-empty { color: #999; font-style: italic; }
+  .sim-rule-out-err { color: #fda4af; }
+
+  .sim-actions { display: flex; gap: 10px; margin-top: 12px; }
+  .sim-actions button { font-family: "JetBrains Mono", monospace; font-size: 12.5px; padding: 6px 12px; background: var(--ink); color: #fff; border: none; border-radius: 3px; cursor: pointer; }
+  .sim-actions button[disabled] { background: var(--muted); cursor: not-allowed; }
+  .sim-actions button.secondary { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+
+  .sim-verdict {
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-top: 12px;
+    background: #fff;
+  }
+  .sim-verdict-h {
+    font-family: "Helvetica Neue","Arial",sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .sim-verdict-summary { font-size: 18px; line-height: 1.4; margin-bottom: 8px; }
+  .sim-verdict-conf {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #f3f1ea;
+    color: var(--ink);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5px;
+    margin-bottom: 12px;
+  }
+  .sim-verdict-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin: 4px 0 12px; }
+  .sim-verdict-bar-fill { height: 100%; background: var(--good, #2f6b3c); transition: width 200ms ease; }
+  .sim-verdict-bar-fill[data-tier="medium"] { background: #b08821; }
+  .sim-verdict-bar-fill[data-tier="low"] { background: #c0492c; }
+  .sim-verdict-rules { font-size: 12.5px; }
+  .sim-verdict-rules h4 { margin: 8px 0 4px; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .sim-verdict-line { padding: 6px 10px; background: #fafaf6; border-radius: 3px; margin: 3px 0; font-family: "JetBrains Mono", monospace; font-size: 11.5px; }
+  .sim-verdict-line.ok { border-left: 3px solid var(--good, #2f6b3c); }
+  .sim-verdict-line.err { border-left: 3px solid #c0492c; color: #7a3a1a; }
+
+  .sim-error { color: #c33; font-size: 12.5px; }
+</style>
+</head>
+<body>
+
+<div class="sim-wrap">
+  <p style="font-size:12.5px;"><a href="index.html">← back to dashboard</a> · <a href="playground.html">single-rule playground →</a></p>
+  <h1>Dispute simulator</h1>
+  <p class="muted" style="font-size:13.5px;line-height:1.55;max-width:780px;">
+    A fact pattern walks through three stages: pick a claim type, fill in the facts each applicable rule needs, and the simulator runs every rule against the same fact pattern and aggregates the result. Each rule is encoded in <code>rules/</code> as a Catala module; the inputs are auto-generated from <code>catala json-schema</code>; the predicates run server-side via <code>catala interpret -F json</code>. The dispositive question — <em>"if filed today at this tribunal, what does the rule say?"</em> — is computed mechanically.
+  </p>
+
+  <aside class="howto">
+    <span class="howto-tag">How to use this page</span>
+    <h2>Predict the outcome of a whole dispute, not just one rule</h2>
+    <p>
+      The <a href="playground.html">Playground</a> runs one rule. This page runs every rule that applies to a given <strong>claim type</strong> at a given <strong>tribunal</strong>, against the same fact pattern. Useful when the answer depends on multiple rules talking to each other — for example, a fresh-evidence application that has to clear the <em>Ladd v Marshall</em> test <em>and</em> the indemnity-costs rule.
+    </p>
+    <h3>Three steps</h3>
+    <ol>
+      <li><strong>Pick a claim type</strong> (e.g. "fresh-evidence application", "summary judgment") and a <strong>tribunal</strong> (DIFC / ADGM / SICC). The rules registered for that combination light up below.</li>
+      <li><strong>Fill in the facts</strong>, once. Each rule's required inputs appear in its own panel. Defaults are pre-seeded.</li>
+      <li><strong>Click "Run all rules".</strong> Each rule's verdict is shown alongside an aggregated <strong>predicted disposition</strong> with a confidence score.</li>
+    </ol>
+    <h3>What the output means</h3>
+    <ul>
+      <li><strong>Per-rule verdict</strong> — what each rule said in isolation (admissible, costs awarded, claim succeeds, etc.).</li>
+      <li><strong>Predicted disposition</strong> — the simulator's aggregated reading of how those verdicts compose. Some rules act as gates (must pass before others apply); some are independent.</li>
+      <li><strong>Confidence</strong> — a heuristic score reflecting how decisive the rule chain is. High confidence = unanimous outcome. Low confidence = contradictory rules or missing inputs.</li>
+    </ul>
+    <p style="font-size:13px;margin-top:10px;">No claim types loading? The API server is offline. From the repo root: <code>python3 api/server.py</code>.</p>
+  </aside>
+
+  <!-- Step 1: claim type -->
+  <div class="sim-step" id="stepClaim" data-active="1">
+    <div class="sim-step-h"><span class="sim-num">1</span>Pick a claim type</div>
+    <h2 id="claimChosen">Choose below</h2>
+    <p class="muted">Six claim types coded across the corpus. Selection drives which rule modules light up.</p>
+    <div class="sim-claims" id="claimList"></div>
+    <div class="sim-tribs" id="tribList" style="margin-top:14px;"></div>
+  </div>
+
+  <!-- Step 2: facts -->
+  <div class="sim-step" id="stepFacts" data-active="0">
+    <div class="sim-step-h"><span class="sim-num">2</span>Fill in the facts</div>
+    <h2 id="factsHeading">Each rule needs the inputs below</h2>
+    <p class="muted">Required facts come from the rule modules' input schemas. Defaults are seeded; edit anything.</p>
+    <div class="sim-rules" id="rulesList"></div>
+    <div class="sim-actions">
+      <button id="runAllBtn" disabled>Run all rules</button>
+      <button id="resetFactsBtn" class="secondary">Reset to defaults</button>
+    </div>
+  </div>
+
+  <!-- Step 3: verdict -->
+  <div class="sim-step" id="stepVerdict" data-active="0">
+    <div class="sim-step-h"><span class="sim-num">3</span>Aggregated verdict</div>
+    <h2>Predicted disposition</h2>
+    <div id="verdictBody">
+      <p class="muted">Run the rules to see the aggregated verdict.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+let API_BASE = null;
+let CLAIMS = null;
+let RULE_INDEX = null;
+let SCHEMA_CACHE = {};
+let STATE = {
+  claim: null,
+  tribunal: null,
+  inputs: {},   // keyed by `module/scope` -> last collected inputs
+  outputs: {},  // keyed by `module/scope` -> last result | error
+};
+
+const escape = s => String(s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+
+const ruleKey = (m, s) => `${m}/${s}`;
+
+async function findApi() {
+  for (const base of API_BASE_CANDIDATES) {
+    const root = base.endsWith('/api') ? base.slice(0, -4) : base;
+    try {
+      const r = await fetch(`${root}/api/health`);
+      if (r.ok) return root;
+    } catch (e) {}
+  }
+  return null;
+}
+
+async function loadAll() {
+  API_BASE = await findApi();
+  if (!API_BASE) {
+    document.body.insertAdjacentHTML('afterbegin',
+      '<div style="padding:14px;background:#fee;border:1px solid #c33;color:#900;font-family:sans-serif;font-size:13px;">'+
+      '<strong>API unavailable.</strong> Start it with: <code>eval $(./scripts/postgres_local.sh env) &amp;&amp; eval $(opam env --switch=catala) &amp;&amp; python3 api/server.py</code>'+
+      '</div>');
+    return;
+  }
+  const [c, r] = await Promise.all([
+    fetch(`${API_BASE}/api/claims`).then(x => x.json()),
+    fetch(`${API_BASE}/api/rule_modules`).then(x => x.json()),
+  ]);
+  CLAIMS = c;
+  RULE_INDEX = r;
+  renderClaimList();
+}
+
+function renderClaimList() {
+  const list = document.getElementById('claimList');
+  list.innerHTML = '';
+  CLAIMS.claim_types.forEach(ct => {
+    const el = document.createElement('div');
+    el.className = 'sim-claim';
+    el.dataset.claim = ct.claim_type;
+    el.innerHTML = `
+      <div class="sim-claim-h">${escape(ct.claim_type)}</div>
+      <div class="sim-claim-l">${escape(ct.label)}</div>
+      <div class="sim-claim-meta">${ct.applicable_rules.length} rule${ct.applicable_rules.length === 1 ? '' : 's'} · ${ct.tribunals.join(' / ')} · ${ct.n_in_corpus} corpus case${ct.n_in_corpus === 1 ? '' : 's'}</div>
+    `;
+    el.onclick = () => selectClaim(ct);
+    list.appendChild(el);
+  });
+}
+
+function selectClaim(ct) {
+  STATE.claim = ct;
+  STATE.tribunal = ct.tribunals[0];
+  STATE.inputs = {};
+  STATE.outputs = {};
+  document.querySelectorAll('.sim-claim').forEach(el => {
+    el.dataset.selected = (el.dataset.claim === ct.claim_type) ? '1' : '0';
+  });
+  document.getElementById('claimChosen').textContent = ct.label;
+  renderTribunals();
+  document.getElementById('stepClaim').dataset.done = '1';
+  document.getElementById('stepFacts').dataset.active = '1';
+  buildRuleForms();
+}
+
+function renderTribunals() {
+  const list = document.getElementById('tribList');
+  list.innerHTML = '';
+  STATE.claim.tribunals.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'sim-trib';
+    el.dataset.trib = t;
+    if (t === STATE.tribunal) el.dataset.selected = '1';
+    el.textContent = `tribunal: ${t}`;
+    el.onclick = () => {
+      STATE.tribunal = t;
+      document.querySelectorAll('.sim-trib').forEach(e => {
+        e.dataset.selected = (e.dataset.trib === t) ? '1' : '0';
+      });
+      buildRuleForms();
+    };
+    list.appendChild(el);
+  });
+}
+
+async function loadSchema(key) {
+  if (SCHEMA_CACHE[key]) return SCHEMA_CACHE[key];
+  const idx = RULE_INDEX.find(r => r.module === key.split('/')[0] && r.scope === key.split('/')[1]);
+  if (!idx) return null;
+  let schema = await fetch(`../rules/${idx.schema}`).then(x => x.json());
+  // catala json-schema emits [input, output]. Render forms from input.
+  if (Array.isArray(schema)) schema = schema[0];
+  SCHEMA_CACHE[key] = schema;
+  return schema;
+}
+
+// --- form helpers (mirrors playground.html, kept inline for portability) ---
+
+function resolveRef(schema, ref) {
+  if (!ref || !ref.startsWith('#/definitions/')) return null;
+  return schema.definitions[ref.slice('#/definitions/'.length)];
+}
+function isEnum(def) { return def && Array.isArray(def.enum); }
+function isStruct(def) { return def && def.type === 'object' && def.properties; }
+function isArray(def) { return def && def.type === 'array' && def.items; }
+function isNumberish(prop) {
+  if (!prop) return false;
+  if (prop.type === 'number' || prop.type === 'integer') return true;
+  if (Array.isArray(prop.oneOf)) return prop.oneOf.some(o => o.type === 'number' || o.type === 'integer');
+  return false;
+}
+
+function defaultsFromSchema(schema) {
+  const def = resolveRef(schema, schema.$ref);
+  if (!def || !isStruct(def)) return {};
+  const out = {};
+  Object.entries(def.properties).forEach(([k, p]) => out[k] = defaultValueForProp(schema, p));
+  return out;
+}
+function defaultValueForRef(schema, ref) {
+  const def = resolveRef(schema, ref);
+  if (!def) return null;
+  if (isEnum(def)) return def.enum[0];
+  if (isStruct(def)) {
+    const out = {};
+    Object.entries(def.properties).forEach(([k, p]) => out[k] = defaultValueForProp(schema, p));
+    return out;
+  }
+  return null;
+}
+function defaultValueForProp(schema, prop) {
+  if (prop.$ref) return defaultValueForRef(schema, prop.$ref);
+  if (prop.type === 'boolean') return false;
+  if (isNumberish(prop)) return '0';
+  if (isArray(prop)) {
+    if (prop.items && prop.items.$ref) {
+      const def = resolveRef(schema, prop.items.$ref);
+      if (def && isStruct(def)) {
+        return [defaultValueForRef(schema, prop.items.$ref)];
+      }
+    }
+    return [];
+  }
+  return '';
+}
+
+function renderField(schema, prop, value, path, scopePrefix) {
+  const id = scopePrefix + ':' + path.join('.');
+  if (prop.$ref) {
+    const def = resolveRef(schema, prop.$ref);
+    if (isEnum(def)) {
+      const opts = def.enum.map(e => `<option value="${escape(e)}"${e === value ? ' selected' : ''}>${escape(e)}</option>`).join('');
+      return `<select data-formpath="${escape(id)}" data-kind="enum">${opts}</select>`;
+    }
+    if (isStruct(def)) return renderStruct(schema, def, value || {}, path, scopePrefix);
+  }
+  if (prop.type === 'boolean') {
+    const v = !!value;
+    return `<select data-formpath="${escape(id)}" data-kind="bool">
+      <option value="false"${!v ? ' selected' : ''}>false</option>
+      <option value="true"${v ? ' selected' : ''}>true</option>
+    </select>`;
+  }
+  if (isNumberish(prop)) {
+    const v = value === undefined ? '' : String(value);
+    return `<input type="text" inputmode="decimal" data-formpath="${escape(id)}" data-kind="number" value="${escape(v)}">`;
+  }
+  if (isArray(prop)) {
+    const def = prop.items && prop.items.$ref ? resolveRef(schema, prop.items.$ref) : prop.items;
+    const arr = Array.isArray(value) ? value : [];
+    let html = `<div class="pg-array" data-formpath="${escape(id)}" data-item-ref="${escape(prop.items.$ref || '')}">`;
+    arr.forEach((item, i) => {
+      html += `<div class="pg-list-item" data-idx="${i}">
+        <div class="pg-list-item-h"><span>[${i}]</span><button class="pg-list-item-rm" data-action="remove" data-idx="${i}">remove</button></div>`;
+      if (def && isStruct(def)) html += renderStruct(schema, def, item || {}, path.concat([i]), scopePrefix);
+      else if (def && isEnum(def)) {
+        const opts = def.enum.map(e => `<option value="${escape(e)}"${e === item ? ' selected' : ''}>${escape(e)}</option>`).join('');
+        html += `<select data-formpath="${escape(scopePrefix + ':' + path.concat([i]).join('.'))}" data-kind="enum">${opts}</select>`;
+      } else if (def && isNumberish(def)) {
+        html += `<input type="text" inputmode="decimal" data-formpath="${escape(scopePrefix + ':' + path.concat([i]).join('.'))}" data-kind="number" value="${escape(item ?? '')}">`;
+      } else {
+        html += `<input type="text" data-formpath="${escape(scopePrefix + ':' + path.concat([i]).join('.'))}" data-kind="string" value="${escape(item ?? '')}">`;
+      }
+      html += `</div>`;
+    });
+    html += `<div class="pg-list-controls"><button data-action="add">+ add item</button></div>`;
+    html += `</div>`;
+    return html;
+  }
+  const v = value === undefined ? '' : String(value);
+  return `<input type="text" data-formpath="${escape(id)}" data-kind="string" value="${escape(v)}">`;
+}
+
+function renderStruct(schema, def, value, path, scopePrefix) {
+  let html = `<div class="pg-fieldgroup">`;
+  if (path.length > 0) html += `<div class="pg-fieldgroup-h">${escape(path.join('.'))}</div>`;
+  Object.entries(def.properties).forEach(([k, prop]) => {
+    html += `<div class="pg-field">
+      <div class="pg-field-k">${escape(k)}</div>
+      <div class="pg-field-input">${renderField(schema, prop, value && value[k], path.concat([k]), scopePrefix)}</div>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderForm(schema, values, scopePrefix) {
+  const def = resolveRef(schema, schema.$ref);
+  if (!def) return '<p class="sim-error">Could not parse schema.</p>';
+  return renderStruct(schema, def, values, [], scopePrefix);
+}
+
+// --- collection from per-scope subtrees ---
+
+function setByPath(obj, path, value) {
+  let cur = obj;
+  for (let i = 0; i < path.length - 1; i++) {
+    const p = path[i];
+    if (cur[p] === undefined || cur[p] === null) cur[p] = (typeof path[i + 1] === 'number') ? [] : {};
+    cur = cur[p];
+  }
+  cur[path[path.length - 1]] = value;
+}
+function collectInputsForScope(scopePrefix) {
+  const out = {};
+  // Seed empty arrays so required-array fields validate even when no items
+  // were added (otherwise the API rejects with "Missing object field …").
+  document.querySelectorAll(`.pg-array[data-formpath^="${CSS.escape(scopePrefix + ':')}"]`).forEach(el => {
+    const tail = el.dataset.formpath.split(':')[1];
+    const path = tail.split('.').map(p => /^\d+$/.test(p) ? parseInt(p, 10) : p);
+    setByPath(out, path, []);
+  });
+  document.querySelectorAll(`[data-formpath^="${CSS.escape(scopePrefix + ':')}"][data-kind]`).forEach(el => {
+    const tail = el.dataset.formpath.split(':')[1];
+    const path = tail.split('.').map(p => /^\d+$/.test(p) ? parseInt(p, 10) : p);
+    const kind = el.dataset.kind;
+    let value;
+    if (kind === 'bool') value = el.value === 'true';
+    else if (kind === 'enum') value = el.value;
+    else if (kind === 'number') value = el.value;
+    else value = el.value;
+    setByPath(out, path, value);
+  });
+  return out;
+}
+
+// --- build per-rule forms ---
+
+async function buildRuleForms() {
+  const list = document.getElementById('rulesList');
+  list.innerHTML = '<p class="muted">loading rule schemas…</p>';
+  const rules = STATE.claim.applicable_rules.filter(r => r.tribunal === STATE.tribunal);
+  if (!rules.length) {
+    list.innerHTML = `<p class="sim-error">No rules registered for ${escape(STATE.tribunal)} on this claim type. Pick another tribunal above.</p>`;
+    document.getElementById('runAllBtn').disabled = true;
+    return;
+  }
+  list.innerHTML = '';
+  for (const r of rules) {
+    const key = ruleKey(r.module, r.scope);
+    const schema = await loadSchema(key);
+    const values = STATE.inputs[key] || (schema ? defaultsFromSchema(schema) : {});
+    STATE.inputs[key] = values;
+    const block = document.createElement('div');
+    block.className = 'sim-rule';
+    block.dataset.key = key;
+    block.innerHTML = `
+      <div class="sim-rule-h">
+        <span class="sim-rule-mod">${escape(r.module)} · ${escape(r.scope)}</span>
+        <span class="sim-rule-role">${escape(r.role)}</span>
+        <span class="sim-rule-trib">${escape(r.tribunal)}</span>
+      </div>
+      <div class="sim-rule-when">${escape(r.when || '')}</div>
+      <div class="sim-rule-form">${schema ? renderForm(schema, values, key) : '<p class="sim-error">schema unavailable</p>'}</div>
+      <div class="sim-rule-out"><span class="sim-rule-out-empty">Click "Run all rules" — output appears here.</span></div>
+    `;
+    list.appendChild(block);
+  }
+  bindListActions();
+  document.getElementById('runAllBtn').disabled = false;
+}
+
+function bindListActions() {
+  document.querySelectorAll('.pg-array').forEach(arr => {
+    arr.querySelectorAll('button[data-action="add"]').forEach(btn => {
+      btn.onclick = () => {
+        const refKey = arr.dataset.itemRef;
+        const scopePrefix = arr.dataset.formpath.split(':')[0];
+        const schema = SCHEMA_CACHE[scopePrefix];
+        const def = resolveRef(schema, refKey);
+        const fresh = def && isStruct(def) ? defaultValueForRef(schema, refKey) : '';
+        const values = collectInputsForScope(scopePrefix);
+        const tail = arr.dataset.formpath.split(':')[1];
+        const path = tail.split('.').map(p => /^\d+$/.test(p) ? parseInt(p, 10) : p);
+        let cur = values;
+        for (const p of path) {
+          if (cur[p] === undefined) cur[p] = [];
+          cur = cur[p];
+        }
+        cur.push(fresh);
+        const form = arr.closest('.sim-rule-form');
+        form.innerHTML = renderForm(schema, values, scopePrefix);
+        bindListActions();
+      };
+    });
+    arr.querySelectorAll('button[data-action="remove"]').forEach(btn => {
+      btn.onclick = () => {
+        const idx = parseInt(btn.dataset.idx, 10);
+        const scopePrefix = arr.dataset.formpath.split(':')[0];
+        const schema = SCHEMA_CACHE[scopePrefix];
+        const values = collectInputsForScope(scopePrefix);
+        const tail = arr.dataset.formpath.split(':')[1];
+        const path = tail.split('.').map(p => /^\d+$/.test(p) ? parseInt(p, 10) : p);
+        let cur = values;
+        for (const p of path) cur = cur[p];
+        cur.splice(idx, 1);
+        const form = arr.closest('.sim-rule-form');
+        form.innerHTML = renderForm(schema, values, scopePrefix);
+        bindListActions();
+      };
+    });
+  });
+}
+
+// --- run everything ---
+
+async function runAllRules() {
+  const rules = STATE.claim.applicable_rules.filter(r => r.tribunal === STATE.tribunal);
+  STATE.outputs = {};
+  for (const r of rules) {
+    const key = ruleKey(r.module, r.scope);
+    const inputs = collectInputsForScope(key);
+    STATE.inputs[key] = inputs;
+    const block = document.querySelector(`.sim-rule[data-key="${CSS.escape(key)}"]`);
+    const out = block.querySelector('.sim-rule-out');
+    out.innerHTML = '<span class="sim-rule-out-empty">running…</span>';
+    try {
+      const r2 = await fetch(`${API_BASE}/api/rule_run`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ module: r.module, scope: r.scope, inputs }),
+      });
+      const data = await r2.json();
+      if (!r2.ok) {
+        STATE.outputs[key] = { error: data.error || 'error' };
+        out.innerHTML = `<span class="sim-rule-out-err">${escape(data.error || 'error')}</span>`;
+      } else {
+        STATE.outputs[key] = { result: data };
+        out.innerHTML = `<pre style="margin:0;white-space:pre-wrap;word-break:break-word;">${escape(JSON.stringify(data, null, 2))}</pre>`;
+      }
+    } catch (e) {
+      STATE.outputs[key] = { error: String(e) };
+      out.innerHTML = `<span class="sim-rule-out-err">${escape(String(e))}</span>`;
+    }
+  }
+  renderVerdict();
+}
+
+// --- verdict aggregation ---
+//
+// Aggregation strategy: walk the per-rule outputs in role order:
+//   gate         — must succeed for downstream arithmetic to bind.
+//                  Failure short-circuits the verdict to "blocked at gate".
+//   interpretation — pick a branch (e.g. PlainMeaning vs Ambiguous);
+//                    surface as a labelled finding.
+//   disposition  — produces a categorical outcome (granted / refused /
+//                  in_part / dismissed); the headline of the verdict.
+//   arithmetic   — produces numbers; rolled up as the operative figure.
+// Confidence is the fraction of rules that returned a clean result
+// (no error) — a crude but legible coverage metric for v0.1.
+
+function classifyDisposition(result) {
+  if (!result || typeof result !== 'object') return null;
+  // Look for a 'disposition' or 'award' field with familiar shape.
+  const root = Object.values(result)[0];
+  if (!root || typeof root !== 'object') return null;
+  if (root.application_disposition) return root.application_disposition;
+  if (root.overall_disposition) return root.overall_disposition;
+  if (root.summary_judgment_granted !== undefined) return root.summary_judgment_granted ? 'SummaryJudgmentGranted' : 'SummaryJudgmentRefused';
+  if (root.duty_of_care_owed !== undefined) return root.duty_of_care_owed ? 'DutyOfCareOwed' : 'DutyOfCareNotOwed';
+  if (root.evidence_admissible !== undefined) return root.evidence_admissible ? 'EvidenceAdmissible' : 'EvidenceInadmissible';
+  if (root.in_breach !== undefined) return root.in_breach ? 'InBreach' : 'NotInBreach';
+  if (root.was_capped !== undefined) return root.was_capped ? 'LDCapped' : 'LDNotCapped';
+  return null;
+}
+
+function extractOperativeNumber(result) {
+  // Grab a single representative number — the most informative scalar.
+  if (!result || typeof result !== 'object') return null;
+  const root = Object.values(result)[0];
+  if (!root || typeof root !== 'object') return null;
+  const candidates = ['total_owed_aed', 'total_aed', 'awarded_aed', 'net_to_claimant_aed', 'judgment_sum_gbp', 'residual_upper_aed'];
+  for (const k of candidates) {
+    if (typeof root[k] === 'number') return { label: k, value: root[k] };
+  }
+  return null;
+}
+
+function renderVerdict() {
+  const body = document.getElementById('verdictBody');
+  const rules = STATE.claim.applicable_rules.filter(r => r.tribunal === STATE.tribunal);
+  const ok = rules.filter(r => STATE.outputs[ruleKey(r.module, r.scope)] && !STATE.outputs[ruleKey(r.module, r.scope)].error);
+  const fail = rules.filter(r => STATE.outputs[ruleKey(r.module, r.scope)] && STATE.outputs[ruleKey(r.module, r.scope)].error);
+  const conf = rules.length === 0 ? 0 : ok.length / rules.length;
+  const tier = conf >= 0.85 ? 'high' : conf >= 0.5 ? 'medium' : 'low';
+  document.getElementById('stepFacts').dataset.done = '1';
+  document.getElementById('stepVerdict').dataset.active = '1';
+
+  // disposition headline — pick the highest-priority "disposition"-role rule
+  let headline = null;
+  for (const r of rules) {
+    if (r.role !== 'disposition') continue;
+    const out = STATE.outputs[ruleKey(r.module, r.scope)];
+    if (!out || out.error) continue;
+    const kind = classifyDisposition(out.result);
+    if (kind) { headline = { rule: r, kind }; break; }
+  }
+  if (!headline) {
+    // fall back to any non-disposition rule with a categorical reading
+    for (const r of rules) {
+      const out = STATE.outputs[ruleKey(r.module, r.scope)];
+      if (!out || out.error) continue;
+      const kind = classifyDisposition(out.result);
+      if (kind) { headline = { rule: r, kind }; break; }
+    }
+  }
+
+  let html = '';
+  html += `<div class="sim-verdict">`;
+  html += `<div class="sim-verdict-h">Predicted disposition · ${escape(STATE.tribunal)}</div>`;
+  if (headline) {
+    html += `<div class="sim-verdict-summary">${escape(humaniseDisposition(headline.kind))}</div>`;
+    html += `<div class="muted" style="font-size:12px;margin-bottom:10px;">From <code>${escape(headline.rule.module)}/${escape(headline.rule.scope)}</code> (role: ${escape(headline.rule.role)}).</div>`;
+  } else {
+    html += `<div class="sim-verdict-summary">No categorical disposition produced — the rules in this branch are arithmetic / interpretive only.</div>`;
+  }
+  html += `<div class="sim-verdict-conf">confidence ${(conf * 100).toFixed(0)}% — ${ok.length}/${rules.length} rules ran cleanly</div>`;
+  html += `<div class="sim-verdict-bar"><div class="sim-verdict-bar-fill" data-tier="${tier}" style="width:${(conf * 100).toFixed(0)}%"></div></div>`;
+
+  // operative numbers, when any
+  const ops = ok.map(r => {
+    const out = STATE.outputs[ruleKey(r.module, r.scope)];
+    const op = extractOperativeNumber(out.result);
+    return op ? { rule: r, op } : null;
+  }).filter(Boolean);
+  if (ops.length) {
+    html += `<h4>Operative numbers</h4>`;
+    ops.forEach(({ rule, op }) => {
+      html += `<div class="sim-verdict-line ok"><strong>${escape(op.label)}</strong>: ${formatNum(op.value)} · <span class="muted">${escape(rule.module)}</span></div>`;
+    });
+  }
+
+  // gates and interpretations
+  const ints = rules.map(r => {
+    const out = STATE.outputs[ruleKey(r.module, r.scope)];
+    if (!out || out.error) return null;
+    if (r.role !== 'gate' && r.role !== 'interpretation') return null;
+    const kind = classifyDisposition(out.result);
+    if (!kind) return null;
+    return { rule: r, kind };
+  }).filter(Boolean);
+  if (ints.length) {
+    html += `<h4>Gates &amp; interpretations</h4>`;
+    ints.forEach(({ rule, kind }) => {
+      html += `<div class="sim-verdict-line ok"><strong>${escape(rule.role)}</strong>: ${escape(humaniseDisposition(kind))} · <span class="muted">${escape(rule.module)}</span></div>`;
+    });
+  }
+
+  if (fail.length) {
+    html += `<h4>Rules that failed to run</h4>`;
+    fail.forEach(r => {
+      const err = STATE.outputs[ruleKey(r.module, r.scope)].error;
+      html += `<div class="sim-verdict-line err"><strong>${escape(r.module)}</strong>: ${escape(err)}</div>`;
+    });
+  }
+
+  html += `</div>`;
+  body.innerHTML = html;
+}
+
+function humaniseDisposition(kind) {
+  return kind
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/_/g, ' ');
+}
+
+function formatNum(v) {
+  if (typeof v !== 'number') return String(v);
+  if (Number.isInteger(v)) return v.toLocaleString();
+  return v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 });
+}
+
+// --- bootstrap ---
+
+document.getElementById('runAllBtn').onclick = runAllRules;
+document.getElementById('resetFactsBtn').onclick = () => {
+  STATE.inputs = {};
+  STATE.outputs = {};
+  buildRuleForms();
+  document.getElementById('verdictBody').innerHTML = '<p class="muted">Run the rules to see the aggregated verdict.</p>';
+};
+
+loadAll();
+</script>
+
+</body>
+</html>
