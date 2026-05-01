@@ -1,0 +1,120 @@
+name: traces
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  catala:
+    name: catala typecheck + interpret
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up OCaml 4.14
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "4.14.2"
+          dune-cache: true
+
+      - name: Install Catala 1.1.0
+        run: opam install --yes catala.1.1.0
+
+      - name: Typecheck + interpret each trace
+        shell: bash
+        run: |
+          set -euo pipefail
+          eval $(opam env)
+          fail=0
+          for d in spike/trace-*/; do
+            name=$(basename "$d")
+            file="$d/rule.catala_en"
+            [ -f "$file" ] || continue
+            echo "::group::$name typecheck"
+            if ! catala typecheck --no-stdlib "$file"; then fail=1; fi
+            echo "::endgroup::"
+            echo "::group::$name interpret (#[test] scopes)"
+            if ! catala interpret --no-stdlib "$file"; then fail=1; fi
+            echo "::endgroup::"
+          done
+          exit $fail
+
+      - name: Typecheck + interpret each rule module
+        shell: bash
+        run: |
+          set -euo pipefail
+          eval $(opam env)
+          fail=0
+          for file in rules/*.catala_en; do
+            name=$(basename "$file" .catala_en)
+            echo "::group::$name typecheck"
+            if ! catala typecheck --no-stdlib "$file"; then fail=1; fi
+            echo "::endgroup::"
+            echo "::group::$name interpret (#[test] scopes)"
+            if ! catala interpret --no-stdlib "$file"; then fail=1; fi
+            echo "::endgroup::"
+          done
+          exit $fail
+
+      - name: Regenerate spike/trace-*/output.json and check for drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          eval $(opam env)
+          bash scripts/build_trace_outputs.sh
+          # Any drift between rule.catala_en and the committed output.json
+          # is a failure — keep them in sync.
+          if ! git diff --quiet -- spike/trace-*/output.json; then
+            echo "::error::output.json drift detected — re-run scripts/build_trace_outputs.sh and commit"
+            git --no-pager diff -- spike/trace-*/output.json
+            exit 1
+          fi
+
+      - name: Regenerate rules/*.schema.json and check for drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          eval $(opam env)
+          bash scripts/build_rule_schemas.sh
+          if ! git diff --quiet -- 'rules/*.schema.json' rules/_index.json; then
+            echo "::error::rule schema drift detected — re-run scripts/build_rule_schemas.sh and commit"
+            git --no-pager diff -- 'rules/*.schema.json' rules/_index.json
+            exit 1
+          fi
+
+      - name: Property tests for rule modules
+        shell: bash
+        env:
+          HABEAS_PROPERTY_TRIALS: "100"
+        run: |
+          set -euo pipefail
+          eval $(opam env)
+          python3 tests/property_tests.py
+
+  evaluate:
+    name: python predicate evaluators
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run evaluate.py for each trace
+        shell: bash
+        run: |
+          set -euo pipefail
+          fail=0
+          for d in spike/trace-*/; do
+            name=$(basename "$d")
+            script="$d/evaluate.py"
+            [ -f "$script" ] || continue
+            echo "::group::$name evaluate.py"
+            if ! python3 "$script"; then fail=1; fi
+            echo "::endgroup::"
+          done
+          exit $fail

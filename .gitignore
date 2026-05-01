@@ -21,10 +21,21 @@ data/raw/
 
 # Local Catala/opam toolchain artefacts (if ever installed)
 _build/
+_targets/
 *.cmo
 *.cmi
 *.cmx
 *.o
+*.cma
+*.cmxa
+*.a
 
 # Dashboard server lockfiles
 dashboard/.server.pid
+
+# Client build artefacts
+clients/python/build/
+clients/python/dist/
+clients/python/*.egg-info/
+clients/typescript/node_modules/
+clients/typescript/dist/
