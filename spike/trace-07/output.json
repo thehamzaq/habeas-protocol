@@ -1,0 +1,13 @@
+{
+  "order": {
+    "nph_made_out": true,
+    "bankers_trust_made_out": true,
+    "rdc_2852_made_out": true,
+    "all_gates_satisfied": true,
+    "order_granted": true,
+    "n_respondents": 4.0,
+    "n_respondents_opposing_substance": 0.0,
+    "information_window_days": 14.0,
+    "documents_window_days": 21.0
+  }
+}

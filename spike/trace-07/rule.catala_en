@@ -1,0 +1,230 @@
+## Rule of the Court (Norwich Pharmacal + Bankers Trust + RDC 28.52
+## third-party disclosure)
+##
+## Source:
+##   - DIFC Courts Law (Law No. 2 of 2025), Articles 15(1) and 24(D).
+##     Article 15(1)(3) confers jurisdiction over "a claim for the
+##     disclosure of funds or assets owned by the defendant or applicant
+##     in applications and claims that fall within the jurisdiction of
+##     the DIFC Courts." Article 24(D) confers a residual procedural
+##     power to make orders the Court considers appropriate.
+##   - DIFC Law of Damages and Remedies (Law No. 7 of 2005), Article 36.
+##     The Court may grant interim remedies including "an order for
+##     disclosure of documents or inspection of property against a
+##     non-party". RDC 25.1(10) is cast in the same terms.
+##   - Rules of the DIFC Courts (RDC) 28.51 and 28.52. Production
+##     against a non-party requires evidence and is granted only where
+##     (i) the documents are likely to support the applicant's case OR
+##     adversely affect another party's case AND (ii) production is
+##     necessary in order to dispose fairly of the claim or to save
+##     costs.
+##   - *Norwich Pharmacal v Customs and Excise* [1974] AC 133 (HL).
+##     Disclosure may be ordered against a non-party who has become
+##     "mixed up" — innocently or otherwise — in the wrongdoing being
+##     investigated, where they are in possession of information that
+##     would help identify the wrongdoer or their assets, and disclosure
+##     is necessary in the interests of justice.
+##   - *Bankers Trust Co v Shapira* [1980] 1 WLR 1274 (CA). Where a
+##     proprietary tracing claim is asserted against funds, the Court
+##     may order a financial institution holding traceable proceeds to
+##     produce account information and documentation, exercising the
+##     power under Article 36 of the DIFC Law of Damages and Remedies.
+##
+## This file expresses the rule applied in:
+##   DEC 001/2025 — Techteryx Ltd v (1) IG Limited (2) IG Markets Ltd
+##                  (3) IG Index Ltd (4) IG Trading and Investments Ltd
+##   Order of H.E. Justice Michael Black KC, 3 April 2026
+##   DIFC Digital Economy Court.
+##
+## Trace #7 is the first trace in DIFC's *Digital Economy Court* and
+## the first to express a *third-party-jurisdiction gate*: the
+## predicate is not the substantive merits but the conjunctive
+## conditions for the Court to reach over to a non-party financial
+## institution and compel disclosure of traceable proceeds.
+##
+## Methodologically:
+##   #1 (formula)              — pure arithmetic
+##   #2 (deferred conditional) — temporal predicate
+##   #3 (bounded discretion)   — rule strips a filter
+##   #4 (composition over findings) — arithmetic + Booleans
+##   #5 (conjunctive logical composition) — clauses + witnesses + Ladd
+##   #6 (partial statutory refusal) — multi-ground statutory check
+##   #7 (third-party-jurisdiction gate) — three independent
+##                                       conjunctive jurisdictional
+##                                       tests (Norwich Pharmacal,
+##                                       Bankers Trust, RDC 28.52),
+##                                       all required to issue the
+##                                       order against a non-party.
+##
+## On-thesis: this is a *digital-asset* dispute (USD 456 million in
+## stablecoin reserves, allegedly misappropriated) routed through the
+## first commercial court purpose-built for digital-economy litigation.
+## The protocol's value here is exactly what the paper claims — the
+## tribunals already exist; the rule of decision is auditable.
+
+```catala
+declaration enumeration NorwichPharmacalElement:
+  -- NPE_WrongEstablished
+  -- NPE_RespondentMixedUp
+  -- NPE_PossessesInformation
+  -- NPE_DisclosureNecessaryInInterestsOfJustice
+
+declaration enumeration BankersTrustElement:
+  -- BTE_TracingClaimAsserted
+  -- BTE_HoldsTraceableProceeds
+  -- BTE_DisclosureNecessaryForTracing
+
+declaration enumeration RDC2852Condition:
+  -- RDC_LikelyToSupportOrAffect
+  -- RDC_NecessaryToDisposeOrSaveCosts
+
+declaration enumeration RespondentId:
+  -- IG_Limited
+  -- IG_Markets_Limited
+  -- IG_Index_Limited
+  -- IG_Trading_And_Investments_Limited
+
+declaration structure NPFinding:
+  data element content NorwichPharmacalElement
+  data made_out content boolean
+
+declaration structure BTFinding:
+  data element content BankersTrustElement
+  data made_out content boolean
+
+declaration structure RDCFinding:
+  data rdc_condition content RDC2852Condition
+  data made_out content boolean
+
+declaration structure RespondentPosture:
+  data respondent content RespondentId
+  data dfsa_regulated content boolean
+  data opposes_substance content boolean
+
+declaration structure DisclosureOrder:
+  data nph_made_out content boolean
+  data bankers_trust_made_out content boolean
+  data rdc_2852_made_out content boolean
+  data all_gates_satisfied content boolean
+  data order_granted content boolean
+  data n_respondents content integer
+  data n_respondents_opposing_substance content integer
+  data information_window_days content decimal
+  data documents_window_days content decimal
+
+declaration scope ThirdPartyDisclosureOrder:
+  input nph_findings content list of NPFinding
+  input bt_findings content list of BTFinding
+  input rdc_findings content list of RDCFinding
+  input respondents content list of RespondentPosture
+  input agreed_information_window_days content decimal
+  input agreed_documents_window_days content decimal
+  output order content DisclosureOrder
+
+scope ThirdPartyDisclosureOrder:
+  definition order equals
+    let nph equals
+      (number of (list of f among nph_findings
+                  such that not f.made_out)) = 0
+    in
+    let bt equals
+      (number of (list of f among bt_findings
+                  such that not f.made_out)) = 0
+    in
+    let rdc equals
+      (number of (list of f among rdc_findings
+                  such that not f.made_out)) = 0
+    in
+    let all_gates equals nph and bt and rdc in
+    let n_resp equals number of respondents in
+    let opposing equals
+      number of (list of r among respondents
+                 such that r.opposes_substance)
+    in
+    DisclosureOrder {
+      -- nph_made_out: nph
+      -- bankers_trust_made_out: bt
+      -- rdc_2852_made_out: rdc
+      -- all_gates_satisfied: all_gates
+      -- order_granted: all_gates
+      -- n_respondents: n_resp
+      -- n_respondents_opposing_substance: opposing
+      -- information_window_days: agreed_information_window_days
+      -- documents_window_days: agreed_documents_window_days
+    }
+```
+
+## Test — facts of DEC 001/2025
+
+```catala
+#[test] declaration scope TestTechteryxVIG:
+  composite scope ThirdPartyDisclosureOrder
+  output order content DisclosureOrder
+
+scope TestTechteryxVIG:
+  definition order equals composite.order
+
+  ## Norwich Pharmacal: all four elements expressly satisfied —
+  ## (a) wrongdoing established by the WFO + Amended Judgment + Hong
+  ##     Kong High Court Action 161/2023 (alleged USD 456M fraud);
+  ## (b) IG entities became "mixed up" by holding accounts that
+  ##     received the traceable Six Remittances;
+  ## (c) IG holds the very account statements and transaction records
+  ##     that would identify onward dealings;
+  ## (d) disclosure necessary in the interests of justice — the
+  ##     applicant's tracing exercise cannot otherwise progress.
+  definition composite.nph_findings equals [
+    NPFinding { -- element: NPE_WrongEstablished                       -- made_out: true };
+    NPFinding { -- element: NPE_RespondentMixedUp                      -- made_out: true };
+    NPFinding { -- element: NPE_PossessesInformation                   -- made_out: true };
+    NPFinding { -- element: NPE_DisclosureNecessaryInInterestsOfJustice -- made_out: true }
+  ]
+
+  ## Bankers Trust: a proprietary tracing claim is asserted; IG holds
+  ## the proceeds; disclosure is necessary to identify what became of
+  ## the USD 46 million in DMCC Payments.
+  definition composite.bt_findings equals [
+    BTFinding { -- element: BTE_TracingClaimAsserted        -- made_out: true };
+    BTFinding { -- element: BTE_HoldsTraceableProceeds      -- made_out: true };
+    BTFinding { -- element: BTE_DisclosureNecessaryForTracing -- made_out: true }
+  ]
+
+  ## RDC 28.52(1) and (2): documents likely to support the applicant's
+  ## case (account statements identifying onward dealings) AND
+  ## production necessary to dispose fairly of the tracing exercise.
+  definition composite.rdc_findings equals [
+    RDCFinding { -- rdc_condition: RDC_LikelyToSupportOrAffect       -- made_out: true };
+    RDCFinding { -- rdc_condition: RDC_NecessaryToDisposeOrSaveCosts -- made_out: true }
+  ]
+
+  ## Four IG respondents — none opposed the substance (Mr Fisher's
+  ## witness statement: "the IG Respondents do not oppose the
+  ## substance of the Application"). One first respondent is DFSA
+  ## regulated; the others are UK FCA group entities.
+  definition composite.respondents equals [
+    RespondentPosture { -- respondent: IG_Limited                            -- dfsa_regulated: true  -- opposes_substance: false };
+    RespondentPosture { -- respondent: IG_Markets_Limited                    -- dfsa_regulated: false -- opposes_substance: false };
+    RespondentPosture { -- respondent: IG_Index_Limited                      -- dfsa_regulated: false -- opposes_substance: false };
+    RespondentPosture { -- respondent: IG_Trading_And_Investments_Limited    -- dfsa_regulated: false -- opposes_substance: false }
+  ]
+
+  ## Compliance windows agreed by Techteryx in 9th Witness Statement:
+  ## 14 days for confirmations, 21 days for document production
+  ## (extended from the original 14 to accommodate the volume of
+  ## transactions under the Aria entities).
+  definition composite.agreed_information_window_days equals 14.0
+  definition composite.agreed_documents_window_days equals 21.0
+
+  ## Court holdings, transcribed from para 24:
+  ## "I am satisfied that the Court has jurisdiction, and I am content,
+  ##  to make the order as sought."
+  assertion order.nph_made_out = true
+  assertion order.bankers_trust_made_out = true
+  assertion order.rdc_2852_made_out = true
+  assertion order.all_gates_satisfied = true
+  assertion order.order_granted = true
+  assertion order.n_respondents = 4
+  assertion order.n_respondents_opposing_substance = 0
+  assertion order.information_window_days = 14.0
+  assertion order.documents_window_days = 21.0
+```
