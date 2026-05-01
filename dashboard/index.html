@@ -226,13 +226,13 @@
 
 <section class="section">
   <h2>Empirical findings</h2>
-  <p class="finding">All three tribunals score at near-ceiling on every per-ruling primitive, and 2/2 on both architectural system properties. The pattern is robust to two stress tests, and four executable traces from the corpus demonstrate the protocol's methodological coverage.</p>
+  <p class="finding">All three tribunals score at near-ceiling on every per-ruling primitive, and 2/2 on both architectural system properties. The pattern is robust to two stress tests, and seven executable traces from the corpus demonstrate the protocol's methodological coverage across formula, deferred conditional, bounded discretion, arithmetic and Boolean composition, statutory partial-refusal, and a third-party-jurisdiction gate.</p>
   <p>Of the 121 judgments scored, <strong>39 form a hand-coded gold set</strong> (32 DIFC + 7 ADGM); the remaining 82 entries (69 ADGM + 13 SICC) are AI-triaged and AI-graded against the same rubric, with per-entry provenance recorded in the <code>coding.coder</code> field.</p>
   <ul>
     <li><strong>Sample-size robustness.</strong> The ADGM saturation pattern survives a 10× expansion: mean primitive score drifts from <strong>1.93 at n=7</strong> (hand-coded) to <strong>1.91 at n=76</strong> (hand + AI). The near-ceiling reading isn't an artefact of small-sample noise.</li>
     <li><strong>Cross-family replication.</strong> SICC at <strong>1.95 / 2.00</strong> replicates the saturation in a third operating tribunal in a different legal family — Singapore common law via the IAA, vs DIFC's own statutes and ADGM's English-law-via-statute. The protocol is not court-specific.</li>
     <li><strong>Architectural system properties.</strong> All three tribunals score <strong>2/2</strong> on separation of powers (SP1) and enforceability under the New York Convention (SP2). These are the structural pre-conditions for plugging software into the bench.</li>
-    <li><strong>Methodological coverage.</strong> Four executable traces from the corpus show the protocol covers (i) static-rule arithmetic, (ii) deferred conditionals, (iii) rule-bounded human judgment, and (iv) arithmetic composition over substantive findings. Three further traces extend to Boolean composition over contractual interpretation, NY-Convention partial refusal under Singapore IAA s 31, and a third-party-jurisdiction gate under <em>Norwich Pharmacal</em> + <em>Bankers Trust</em> + RDC 28.52.</li>
+    <li><strong>Methodological coverage.</strong> Seven executable traces from the corpus show the protocol covers (i) static-rule arithmetic, (ii) deferred conditionals, (iii) rule-bounded human judgment, (iv) arithmetic composition over substantive findings, (v) Boolean composition over contractual interpretation, (vi) NY-Convention partial refusal under Singapore IAA s 31, and (vii) a third-party-jurisdiction gate under <em>Norwich Pharmacal</em> + <em>Bankers Trust</em> + RDC 28.52.</li>
   </ul>
   <p class="finding">The tribunals already exist; what is missing is the computational layer.</p>
 </section>
@@ -260,7 +260,7 @@
         <h3>How to read a fingerprint</h3>
         <p>Six concentric rings encode the per-ruling primitives, innermost to outermost: <b>PR1</b> rule source · <b>PR2</b> typed evidence · <b>PR3</b> machine-readable order · <b>PR4</b> procedural state · <b>PR5</b> reasoning trace · <b>PR6</b> replayability.</p>
         <p>A full ring with eight tick-marks means a perfect score (2). A half-arc with four ticks means a partial score (1). A faint dashed circle means absent (0).</p>
-        <p>Two outer arcs encode the system properties: <b>SP1</b> separation of powers (top), <b>SP2</b> appeal path (bottom). The central rosette is a hash-seeded ornament unique to the case ID — so two judgments with identical scores still wear different faces. A small dot at the upper-right marks one of the four cases that became an executable trace.</p>
+        <p>Two outer arcs encode the system properties: <b>SP1</b> separation of powers (top), <b>SP2</b> appeal path (bottom). The central rosette is a hash-seeded ornament unique to the case ID — so two judgments with identical scores still wear different faces. A small dot at the upper-right marks one of the seven cases that became an executable trace.</p>
       </div>
       <div class="anatomy" id="anatomy"></div>
     </div>
@@ -437,7 +437,7 @@ const TRIBUNAL_MAP = {
   'Singapore International Commercial Court': 'SICC',
   'DIFC': 'DIFC', 'ADGM': 'ADGM', 'SICC': 'SICC'
 };
-const TRACE_MARKERS = ['CFI 058/2024', 'ARB 008/2026', 'ENF 271/2025', 'ADGMCFI-2024-320'];
+const TRACE_MARKERS = ['CFI 058/2024', 'ARB 008/2026', 'ENF 271/2025', 'ADGMCFI-2024-320', 'ADGMCFI-2024-158', 'OA 9/2025', 'DEC 001/2025'];
 function isTraceCase(caseNo){
   if(!caseNo) return false;
   const norm = caseNo.replace(/[\s-]/g,'').toLowerCase();
