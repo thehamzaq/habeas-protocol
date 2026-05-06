@@ -19,7 +19,7 @@
       "n": 80,
       "mean": 1.8521,
       "ci_lo": 1.8021,
-      "ci_hi": 1.9
+      "ci_hi": 1.8979
     }
   },
   "pairwise_differences": {
@@ -31,14 +31,14 @@
     },
     "ADGM_minus_SICC": {
       "delta": 0.0624,
-      "ci_lo": 0.0099,
-      "ci_hi": 0.1189,
+      "ci_lo": 0.0094,
+      "ci_hi": 0.1193,
       "significant_at_0_05": true
     },
     "SICC_minus_DIFC": {
       "delta": 0.1281,
-      "ci_lo": 0.025,
-      "ci_hi": 0.2396,
+      "ci_lo": 0.024,
+      "ci_hi": 0.2417,
       "significant_at_0_05": true
     }
   }
