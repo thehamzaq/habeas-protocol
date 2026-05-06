@@ -38,12 +38,37 @@ for f in rules/*.catala_en; do
       Test*) continue ;;
     esac
     out="rules/${name}__${scope}.schema.json"
-    if catala json-schema --no-stdlib --scope="$scope" "$f" > "$out" 2>/dev/null; then
+    if catala json-schema --no-stdlib --scope="$scope" "$f" > "$out".raw 2>/dev/null; then
+      # Canonicalise the schema so re-runs are deterministic. Catala
+      # emits `required` arrays in OCaml-hash-table order, which drifts
+      # across builds and triggers spurious CI failures. Sort every
+      # `required` array, sort object keys, and strip insignificant
+      # whitespace so two regens of the same rule are byte-identical.
+      python3 -c "
+import json, sys, pathlib
+def canonicalise(node):
+    if isinstance(node, dict):
+        out = {}
+        for k in sorted(node):
+            v = canonicalise(node[k])
+            if k == 'required' and isinstance(v, list):
+                v = sorted(v)
+            out[k] = v
+        return out
+    if isinstance(node, list):
+        return [canonicalise(x) for x in node]
+    return node
+p = pathlib.Path('$out.raw')
+data = json.loads(p.read_text())
+out = json.dumps(canonicalise(data), indent=2, ensure_ascii=False)
+pathlib.Path('$out').write_text(out + '\n')
+p.unlink()
+"
       echo "  wrote $out"
       INDEX+=("{\"module\":\"$name\",\"scope\":\"$scope\",\"file\":\"${name}.catala_en\",\"schema\":\"${name}__${scope}.schema.json\"}")
     else
       echo "  FAILED to schema-extract $scope from $f" >&2
-      rm -f "$out"
+      rm -f "$out" "$out".raw
     fi
   done < <(awk -F'[ :]+' '/^declaration scope [A-Za-z_][A-Za-z0-9_]*:/ {print $3}' "$f")
 done

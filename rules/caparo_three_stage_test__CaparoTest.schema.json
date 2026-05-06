@@ -1,86 +1,116 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope CaparoTest input",
-    "description": "Input structure of scope CaparoTest",
     "$ref": "#/definitions/CaparoTest_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "CaparoFacts": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "is_established_category": { "type": "boolean" },
-          "harm_reasonably_foreseeable": { "type": "boolean" },
-          "sufficient_proximity": { "type": "boolean" },
-          "fair_just_reasonable_to_impose": { "type": "boolean" }
+          "fair_just_reasonable_to_impose": {
+            "type": "boolean"
+          },
+          "harm_reasonably_foreseeable": {
+            "type": "boolean"
+          },
+          "is_established_category": {
+            "type": "boolean"
+          },
+          "sufficient_proximity": {
+            "type": "boolean"
+          }
         },
         "required": [
-          "fair_just_reasonable_to_impose", "sufficient_proximity",
-          "harm_reasonably_foreseeable", "is_established_category"
+          "fair_just_reasonable_to_impose",
+          "harm_reasonably_foreseeable",
+          "is_established_category",
+          "sufficient_proximity"
         ],
-        "additionalProperties": false
+        "type": "object"
       },
       "CaparoTest_in": {
-        "type": "object",
-        "properties": { "facts": { "$ref": "#/definitions/CaparoFacts" } },
-        "required": [ "facts" ],
-        "additionalProperties": false
+        "additionalProperties": false,
+        "properties": {
+          "facts": {
+            "$ref": "#/definitions/CaparoFacts"
+          }
+        },
+        "required": [
+          "facts"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Input structure of scope CaparoTest",
+    "title": "Scope CaparoTest input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope CaparoTest output",
-    "description": "Output structure of scope CaparoTest",
     "$ref": "#/definitions/CaparoTest",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "CaparoTest": {
-        "type": "object",
-        "properties": {
-          "disposition": { "$ref": "#/definitions/DutyOfCareDisposition" }
-        },
-        "required": [ "disposition" ],
-        "additionalProperties": false
-      },
       "CaparoPath": {
-        "type": "string",
         "enum": [
           "EstablishedCategory_DutyByPrecedent",
           "NovelCategory_AllStagesMade",
           "NovelCategory_FailsAtStage"
-        ]
+        ],
+        "type": "string"
       },
       "CaparoStage": {
-        "type": "string",
         "enum": [
           "Stage_None",
           "Stage_1_Foreseeability",
           "Stage_2_Proximity",
           "Stage_3_FairJustReasonable"
-        ]
+        ],
+        "type": "string"
+      },
+      "CaparoTest": {
+        "additionalProperties": false,
+        "properties": {
+          "disposition": {
+            "$ref": "#/definitions/DutyOfCareDisposition"
+          }
+        },
+        "required": [
+          "disposition"
+        ],
+        "type": "object"
       },
       "DutyOfCareDisposition": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "path": { "$ref": "#/definitions/CaparoPath" },
+          "duty_of_care_owed": {
+            "type": "boolean"
+          },
+          "first_failing_stage": {
+            "$ref": "#/definitions/CaparoStage"
+          },
           "n_stages_satisfied": {
             "oneOf": [
               {
-                "type": "integer",
+                "maximum": 9007199254740992.0,
                 "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
+                "type": "integer"
               },
-              { "type": "string" }
+              {
+                "type": "string"
+              }
             ]
           },
-          "first_failing_stage": { "$ref": "#/definitions/CaparoStage" },
-          "duty_of_care_owed": { "type": "boolean" }
+          "path": {
+            "$ref": "#/definitions/CaparoPath"
+          }
         },
         "required": [
-          "duty_of_care_owed", "first_failing_stage",
-          "n_stages_satisfied", "path"
+          "duty_of_care_owed",
+          "first_failing_stage",
+          "n_stages_satisfied",
+          "path"
         ],
-        "additionalProperties": false
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope CaparoTest",
+    "title": "Scope CaparoTest output"
   }
 ]

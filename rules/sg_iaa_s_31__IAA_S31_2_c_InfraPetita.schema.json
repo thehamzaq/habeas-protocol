@@ -1,89 +1,134 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope IAA_S31_2_c_InfraPetita input",
-    "description": "Input structure of scope IAA_S31_2_c_InfraPetita (composes the DKT v DKU four-condition framework with the court's stated outcome on a s 31(2)(c) ground; reports a consistency check).",
     "$ref": "#/definitions/IAA_S31_2_c_InfraPetita_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "DKTConditions": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "point_properly_before_tribunal": { "type": "boolean" },
-          "point_essential_to_dispute": { "type": "boolean" },
-          "tribunal_completely_failed_to_consider": { "type": "boolean" },
-          "prejudice_demonstrated": { "type": "boolean" }
+          "point_essential_to_dispute": {
+            "type": "boolean"
+          },
+          "point_properly_before_tribunal": {
+            "type": "boolean"
+          },
+          "prejudice_demonstrated": {
+            "type": "boolean"
+          },
+          "tribunal_completely_failed_to_consider": {
+            "type": "boolean"
+          }
         },
         "required": [
-          "prejudice_demonstrated",
-          "tribunal_completely_failed_to_consider",
           "point_essential_to_dispute",
-          "point_properly_before_tribunal"
+          "point_properly_before_tribunal",
+          "prejudice_demonstrated",
+          "tribunal_completely_failed_to_consider"
         ],
-        "additionalProperties": false
+        "type": "object"
       },
       "GroundOutcome": {
-        "type": "string",
-        "enum": [ "Dismissed", "AllowedInPart", "AllowedInFull" ]
+        "enum": [
+          "Dismissed",
+          "AllowedInPart",
+          "AllowedInFull"
+        ],
+        "type": "string"
       },
       "IAA_S31_2_c_InfraPetita_in": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "conditions": { "$ref": "#/definitions/DKTConditions" },
-          "court_outcome_on_31_2_c": { "$ref": "#/definitions/GroundOutcome" }
+          "conditions": {
+            "$ref": "#/definitions/DKTConditions"
+          },
+          "court_outcome_on_31_2_c": {
+            "$ref": "#/definitions/GroundOutcome"
+          }
         },
-        "required": [ "court_outcome_on_31_2_c", "conditions" ],
-        "additionalProperties": false
+        "required": [
+          "conditions",
+          "court_outcome_on_31_2_c"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Input structure of scope IAA_S31_2_c_InfraPetita",
+    "title": "Scope IAA_S31_2_c_InfraPetita input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope IAA_S31_2_c_InfraPetita output",
-    "description": "Output structure of scope IAA_S31_2_c_InfraPetita.",
     "$ref": "#/definitions/IAA_S31_2_c_InfraPetita",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "DKTConditions": {
-        "type": "object",
+      "DKTComposite": {
+        "additionalProperties": false,
         "properties": {
-          "point_properly_before_tribunal": { "type": "boolean" },
-          "point_essential_to_dispute": { "type": "boolean" },
-          "tribunal_completely_failed_to_consider": { "type": "boolean" },
-          "prejudice_demonstrated": { "type": "boolean" }
+          "conditions": {
+            "$ref": "#/definitions/DKTConditions"
+          },
+          "court_outcome_on_31_2_c": {
+            "$ref": "#/definitions/GroundOutcome"
+          },
+          "dkt_analysis_consistent": {
+            "type": "boolean"
+          },
+          "dkt_challenge_succeeds": {
+            "type": "boolean"
+          }
         },
         "required": [
-          "prejudice_demonstrated",
-          "tribunal_completely_failed_to_consider",
-          "point_essential_to_dispute",
-          "point_properly_before_tribunal"
+          "conditions",
+          "court_outcome_on_31_2_c",
+          "dkt_analysis_consistent",
+          "dkt_challenge_succeeds"
         ],
-        "additionalProperties": false
+        "type": "object"
+      },
+      "DKTConditions": {
+        "additionalProperties": false,
+        "properties": {
+          "point_essential_to_dispute": {
+            "type": "boolean"
+          },
+          "point_properly_before_tribunal": {
+            "type": "boolean"
+          },
+          "prejudice_demonstrated": {
+            "type": "boolean"
+          },
+          "tribunal_completely_failed_to_consider": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "point_essential_to_dispute",
+          "point_properly_before_tribunal",
+          "prejudice_demonstrated",
+          "tribunal_completely_failed_to_consider"
+        ],
+        "type": "object"
       },
       "GroundOutcome": {
-        "type": "string",
-        "enum": [ "Dismissed", "AllowedInPart", "AllowedInFull" ]
-      },
-      "DKTComposite": {
-        "type": "object",
-        "properties": {
-          "conditions": { "$ref": "#/definitions/DKTConditions" },
-          "court_outcome_on_31_2_c": { "$ref": "#/definitions/GroundOutcome" },
-          "dkt_challenge_succeeds": { "type": "boolean" },
-          "dkt_analysis_consistent": { "type": "boolean" }
-        },
-        "required": [
-          "dkt_analysis_consistent", "dkt_challenge_succeeds",
-          "court_outcome_on_31_2_c", "conditions"
+        "enum": [
+          "Dismissed",
+          "AllowedInPart",
+          "AllowedInFull"
         ],
-        "additionalProperties": false
+        "type": "string"
       },
       "IAA_S31_2_c_InfraPetita": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "composite": { "$ref": "#/definitions/DKTComposite" }
+          "composite": {
+            "$ref": "#/definitions/DKTComposite"
+          }
         },
-        "required": [ "composite" ],
-        "additionalProperties": false
+        "required": [
+          "composite"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope IAA_S31_2_c_InfraPetita",
+    "title": "Scope IAA_S31_2_c_InfraPetita output"
   }
 ]

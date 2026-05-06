@@ -1,56 +1,74 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope SummaryJudgmentTest input",
-    "description": "Input structure of scope SummaryJudgmentTest",
     "$ref": "#/definitions/SummaryJudgmentTest_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "SummaryJudgmentApplication": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "no_realistic_prospect": { "type": "boolean" },
-          "no_compelling_reason": { "type": "boolean" }
+          "no_compelling_reason": {
+            "type": "boolean"
+          },
+          "no_realistic_prospect": {
+            "type": "boolean"
+          }
         },
-        "required": [ "no_compelling_reason", "no_realistic_prospect" ],
-        "additionalProperties": false
+        "required": [
+          "no_compelling_reason",
+          "no_realistic_prospect"
+        ],
+        "type": "object"
       },
       "SummaryJudgmentTest_in": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
           "application": {
             "$ref": "#/definitions/SummaryJudgmentApplication"
           }
         },
-        "required": [ "application" ],
-        "additionalProperties": false
+        "required": [
+          "application"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Input structure of scope SummaryJudgmentTest",
+    "title": "Scope SummaryJudgmentTest input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope SummaryJudgmentTest output",
-    "description": "Output structure of scope SummaryJudgmentTest",
     "$ref": "#/definitions/SummaryJudgmentTest",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "SummaryJudgmentDisposition": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "both_limbs_made_out": { "type": "boolean" },
-          "summary_judgment_granted": { "type": "boolean" }
+          "both_limbs_made_out": {
+            "type": "boolean"
+          },
+          "summary_judgment_granted": {
+            "type": "boolean"
+          }
         },
-        "required": [ "summary_judgment_granted", "both_limbs_made_out" ],
-        "additionalProperties": false
+        "required": [
+          "both_limbs_made_out",
+          "summary_judgment_granted"
+        ],
+        "type": "object"
       },
       "SummaryJudgmentTest": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
           "disposition": {
             "$ref": "#/definitions/SummaryJudgmentDisposition"
           }
         },
-        "required": [ "disposition" ],
-        "additionalProperties": false
+        "required": [
+          "disposition"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope SummaryJudgmentTest",
+    "title": "Scope SummaryJudgmentTest output"
   }
 ]

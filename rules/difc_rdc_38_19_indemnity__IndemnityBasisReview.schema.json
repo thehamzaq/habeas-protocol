@@ -1,34 +1,12 @@
 [
   {
-    "$ref": "#/definitions/AdmissionsAndSetOff_in",
+    "$ref": "#/definitions/IndemnityBasisReview_in",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "AdmissionsAndSetOff_in": {
+      "IndemnityBasisReview_in": {
         "additionalProperties": false,
         "properties": {
-          "admitted_items": {
-            "items": {
-              "$ref": "#/definitions/AdmittedItem"
-            },
-            "type": "array"
-          },
-          "counterclaim_items": {
-            "items": {
-              "$ref": "#/definitions/CounterclaimItem"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "admitted_items",
-          "counterclaim_items"
-        ],
-        "type": "object"
-      },
-      "AdmittedItem": {
-        "additionalProperties": false,
-        "properties": {
-          "admitted_aed": {
+          "claim_aed": {
             "oneOf": [
               {
                 "type": "number"
@@ -43,41 +21,26 @@
               }
             ]
           },
-          "item_no": {
-            "oneOf": [
-              {
-                "maximum": 9007199254740992.0,
-                "minimum": -9007199254740992.0,
-                "type": "integer"
-              },
-              {
-                "type": "string"
-              }
-            ]
+          "objections": {
+            "items": {
+              "$ref": "#/definitions/Objection"
+            },
+            "type": "array"
           }
         },
         "required": [
-          "admitted_aed",
-          "item_no"
+          "claim_aed",
+          "objections"
         ],
         "type": "object"
       },
-      "CounterclaimItem": {
+      "Objection": {
         "additionalProperties": false,
         "properties": {
-          "item_no": {
-            "oneOf": [
-              {
-                "maximum": 9007199254740992.0,
-                "minimum": -9007199254740992.0,
-                "type": "integer"
-              },
-              {
-                "type": "string"
-              }
-            ]
+          "bucket": {
+            "$ref": "#/definitions/ObjectionBucket"
           },
-          "proven_aed": {
+          "named_amount_aed": {
             "oneOf": [
               {
                 "type": "number"
@@ -91,38 +54,60 @@
                 "type": "string"
               }
             ]
+          },
+          "objection_no": {
+            "oneOf": [
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
           }
         },
         "required": [
-          "item_no",
-          "proven_aed"
+          "bucket",
+          "named_amount_aed",
+          "objection_no"
         ],
         "type": "object"
+      },
+      "ObjectionBucket": {
+        "enum": [
+          "Mechanically_disposed",
+          "Held_to_zero",
+          "Deterministic_reduction",
+          "Requires_human_judgment"
+        ],
+        "type": "string"
       }
     },
-    "description": "Input structure of scope AdmissionsAndSetOff",
-    "title": "Scope AdmissionsAndSetOff input"
+    "description": "Input structure of scope IndemnityBasisReview",
+    "title": "Scope IndemnityBasisReview input"
   },
   {
-    "$ref": "#/definitions/AdmissionsAndSetOff",
+    "$ref": "#/definitions/IndemnityBasisReview",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "AdmissionsAndSetOff": {
+      "IndemnityBasisReview": {
         "additionalProperties": false,
         "properties": {
-          "award": {
-            "$ref": "#/definitions/AdmissionsAward"
+          "review": {
+            "$ref": "#/definitions/IndemnityReview"
           }
         },
         "required": [
-          "award"
+          "review"
         ],
         "type": "object"
       },
-      "AdmissionsAward": {
+      "IndemnityReview": {
         "additionalProperties": false,
         "properties": {
-          "admissions_total_aed": {
+          "claim_aed": {
             "oneOf": [
               {
                 "type": "number"
@@ -137,10 +122,55 @@
               }
             ]
           },
-          "counterclaim_exceeds_admissions": {
+          "deterministic_reductions_aed": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "held_to_zero_aed": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "mechanically_disposed_aed": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "requires_human_judgment": {
             "type": "boolean"
           },
-          "counterclaim_surplus_aed": {
+          "residual_lower_aed": {
             "oneOf": [
               {
                 "type": "number"
@@ -155,37 +185,7 @@
               }
             ]
           },
-          "counterclaim_total_aed": {
-            "oneOf": [
-              {
-                "type": "number"
-              },
-              {
-                "maximum": 9007199254740992.0,
-                "minimum": -9007199254740992.0,
-                "type": "integer"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "net_to_claimant_aed": {
-            "oneOf": [
-              {
-                "type": "number"
-              },
-              {
-                "maximum": 9007199254740992.0,
-                "minimum": -9007199254740992.0,
-                "type": "integer"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          },
-          "signed_net_aed": {
+          "residual_upper_aed": {
             "oneOf": [
               {
                 "type": "number"
@@ -202,17 +202,18 @@
           }
         },
         "required": [
-          "admissions_total_aed",
-          "counterclaim_exceeds_admissions",
-          "counterclaim_surplus_aed",
-          "counterclaim_total_aed",
-          "net_to_claimant_aed",
-          "signed_net_aed"
+          "claim_aed",
+          "deterministic_reductions_aed",
+          "held_to_zero_aed",
+          "mechanically_disposed_aed",
+          "requires_human_judgment",
+          "residual_lower_aed",
+          "residual_upper_aed"
         ],
         "type": "object"
       }
     },
-    "description": "Output structure of scope AdmissionsAndSetOff",
-    "title": "Scope AdmissionsAndSetOff output"
+    "description": "Output structure of scope IndemnityBasisReview",
+    "title": "Scope IndemnityBasisReview output"
   }
 ]

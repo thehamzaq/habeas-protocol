@@ -1,132 +1,177 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope ADGMRecognition input",
-    "description": "Input structure of scope ADGMRecognition",
     "$ref": "#/definitions/ADGMRecognition_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "ADGMArbitrationGroundId": {
-        "type": "string",
         "enum": [
-          "S62_a_i_Incapacity", "S62_a_ii_InvalidAgreement",
-          "S62_a_iii_NaturalJustice", "S62_a_iv_OutsideScope",
-          "S62_a_v_TribunalComposition", "S62_a_vi_NotBindingOrSetAside",
-          "S62_b_i_NotArbitrable", "S62_b_ii_PublicPolicy"
-        ]
+          "S62_a_i_Incapacity",
+          "S62_a_ii_InvalidAgreement",
+          "S62_a_iii_NaturalJustice",
+          "S62_a_iv_OutsideScope",
+          "S62_a_v_TribunalComposition",
+          "S62_a_vi_NotBindingOrSetAside",
+          "S62_b_i_NotArbitrable",
+          "S62_b_ii_PublicPolicy"
+        ],
+        "type": "string"
       },
       "ADGMGroundFinding": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "ground": { "$ref": "#/definitions/ADGMArbitrationGroundId" },
-          "court_outcome": { "$ref": "#/definitions/ADGMGroundOutcome" },
-          "is_severable": { "type": "boolean" }
+          "court_outcome": {
+            "$ref": "#/definitions/ADGMGroundOutcome"
+          },
+          "ground": {
+            "$ref": "#/definitions/ADGMArbitrationGroundId"
+          },
+          "is_severable": {
+            "type": "boolean"
+          }
         },
-        "required": [ "court_outcome", "ground", "is_severable" ],
-        "additionalProperties": false
+        "required": [
+          "court_outcome",
+          "ground",
+          "is_severable"
+        ],
+        "type": "object"
       },
       "ADGMGroundOutcome": {
-        "type": "string",
-        "enum": [ "Dismissed", "AllowedInPart", "AllowedInFull" ]
+        "enum": [
+          "Dismissed",
+          "AllowedInPart",
+          "AllowedInFull"
+        ],
+        "type": "string"
       },
       "ADGMRecognition_in": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
           "grounds": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/ADGMGroundFinding" }
+            "items": {
+              "$ref": "#/definitions/ADGMGroundFinding"
+            },
+            "type": "array"
           },
-          "s58_was_or_could_have_been_available": { "type": "boolean" }
+          "s58_was_or_could_have_been_available": {
+            "type": "boolean"
+          }
         },
-        "required": [ "grounds", "s58_was_or_could_have_been_available" ],
-        "additionalProperties": false
+        "required": [
+          "grounds",
+          "s58_was_or_could_have_been_available"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Input structure of scope ADGMRecognition",
+    "title": "Scope ADGMRecognition input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope ADGMRecognition output",
-    "description": "Output structure of scope ADGMRecognition",
     "$ref": "#/definitions/ADGMRecognition",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
+      "ADGMApplicationStatus": {
+        "enum": [
+          "ApplicationProperlyMade",
+          "ApplicationBarredByS62_3"
+        ],
+        "type": "string"
+      },
       "ADGMRecognition": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "disposition": { "$ref": "#/definitions/ADGMRefusalDisposition" }
+          "disposition": {
+            "$ref": "#/definitions/ADGMRefusalDisposition"
+          }
         },
-        "required": [ "disposition" ],
-        "additionalProperties": false
+        "required": [
+          "disposition"
+        ],
+        "type": "object"
       },
       "ADGMRecognitionDisposition": {
-        "type": "string",
         "enum": [
-          "RecognitionGranted", "RecognitionGrantedInPart",
+          "RecognitionGranted",
+          "RecognitionGrantedInPart",
           "RecognitionRefused"
-        ]
-      },
-      "ADGMApplicationStatus": {
-        "type": "string",
-        "enum": [
-          "ApplicationProperlyMade", "ApplicationBarredByS62_3"
-        ]
+        ],
+        "type": "string"
       },
       "ADGMRefusalDisposition": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "n_grounds_pleaded": {
-            "oneOf": [
-              {
-                "type": "integer",
-                "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
-              },
-              { "type": "string" }
-            ]
+          "application_status": {
+            "$ref": "#/definitions/ADGMApplicationStatus"
+          },
+          "award_recognised": {
+            "type": "boolean"
           },
           "n_grounds_dismissed": {
             "oneOf": [
               {
-                "type": "integer",
+                "maximum": 9007199254740992.0,
                 "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
+                "type": "integer"
               },
-              { "type": "string" }
-            ]
-          },
-          "n_grounds_partial": {
-            "oneOf": [
               {
-                "type": "integer",
-                "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
-              },
-              { "type": "string" }
+                "type": "string"
+              }
             ]
           },
           "n_grounds_full": {
             "oneOf": [
               {
-                "type": "integer",
+                "maximum": 9007199254740992.0,
                 "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
+                "type": "integer"
               },
-              { "type": "string" }
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "n_grounds_partial": {
+            "oneOf": [
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "n_grounds_pleaded": {
+            "oneOf": [
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
             ]
           },
           "overall_disposition": {
             "$ref": "#/definitions/ADGMRecognitionDisposition"
-          },
-          "award_recognised": { "type": "boolean" },
-          "application_status": {
-            "$ref": "#/definitions/ADGMApplicationStatus"
           }
         },
         "required": [
           "application_status",
-          "award_recognised", "overall_disposition", "n_grounds_full",
-          "n_grounds_partial", "n_grounds_dismissed", "n_grounds_pleaded"
+          "award_recognised",
+          "n_grounds_dismissed",
+          "n_grounds_full",
+          "n_grounds_partial",
+          "n_grounds_pleaded",
+          "overall_disposition"
         ],
-        "additionalProperties": false
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope ADGMRecognition",
+    "title": "Scope ADGMRecognition output"
   }
 ]

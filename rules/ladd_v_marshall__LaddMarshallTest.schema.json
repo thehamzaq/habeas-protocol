@@ -1,79 +1,106 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope LaddMarshallTest input",
-    "description": "Input structure of scope LaddMarshallTest",
     "$ref": "#/definitions/LaddMarshallTest_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "LaddMarshallTest_in": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
           "prongs": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/LaddProng" }
+            "items": {
+              "$ref": "#/definitions/LaddProng"
+            },
+            "type": "array"
           }
         },
-        "required": [ "prongs" ],
-        "additionalProperties": false
+        "required": [
+          "prongs"
+        ],
+        "type": "object"
       },
       "LaddProng": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "prong": { "$ref": "#/definitions/LaddProngId" },
-          "satisfied": { "type": "boolean" }
+          "prong": {
+            "$ref": "#/definitions/LaddProngId"
+          },
+          "satisfied": {
+            "type": "boolean"
+          }
         },
-        "required": [ "satisfied", "prong" ],
-        "additionalProperties": false
+        "required": [
+          "prong",
+          "satisfied"
+        ],
+        "type": "object"
       },
       "LaddProngId": {
-        "type": "string",
         "enum": [
-          "ReasonableDiligence", "ImportantInfluence", "PresumablyCredible"
-        ]
+          "ReasonableDiligence",
+          "ImportantInfluence",
+          "PresumablyCredible"
+        ],
+        "type": "string"
       }
-    }
+    },
+    "description": "Input structure of scope LaddMarshallTest",
+    "title": "Scope LaddMarshallTest input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope LaddMarshallTest output",
-    "description": "Output structure of scope LaddMarshallTest",
     "$ref": "#/definitions/LaddMarshallTest",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "LaddDisposition": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
+          "evidence_admissible": {
+            "type": "boolean"
+          },
+          "first_failing_prong": {
+            "$ref": "#/definitions/LaddProngId"
+          },
           "n_prongs_satisfied": {
             "oneOf": [
               {
-                "type": "integer",
+                "maximum": 9007199254740992.0,
                 "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
+                "type": "integer"
               },
-              { "type": "string" }
+              {
+                "type": "string"
+              }
             ]
-          },
-          "first_failing_prong": { "$ref": "#/definitions/LaddProngId" },
-          "evidence_admissible": { "type": "boolean" }
+          }
         },
         "required": [
-          "evidence_admissible", "first_failing_prong", "n_prongs_satisfied"
+          "evidence_admissible",
+          "first_failing_prong",
+          "n_prongs_satisfied"
         ],
-        "additionalProperties": false
+        "type": "object"
       },
       "LaddMarshallTest": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "disposition": { "$ref": "#/definitions/LaddDisposition" }
+          "disposition": {
+            "$ref": "#/definitions/LaddDisposition"
+          }
         },
-        "required": [ "disposition" ],
-        "additionalProperties": false
+        "required": [
+          "disposition"
+        ],
+        "type": "object"
       },
       "LaddProngId": {
-        "type": "string",
         "enum": [
-          "ReasonableDiligence", "ImportantInfluence", "PresumablyCredible"
-        ]
+          "ReasonableDiligence",
+          "ImportantInfluence",
+          "PresumablyCredible"
+        ],
+        "type": "string"
       }
-    }
+    },
+    "description": "Output structure of scope LaddMarshallTest",
+    "title": "Scope LaddMarshallTest output"
   }
 ]

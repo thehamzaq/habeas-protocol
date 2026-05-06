@@ -1,121 +1,162 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope IAA_S31_Refusal input",
-    "description": "Input structure of scope IAA_S31_Refusal",
     "$ref": "#/definitions/IAA_S31_Refusal_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "GroundFinding": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "ground": { "$ref": "#/definitions/IAAGroundId" },
-          "court_outcome": { "$ref": "#/definitions/GroundOutcome" },
-          "is_severable": { "type": "boolean" }
-        },
-        "required": [ "court_outcome", "ground", "is_severable" ],
-        "additionalProperties": false
-      },
-      "GroundOutcome": {
-        "type": "string",
-        "enum": [ "Dismissed", "AllowedInPart", "AllowedInFull" ]
-      },
-      "IAAGroundId": {
-        "type": "string",
-        "enum": [
-          "S31_2_a_Incapacity", "S31_2_b_InvalidAgreement",
-          "S31_2_c_NaturalJustice", "S31_2_d_OutsideScope",
-          "S31_2_e_TribunalComposition", "S31_2_f_NotBindingOrSetAside",
-          "S31_4_a_NotArbitrable", "S31_4_b_PublicPolicy"
-        ]
-      },
-      "IAA_S31_Refusal_in": {
-        "type": "object",
-        "properties": {
-          "grounds": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/GroundFinding" }
+          "court_outcome": {
+            "$ref": "#/definitions/GroundOutcome"
+          },
+          "ground": {
+            "$ref": "#/definitions/IAAGroundId"
+          },
+          "is_severable": {
+            "type": "boolean"
           }
         },
-        "required": [ "grounds" ],
-        "additionalProperties": false
+        "required": [
+          "court_outcome",
+          "ground",
+          "is_severable"
+        ],
+        "type": "object"
+      },
+      "GroundOutcome": {
+        "enum": [
+          "Dismissed",
+          "AllowedInPart",
+          "AllowedInFull"
+        ],
+        "type": "string"
+      },
+      "IAAGroundId": {
+        "enum": [
+          "S31_2_a_Incapacity",
+          "S31_2_b_InvalidAgreement",
+          "S31_2_c_NaturalJustice",
+          "S31_2_d_OutsideScope",
+          "S31_2_e_TribunalComposition",
+          "S31_2_f_NotBindingOrSetAside",
+          "S31_4_a_NotArbitrable",
+          "S31_4_b_PublicPolicy"
+        ],
+        "type": "string"
+      },
+      "IAA_S31_Refusal_in": {
+        "additionalProperties": false,
+        "properties": {
+          "grounds": {
+            "items": {
+              "$ref": "#/definitions/GroundFinding"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "grounds"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Input structure of scope IAA_S31_Refusal",
+    "title": "Scope IAA_S31_Refusal input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope IAA_S31_Refusal output",
-    "description": "Output structure of scope IAA_S31_Refusal",
     "$ref": "#/definitions/IAA_S31_Refusal",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "ApplicationDisposition": {
-        "type": "string",
         "enum": [
-          "ApplicationDismissedEntirely", "ApplicationAllowedInPart",
+          "ApplicationDismissedEntirely",
+          "ApplicationAllowedInPart",
           "AwardSetAside"
-        ]
+        ],
+        "type": "string"
       },
       "IAA_S31_Refusal": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "disposition": { "$ref": "#/definitions/RefusalDisposition" }
+          "disposition": {
+            "$ref": "#/definitions/RefusalDisposition"
+          }
         },
-        "required": [ "disposition" ],
-        "additionalProperties": false
+        "required": [
+          "disposition"
+        ],
+        "type": "object"
       },
       "RefusalDisposition": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "n_grounds_pleaded": {
-            "oneOf": [
-              {
-                "type": "integer",
-                "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
-              },
-              { "type": "string" }
-            ]
+          "application_disposition": {
+            "$ref": "#/definitions/ApplicationDisposition"
+          },
+          "award_enforced": {
+            "type": "boolean"
           },
           "n_grounds_dismissed": {
             "oneOf": [
               {
-                "type": "integer",
+                "maximum": 9007199254740992.0,
                 "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
+                "type": "integer"
               },
-              { "type": "string" }
-            ]
-          },
-          "n_grounds_partial": {
-            "oneOf": [
               {
-                "type": "integer",
-                "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
-              },
-              { "type": "string" }
+                "type": "string"
+              }
             ]
           },
           "n_grounds_full": {
             "oneOf": [
               {
-                "type": "integer",
+                "maximum": 9007199254740992.0,
                 "minimum": -9007199254740992.0,
-                "maximum": 9007199254740992.0
+                "type": "integer"
               },
-              { "type": "string" }
+              {
+                "type": "string"
+              }
             ]
           },
-          "application_disposition": {
-            "$ref": "#/definitions/ApplicationDisposition"
+          "n_grounds_partial": {
+            "oneOf": [
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
           },
-          "award_enforced": { "type": "boolean" }
+          "n_grounds_pleaded": {
+            "oneOf": [
+              {
+                "maximum": 9007199254740992.0,
+                "minimum": -9007199254740992.0,
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
         },
         "required": [
-          "award_enforced", "application_disposition", "n_grounds_full",
-          "n_grounds_partial", "n_grounds_dismissed", "n_grounds_pleaded"
+          "application_disposition",
+          "award_enforced",
+          "n_grounds_dismissed",
+          "n_grounds_full",
+          "n_grounds_partial",
+          "n_grounds_pleaded"
         ],
-        "additionalProperties": false
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope IAA_S31_Refusal",
+    "title": "Scope IAA_S31_Refusal output"
   }
 ]

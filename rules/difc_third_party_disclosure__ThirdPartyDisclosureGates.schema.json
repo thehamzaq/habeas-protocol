@@ -1,108 +1,159 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope ThirdPartyDisclosureGates input",
-    "description": "Input structure of scope ThirdPartyDisclosureGates",
     "$ref": "#/definitions/ThirdPartyDisclosureGates_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
       "BTFinding": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "element": { "$ref": "#/definitions/BankersTrustElement" },
-          "made_out": { "type": "boolean" }
-        },
-        "required": [ "made_out", "element" ],
-        "additionalProperties": false
-      },
-      "BankersTrustElement": {
-        "type": "string",
-        "enum": [
-          "BTE_TracingClaimAsserted", "BTE_HoldsTraceableProceeds",
-          "BTE_DisclosureNecessaryForTracing"
-        ]
-      },
-      "NPFinding": {
-        "type": "object",
-        "properties": {
-          "element": { "$ref": "#/definitions/NorwichPharmacalElement" },
-          "made_out": { "type": "boolean" }
-        },
-        "required": [ "made_out", "element" ],
-        "additionalProperties": false
-      },
-      "NorwichPharmacalElement": {
-        "type": "string",
-        "enum": [
-          "NPE_WrongEstablished", "NPE_RespondentMixedUp",
-          "NPE_PossessesInformation",
-          "NPE_DisclosureNecessaryInInterestsOfJustice"
-        ]
-      },
-      "RDC2852Condition": {
-        "type": "string",
-        "enum": [
-          "RDC_LikelyToSupportOrAffect", "RDC_NecessaryToDisposeOrSaveCosts"
-        ]
-      },
-      "RDCFinding": {
-        "type": "object",
-        "properties": {
-          "rdc_condition": { "$ref": "#/definitions/RDC2852Condition" },
-          "made_out": { "type": "boolean" }
-        },
-        "required": [ "made_out", "rdc_condition" ],
-        "additionalProperties": false
-      },
-      "ThirdPartyDisclosureGates_in": {
-        "type": "object",
-        "properties": {
-          "nph_findings": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/NPFinding" }
+          "element": {
+            "$ref": "#/definitions/BankersTrustElement"
           },
-          "bt_findings": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/BTFinding" }
-          },
-          "rdc_findings": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/RDCFinding" }
+          "made_out": {
+            "type": "boolean"
           }
         },
-        "required": [ "rdc_findings", "bt_findings", "nph_findings" ],
-        "additionalProperties": false
-      }
-    }
-  },
-  {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope ThirdPartyDisclosureGates output",
-    "description": "Output structure of scope ThirdPartyDisclosureGates",
-    "$ref": "#/definitions/ThirdPartyDisclosureGates",
-    "definitions": {
-      "DisclosureGates": {
-        "type": "object",
+        "required": [
+          "element",
+          "made_out"
+        ],
+        "type": "object"
+      },
+      "BankersTrustElement": {
+        "enum": [
+          "BTE_TracingClaimAsserted",
+          "BTE_HoldsTraceableProceeds",
+          "BTE_DisclosureNecessaryForTracing"
+        ],
+        "type": "string"
+      },
+      "NPFinding": {
+        "additionalProperties": false,
         "properties": {
-          "nph_made_out": { "type": "boolean" },
-          "bankers_trust_made_out": { "type": "boolean" },
-          "rdc_2852_made_out": { "type": "boolean" },
-          "all_gates_satisfied": { "type": "boolean" },
-          "order_grantable": { "type": "boolean" }
+          "element": {
+            "$ref": "#/definitions/NorwichPharmacalElement"
+          },
+          "made_out": {
+            "type": "boolean"
+          }
         },
         "required": [
-          "order_grantable", "all_gates_satisfied", "rdc_2852_made_out",
-          "bankers_trust_made_out", "nph_made_out"
+          "element",
+          "made_out"
         ],
-        "additionalProperties": false
+        "type": "object"
+      },
+      "NorwichPharmacalElement": {
+        "enum": [
+          "NPE_WrongEstablished",
+          "NPE_RespondentMixedUp",
+          "NPE_PossessesInformation",
+          "NPE_DisclosureNecessaryInInterestsOfJustice"
+        ],
+        "type": "string"
+      },
+      "RDC2852Condition": {
+        "enum": [
+          "RDC_LikelyToSupportOrAffect",
+          "RDC_NecessaryToDisposeOrSaveCosts"
+        ],
+        "type": "string"
+      },
+      "RDCFinding": {
+        "additionalProperties": false,
+        "properties": {
+          "made_out": {
+            "type": "boolean"
+          },
+          "rdc_condition": {
+            "$ref": "#/definitions/RDC2852Condition"
+          }
+        },
+        "required": [
+          "made_out",
+          "rdc_condition"
+        ],
+        "type": "object"
+      },
+      "ThirdPartyDisclosureGates_in": {
+        "additionalProperties": false,
+        "properties": {
+          "bt_findings": {
+            "items": {
+              "$ref": "#/definitions/BTFinding"
+            },
+            "type": "array"
+          },
+          "nph_findings": {
+            "items": {
+              "$ref": "#/definitions/NPFinding"
+            },
+            "type": "array"
+          },
+          "rdc_findings": {
+            "items": {
+              "$ref": "#/definitions/RDCFinding"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "bt_findings",
+          "nph_findings",
+          "rdc_findings"
+        ],
+        "type": "object"
+      }
+    },
+    "description": "Input structure of scope ThirdPartyDisclosureGates",
+    "title": "Scope ThirdPartyDisclosureGates input"
+  },
+  {
+    "$ref": "#/definitions/ThirdPartyDisclosureGates",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "DisclosureGates": {
+        "additionalProperties": false,
+        "properties": {
+          "all_gates_satisfied": {
+            "type": "boolean"
+          },
+          "bankers_trust_made_out": {
+            "type": "boolean"
+          },
+          "nph_made_out": {
+            "type": "boolean"
+          },
+          "order_grantable": {
+            "type": "boolean"
+          },
+          "rdc_2852_made_out": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "all_gates_satisfied",
+          "bankers_trust_made_out",
+          "nph_made_out",
+          "order_grantable",
+          "rdc_2852_made_out"
+        ],
+        "type": "object"
       },
       "ThirdPartyDisclosureGates": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "gates": { "$ref": "#/definitions/DisclosureGates" }
+          "gates": {
+            "$ref": "#/definitions/DisclosureGates"
+          }
         },
-        "required": [ "gates" ],
-        "additionalProperties": false
+        "required": [
+          "gates"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope ThirdPartyDisclosureGates",
+    "title": "Scope ThirdPartyDisclosureGates output"
   }
 ]

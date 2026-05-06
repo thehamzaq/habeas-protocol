@@ -1,58 +1,82 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope ADGM_S62_2_Adjournment input",
-    "description": "Input structure of scope ADGM_S62_2_Adjournment (ADGM Arbitration Regulations 2015 s 62(2) — adjournment-with-security; structurally parallel to SG IAA s 31(5)).",
     "$ref": "#/definitions/ADGM_S62_2_Adjournment_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "S62_2_Inputs": {
-        "type": "object",
+      "ADGM_S62_2_Adjournment_in": {
+        "additionalProperties": false,
         "properties": {
-          "setting_aside_pending_at_seat": { "type": "boolean" },
-          "adjournment_ordered": { "type": "boolean" },
-          "security_ordered": { "type": "boolean" }
+          "inputs": {
+            "$ref": "#/definitions/S62_2_Inputs"
+          }
         },
         "required": [
-          "security_ordered", "adjournment_ordered",
+          "inputs"
+        ],
+        "type": "object"
+      },
+      "S62_2_Inputs": {
+        "additionalProperties": false,
+        "properties": {
+          "adjournment_ordered": {
+            "type": "boolean"
+          },
+          "security_ordered": {
+            "type": "boolean"
+          },
+          "setting_aside_pending_at_seat": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "adjournment_ordered",
+          "security_ordered",
           "setting_aside_pending_at_seat"
         ],
-        "additionalProperties": false
-      },
-      "ADGM_S62_2_Adjournment_in": {
-        "type": "object",
-        "properties": { "inputs": { "$ref": "#/definitions/S62_2_Inputs" } },
-        "required": [ "inputs" ],
-        "additionalProperties": false
+        "type": "object"
       }
-    }
+    },
+    "description": "Input structure of scope ADGM_S62_2_Adjournment",
+    "title": "Scope ADGM_S62_2_Adjournment input"
   },
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope ADGM_S62_2_Adjournment output",
-    "description": "Output structure of scope ADGM_S62_2_Adjournment.",
     "$ref": "#/definitions/ADGM_S62_2_Adjournment",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "S62_2_Output": {
-        "type": "object",
+      "ADGM_S62_2_Adjournment": {
+        "additionalProperties": false,
         "properties": {
-          "proceedings_adjourned": { "type": "boolean" },
-          "security_required": { "type": "boolean" },
-          "adjournment_engaged_lawfully": { "type": "boolean" }
+          "adjournment": {
+            "$ref": "#/definitions/S62_2_Output"
+          }
         },
         "required": [
-          "adjournment_engaged_lawfully", "security_required",
-          "proceedings_adjourned"
+          "adjournment"
         ],
-        "additionalProperties": false
+        "type": "object"
       },
-      "ADGM_S62_2_Adjournment": {
-        "type": "object",
+      "S62_2_Output": {
+        "additionalProperties": false,
         "properties": {
-          "adjournment": { "$ref": "#/definitions/S62_2_Output" }
+          "adjournment_engaged_lawfully": {
+            "type": "boolean"
+          },
+          "proceedings_adjourned": {
+            "type": "boolean"
+          },
+          "security_required": {
+            "type": "boolean"
+          }
         },
-        "required": [ "adjournment" ],
-        "additionalProperties": false
+        "required": [
+          "adjournment_engaged_lawfully",
+          "proceedings_adjourned",
+          "security_required"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope ADGM_S62_2_Adjournment",
+    "title": "Scope ADGM_S62_2_Adjournment output"
   }
 ]

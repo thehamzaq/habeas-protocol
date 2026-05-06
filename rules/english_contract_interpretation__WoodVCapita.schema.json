@@ -1,73 +1,98 @@
 [
   {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope WoodVCapita input",
-    "description": "Input structure of scope WoodVCapita",
     "$ref": "#/definitions/WoodVCapita_in",
+    "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {
-      "MatrixSignal": {
-        "type": "string",
-        "enum": [ "Supports", "Silent", "Contradicts" ]
-      },
       "ClauseEvidence": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "clauses_unambiguously_aligned": { "type": "boolean" },
-          "common_sense_supports_one_reading": { "type": "boolean" },
-          "factual_matrix_signal": { "$ref": "#/definitions/MatrixSignal" }
+          "clauses_unambiguously_aligned": {
+            "type": "boolean"
+          },
+          "common_sense_supports_one_reading": {
+            "type": "boolean"
+          },
+          "factual_matrix_signal": {
+            "$ref": "#/definitions/MatrixSignal"
+          }
         },
         "required": [
-          "factual_matrix_signal",
+          "clauses_unambiguously_aligned",
           "common_sense_supports_one_reading",
-          "clauses_unambiguously_aligned"
+          "factual_matrix_signal"
         ],
-        "additionalProperties": false
+        "type": "object"
+      },
+      "MatrixSignal": {
+        "enum": [
+          "Supports",
+          "Silent",
+          "Contradicts"
+        ],
+        "type": "string"
       },
       "WoodVCapita_in": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
-          "evidence": { "$ref": "#/definitions/ClauseEvidence" }
-        },
-        "required": [ "evidence" ],
-        "additionalProperties": false
-      }
-    }
-  },
-  {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Scope WoodVCapita output",
-    "description": "Output structure of scope WoodVCapita",
-    "$ref": "#/definitions/WoodVCapita",
-    "definitions": {
-      "InterpretationDisposition": {
-        "type": "object",
-        "properties": {
-          "limb": { "$ref": "#/definitions/InterpretationLimb" },
-          "unambiguous_carries": { "type": "boolean" },
-          "business_sense_carries": { "type": "boolean" }
+          "evidence": {
+            "$ref": "#/definitions/ClauseEvidence"
+          }
         },
         "required": [
-          "business_sense_carries", "unambiguous_carries", "limb"
+          "evidence"
         ],
-        "additionalProperties": false
+        "type": "object"
+      }
+    },
+    "description": "Input structure of scope WoodVCapita",
+    "title": "Scope WoodVCapita input"
+  },
+  {
+    "$ref": "#/definitions/WoodVCapita",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+      "InterpretationDisposition": {
+        "additionalProperties": false,
+        "properties": {
+          "business_sense_carries": {
+            "type": "boolean"
+          },
+          "limb": {
+            "$ref": "#/definitions/InterpretationLimb"
+          },
+          "unambiguous_carries": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "business_sense_carries",
+          "limb",
+          "unambiguous_carries"
+        ],
+        "type": "object"
       },
       "InterpretationLimb": {
-        "type": "string",
         "enum": [
-          "PlainMeaningCarries", "BusinessCommonSenseCarries",
+          "PlainMeaningCarries",
+          "BusinessCommonSenseCarries",
           "GenuinelyAmbiguous"
-        ]
+        ],
+        "type": "string"
       },
       "WoodVCapita": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
           "disposition": {
             "$ref": "#/definitions/InterpretationDisposition"
           }
         },
-        "required": [ "disposition" ],
-        "additionalProperties": false
+        "required": [
+          "disposition"
+        ],
+        "type": "object"
       }
-    }
+    },
+    "description": "Output structure of scope WoodVCapita",
+    "title": "Scope WoodVCapita output"
   }
 ]
