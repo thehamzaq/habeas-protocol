@@ -1,39 +1,100 @@
-## *Caparo Industries plc v Dickman* — three-stage duty-of-care test
-##
-## Source: *Caparo Industries plc v Dickman* [1990] UKHL 2, [1990] 2 AC
-## 605. The House of Lords laid down the modern English test for the
-## existence of a duty of care: a duty arises only where all three
-## stages are made out conjunctively:
-##
-##   (a) Foreseeability — harm to the claimant was reasonably
-##       foreseeable.
-##   (b) Proximity — there was a relationship of sufficient proximity
-##       (or "neighbourhood") between the parties.
-##   (c) Fair, just and reasonable — it is fair, just and reasonable in
-##       all the circumstances to impose a duty.
-##
-## The third limb is the policy gate: even if foreseeability and
-## proximity are made out, the court may decline to impose a duty
-## where doing so would be incoherent or open the floodgates.
-##
-## ADGM CFI applies *Caparo* directly via the *Application of English
-## Law Regulations 2015* in every negligent-misstatement and
-## professional-negligence claim. *Hedley Byrne v Heller* (a separate
-## module) supplies the special-relationship rule for liability for
-## words rather than acts.
-##
-## Used implicitly across:
-##   - ADGM negligent-misstatement / professional-negligence cases
-##     in the gold set (auditor liability, financial advice, etc.).
+# *Caparo Industries plc v Dickman* [1990] UKHL 2, [1990] 2 AC 605
+
+Source: *Caparo Industries plc v Dickman* [1990] UKHL 2, [1990] 2 AC 605
+(House of Lords). Pinned URL: https://www.bailii.org/uk/cases/UKHL/1990/2.html
+In force from 8 February 1990; current. Doctrine — drift = Supreme Court
+overrule. Note that *Robinson v Chief Constable of West Yorkshire Police*
+[2018] UKSC 4 narrowed the application of stage 2; check on update.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): Contains public-sector
+information licensed under the Open Government Licence v3.0 —
+http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/.
+
+## The three-stage formulation — Lord Bridge of Harwich
+
+The modern English test for the existence of a duty of care in negligence
+was stated by Lord Bridge in *Caparo*. Quoting the canonical passage at
+[1990] 2 AC 605, 617–618:
+
+"What emerges is that, in addition to the foreseeability of damage,
+necessary ingredients in any situation giving rise to a duty of care are
+that there should exist between the party owing the duty and the party
+to whom it is owed a relationship characterised by the law as one of
+'proximity' or 'neighbourhood' and that the situation should be one in
+which the court considers it fair, just and reasonable that the law
+should impose a duty of a given scope upon the one party for the
+benefit of the other."
+
+The doctrine therefore requires three elements, conjunctively:
+
+(a) **Foreseeability** — that harm to the claimant was reasonably
+    foreseeable;
+(b) **Proximity** — that there existed a relationship of sufficient
+    proximity (or "neighbourhood") between the parties; and
+(c) **Fair, just and reasonable** — that, in all the circumstances, it
+    is fair, just and reasonable to impose a duty.
+
+The third limb is the policy gate: even where foreseeability and
+proximity are made out, the court may decline to impose a duty where
+doing so would be incoherent with the structure of existing duties or
+would expose defendants to "liability in an indeterminate amount for an
+indeterminate time to an indeterminate class" (Cardozo CJ, *Ultramares
+Corp v Touche* 174 NE 441 (1931), as cited in *Caparo*).
+
+*Caparo* itself was decided against the auditor on the third limb: the
+House of Lords held that imposing a duty owed by auditors to the
+investing public would expose auditors to indeterminate liability and was
+not fair, just and reasonable.
+
+## Encoding
+
+The rule of decision is a conjunction of three boolean inputs (the three
+limbs as found by the court) producing a single boolean output (duty
+owed) plus a count of stages satisfied (used by the disposition layer to
+explain the decision).
+
+## *Robinson v Chief Constable of West Yorkshire* [2018] UKSC 4 narrowing
+
+In *Robinson*, the Supreme Court restricted *Caparo*'s three-stage test
+to **novel duty-of-care situations**. Where the case falls within an
+established category of duty (e.g. a road user's duty to other road
+users, an employer's duty to employees, a doctor's duty to a patient),
+the court does not run the three-stage test at all; the duty simply
+exists by precedent. The three-stage test — and in particular the
+"fair, just and reasonable" policy gate — applies only where the duty
+asserted is in a category the courts have not previously recognised.
+
+The encoding therefore takes an `is_established_category` input. When
+true, the duty is owed by precedent and the three-stage test is not
+exercised. When false, the case is novel and all three Caparo limbs
+must be made out.
+
+## Encoding
 
 ```catala
+declaration enumeration CaparoPath:
+  -- EstablishedCategory_DutyByPrecedent
+  -- NovelCategory_AllStagesMade
+  -- NovelCategory_FailsAtStage
+
+declaration enumeration CaparoStage:
+  -- Stage_None
+  -- Stage_1_Foreseeability
+  -- Stage_2_Proximity
+  -- Stage_3_FairJustReasonable
+
 declaration structure CaparoFacts:
+  ## Robinson v CC West Yorkshire [2018] UKSC 4 gate. If true, the
+  ## three-stage test is not run; duty exists by precedent.
+  data is_established_category content boolean
   data harm_reasonably_foreseeable content boolean
   data sufficient_proximity content boolean
   data fair_just_reasonable_to_impose content boolean
 
 declaration structure DutyOfCareDisposition:
+  data path content CaparoPath
   data n_stages_satisfied content integer
+  data first_failing_stage content CaparoStage
   data duty_of_care_owed content boolean
 
 declaration scope CaparoTest:
@@ -45,34 +106,105 @@ scope CaparoTest:
     let foreseeable equals facts.harm_reasonably_foreseeable in
     let proximity equals facts.sufficient_proximity in
     let fjr equals facts.fair_just_reasonable_to_impose in
-    let satisfied equals
+    let raw_satisfied equals
       (if foreseeable then 1 else 0)
       + (if proximity then 1 else 0)
       + (if fjr then 1 else 0)
     in
+    let novel_pass equals foreseeable and proximity and fjr in
+    let owed equals
+      if facts.is_established_category then true
+      else novel_pass
+    in
+    let chosen_path equals
+      if facts.is_established_category then
+        EstablishedCategory_DutyByPrecedent
+      else (if novel_pass then NovelCategory_AllStagesMade
+            else NovelCategory_FailsAtStage)
+    in
+    ## first_failing_stage names the earliest of the three Caparo
+    ## stages that the court found NOT made out, on the novel-duty
+    ## path. Stage_None when the duty is owed (established category
+    ## OR novel-with-all-three).
+    let first_fail equals
+      if facts.is_established_category then Stage_None
+      else (if not foreseeable then Stage_1_Foreseeability
+            else (if not proximity then Stage_2_Proximity
+                  else (if not fjr then Stage_3_FairJustReasonable
+                        else Stage_None)))
+    in
+    ## n_stages_satisfied is meaningful only on the novel-duty path.
+    ## On the established-category path the three-stage test is not
+    ## run; we emit -1 as a sentinel so downstream consumers cannot
+    ## misread an established-category disposition as having "passed
+    ## N of 3 stages."
+    let reported_satisfied equals
+      if facts.is_established_category then -1 else raw_satisfied
+    in
     DutyOfCareDisposition {
-      -- n_stages_satisfied: satisfied
-      -- duty_of_care_owed: foreseeable and proximity and fjr
+      -- path: chosen_path
+      -- n_stages_satisfied: reported_satisfied
+      -- first_failing_stage: first_fail
+      -- duty_of_care_owed: owed
     }
 ```
 
-## Tests — all three stages and the policy-gate fallthrough.
+## Application in ADGM
+
+ADGM CFI applies *Caparo* directly via the *Application of English Law
+Regulations 2015* in every negligent-misstatement and
+professional-negligence claim. *Hedley Byrne v Heller* [1964] AC 465 (a
+separate module) supplies the special-relationship rule for liability
+for words rather than acts; *Caparo* supplies the duty-of-care framework
+into which *Hedley Byrne* fits.
+
+Used implicitly across:
+  - ADGM negligent-misstatement / professional-negligence cases in the
+    gold set (auditor liability, financial advice, etc.).
+
+## Tests
+
+The two test scopes below cover (i) all three stages satisfied and
+(ii) the policy-gate fallthrough on which *Caparo* itself was decided.
 
 ```catala
-#[test] declaration scope TestCaparoAllStagesMet:
+#[test] declaration scope TestCaparoEstablishedCategory:
   composite scope CaparoTest
   output disposition content DutyOfCareDisposition
 
-scope TestCaparoAllStagesMet:
+scope TestCaparoEstablishedCategory:
+  definition disposition equals composite.disposition
+  ## Robinson narrowing: where the duty is in an established category
+  ## (e.g. road-user-to-road-user), the three-stage test is not run.
+  definition composite.facts equals
+    CaparoFacts {
+      -- is_established_category: true
+      -- harm_reasonably_foreseeable: true
+      -- sufficient_proximity: true
+      -- fair_just_reasonable_to_impose: false
+    }
+  assertion disposition.duty_of_care_owed = true
+  assertion disposition.path = EstablishedCategory_DutyByPrecedent
+  ## On the established-category path the three-stage count is not
+  ## meaningful; the encoding emits -1 as a sentinel.
+  assertion disposition.n_stages_satisfied = -1
+
+#[test] declaration scope TestCaparoNovelAllStagesMet:
+  composite scope CaparoTest
+  output disposition content DutyOfCareDisposition
+
+scope TestCaparoNovelAllStagesMet:
   definition disposition equals composite.disposition
   definition composite.facts equals
     CaparoFacts {
+      -- is_established_category: false
       -- harm_reasonably_foreseeable: true
       -- sufficient_proximity: true
       -- fair_just_reasonable_to_impose: true
     }
   assertion disposition.duty_of_care_owed = true
   assertion disposition.n_stages_satisfied = 3
+  assertion disposition.path = NovelCategory_AllStagesMade
 
 #[test] declaration scope TestCaparoFailsOnPolicyGate:
   composite scope CaparoTest
@@ -80,15 +212,17 @@ scope TestCaparoAllStagesMet:
 
 scope TestCaparoFailsOnPolicyGate:
   definition disposition equals composite.disposition
-  ## Foreseeability + proximity made out, but the policy gate (fair,
-  ## just, reasonable) cuts the duty — Caparo itself was decided this
-  ## way against the auditor.
+  ## Novel duty; foreseeability + proximity made out, but the policy
+  ## gate (fair, just, reasonable) cuts the duty — Caparo itself was
+  ## decided this way against the auditor (a novel duty in 1990).
   definition composite.facts equals
     CaparoFacts {
+      -- is_established_category: false
       -- harm_reasonably_foreseeable: true
       -- sufficient_proximity: true
       -- fair_just_reasonable_to_impose: false
     }
   assertion disposition.duty_of_care_owed = false
   assertion disposition.n_stages_satisfied = 2
+  assertion disposition.path = NovelCategory_FailsAtStage
 ```

@@ -1,0 +1,28 @@
+# Habeas Protocol — Python deps
+#
+# The runtime is stdlib-only (http.server, urllib, json, subprocess shelling
+# out to psql / catala). The deps below are only needed for build / test /
+# CI tooling, and are kept thin on purpose — the goal is "clone, install
+# Catala via opam, run `make test`."
+#
+# Required for nothing — the rule modules, conformance tests, trace
+# evaluators, property tests, drift checker, and HTTP API are all stdlib.
+#
+# Optional (build-time tooling):
+#   pyyaml — to lint *_source.yaml files (also used by some scripts/);
+#            CI installs it via apt if not pip-available.
+#
+# Optional (paper / brief generation, not the protocol itself):
+#   reportlab — used by build_brief_v2.py to render the PDF brief.
+#
+# Optional (external data ingestion, not the protocol itself):
+#   beautifulsoup4 — judgment HTML parsing in scripts/fetch_difc.py etc.
+#   requests       — same.
+#
+# To install everything:
+#   pip install -r requirements.txt
+
+pyyaml==6.0.1
+reportlab==4.0.9
+beautifulsoup4==4.12.3
+requests==2.31.0

@@ -21,12 +21,24 @@
   ],
   "test_scopes": [
     "TestIAA_S31_TraceShape",
+    "TestIAA_S31_SeverabilityRelief",
+    "TestIAA_S31_FullSetAside_NoSeverability",
+    "TestIAA_S31_NaturalJusticeNotSeverable",
     "TestDKTvDKU_AllConditionsMet",
     "TestDKTvDKU_OneConditionFails"
+  ],
+  "public_scopes": [
+    "IAA_S31_Refusal",
+    "DKTvDKUChallenge",
+    "IAA_S31_5_Adjournment",
+    "IAA_S31_2_c_InfraPetita"
   ],
   "certification": {
     "state": "draft",
     "states_history": []
   },
-  "cross_jurisdiction_note": "Structurally parallel to adgm_arbitration_regulations_2015."
+  "cross_jurisdiction_note": "Structurally parallel to adgm_arbitration_regulations_2015.",
+  "author": "Hamza Qureshi <thehamzaq@gmail.com>",
+  "reviewers": [],
+  "lawyer_of_record": null
 }

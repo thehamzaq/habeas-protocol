@@ -103,10 +103,14 @@ def prop_rdc_part_38():
 
 
 # ---------------------------------------------------------------------
-# uae_civil_code_art_390 / Article390Cap
-#   if grossly_exaggerated and uncapped > cap → awarded == cap
-#   if not grossly_exaggerated → awarded == uncapped (no cap)
-#   was_capped iff awarded < uncapped
+# uae_civil_code_art_390 / Article390Cap (post-refactor: 2 layers)
+#   Layer 1 (contract cap): if contract_caps_ld and uncapped > cap →
+#                           after = cap, was_contract_capped = true
+#   Layer 1 otherwise:       after = uncapped
+#   Layer 2 (390(2)):        was_390_2_varied iff asked_to_vary AND
+#                            court_finds_grossly_disproportionate
+#   awarded_aed = after_contract_cap_aed (390(2) variation amount is
+#                 a human-judgment input not modelled here)
 # ---------------------------------------------------------------------
 
 def prop_uae_390():
@@ -117,25 +121,33 @@ def prop_uae_390():
         cap_rate = round(random.uniform(0.05, 0.30), 4)
         uncapped = round(random.uniform(0, contract * 2), 2)
         cap = round(contract * cap_rate, 2)
-        for engaged in (True, False):
-            out = run_rule("uae_civil_code_art_390", "Article390Cap",
-                           {"claim": {"uncapped_amount_aed": str(uncapped),
-                                      "contract_value_aed": str(contract),
-                                      "cap_rate": str(cap_rate),
-                                      "court_finds_grossly_exaggerated": engaged}})["award"]
-            if not engaged:
-                check("not engaged → awarded == uncapped",
-                      abs(out["awarded_aed"] - uncapped) < 0.02,
-                      f"engaged={engaged} uncapped={uncapped} got={out['awarded_aed']}")
-                check("not engaged → was_capped is false",
-                      out["was_capped"] is False)
-            else:
-                expected = cap if uncapped > cap else uncapped
-                check("engaged → awarded = min(cap, uncapped)",
-                      abs(out["awarded_aed"] - expected) < 0.02,
-                      f"cap={cap} uncapped={uncapped} got={out['awarded_aed']}")
-            check("was_capped iff awarded < uncapped",
-                  out["was_capped"] == (out["awarded_aed"] < uncapped))
+        for contract_caps_ld in (True, False):
+            for asked, finds in [(False, False), (True, False), (True, True)]:
+                out = run_rule("uae_civil_code_art_390", "Article390Cap",
+                               {"claim": {
+                                   "uncapped_amount_aed": str(uncapped),
+                                   "contract_value_aed": str(contract),
+                                   "contract_cap_rate": str(cap_rate),
+                                   "contract_caps_ld": contract_caps_ld,
+                                   "court_asked_to_vary_under_390_2": asked,
+                                   "court_finds_grossly_disproportionate": finds,
+                               }})["award"]
+                if contract_caps_ld and uncapped > cap:
+                    expected_after = cap
+                    expected_capped = True
+                else:
+                    expected_after = uncapped
+                    expected_capped = False
+                check("after_contract_cap_aed correct",
+                      abs(out["after_contract_cap_aed"] - expected_after) < 0.02,
+                      f"contract_caps_ld={contract_caps_ld} cap={cap} "
+                      f"uncapped={uncapped} got={out['after_contract_cap_aed']}")
+                check("awarded_aed equals after_contract_cap_aed",
+                      abs(out["awarded_aed"] - out["after_contract_cap_aed"]) < 0.001)
+                check("was_contract_capped flag",
+                      out["was_contract_capped"] == expected_capped)
+                check("was_390_2_varied iff asked AND finds",
+                      out["was_390_2_varied"] == (asked and finds))
 
 
 # ---------------------------------------------------------------------
@@ -161,22 +173,37 @@ def prop_ladd():
 
 
 # ---------------------------------------------------------------------
-# caparo_three_stage_test / CaparoTest
-#   duty_owed iff all 3 stages
+# caparo_three_stage_test / CaparoTest (with Robinson narrowing)
+#   established_category → duty owed by precedent (3-stage skipped)
+#   novel:                duty_owed iff all 3 stages
 # ---------------------------------------------------------------------
 
 def prop_caparo():
-    print("\n— caparo_three_stage_test · three-stage conjunctive —")
+    print("\n— caparo_three_stage_test · three-stage conjunctive (+Robinson) —")
     KEYS = ["harm_reasonably_foreseeable", "sufficient_proximity", "fair_just_reasonable_to_impose"]
     for trial in range(8):
         bits = [(trial >> i) & 1 for i in range(3)]
-        facts = {k: bool(b) for k, b in zip(KEYS, bits)}
-        out = run_rule("caparo_three_stage_test", "CaparoTest", {"facts": facts})["disposition"]
-        n = sum(bits)
-        check(f"caparo truth table {bits}: n_stages = {n}",
-              int(out["n_stages_satisfied"]) == n)
-        check(f"caparo truth table {bits}: duty iff all three",
-              out["duty_of_care_owed"] == (n == 3))
+        for is_established in (True, False):
+            facts = {"is_established_category": is_established}
+            facts.update({k: bool(b) for k, b in zip(KEYS, bits)})
+            out = run_rule("caparo_three_stage_test", "CaparoTest", {"facts": facts})["disposition"]
+            n = sum(bits)
+            if is_established:
+                check("Robinson: established → duty owed by precedent",
+                      out["duty_of_care_owed"] is True)
+                check("Robinson: established → path = EstablishedCategory_DutyByPrecedent",
+                      out["path"] == "EstablishedCategory_DutyByPrecedent")
+                check("Robinson: established → n_stages_satisfied = -1 (sentinel)",
+                      int(out["n_stages_satisfied"]) == -1)
+            else:
+                check(f"caparo novel {bits}: n_stages_satisfied = {n}",
+                      int(out["n_stages_satisfied"]) == n)
+                check(f"caparo novel {bits}: duty iff all three",
+                      out["duty_of_care_owed"] == (n == 3))
+                expected_path = ("NovelCategory_AllStagesMade" if n == 3
+                                 else "NovelCategory_FailsAtStage")
+                check(f"caparo novel {bits}: path = {expected_path}",
+                      out["path"] == expected_path)
 
 
 # ---------------------------------------------------------------------
@@ -203,29 +230,115 @@ def prop_summary_judgment():
 
 def prop_iaa_s31():
     print("\n— sg_iaa_s_31 · refusal-disposition logic —")
-    GROUNDS = ["S31_2_a_Incapacity", "S31_2_b_NaturalJustice", "S31_2_c_TribunalComposition",
-               "S31_2_d_OutsideScope", "S31_2_e_NotBindingOrSetAside", "S31_2_f_NotArbitrable",
-               "S31_4_b_PublicPolicy"]
+    GROUNDS = ["S31_2_a_Incapacity", "S31_2_b_InvalidAgreement", "S31_2_c_NaturalJustice",
+               "S31_2_d_OutsideScope", "S31_2_e_TribunalComposition", "S31_2_f_NotBindingOrSetAside",
+               "S31_4_a_NotArbitrable", "S31_4_b_PublicPolicy"]
     OUTCOMES = ["Dismissed", "AllowedInPart", "AllowedInFull"]
     for _ in range(N_TRIALS):
         n = random.randint(1, 5)
-        grounds = [{"ground": random.choice(GROUNDS), "court_outcome": random.choice(OUTCOMES)}
+        grounds = [{"ground": random.choice(GROUNDS),
+                    "court_outcome": random.choice(OUTCOMES),
+                    "is_severable": random.choice([True, False])}
                    for _ in range(n)]
         out = run_rule("sg_iaa_s_31", "IAA_S31_Refusal", {"grounds": grounds})["disposition"]
         n_full = sum(1 for g in grounds if g["court_outcome"] == "AllowedInFull")
         n_part = sum(1 for g in grounds if g["court_outcome"] == "AllowedInPart")
         n_dis = sum(1 for g in grounds if g["court_outcome"] == "Dismissed")
-        if n_full > 0:
+        # s 31(3) severability: a fully-allowed OutsideScope ground that
+        # is severable yields AllowedInPart, not AwardSetAside.
+        n_full_relief = sum(
+            1 for g in grounds
+            if g["court_outcome"] == "AllowedInFull"
+            and g["ground"] == "S31_2_d_OutsideScope"
+            and g["is_severable"]
+        )
+        n_full_dispositive = n_full - n_full_relief
+        if n_full_dispositive > 0:
             expected = "AwardSetAside"
-        elif n_part > 0:
+        elif n_part > 0 or n_full_relief > 0:
             expected = "ApplicationAllowedInPart"
         else:
             expected = "ApplicationDismissedEntirely"
-        check(f"disposition: full={n_full} part={n_part} dis={n_dis}",
+        check(f"disposition: full={n_full} relief={n_full_relief} part={n_part} dis={n_dis}",
               out["application_disposition"] == expected,
               f"got {out['application_disposition']}, want {expected}")
-        check("award_enforced iff no full ground",
-              out["award_enforced"] == (n_full == 0))
+        check("award_enforced iff no full-dispositive ground",
+              out["award_enforced"] == (n_full_dispositive == 0))
+        check("counts add up",
+              int(out["n_grounds_pleaded"]) == n
+              and int(out["n_grounds_full"]) == n_full
+              and int(out["n_grounds_partial"]) == n_part
+              and int(out["n_grounds_dismissed"]) == n_dis)
+
+
+# ---------------------------------------------------------------------
+# adgm_arbitration_regulations_2015 / ADGMRecognition
+#   structural parallel of sg_iaa_s_31, with two additional inputs:
+#     - is_severable (per ground; only effective on S62_a_iv_OutsideScope)
+#     - s58_was_or_could_have_been_available (top-level; bars the
+#       application under s 62(3) regardless of grounds)
+#
+# Invariants:
+#   if s58_available: overall=RecognitionGranted, award_recognised=True,
+#                     application_status=ApplicationBarredByS62_3
+#   else: full_dispositive = full - (severable-relief on S62_a_iv only)
+#         RecognitionRefused      iff full_dispositive > 0
+#         RecognitionGrantedInPart iff partial>0 OR severable_relief>0
+#         RecognitionGranted      otherwise
+#         award_recognised iff full_dispositive == 0
+#         application_status = ApplicationProperlyMade
+# ---------------------------------------------------------------------
+
+def prop_adgm_s62():
+    print("\n— adgm_arbitration_regulations_2015 · refusal-disposition + s 62(3) —")
+    GROUNDS = ["S62_a_i_Incapacity", "S62_a_ii_InvalidAgreement", "S62_a_iii_NaturalJustice",
+               "S62_a_iv_OutsideScope", "S62_a_v_TribunalComposition", "S62_a_vi_NotBindingOrSetAside",
+               "S62_b_i_NotArbitrable", "S62_b_ii_PublicPolicy"]
+    OUTCOMES = ["Dismissed", "AllowedInPart", "AllowedInFull"]
+    for _ in range(N_TRIALS):
+        n = random.randint(1, 5)
+        grounds = [{"ground": random.choice(GROUNDS),
+                    "court_outcome": random.choice(OUTCOMES),
+                    "is_severable": random.choice([True, False])}
+                   for _ in range(n)]
+        s58 = random.choice([True, False])
+        out = run_rule("adgm_arbitration_regulations_2015", "ADGMRecognition",
+                       {"grounds": grounds,
+                        "s58_was_or_could_have_been_available": s58})["disposition"]
+        n_full = sum(1 for g in grounds if g["court_outcome"] == "AllowedInFull")
+        n_part = sum(1 for g in grounds if g["court_outcome"] == "AllowedInPart")
+        n_dis = sum(1 for g in grounds if g["court_outcome"] == "Dismissed")
+        n_full_relief = sum(
+            1 for g in grounds
+            if g["court_outcome"] == "AllowedInFull"
+            and g["ground"] == "S62_a_iv_OutsideScope"
+            and g["is_severable"]
+        )
+        n_full_dispositive = n_full - n_full_relief
+
+        if s58:
+            expected_overall = "RecognitionGranted"
+            expected_recognised = True
+            expected_status = "ApplicationBarredByS62_3"
+        else:
+            expected_status = "ApplicationProperlyMade"
+            if n_full_dispositive > 0:
+                expected_overall = "RecognitionRefused"
+                expected_recognised = False
+            elif n_part > 0 or n_full_relief > 0:
+                expected_overall = "RecognitionGrantedInPart"
+                expected_recognised = True
+            else:
+                expected_overall = "RecognitionGranted"
+                expected_recognised = True
+
+        check(f"overall: full={n_full} relief={n_full_relief} part={n_part} dis={n_dis} s58={s58}",
+              out["overall_disposition"] == expected_overall,
+              f"got {out['overall_disposition']}, want {expected_overall}")
+        check("award_recognised invariant",
+              out["award_recognised"] == expected_recognised)
+        check("application_status invariant",
+              out["application_status"] == expected_status)
         check("counts add up",
               int(out["n_grounds_pleaded"]) == n
               and int(out["n_grounds_full"]) == n_full
@@ -261,28 +374,33 @@ def prop_third_party():
 
 # ---------------------------------------------------------------------
 # english_contract_interpretation / WoodVCapita
+# (post-2026-05 audit: Stage 2 relaxed to Lord Hodge balancing)
 #   plain unambiguous → PlainMeaningCarries (regardless of other limbs)
-#   not plain + business_sense (with matrix) → BusinessCommonSenseCarries
-#   neither → GenuinelyAmbiguous
+#   not plain + (cs OR matrix=Supports) AND (matrix != Contradicts)
+#                                       → BusinessCommonSenseCarries
+#   else                                → GenuinelyAmbiguous
 # ---------------------------------------------------------------------
 
 def prop_wood_capita():
     print("\n— english_contract_interpretation · branch logic —")
     for plain in (False, True):
-        for bcs in (False, True):
-            for matrix in (False, True):
+        for cs in (False, True):
+            for matrix in ("Supports", "Silent", "Contradicts"):
                 ev = {"clauses_unambiguously_aligned": plain,
-                      "common_sense_supports_one_reading": bcs,
-                      "factual_matrix_supports_that_reading": matrix}
+                      "common_sense_supports_one_reading": cs,
+                      "factual_matrix_signal": matrix}
                 out = run_rule("english_contract_interpretation", "WoodVCapita",
                                {"evidence": ev})["disposition"]
                 if plain:
                     expected = "PlainMeaningCarries"
-                elif bcs and matrix:
-                    expected = "BusinessCommonSenseCarries"
                 else:
-                    expected = "GenuinelyAmbiguous"
-                check(f"wood_capita ({plain},{bcs},{matrix}) → {expected}",
+                    bcs_carries = (
+                        (cs or matrix == "Supports")
+                        and matrix != "Contradicts"
+                    )
+                    expected = ("BusinessCommonSenseCarries" if bcs_carries
+                                else "GenuinelyAmbiguous")
+                check(f"wood_capita ({plain},{cs},{matrix}) → {expected}",
                       out["limb"] == expected,
                       f"got {out['limb']}")
 
@@ -301,6 +419,7 @@ def main():
     prop_caparo()
     prop_summary_judgment()
     prop_iaa_s31()
+    prop_adgm_s62()
     prop_third_party()
     prop_wood_capita()
 

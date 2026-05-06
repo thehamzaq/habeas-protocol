@@ -1,37 +1,84 @@
-## UAE Civil Transactions Law (Federal Law No. 5 of 1985), Article 390 —
-## Liquidated damages cap
-##
-## Source: Federal Law No. 5 of 1985 (UAE), Article 390(2). Where the
-## parties have agreed an amount of compensation in advance (a
-## "liquidated damages" / "agreed compensation" clause), the court may
-## reduce the amount if the obligor proves that the agreed sum is
-## *grossly exaggerated* relative to the actual loss, *or* increase it
-## if grossly inadequate. ADGM CFI applies this article to commercial
-## contracts governed by UAE law (sometimes alongside the federal cap
-## doctrine in case-law).
-##
-## Used in:
-##   trace-04 — ADGMCFI-2024-320 Projeco v Ideacrate.
-##
-## The 10% cap convention applied in trace-04 reflects ADGM CFI's
-## case-law treatment of the "grossly exaggerated" limb in standard
-## commercial-contract LD clauses; the *cap rate* is a parameter,
-## not a universal of Article 390 itself.
+# UAE Civil Transactions Law (Federal Law No. 5 of 1985), Article 390
+
+Source: Federal Law No. 5 of 1985 (UAE Civil Transactions Law),
+Article 390 — agreed compensation ("liquidated damages"). Pinned URL
+in `uae_civil_code_art_390_source.yaml`. In force; current.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): The Arabic-language original
+is © UAE Ministry of Justice. The English working translation
+reproduced below is the form in widest circulation in UAE / DIFC /
+ADGM litigation practice (drawn from the standard practitioner
+editions; cross-checked against the Fenwick Elliott commentary on UAE
+LD doctrine). Where competing translations exist, the encoding's
+predicate logic does not depend on the precise English wording — the
+Arabic-language original at the UAE Ministry of Justice is the
+authoritative source for the rule of decision.
+
+## Article 390 — verbatim text
+
+Reproduced verbatim from the standard English translation of the UAE
+Civil Transactions Law (Federal Law No. 5 of 1985):
+
+Article 390(1):
+"The contracting parties may fix the amount of compensation in advance
+by making a provision therefor in the contract or in a subsequent
+agreement, subject to the provisions of the law."
+
+Article 390(2):
+"The court may, on the application of either party, vary such
+agreement so as to make the compensation equal to the loss and any
+agreement to the contrary shall be void."
+
+## Two distinct compensation-capping mechanisms
+
+DOCTRINAL NOTE: this module captures **two distinct mechanisms** that
+interact in the same case:
+
+1. **Contract-clause LD cap.** The parties' own LD clause may itself
+   cap the compensation at a percentage of contract value (e.g.
+   `min(daily-rate × days, 10% of adjusted contract price)`). This cap
+   is contractual, not statutory. It engages whenever the contract
+   says it does — no court finding required.
+
+2. **Article 390(2) variation.** The court has a separate, statutory
+   discretion to *vary* the agreed compensation (whether contractually
+   capped or not) to make it equal to the loss actually sustained.
+   This power requires a predicate finding by the court: ADGM CFI
+   case-law treats *gross disproportion* between the agreed sum and
+   actual loss as the threshold for variation.
+
+Both mechanisms can apply to the same case. In *Projeco v Ideacrate*
+(trace-04) the contract's 10% cap engaged automatically; the
+defendant *also* asked the court to vary the cap further down under
+390(2), but the court refused that variation application because the
+defendant had not proved the actual loss was less than the capped
+amount. This module models both layers explicitly so the test data
+can record what the contract did and what the court was asked to do
+separately.
+
+## Encoding
 
 ```catala
 declaration structure LDClaim:
   data uncapped_amount_aed content decimal
   data contract_value_aed content decimal
-  data cap_rate content decimal
-  ## The court must have determined that the agreed sum is grossly
-  ## exaggerated relative to the actual loss before the cap engages.
-  ## This is a human-judgment input, not a deterministic predicate.
-  data court_finds_grossly_exaggerated content boolean
+  ## The contract's own LD cap (typically 10% of contract value in
+  ## ADGM CFI commercial-construction practice). cap_rate = 0 means
+  ## "no contractual cap; the LD clause is uncapped".
+  data contract_cap_rate content decimal
+  data contract_caps_ld content boolean
+  ## A 390(2) variation application by the obligor. Independent of
+  ## the contract cap. If true, the court's predicate finding on
+  ## gross disproportion controls whether the variation engages.
+  data court_asked_to_vary_under_390_2 content boolean
+  data court_finds_grossly_disproportionate content boolean
 
 declaration structure LDAward:
-  data cap_aed content decimal
+  data contract_cap_aed content decimal
+  data after_contract_cap_aed content decimal
   data awarded_aed content decimal
-  data was_capped content boolean
+  data was_contract_capped content boolean
+  data was_390_2_varied content boolean
 
 declaration scope Article390Cap:
   input claim content LDClaim
@@ -39,58 +86,126 @@ declaration scope Article390Cap:
 
 scope Article390Cap:
   definition award equals
-    let cap equals claim.contract_value_aed * claim.cap_rate in
-    let awarded equals
-      if claim.court_finds_grossly_exaggerated then
-        (if claim.uncapped_amount_aed > cap then cap
-         else claim.uncapped_amount_aed)
-      else claim.uncapped_amount_aed
+    ## Layer 1 — contract-clause cap. The cap value is only meaningful
+    ## when contract_caps_ld is true; otherwise it is reported as 0.00
+    ## to avoid leaking an inapplicable arithmetic value to downstream
+    ## consumers.
+    let raw_cap equals
+      claim.contract_value_aed * claim.contract_cap_rate
     in
+    let contract_cap equals
+      if claim.contract_caps_ld then raw_cap else 0.00
+    in
+    let after_contract_cap equals
+      if claim.contract_caps_ld
+         and claim.uncapped_amount_aed > raw_cap then
+        raw_cap
+      else
+        claim.uncapped_amount_aed
+    in
+    let was_contract_capped equals
+      claim.contract_caps_ld
+      and (after_contract_cap < claim.uncapped_amount_aed)
+    in
+    ## Layer 2 — Article 390(2) variation. The variation engages only
+    ## where the court was asked AND made the gross-disproportion
+    ## finding. The encoding does not compute the post-variation sum;
+    ## the variation amount itself is a human-judgment input. The
+    ## module records *whether* the variation engaged.
+    let was_varied equals
+      claim.court_asked_to_vary_under_390_2
+      and claim.court_finds_grossly_disproportionate
+    in
+    ## In the typical case the variation does not further reduce the
+    ## sum (because the court did not make the gross-disproportion
+    ## finding). The awarded sum is the post-contract-cap sum.
     LDAward {
-      -- cap_aed: cap
-      -- awarded_aed: awarded
-      -- was_capped: awarded < claim.uncapped_amount_aed
+      -- contract_cap_aed: contract_cap
+      -- after_contract_cap_aed: after_contract_cap
+      -- awarded_aed: after_contract_cap
+      -- was_contract_capped: was_contract_capped
+      -- was_390_2_varied: was_varied
     }
 ```
 
-## Test — replays the 10% cap from trace-04.
+## Used in
+
+trace-04 — ADGMCFI-2024-320 *Projeco v Ideacrate*. The contract LD
+clause capped damages at 10% of the adjusted contract price (AED
+608,521.19). The obligor (Projeco) also applied under 390(2) for the
+court to vary the LD further down; the court refused because Projeco
+had not proved actual loss was less than the cap. The encoding now
+records both layers separately: `was_contract_capped: true`,
+`was_390_2_varied: false`.
+
+## Tests
 
 ```catala
-#[test] declaration scope TestArt390CapEngages:
+#[test] declaration scope TestArt390ContractCapOnly_Trace04:
   composite scope Article390Cap
   output award content LDAward
 
-scope TestArt390CapEngages:
+scope TestArt390ContractCapOnly_Trace04:
   definition award equals composite.award
-  ## trace-04: contract value AED 6,085,211.90; uncapped LDs AED
-  ## 9,700,000. Court applied 10% cap → AED 608,521.19. The court
-  ## made the "grossly exaggerated" finding, so the cap engages.
+  ## trace-04: AED 9.7M uncapped LD, 10% contract cap on AED
+  ## 6,085,211.90 contract = AED 608,521.19 cap engages. The
+  ## obligor's 390(2) application was refused because the court did
+  ## not find gross disproportion (defendant did not prove actual
+  ## loss < cap).
   definition composite.claim equals
     LDClaim {
       -- uncapped_amount_aed: 9700000.00
       -- contract_value_aed: 6085211.90
-      -- cap_rate: 0.10
-      -- court_finds_grossly_exaggerated: true
+      -- contract_cap_rate: 0.10
+      -- contract_caps_ld: true
+      -- court_asked_to_vary_under_390_2: true
+      -- court_finds_grossly_disproportionate: false
     }
-  assertion award.cap_aed = 608521.19
+  assertion award.contract_cap_aed = 608521.19
+  assertion award.after_contract_cap_aed = 608521.19
   assertion award.awarded_aed = 608521.19
-  assertion award.was_capped = true
+  assertion award.was_contract_capped = true
+  assertion award.was_390_2_varied = false
 
-#[test] declaration scope TestArt390NoExaggerationFinding:
+#[test] declaration scope TestArt390NoCapNoVariation:
   composite scope Article390Cap
   output award content LDAward
 
-scope TestArt390NoExaggerationFinding:
+scope TestArt390NoCapNoVariation:
   definition award equals composite.award
-  ## If the court does not find the LD grossly exaggerated, Article
-  ## 390(2) does not engage and the agreed sum stands.
+  ## No contract cap, no 390(2) application — the agreed sum stands.
   definition composite.claim equals
     LDClaim {
       -- uncapped_amount_aed: 50000.00
       -- contract_value_aed: 1000000.00
-      -- cap_rate: 0.10
-      -- court_finds_grossly_exaggerated: false
+      -- contract_cap_rate: 0.10
+      -- contract_caps_ld: false
+      -- court_asked_to_vary_under_390_2: false
+      -- court_finds_grossly_disproportionate: false
     }
   assertion award.awarded_aed = 50000.00
-  assertion award.was_capped = false
+  assertion award.was_contract_capped = false
+  assertion award.was_390_2_varied = false
+
+#[test] declaration scope TestArt390BothLayersEngage:
+  composite scope Article390Cap
+  output award content LDAward
+
+scope TestArt390BothLayersEngage:
+  definition award equals composite.award
+  ## Hypothetical: contract caps at 10%, court ALSO finds gross
+  ## disproportion under 390(2). The encoding records both layers as
+  ## engaged; the post-variation sum is a human-judgment input not
+  ## modelled here.
+  definition composite.claim equals
+    LDClaim {
+      -- uncapped_amount_aed: 9700000.00
+      -- contract_value_aed: 6085211.90
+      -- contract_cap_rate: 0.10
+      -- contract_caps_ld: true
+      -- court_asked_to_vary_under_390_2: true
+      -- court_finds_grossly_disproportionate: true
+    }
+  assertion award.was_contract_capped = true
+  assertion award.was_390_2_varied = true
 ```

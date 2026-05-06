@@ -45,7 +45,7 @@ TXT_DIR = ROOT + "/data/raw/adgm/text"
 PAGE_DIR = ROOT + "/data/raw/adgm/pages"
 
 # pypdf may be installed at the user-site path used by the other scrapers
-sys.path.insert(0, "/Users/hamzaqureshi/Library/Python/3.9/lib/python/site-packages")
+# Note: site-packages is on sys.path by default; no manual insertion needed.
 
 ASSET_RE = re.compile(
     r"https://assets\.adgm\.com/download/assets/[^\"'\s<>)]+\.pdf/[a-f0-9]+",

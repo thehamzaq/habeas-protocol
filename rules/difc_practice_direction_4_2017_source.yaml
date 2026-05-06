@@ -1,0 +1,21 @@
+module: difc_practice_direction_4_2017
+version_id: "pd-4-2017"
+source_authority:
+  jurisdiction: DIFC
+  instrument: DIFC Practice Direction No. 4 of 2017 (Interest on Judgments)
+  url: "https://www.difccourts.ae/rules-decisions/practice-directions"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: "859bc2a8ec07eeab1912515de7d16040552b585e1f18f65a997a8637f8167367"    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 2017-01-01
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://www.difccourts.ae/rules-decisions/practice-directions"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: false
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  9% per annum interest + 14-day deadline.

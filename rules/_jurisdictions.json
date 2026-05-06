@@ -18,7 +18,7 @@
       "english_law_via_statute": true,
       "ny_convention_signatory": true,
       "recognition_path": "ADGM Arbitration Regulations 2015 (parallels SG IAA s 31)",
-      "public_policy_authority": "ADGM public policy under s 56(3)(b) of the Arbitration Regulations"
+      "public_policy_authority": "UAE public policy under s 62(1)(b)(ii) of the ADGM Arbitration Regulations 2015 (was s 56(3)(b) in the 2015 enacted numbering)"
     },
     {
       "code": "SICC",
@@ -32,7 +32,7 @@
   ],
   "rule_jurisdictions": [
     {"module": "difc_rdc_part_38",                "scope": "StandardBasisAssessment",       "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "arithmetic",     "public_policy_gate": false},
-    {"module": "difc_rdc_38_7_indemnity",         "scope": "IndemnityBasisReview",          "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "disposition",    "public_policy_gate": false},
+    {"module": "difc_rdc_38_19_indemnity",         "scope": "IndemnityBasisReview",          "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "disposition",    "public_policy_gate": false},
     {"module": "difc_practice_direction_4_2017",  "scope": "OutstandingArbitrationCosts",   "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "arithmetic",     "public_policy_gate": false},
     {"module": "difc_third_party_disclosure",     "scope": "ThirdPartyDisclosureGates",     "primary_jurisdiction": "DIFC", "applies_in": ["DIFC"],         "role_class": "gate",           "public_policy_gate": false, "is_recognition_gate": true},
     {"module": "adgm_cpr_admissions",             "scope": "AdmissionsAndSetOff",           "primary_jurisdiction": "ADGM", "applies_in": ["ADGM"],         "role_class": "arithmetic",     "public_policy_gate": false},
@@ -60,7 +60,7 @@
       "local_forum": "ADGM",
       "claim_type": "arbitration_recognition",
       "recognition_chain": ["adgm_arbitration_regulations_2015"],
-      "note": "ADGM Arbitration Regulations 2015 s 56 parallels SG IAA s 31 and NY Convention Article V; same conjunctive-grounds shape. Substantive contract layer applies English common law via the AELR."
+      "note": "ADGM Arbitration Regulations 2015 s 62 (was s 56 in the 2015 enacted numbering) parallels SG IAA s 31 and NY Convention Article V; same conjunctive-grounds shape. Substantive contract layer applies English common law via the AELR."
     },
     {
       "name": "Foreign arbitral award → SICC seat",

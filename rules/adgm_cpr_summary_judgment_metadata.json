@@ -1,10 +1,10 @@
 {
   "module_name": "adgm_cpr_summary_judgment",
-  "human_label": "ADGM CPR Rule 24 \u2014 summary judgment two-limb test",
+  "human_label": "ADGM CPR Rule 68 \u2014 summary judgment two-limb test",
   "source_authorities": [
     {
       "kind": "rules_of_court",
-      "citation": "ADGM Court Procedure Rules 2016, Rule 24"
+      "citation": "ADGM Court Procedure Rules 2016, Rule 68 (Grounds for summary judgment)"
     }
   ],
   "test_scopes": [
@@ -14,5 +14,8 @@
   "certification": {
     "state": "draft",
     "states_history": []
-  }
+  },
+  "author": "Hamza Qureshi <thehamzaq@gmail.com>",
+  "reviewers": [],
+  "lawyer_of_record": null
 }

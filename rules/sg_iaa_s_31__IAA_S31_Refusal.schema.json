@@ -9,9 +9,10 @@
         "type": "object",
         "properties": {
           "ground": { "$ref": "#/definitions/IAAGroundId" },
-          "court_outcome": { "$ref": "#/definitions/GroundOutcome" }
+          "court_outcome": { "$ref": "#/definitions/GroundOutcome" },
+          "is_severable": { "type": "boolean" }
         },
-        "required": [ "court_outcome", "ground" ],
+        "required": [ "court_outcome", "ground", "is_severable" ],
         "additionalProperties": false
       },
       "GroundOutcome": {
@@ -21,10 +22,10 @@
       "IAAGroundId": {
         "type": "string",
         "enum": [
-          "S31_2_a_Incapacity", "S31_2_b_NaturalJustice",
-          "S31_2_c_TribunalComposition", "S31_2_d_OutsideScope",
-          "S31_2_e_NotBindingOrSetAside", "S31_2_f_NotArbitrable",
-          "S31_4_b_PublicPolicy"
+          "S31_2_a_Incapacity", "S31_2_b_InvalidAgreement",
+          "S31_2_c_NaturalJustice", "S31_2_d_OutsideScope",
+          "S31_2_e_TribunalComposition", "S31_2_f_NotBindingOrSetAside",
+          "S31_4_a_NotArbitrable", "S31_4_b_PublicPolicy"
         ]
       },
       "IAA_S31_Refusal_in": {

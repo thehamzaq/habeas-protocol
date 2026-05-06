@@ -1,0 +1,21 @@
+module: difc_rdc_part_38
+version_id: "rdc-2024-11-01"
+source_authority:
+  jurisdiction: DIFC
+  instrument: "Rules of the DIFC Courts (RDC), Part 38"
+  url: "https://www.difccourts.ae/rules-decisions/rules"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: "77c8640f9699a9cab8e0742e4d2d74840f666847d71be1ee5c1e229c5bcb156c"    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 2024-11-01
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://www.difccourts.ae/rules-decisions/rules"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: false
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Standard-basis costs assessment under RDC 38.

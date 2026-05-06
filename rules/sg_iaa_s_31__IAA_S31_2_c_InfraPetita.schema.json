@@ -1,0 +1,89 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope IAA_S31_2_c_InfraPetita input",
+    "description": "Input structure of scope IAA_S31_2_c_InfraPetita (composes the DKT v DKU four-condition framework with the court's stated outcome on a s 31(2)(c) ground; reports a consistency check).",
+    "$ref": "#/definitions/IAA_S31_2_c_InfraPetita_in",
+    "definitions": {
+      "DKTConditions": {
+        "type": "object",
+        "properties": {
+          "point_properly_before_tribunal": { "type": "boolean" },
+          "point_essential_to_dispute": { "type": "boolean" },
+          "tribunal_completely_failed_to_consider": { "type": "boolean" },
+          "prejudice_demonstrated": { "type": "boolean" }
+        },
+        "required": [
+          "prejudice_demonstrated",
+          "tribunal_completely_failed_to_consider",
+          "point_essential_to_dispute",
+          "point_properly_before_tribunal"
+        ],
+        "additionalProperties": false
+      },
+      "GroundOutcome": {
+        "type": "string",
+        "enum": [ "Dismissed", "AllowedInPart", "AllowedInFull" ]
+      },
+      "IAA_S31_2_c_InfraPetita_in": {
+        "type": "object",
+        "properties": {
+          "conditions": { "$ref": "#/definitions/DKTConditions" },
+          "court_outcome_on_31_2_c": { "$ref": "#/definitions/GroundOutcome" }
+        },
+        "required": [ "court_outcome_on_31_2_c", "conditions" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope IAA_S31_2_c_InfraPetita output",
+    "description": "Output structure of scope IAA_S31_2_c_InfraPetita.",
+    "$ref": "#/definitions/IAA_S31_2_c_InfraPetita",
+    "definitions": {
+      "DKTConditions": {
+        "type": "object",
+        "properties": {
+          "point_properly_before_tribunal": { "type": "boolean" },
+          "point_essential_to_dispute": { "type": "boolean" },
+          "tribunal_completely_failed_to_consider": { "type": "boolean" },
+          "prejudice_demonstrated": { "type": "boolean" }
+        },
+        "required": [
+          "prejudice_demonstrated",
+          "tribunal_completely_failed_to_consider",
+          "point_essential_to_dispute",
+          "point_properly_before_tribunal"
+        ],
+        "additionalProperties": false
+      },
+      "GroundOutcome": {
+        "type": "string",
+        "enum": [ "Dismissed", "AllowedInPart", "AllowedInFull" ]
+      },
+      "DKTComposite": {
+        "type": "object",
+        "properties": {
+          "conditions": { "$ref": "#/definitions/DKTConditions" },
+          "court_outcome_on_31_2_c": { "$ref": "#/definitions/GroundOutcome" },
+          "dkt_challenge_succeeds": { "type": "boolean" },
+          "dkt_analysis_consistent": { "type": "boolean" }
+        },
+        "required": [
+          "dkt_analysis_consistent", "dkt_challenge_succeeds",
+          "court_outcome_on_31_2_c", "conditions"
+        ],
+        "additionalProperties": false
+      },
+      "IAA_S31_2_c_InfraPetita": {
+        "type": "object",
+        "properties": {
+          "composite": { "$ref": "#/definitions/DKTComposite" }
+        },
+        "required": [ "composite" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

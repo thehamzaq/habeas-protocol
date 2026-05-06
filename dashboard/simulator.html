@@ -88,6 +88,13 @@
 </style>
 </head>
 <body>
+<div class="hp-disclaimer hp-disclaimer-strong" role="note">
+  <strong>Research artifact — not legal advice, not court-endorsed.</strong>
+  Outputs of this playground are reproductions of rule structure for academic study only.
+  Do not rely on them as a legal determination. Source judgments remain the property of the
+  issuing court (DIFC / ADGM / Singapore Courts) — see
+  <a href="../data/tos_audit.md">data/tos_audit.md</a>.
+</div>
 
 <div class="sim-wrap">
   <p style="font-size:12.5px;"><a href="index.html">← back to dashboard</a> · <a href="playground.html">single-rule playground →</a></p>
@@ -429,6 +436,9 @@ async function buildRuleForms() {
     const block = document.createElement('div');
     block.className = 'sim-rule';
     block.dataset.key = key;
+    // Tag rules whose schema didn't load so runAllRules can skip them
+    // cleanly rather than POSTing {} to /api/rule_run.
+    block.dataset.schemaAvailable = schema ? '1' : '0';
     block.innerHTML = `
       <div class="sim-rule-h">
         <span class="sim-rule-mod">${escape(r.module)} · ${escape(r.scope)}</span>
@@ -494,10 +504,19 @@ async function runAllRules() {
   STATE.outputs = {};
   for (const r of rules) {
     const key = ruleKey(r.module, r.scope);
+    const block = document.querySelector(`.sim-rule[data-key="${CSS.escape(key)}"]`);
+    if (!block) continue;  // race: claim changed mid-fetch
+    const out = block.querySelector('.sim-rule-out');
+    // Skip rules whose schema didn't load (manual-review doctrines etc.).
+    // Without this guard we'd POST {} and the server returns a generic
+    // error that pollutes the verdict for rules that aren't really run.
+    if (block.dataset.schemaAvailable !== '1') {
+      STATE.outputs[key] = { error: 'schema unavailable — rule skipped' };
+      out.innerHTML = '<span class="sim-rule-out-err">schema unavailable — rule skipped (manual review)</span>';
+      continue;
+    }
     const inputs = collectInputsForScope(key);
     STATE.inputs[key] = inputs;
-    const block = document.querySelector(`.sim-rule[data-key="${CSS.escape(key)}"]`);
-    const out = block.querySelector('.sim-rule-out');
     out.innerHTML = '<span class="sim-rule-out-empty">running…</span>';
     try {
       const r2 = await fetch(`${API_BASE}/api/rule_run`, {
@@ -551,12 +570,26 @@ function classifyDisposition(result) {
 
 function extractOperativeNumber(result) {
   // Grab a single representative number — the most informative scalar.
+  // Catala emits decimals as strings, schemas accept oneOf{number,
+  // integer, string}, so we coerce string-numerics through Number().
   if (!result || typeof result !== 'object') return null;
   const root = Object.values(result)[0];
   if (!root || typeof root !== 'object') return null;
-  const candidates = ['total_owed_aed', 'total_aed', 'awarded_aed', 'net_to_claimant_aed', 'judgment_sum_gbp', 'residual_upper_aed'];
+  const candidates = [
+    'total_owed_aed', 'total_aed', 'awarded_aed', 'net_to_claimant_aed',
+    'after_contract_cap_aed', 'judgment_sum_gbp', 'residual_upper_aed',
+    'total_judgment_aed', 'principal_aed',
+  ];
+  function asNumber(v) {
+    if (typeof v === 'number') return v;
+    if (typeof v === 'string' && v.trim() !== '' && !isNaN(Number(v))) {
+      return Number(v);
+    }
+    return null;
+  }
   for (const k of candidates) {
-    if (typeof root[k] === 'number') return { label: k, value: root[k] };
+    const n = asNumber(root[k]);
+    if (n !== null) return { label: k, value: n };
   }
   return null;
 }
@@ -668,5 +701,11 @@ document.getElementById('resetFactsBtn').onclick = () => {
 loadAll();
 </script>
 
+<div class="hp-footer-note">
+  Habeas Protocol v0.2 — research artifact. Code: MIT. Data: structured-metadata licence (see
+  <a href="../LICENSE">LICENSE</a>). Outputs computed against rule modules pinned in
+  <code>rules/&lt;module&gt;_source.yaml</code>; not a legal determination. Takedown:
+  see <code>SECURITY.md</code>.
+</div>
 </body>
 </html>

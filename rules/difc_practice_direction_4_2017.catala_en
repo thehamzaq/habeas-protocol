@@ -1,25 +1,117 @@
-## DIFC Practice Direction No. 4 of 2017 — Arbitration costs framework
-##
-## Source: DIFC Courts Practice Direction No. 4 of 2017 ("PD 4/2017").
-## Sets the costs framework for DIFC-seated arbitration applications:
-##
-##   * The receiving party is generally entitled to *80%* of its
-##     reasonable costs (a discretionary discount accounting for the
-##     restricted character of arbitration support work).
-##   * Payment falls due *14 days* from the date of the order. After
-##     that window, simple interest at the LIBOR-replacement rate
-##     (commonly applied as 9% per annum) accrues until paid.
-##   * Interest is computed retroactively from the *date of the order*
-##     rather than from the *14-day deadline*; the deadline is a payment
-##     gate, not the interest start.
-##
-## Used in:
-##   trace-02 — ARB 008/2026 *Oberlin v Ovidiu* (RDC 38.40 + PD 4/2017).
-##
-## Five scenarios reproduce: on-time, at-deadline, 1 / 61 / 92 days late.
-## The 80% / 14-day / 9% structure is so consistent across DIFC
-## arbitration costs orders that the corpus has converged on a
-## near-formula — captured here as a single deterministic predicate.
+# DIFC arbitration costs framework — PD 4/2017 + RDC 38.40 + 80% practice convention
+
+Sources (each pinned in `difc_practice_direction_4_2017_source.yaml`):
+  - DIFC Courts Practice Direction No. 4 of 2017 — Interest on Judgments.
+  - Rules of the DIFC Courts (RDC) 38.40 — payment timeline.
+  - DIFC arbitration costs practice convention (80% discount) — drawn
+    from the DIFC Courts' published costs orders, not a single rule.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): © DIFC Courts. Reproduced
+under fair-dealing for research, with attribution, in a non-commercial
+academic working paper.
+
+NOTE: this module composes three sources. The original file labelled
+itself "Practice Direction No. 4 of 2017 — Arbitration costs framework",
+but PD 4/2017 is in fact titled "Interest on Judgments" and supplies
+only the interest-on-late-payment limb (9% pa). The 14-day payment gate
+comes from RDC 38.40, and the 80% receiving-party discount is a
+practice convention applied across DIFC-seated arbitration costs
+orders. The encoding's logic and tests are unchanged; only the citation
+structure is corrected here.
+
+## PD 4/2017 — Interest on Judgments
+
+DIFC Practice Direction No. 4 of 2017 supersedes the two earlier 2009
+practice directions on the same subject and is to be read alongside
+DIFC Law No. 10 of 2004 and the RDC (in particular RDC 45.26).
+
+VERBATIM QUOTES from the DIFC Courts website rendering (the official
+website summarises the Practice Direction; the inner quoted phrases
+below are the verbatim operative language):
+
+  1. Citation clause: "This Practice Direction will come into effect
+     on the date of signature. It may be cited as Practice Direction
+     4 of 2017 – Interest on Judgments."
+
+  2. Pre-effective-date judgments: such judgments carry interest
+     "from the date the judgment is entered, at the rate of 1% over
+     the Emirates Interbank Offer Rate (\"EIBOR\")", or at a judge-
+     prescribed rate, by reference to the three-month EIBOR rate at
+     the date of the judgment.
+
+  3. Post-effective-date judgments: such judgments carry "simple
+     interest, from the date the judgment is entered, at the rate of
+     9%" or such other rate as the judge may prescribe.
+
+  4. Signature: Chief Justice of the DIFC Courts, dated 20 November
+     2017.
+
+[VERIFY against the official PDF: the DIFC Courts website's rendered
+HTML page for PD 4/2017 paraphrases the surrounding text; only the
+inner quoted phrases above are verbatim operative language. The full
+practice direction PDF, if separately published, would be the
+authoritative source for citation.]
+
+Structurally the Practice Direction encodes two interest regimes
+gated by the effective date:
+
+  Regime A (pre/on 20 November 2017): rate = EIBOR_3mo + 1%
+  Regime B (post 20 November 2017):   rate = 9% pa simple
+  Both regimes: judge may prescribe a different rate.
+
+## RDC 38.40 — Time for complying with an order for costs (verbatim)
+
+Reproduced verbatim from the Rules of the DIFC Courts:
+
+38.40 A party must comply with an order for the payment of costs within
+14 days of:
+
+  (1) the date of the judgment or order if it states the amount of
+      those costs;
+
+  (2) if the amount of those costs (or part of them) is decided later
+      in accordance with Part 40, the date of the certificate which
+      states the amount; or
+
+  (3) in either case, such later date as the Court may specify.
+
+## 80% receiving-party discount — DIFC arbitration costs practice
+
+The 80% figure is a practice convention rather than a published rule.
+Across DIFC-seated arbitration costs orders the receiving party is
+generally awarded 80% of its reasonable costs, the 20% discount
+reflecting the restricted character of arbitration-support work and
+the limited need for full forensic engagement at the arbitration-court
+interface. This convention is captured here as a parameter so it can
+be overridden where a costs order departs from it.
+
+## Composition of the three sources
+
+The encoding combines the three sources as follows:
+  - principal = reasonable_costs × 0.80          (practice convention)
+  - in_breach iff days_paid_after_order > 14     (RDC 38.40)
+  - interest = principal × 0.09 × accrued/365    (PD 4/2017)
+  - accrued = days_paid_after_order - 14         (RDC 38.40 deadline)
+
+This composition is so consistent across DIFC arbitration costs orders
+that the corpus has converged on a near-formula — captured here as a
+single deterministic predicate.
+
+## Encoding
+
+The interest rate is parametric — `simple_interest_rate` accepts either
+PD 4/2017 regime depending on when the judgment was entered:
+
+  - For judgments entered AFTER 20 November 2017: pass 0.09 (the
+    post-effective-date 9% pa default).
+  - For judgments entered ON OR BEFORE 20 November 2017: pass
+    `(EIBOR_3mo + 0.01)` evaluated at the date of the judgment.
+  - For judgments where the judge prescribed a different rate
+    (either regime): pass the prescribed rate.
+
+The encoding does not select between the two regimes itself — that
+selection is a date arithmetic that the caller performs against the
+judgment date and PD 4/2017's effective date (20 November 2017).
 
 ```catala
 declaration structure ArbitrationCostsClaim:
@@ -27,7 +119,8 @@ declaration structure ArbitrationCostsClaim:
   data discount_rate content decimal           ## 0.80 by convention
   data deadline_days content decimal           ## 14.0 by convention
   data days_paid_after_order content decimal
-  data simple_interest_rate content decimal    ## 0.09 by convention
+  data simple_interest_rate content decimal    ## 0.09 post-2017-11-20;
+                                                ## EIBOR_3mo+0.01 if pre.
 
 declaration structure ArbitrationCostsAward:
   data principal_aed content decimal
@@ -63,7 +156,12 @@ scope OutstandingArbitrationCosts:
     }
 ```
 
-## Tests — five PD 4/2017 scenarios.
+## Used in
+
+trace-02 — ARB 008/2026 *Oberlin v Ovidiu* (RDC 38.40 + PD 4/2017). Five
+scenarios reproduce: on-time, at-deadline, 1 / 61 / 92 days late.
+
+## Tests
 
 ```catala
 #[test] declaration scope TestPD4_PaidOnTime:
@@ -99,6 +197,28 @@ scope TestPD4_Unpaid61Days:
       -- deadline_days: 14.0
       -- days_paid_after_order: 61.0
       -- simple_interest_rate: 0.09
+    }
+  assertion award.in_breach = true
+
+#[test] declaration scope TestPD4_EIBORPreEffectiveDateRegime:
+  composite scope OutstandingArbitrationCosts
+  output award content ArbitrationCostsAward
+
+scope TestPD4_EIBORPreEffectiveDateRegime:
+  definition award equals composite.award
+  ## Hypothetical: a judgment entered before 20 November 2017 with
+  ## the EIBOR pre-effective-date regime active. Caller computes
+  ## (EIBOR_3mo + 0.01) at the judgment date and passes it as
+  ## simple_interest_rate. Here we use a representative figure of
+  ## EIBOR_3mo = 2.5% → effective rate 3.5%. The encoding's
+  ## arithmetic is unchanged; only the rate input differs.
+  definition composite.claim equals
+    ArbitrationCostsClaim {
+      -- reasonable_costs_aed: 95982.26
+      -- discount_rate: 0.80
+      -- deadline_days: 14.0
+      -- days_paid_after_order: 61.0
+      -- simple_interest_rate: 0.035
     }
   assertion award.in_breach = true
 ```

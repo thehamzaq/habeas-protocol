@@ -99,7 +99,16 @@ def _safe_tribunal(value: str | None) -> str | None:
 
 def handle_health(_qs):
     rows = psql_json("SELECT json_build_object('ok', true, 'judgments', (SELECT count(*) FROM judgments));")
-    return {"status": rows}
+    return {
+        "status": rows,
+        "disclaimer": (
+            "Research artifact. Not legal advice. Not court-endorsed. "
+            "Outputs of this API are reproductions of rule structure for "
+            "academic study only. Source judgments remain the property of "
+            "the issuing court. See /data/tos_audit.md and /SECURITY.md."
+        ),
+        "version": "v0.2",
+    }
 
 
 def handle_judgments(qs):
@@ -867,8 +876,21 @@ class Handler(BaseHTTPRequestHandler):
     server_version = "habeas-api/0.1"
 
     def _cors(self):
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
+        # The server binds to 127.0.0.1 by default; the dashboard is served from
+        # a sibling local origin. Echo the request Origin only if it is loopback,
+        # otherwise omit ACAO entirely. Wildcard "*" was the prior behaviour and
+        # turns every POST endpoint into a cross-origin CSRF target.
+        origin = self.headers.get("Origin", "")
+        allowed = (
+            origin.startswith("http://127.0.0.1")
+            or origin.startswith("http://localhost")
+            or origin.startswith("http://[::1]")
+            or origin == "null"  # file:// origin, common during local dashboard dev
+        )
+        if allowed and origin:
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Vary", "Origin")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
 
     def _json(self, status, body):
@@ -876,6 +898,12 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(payload)))
+        self.send_header(
+            "X-Habeas-Disclaimer",
+            "research artifact; not legal advice; not court-endorsed; "
+            "see /data/tos_audit.md and /SECURITY.md",
+        )
+        self.send_header("X-Habeas-Version", "v0.2")
         self._cors()
         self.end_headers()
         self.wfile.write(payload)

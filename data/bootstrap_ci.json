@@ -1,0 +1,45 @@
+{
+  "n_resamples": 10000,
+  "alpha": 0.05,
+  "seed": 20260505,
+  "tribunals": {
+    "DIFC": {
+      "n": 32,
+      "mean": 1.724,
+      "ci_lo": 1.625,
+      "ci_hi": 1.8125
+    },
+    "ADGM": {
+      "n": 76,
+      "mean": 1.9145,
+      "ci_lo": 1.8882,
+      "ci_hi": 1.9386
+    },
+    "SICC": {
+      "n": 80,
+      "mean": 1.8521,
+      "ci_lo": 1.8021,
+      "ci_hi": 1.9
+    }
+  },
+  "pairwise_differences": {
+    "ADGM_minus_DIFC": {
+      "delta": 0.1905,
+      "ci_lo": 0.0981,
+      "ci_hi": 0.2933,
+      "significant_at_0_05": true
+    },
+    "ADGM_minus_SICC": {
+      "delta": 0.0624,
+      "ci_lo": 0.0099,
+      "ci_hi": 0.1189,
+      "significant_at_0_05": true
+    },
+    "SICC_minus_DIFC": {
+      "delta": 0.1281,
+      "ci_lo": 0.025,
+      "ci_hi": 0.2396,
+      "significant_at_0_05": true
+    }
+  }
+}

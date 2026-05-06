@@ -1,23 +1,46 @@
-## Ladd v Marshall [1954] 1 WLR 1489 (CA) — fresh evidence test
-##
-## Source: Ladd v Marshall [1954] 1 WLR 1489 (Court of Appeal of England
-## and Wales). Fresh evidence may only be adduced on appeal (or
-## equivalent) where three conjunctive conditions are satisfied:
-##   (a) ReasonableDiligence — the evidence could not have been obtained
-##       with reasonable diligence for use at trial;
-##   (b) ImportantInfluence — the evidence would probably have an
-##       important influence on the result, though it need not be
-##       decisive;
-##   (c) PresumablyCredible — the evidence is presumably to be believed
-##       (apparently credible, though not incontrovertible).
-##
-## The test is conjunctive and short-circuiting: failure of *any* prong
-## is dispositive. ADGM applies it as the gatekeeping test for new
-## evidence by force of the ADGM Application of English Law Regulations
-## 2015.
-##
-## Used in:
-##   trace-05 — ADGMCFI-2024-158 Xetech v Pulsar (Heath KC, paras 47-49).
+# *Ladd v Marshall* [1954] 1 WLR 1489 (CA) — fresh evidence on appeal
+
+Source: *Ladd v Marshall* [1954] 1 WLR 1489 (Court of Appeal of England
+and Wales). Doctrine — drift = higher-court overrule (none to date;
+the test was reaffirmed in CPR Pt 52 jurisprudence and in
+*Sharab v HRH Prince Al-Waleed Bin Talal Bin Abdulaziz Al-Saud* [2009]
+EWCA Civ 353).
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): Contains public-sector
+information licensed under the Open Government Licence v3.0 —
+http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/.
+
+## The three conditions — Denning LJ
+
+The Court of Appeal held that fresh evidence may be admitted on appeal
+only where three conditions are satisfied. Quoting Denning LJ at
+[1954] 1 WLR 1489, 1491:
+
+"To justify the reception of fresh evidence or a new trial, three
+conditions must be fulfilled: first, it must be shown that the evidence
+could not have been obtained with reasonable diligence for use at the
+trial; secondly, the evidence must be such that, if given, it would
+probably have an important influence on the result of the case, though
+it need not be decisive; thirdly, the evidence must be such as is
+presumably to be believed, or in other words, it must be apparently
+credible, though it need not be incontrovertible."
+
+Restating in the standard form used by the courts since:
+
+(a) **Reasonable diligence** — the evidence could not have been obtained
+    with reasonable diligence for use at trial;
+(b) **Important influence** — the evidence, if given, would probably
+    have an important influence on the result of the case, though it
+    need not be decisive;
+(c) **Presumably credible** — the evidence is such as is presumably to
+    be believed (apparently credible, though it need not be
+    incontrovertible).
+
+The test is conjunctive and short-circuiting: failure of *any* prong is
+dispositive. By long-standing convention courts evaluate the prongs in
+the order (a) → (b) → (c) and report the first failing prong.
+
+## Encoding
 
 ```catala
 declaration enumeration LaddProngId:
@@ -66,7 +89,18 @@ scope LaddMarshallTest:
     }
 ```
 
-## Test — replays trace-05's finding that prong (a) fails.
+## Application in ADGM
+
+ADGM applies *Ladd v Marshall* as the gatekeeping test for new evidence
+by force of the *ADGM Application of English Law Regulations 2015*. The
+test continues to operate alongside the appellate court's CPR Pt 52
+discretion to admit fresh evidence "in the interests of justice", which
+in practice tracks the *Ladd* conditions.
+
+Used in:
+  trace-05 — ADGMCFI-2024-158 *Xetech v Pulsar* (Heath KC, paras 47–49).
+
+## Tests
 
 ```catala
 #[test] declaration scope TestLaddInadmissibleAtFirstProng:

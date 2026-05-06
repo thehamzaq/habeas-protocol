@@ -142,7 +142,7 @@ const TRACES = [
     outputs: [
       { label: 'ld_was_capped',          computed: 'true',         court: 'true (10% cap applied)',     match: true },
       { label: 'ld_awarded_aed',         computed: '608,521.19',   court: '608,521.19',                 match: true },
-      { label: 'counterclaim_sum_aed',   computed: '755,786.19',   court: '755,786.19',                 match: true },
+      { label: 'total_offsets_aed',      computed: '755,786.19',   court: '755,786.19',                 match: true },
       { label: 'net_to_claimant_aed',    computed: '10,500.96',    court: '10,500.96',                  match: true, note: 'principal matches court exactly' },
       { label: 'pre-judgment interest',  computed: 'AED 876.04 (609 calendar days)', court: 'AED 877.48 (610 inclusive-endpoint days)', match: false, note: 'daycount convention surfaced — protocol vs court',
         divergence: {
@@ -161,7 +161,7 @@ const TRACES = [
 │     -- ld_cap_aed: 608,521.19
 │     -- ld_awarded_aed: 608,521.19
 │     -- ld_was_capped: true
-│     -- counterclaim_sum_aed: 755,786.19
+│     -- total_offsets_aed: 755,786.19
 │     -- net_to_claimant_aed: 10,500.96
 │     -- days_to_judgment: 609.0
 │     -- interest_aed: 876.038,991,780,821,917,80…

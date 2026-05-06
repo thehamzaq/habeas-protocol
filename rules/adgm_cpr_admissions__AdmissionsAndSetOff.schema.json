@@ -128,10 +128,35 @@
               { "type": "string" }
             ]
           },
-          "counterclaim_exceeds_admissions": { "type": "boolean" }
+          "signed_net_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "counterclaim_exceeds_admissions": { "type": "boolean" },
+          "counterclaim_surplus_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          }
         },
         "required": [
-          "counterclaim_exceeds_admissions", "net_to_claimant_aed",
+          "counterclaim_surplus_aed",
+          "counterclaim_exceeds_admissions",
+          "signed_net_aed",
+          "net_to_claimant_aed",
           "counterclaim_total_aed", "admissions_total_aed"
         ],
         "additionalProperties": false

@@ -1,0 +1,21 @@
+module: uae_civil_code_art_390
+version_id: "uae-civil-1985-as-amended-2016"
+source_authority:
+  jurisdiction: UAE
+  instrument: "UAE Civil Transactions Law, Federal Law No. 5 of 1985, Article 390"
+  url: "https://www.moj.gov.ae/en/laws-and-legislation/legislative-framework-of-the-judicial-system-in-uae/main-legislations.aspx"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: "d434639bf0e08b5c25e88b7150b2d1fe59479ace6c11a9fb8dfacad777da7a29"    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 1985-12-15
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://www.moj.gov.ae/en/laws-and-legislation/legislative-framework-of-the-judicial-system-in-uae/main-legislations.aspx"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: false
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Liquidated-damages cap (judicial variation of agreed compensation).

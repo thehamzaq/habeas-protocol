@@ -1,0 +1,20 @@
+module: adgm_arbitration_regulations_2015
+version_id: "adgm-arb-reg-2015-as-amended"
+source_authority:
+  jurisdiction: ADGM
+  instrument: "ADGM Arbitration Regulations 2015 — section 62 (Grounds for refusing recognition or enforcement)"
+  url: "https://assets.adgm.com/download/assets/ANNEX+A+-+DRAFT+Arbitration+Regulations+2015+-+25112020.pdf/b3b3e1be776211efb10c5e7c48989c89"
+  url_note: "ADGM-direct PDF. The Thomson Reuters–hosted rulebook at en.adgm.thomsonreuters.com/rulebook/arbitration-regulations-2015 is a consolidated edition with potentially separate compilation copyright; the ADGM-direct PDF is the authoritative source."
+  retrieved_at: 2026-05-05
+  retrieved_sha256: "a5ba20d8727010f5b03d60f05944ceaf5b00863f8a79e4625e70e9fc58c3247e"    # to be populated by scripts/check_rule_drift.py --bootstrap on next run
+amendment_window:
+  in_force_from: 2015-12-17
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://assets.adgm.com/download/assets/ANNEX+A+-+DRAFT+Arbitration+Regulations+2015+-+25112020.pdf/b3b3e1be776211efb10c5e7c48989c89"
+  canonicalisation: pdf-binary-sha256
+case_law_doctrine: false
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15

@@ -1,0 +1,287 @@
+{
+  "coder": "Coder A \u2014 original Maxim Labs hand-coder (lifted from data/judgments.json without re-reading)",
+  "coding_method": "lifted-from-master",
+  "rubric_version": "v0.2",
+  "entries": [
+    {
+      "case_no": "ADGMCFI-2024-322 + 323",
+      "tribunal": "ADGM Courts",
+      "claim_type": "arbitration_enforcement",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ADGMCFI-2025-198",
+      "tribunal": "ADGM Courts",
+      "claim_type": "costs_assessment",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "ADGMCFI-2022-265",
+      "tribunal": "ADGM Courts",
+      "claim_type": "fraud",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ADGMCFI-2020-020",
+      "tribunal": "ADGM Courts",
+      "claim_type": "insolvency",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ADGMCFI-2023-249 + ADGMCFI-2024-047",
+      "tribunal": "ADGM Courts",
+      "claim_type": "real_property",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ADGMCFI-2024-158",
+      "tribunal": "ADGM Courts",
+      "claim_type": "substantive_breach",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ADGMCFI-2025-283",
+      "tribunal": "ADGM Courts",
+      "claim_type": "summary_judgment",
+      "url": "https://www.adgm.com/adgm-courts/judgments",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ENF 053/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "arbitration_enforcement",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/enforcement/enf-0532025-standard-chartered-plc-v-standard-chartered-bank",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 1,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "ARB 029/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "arbitration_recognition",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/arbitration/arb-0292025-ozan-v-owain",
+      "scores": {
+        "PR1": 1,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "CFI 036/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "case_management",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0362025-stephan-karl-morgenstern-v-saif-sultan-al-mehrzi-lawyers-legal-consultancy-1",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "CFI 098/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "case_management",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0982025-bhanu-choudhrie-v-1-dhariya-choudhrie-2-anita-choudhrie",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 1,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "CFI 110/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "case_management",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-1102025-karthi-keyan-venkataramana-v-ahmed-mohammad-abdul-rahman-ali",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "CA 002/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "costs_assessment",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/ca-0022025-01-olsen-02-obed-v-othmar",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "CFI 022/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "costs_assessment",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0222025-tayseer-ali-v-sadapay-technologies-ltd-4",
+      "scores": {
+        "PR1": 2,
+        "PR2": 1,
+        "PR3": 2,
+        "PR4": 1,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "CFI 058/2024",
+      "tribunal": "DIFC Courts",
+      "claim_type": "costs_assessment",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0582024-atul-dhawan-ashok-amir-chand-dhawan-v-ramzi-wahib-el-jaouhari-3",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "CFI 092/2024",
+      "tribunal": "DIFC Courts",
+      "claim_type": "default_judgment",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0922024-mag-development-services-limited-v-1-collection-club-restaurant-limited-2-laurent-buisine-3-hugo-valat",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "CFI 072/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "interim_relief",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0722025-difc-investments-ltd-v-difc-registrar-companie",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "CFI 035/2025",
+      "tribunal": "DIFC Courts",
+      "claim_type": "jurisdictional_challenge",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0352025-eli-mydlarz-v-sadapay-technologies-ltd",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    },
+    {
+      "case_no": "CFI 067/2024",
+      "tribunal": "DIFC Courts",
+      "claim_type": "other",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0672024-edouard-mandelkern-v-sami-bennani",
+      "scores": {
+        "PR1": 2,
+        "PR2": 1,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 1,
+        "PR6": 1
+      }
+    },
+    {
+      "case_no": "TCD 001/2024",
+      "tribunal": "DIFC Courts",
+      "claim_type": "permission_to_appeal",
+      "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/technology-and-construction-division/tcd-0012024-architeriors-interior-design-llc-v-emirates-national-investment-co-llc-7",
+      "scores": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 1,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      }
+    }
+  ]
+}

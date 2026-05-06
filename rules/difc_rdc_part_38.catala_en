@@ -1,21 +1,58 @@
-## DIFC Rules of the Court — Part 38 (Costs)
-##
-## Source: Rules of the DIFC Courts ("RDC"), Part 38. The Court conducting
-## a detailed assessment on the standard basis allows costs that are
-## proportionate to the matter, and resolves doubt in favour of the
-## paying party. The costs allowed are the sum of the assessed
-## professional time (hours × hourly rate) and reasonable disbursements
-## (court fees, travel, expert reports, etc.).
-##
-## Used in:
-##   trace-01 — CFI 058/2024 Atul Dhawan v Ramzi Wahib El Jaouhari
-##              (RDC 38.7 standard-basis assessment).
-##
-## This module is the deterministic computational core. Discretionary
-## limbs (proportionality, doubt resolution) are *not* encoded here —
-## they are the human-judgment limb. The module returns the arithmetic
-## once the human inputs (hours allowed, hourly rate, reasonable
-## disbursements) are fixed.
+# DIFC Rules of the Court — Part 38 (Costs, standard-basis assessment)
+
+Source: Rules of the DIFC Courts ("RDC"), Part 38 — RDC 38.7 (the
+general rule on cost orders) and RDC 38.17 / 38.18 (assessment bases).
+Pinned URL in `difc_rdc_part_38_source.yaml`. In force; current.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): © DIFC Courts. Reproduced
+under fair-dealing for research, with attribution, in a non-commercial
+academic working paper.
+
+## RDC 38.7 — General rule on cost orders (verbatim)
+
+Reproduced verbatim from the Rules of the DIFC Courts:
+
+38.7 If the Court decides to make an order about costs:
+
+  (1) the general rule is that the unsuccessful party will be ordered
+      to pay the costs of the successful party; but
+
+  (2) the Court may make a different order.
+
+## RDC 38.17 — Bases for assessment (verbatim)
+
+38.17 Where the Court is to assess the amount of costs (whether by
+immediate or detailed assessment) it will assess those costs:
+
+  (1) on the standard basis; or
+
+  (2) on the indemnity basis;
+
+but the Court will not in either case allow costs which have been
+unreasonably incurred or are unreasonable in amount.
+
+## RDC 38.18 — Standard basis (verbatim)
+
+38.18 Where the amount of costs is to be assessed on the standard
+basis, the Court will:
+
+  (1) only allow costs which are proportionate to the matters in
+      issue; and
+
+  (2) resolve any doubt which it may have as to whether costs were
+      reasonably incurred or reasonable and proportionate in amount in
+      favour of the paying party.
+
+## What this module captures
+
+The arithmetic of a standard-basis assessment, once the human-judgment
+inputs (hours allowed, hourly rate, reasonable disbursements) are
+fixed: total = (hours × hourly_rate) + disbursements. The
+discretionary limbs of RDC 38.18 (proportionality, doubt resolution)
+are *not* encoded — they are the human-judgment layer that produces
+the inputs to this module.
+
+## Encoding
 
 ```catala
 declaration structure CostsClaim:
@@ -43,7 +80,12 @@ scope StandardBasisAssessment:
     }
 ```
 
-## Test — replays the headline computation from trace-01.
+## Used in
+
+trace-01 — CFI 058/2024 *Atul Dhawan v Ramzi Wahib El Jaouhari*
+(RDC 38.7 standard-basis assessment).
+
+## Tests
 
 ```catala
 #[test] declaration scope TestRDC38StandardBasis:

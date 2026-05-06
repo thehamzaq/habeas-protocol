@@ -5,15 +5,19 @@
     "description": "Input structure of scope WoodVCapita",
     "$ref": "#/definitions/WoodVCapita_in",
     "definitions": {
+      "MatrixSignal": {
+        "type": "string",
+        "enum": [ "Supports", "Silent", "Contradicts" ]
+      },
       "ClauseEvidence": {
         "type": "object",
         "properties": {
           "clauses_unambiguously_aligned": { "type": "boolean" },
           "common_sense_supports_one_reading": { "type": "boolean" },
-          "factual_matrix_supports_that_reading": { "type": "boolean" }
+          "factual_matrix_signal": { "$ref": "#/definitions/MatrixSignal" }
         },
         "required": [
-          "factual_matrix_supports_that_reading",
+          "factual_matrix_signal",
           "common_sense_supports_one_reading",
           "clauses_unambiguously_aligned"
         ],

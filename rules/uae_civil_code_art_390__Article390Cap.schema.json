@@ -36,7 +36,7 @@
               { "type": "string" }
             ]
           },
-          "cap_rate": {
+          "contract_cap_rate": {
             "oneOf": [
               { "type": "number" },
               {
@@ -47,11 +47,17 @@
               { "type": "string" }
             ]
           },
-          "court_finds_grossly_exaggerated": { "type": "boolean" }
+          "contract_caps_ld": { "type": "boolean" },
+          "court_asked_to_vary_under_390_2": { "type": "boolean" },
+          "court_finds_grossly_disproportionate": { "type": "boolean" }
         },
         "required": [
-          "court_finds_grossly_exaggerated", "cap_rate",
-          "contract_value_aed", "uncapped_amount_aed"
+          "court_finds_grossly_disproportionate",
+          "court_asked_to_vary_under_390_2",
+          "contract_caps_ld",
+          "contract_cap_rate",
+          "contract_value_aed",
+          "uncapped_amount_aed"
         ],
         "additionalProperties": false
       }
@@ -72,7 +78,18 @@
       "LDAward": {
         "type": "object",
         "properties": {
-          "cap_aed": {
+          "contract_cap_aed": {
+            "oneOf": [
+              { "type": "number" },
+              {
+                "type": "integer",
+                "minimum": -9007199254740992.0,
+                "maximum": 9007199254740992.0
+              },
+              { "type": "string" }
+            ]
+          },
+          "after_contract_cap_aed": {
             "oneOf": [
               { "type": "number" },
               {
@@ -94,9 +111,13 @@
               { "type": "string" }
             ]
           },
-          "was_capped": { "type": "boolean" }
+          "was_contract_capped": { "type": "boolean" },
+          "was_390_2_varied": { "type": "boolean" }
         },
-        "required": [ "was_capped", "awarded_aed", "cap_aed" ],
+        "required": [
+          "was_390_2_varied", "was_contract_capped",
+          "awarded_aed", "after_contract_cap_aed", "contract_cap_aed"
+        ],
         "additionalProperties": false
       }
     }

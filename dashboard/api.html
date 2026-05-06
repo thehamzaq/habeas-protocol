@@ -32,12 +32,18 @@
 </style>
 </head>
 <body>
+<div class="hp-disclaimer" role="note">
+  <strong>Research artifact</strong> — not legal advice, not court-endorsed.
+  Source judgments remain the property of the issuing court.
+  See <a href="../data/tos_audit.md">data/tos_audit.md</a> and
+  <a href="../LICENSE">LICENSE</a>.
+</div>
 
 <div class="api-header">
   <p class="api-back"><a href="index.html">← back to dashboard</a> · <a href="playground.html">playground</a> · <a href="simulator.html">simulator</a> · <a href="conflicts.html">cross-border</a></p>
   <h1>API reference</h1>
   <p class="api-blurb muted">
-    The API is local-dev-shaped: stdlib-only Python <code>http.server</code>, Postgres-backed, no auth (loopback only). Fifteen endpoints across six tags (corpus / rules / rule-runs / routing / authoring / ingestion). Every <code>POST /api/rule_run</code> writes a row to the audit log; module/scope/filename inputs are alphabet-restricted; <code>/api/rule_save</code> is gated by <code>HABEAS_ADMIN_MODE=1</code>.
+    The API is local-dev-shaped: stdlib-only Python <code>http.server</code>, Postgres-backed, no auth (loopback only). Eighteen endpoints across six tags (corpus / rules / rule-runs / routing / authoring / ingestion). Every <code>POST /api/rule_run</code> writes a row to the audit log; module/scope/filename inputs are alphabet-restricted; <code>/api/rule_save</code> is gated by <code>HABEAS_ADMIN_MODE=1</code>.
   </p>
   <div class="api-meta">spec: <a href="../api/openapi.yaml">api/openapi.yaml</a> · base url: <code>http://127.0.0.1:5544</code></div>
 
@@ -93,5 +99,11 @@
 })();
 </script>
 
+<div class="hp-footer-note">
+  Habeas Protocol v0.2 — research artifact. Code: MIT. Data: structured-metadata licence (see
+  <a href="../LICENSE">LICENSE</a>). Outputs computed against rule modules pinned in
+  <code>rules/&lt;module&gt;_source.yaml</code>; not a legal determination. Takedown:
+  see <code>SECURITY.md</code>.
+</div>
 </body>
 </html>

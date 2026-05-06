@@ -1,0 +1,17 @@
+# Keep the build context small.
+.git
+.github
+data/raw
+spike/text
+spike/judgments
+*.pdf
+*.bak
+__pycache__
+.venv
+venv
+.vscode
+.idea
+.DS_Store
+node_modules
+build
+dist

@@ -1,39 +1,106 @@
-## Singapore International Arbitration Act 1994 (2020 Rev Ed) — s 31
-##
-## Source: International Arbitration Act 1994, s 31, Singapore. This is
-## Singapore's domestic implementation of New York Convention 1958 Article
-## V (recognition and enforcement of foreign arbitral awards). The
-## enumerated grounds for refusing enforcement are:
-##   s 31(2)(a)   incapacity / invalid agreement
-##   s 31(2)(b)   improper notice / unable to present case
-##   s 31(2)(c)   composition of tribunal not in accordance with party agreement
-##   s 31(2)(d)   award deals with matter outside the scope of the submission
-##   s 31(2)(e)   award not yet binding / set aside / suspended
-##   s 31(2)(f)   subject matter not arbitrable in Singapore
-##   s 31(4)(a)   matter not capable of settlement by arbitration
-##   s 31(4)(b)   enforcement contrary to Singapore public policy
-##
-## DKT v DKU [2025] 1 SLR 806 (CA) supplies the four-condition framework
-## for "infra petita" natural-justice challenges (a sub-flavour of
-## s 31(2)(b) / s 31(2)(c)).
-##
-## Used in:
-##   trace-06 — SIC/OA 9/2025 GNC Holdings v ONI Global ([2025] SGHC(I) 25).
-##
-## The disposition can be: ApplicationDismissedEntirely (no ground made
-## out), ApplicationAllowedInPart (some grounds partially made out, with
-## a per-paragraph excision list for the relevant order), or
-## AwardSetAside (one or more grounds fully allowed, no enforcement at
-## all).
+# Singapore International Arbitration Act 1994 (2020 Rev Ed), s 31
+
+Source: International Arbitration Act 1994 (2020 Rev Ed) (Singapore), s 31.
+Pinned URL: see `sg_iaa_s_31_source.yaml`. In force; current text.
+Singapore's domestic implementation of New York Convention 1958, Art V.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md):
+- Statute (s 31, IAA): reproduced under the Singapore Statutes Online
+  Reproduction Notice (Attorney-General's Chambers, Singapore).
+- *DKT v DKU* [2025] SGCA 23, ¶ 8 (four-condition framework, below):
+  © Government of Singapore. Quoted under fair-dealing for criticism /
+  review per the Copyright Act 2021 (Cap 63), s 191.
+
+## Section 31 — verbatim text
+
+Reproduced verbatim from the Singapore Statutes Online consolidation
+(IAA 1994, current version):
+
+31.—(1) In any proceedings in which the enforcement of a foreign award
+is sought by virtue of this Part, the party against whom the
+enforcement is sought may request that the enforcement be refused, and
+the enforcement in any of the cases mentioned in subsections (2) and
+(4) may be refused but not otherwise.
+
+(2) A court so requested may refuse enforcement of a foreign award if
+the person against whom enforcement is sought proves to the
+satisfaction of the court that —
+
+(a) a party to the arbitration agreement pursuant to which the award
+    was made was, under the law applicable to the party, under some
+    incapacity at the time when the agreement was made;
+
+(b) the arbitration agreement is not valid under the law to which the
+    parties have subjected it or, in the absence of any indication in
+    that respect, under the law of the country where the award was
+    made;
+
+(c) the party was not given proper notice of the appointment of the
+    arbitrator or of the arbitration proceedings or was otherwise
+    unable to present the party's case in the arbitration proceedings;
+
+(d) subject to subsection (3), the award deals with a difference not
+    contemplated by, or not falling within the terms of, the
+    submission to arbitration or contains a decision on the matter
+    beyond the scope of the submission to arbitration;
+
+(e) the composition of the arbitral authority or the arbitral
+    procedure was not in accordance with the agreement of the parties
+    or, failing such agreement, was not in accordance with the law of
+    the country where the arbitration took place; or
+
+(f) the award has not yet become binding on the parties to the
+    arbitral award or has been set aside or suspended by a competent
+    authority of the country in which, or under the law of which, the
+    award was made.
+
+(3) When a foreign award referred to in subsection (2)(d) contains
+decisions on matters not submitted to arbitration but those decisions
+can be separated from decisions on matters submitted to arbitration,
+the award may be enforced to the extent that it contains decisions on
+matters so submitted.
+
+(4) In any proceedings in which the enforcement of a foreign award is
+sought by virtue of this Part, the court may refuse to enforce the
+award if it finds that —
+
+(a) the subject matter of the difference between the parties to the
+    award is not capable of settlement by arbitration under the law of
+    Singapore; or
+
+(b) enforcement of the award would be contrary to the public policy of
+    Singapore.
+
+(5) Where, in any proceedings in which the enforcement of a foreign
+award is sought by virtue of this Part, the court is satisfied that an
+application for the setting aside or for the suspension of the award
+has been made to a competent authority of the country in which, or
+under the law of which, the award was made, the court may —
+
+(a) if the court considers it proper to do so, adjourn the proceedings
+    or (as the case may be) so much of the proceedings as relates to
+    the award; and
+
+(b) on the application of the party seeking to enforce the award,
+    order the other party to give suitable security.
+
+The court's disposition is one of:
+  - *ApplicationDismissedEntirely* — no ground made out
+  - *ApplicationAllowedInPart* — at least one ground partially made out;
+    the relevant order is excised per-paragraph but the award stands
+  - *AwardSetAside* — at least one ground fully made out; no enforcement
+
+## Encoding
 
 ```catala
 declaration enumeration IAAGroundId:
   -- S31_2_a_Incapacity
-  -- S31_2_b_NaturalJustice
-  -- S31_2_c_TribunalComposition
+  -- S31_2_b_InvalidAgreement
+  -- S31_2_c_NaturalJustice
   -- S31_2_d_OutsideScope
-  -- S31_2_e_NotBindingOrSetAside
-  -- S31_2_f_NotArbitrable
+  -- S31_2_e_TribunalComposition
+  -- S31_2_f_NotBindingOrSetAside
+  -- S31_4_a_NotArbitrable
   -- S31_4_b_PublicPolicy
 
 declaration enumeration GroundOutcome:
@@ -49,6 +116,11 @@ declaration enumeration ApplicationDisposition:
 declaration structure GroundFinding:
   data ground content IAAGroundId
   data court_outcome content GroundOutcome
+  ## s 31(3) severability proviso. Applies only to ground (d)
+  ## (OutsideScope). When true and the ground is AllowedInFull, the
+  ## disposition becomes AllowedInPart at the application level
+  ## because the in-scope decisions can be enforced separately.
+  data is_severable content boolean
 
 declaration structure RefusalDisposition:
   data n_grounds_pleaded content integer
@@ -76,9 +148,23 @@ scope IAA_S31_Refusal:
       number of (list of g among grounds
                  such that g.court_outcome = AllowedInFull)
     in
+    ## A "fully allowed" ground is dispositive UNLESS it is the
+    ## OutsideScope ground (d) AND severable per s 31(3) — then the
+    ## dispositive shape is partial enforcement. Other fully-allowed
+    ## grounds (incapacity, invalid agreement, natural justice,
+    ## tribunal composition, not-binding, not-arbitrable, public
+    ## policy) admit no severability under s 31(3).
+    let full_with_severability_relief equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInFull
+                       and g.ground = S31_2_d_OutsideScope
+                       and g.is_severable)
+    in
+    let full_dispositive equals full - full_with_severability_relief in
     let app equals
-      if full > 0 then AwardSetAside
-      else (if partial > 0 then ApplicationAllowedInPart
+      if full_dispositive > 0 then AwardSetAside
+      else (if partial > 0 or full_with_severability_relief > 0 then
+              ApplicationAllowedInPart
             else ApplicationDismissedEntirely)
     in
     RefusalDisposition {
@@ -87,13 +173,42 @@ scope IAA_S31_Refusal:
       -- n_grounds_partial: partial
       -- n_grounds_full: full
       -- application_disposition: app
-      -- award_enforced: full = 0
+      -- award_enforced: full_dispositive = 0
     }
 ```
 
-## DKT v DKU four-condition framework for "infra petita" natural-justice
-## challenges. All four conditions must be satisfied for the challenge
-## under s 31(2)(b)/(c) to succeed.
+## *DKT v DKU* [2025] SGCA 23, [2025] 1 SLR 806 — four-condition framework
+
+Sub-rule under s 31(2)(c) (natural-justice / inability to present case)
+and s 31(4)(b) (public policy). The Singapore Court of Appeal in
+*DKT v DKU* set out the framework for an "infra petita" challenge —
+where the tribunal allegedly failed to consider an essential point
+that was placed before it.
+
+Reproduced verbatim from paragraph 8 of the judgment ([2025] SGCA 23):
+
+"a successful infra petita challenge can only be mounted if all of the
+following four conditions are satisfied"
+
+  (a) "the point must have been properly brought before the tribunal
+      for its determination";
+
+  (b) "the point must have been essential to the resolution of the
+      dispute";
+
+  (c) "the tribunal must have completely failed to consider the
+      point"; and
+
+  (d) "even if the tribunal failed to consider an essential point
+      placed before it, there must have been real or actual prejudice".
+
+Condition (c) is reinforced elsewhere in the judgment: the court must
+be able to draw a "clear and virtually inescapable inference" that the
+tribunal failed to consider the point at all (not merely that it
+weighed the point and reached an answer the applicant disagrees with).
+
+The conditions are conjunctive — failure of any one defeats the
+challenge.
 
 ```catala
 declaration structure DKTConditions:
@@ -114,7 +229,110 @@ scope DKTvDKUChallenge:
     and conditions.prejudice_demonstrated
 ```
 
-## Test — replays the disposition shape from trace-06.
+## s 31(5) — adjournment and security
+
+Reproduced verbatim from s 31(5) IAA: "Where, in any proceedings in
+which the enforcement of a foreign award is sought by virtue of this
+Part, the court is satisfied that an application for the setting
+aside or for the suspension of the award has been made to a competent
+authority of the country in which, or under the law of which, the
+award was made, the court may — (a) if the court considers it proper
+to do so, adjourn the proceedings or (as the case may be) so much of
+the proceedings as relates to the award; and (b) on the application
+of the party seeking to enforce the award, order the other party to
+give suitable security."
+
+This is an orthogonal limb: it does not change the disposition on the
+merits but reflects a discretionary case-management power the court
+has *while* a parallel set-aside application is pending at the seat.
+
+```catala
+declaration structure S31_5_Inputs:
+  data setting_aside_pending_at_seat content boolean
+  data adjournment_ordered content boolean
+  data security_ordered content boolean
+
+declaration structure S31_5_Output:
+  data proceedings_adjourned content boolean
+  data security_required content boolean
+  data adjournment_engaged_lawfully content boolean
+
+declaration scope IAA_S31_5_Adjournment:
+  input inputs content S31_5_Inputs
+  output adjournment content S31_5_Output
+
+scope IAA_S31_5_Adjournment:
+  definition adjournment equals
+    ## The court's adjournment / security order is lawful only where
+    ## a parallel set-aside application is pending at the seat.
+    ## (a) and (b) are independent: the court can adjourn without
+    ## ordering security, or order security without adjourning.
+    let lawful equals inputs.setting_aside_pending_at_seat in
+    S31_5_Output {
+      -- proceedings_adjourned: inputs.adjournment_ordered and lawful
+      -- security_required: inputs.security_ordered and lawful
+      -- adjournment_engaged_lawfully: lawful
+    }
+```
+
+## DKT v DKU + s 31(2)(c) composition
+
+Where an applicant pleads s 31(2)(c) (natural justice / inability to
+present case) on an infra-petita basis — alleging the tribunal
+completely failed to consider an essential point — DKT v DKU's
+four-condition framework determines whether the ground is made out.
+
+The composition scope below takes both the DKT conditions and the
+court's stated outcome on the s 31(2)(c) ground, computes the DKT
+result, and reports a consistency check: a `dkt_analysis_consistent`
+flag is set true iff the court's stated outcome matches what the DKT
+framework would yield. A surfaced inconsistency does not override the
+court's disposition — it surfaces a question for review (the kind of
+machine-verifiable discrepancy this protocol exists to flag).
+
+```catala
+declaration structure DKTComposite:
+  data conditions content DKTConditions
+  data court_outcome_on_31_2_c content GroundOutcome
+  data dkt_challenge_succeeds content boolean
+  data dkt_analysis_consistent content boolean
+
+declaration scope IAA_S31_2_c_InfraPetita:
+  input conditions content DKTConditions
+  input court_outcome_on_31_2_c content GroundOutcome
+  output composite content DKTComposite
+
+scope IAA_S31_2_c_InfraPetita:
+  definition composite equals
+    let challenge_succeeds equals
+      conditions.point_properly_before_tribunal
+      and conditions.point_essential_to_dispute
+      and conditions.tribunal_completely_failed_to_consider
+      and conditions.prejudice_demonstrated
+    in
+    let consistent equals
+      ## DKT challenge succeeds <=> court outcome AllowedInFull.
+      ## A partial outcome on infra-petita grounds is structurally
+      ## unusual — the four conditions are conjunctive — so we treat
+      ## any non-{Dismissed, AllowedInFull} outcome as inconsistent.
+      if challenge_succeeds then
+        court_outcome_on_31_2_c = AllowedInFull
+      else
+        court_outcome_on_31_2_c = Dismissed
+    in
+    DKTComposite {
+      -- conditions: conditions
+      -- court_outcome_on_31_2_c: court_outcome_on_31_2_c
+      -- dkt_challenge_succeeds: challenge_succeeds
+      -- dkt_analysis_consistent: consistent
+    }
+```
+
+## Used in
+
+trace-06 — SIC/OA 9/2025 *GNC Holdings v ONI Global* [2025] SGHC(I) 25.
+
+## Tests
 
 ```catala
 #[test] declaration scope TestIAA_S31_TraceShape:
@@ -124,15 +342,12 @@ scope DKTvDKUChallenge:
 scope TestIAA_S31_TraceShape:
   definition disposition equals composite.disposition
   ## Four grounds pleaded, three dismissed, one allowed in part — the
-  ## same shape as SIC/OA 9/2025 (trace-06). The IDs differ from the
-  ## trace's local enum (trace-06 packs the natural-justice and
-  ## scope-of-submission natures of Ground 4 into a single bespoke
-  ## identifier; here we use the canonical statutory identifiers).
+  ## same shape as SIC/OA 9/2025 (trace-06).
   definition composite.grounds equals [
-    GroundFinding { -- ground: S31_4_b_PublicPolicy        -- court_outcome: Dismissed };
-    GroundFinding { -- ground: S31_2_b_NaturalJustice      -- court_outcome: Dismissed };
-    GroundFinding { -- ground: S31_2_d_OutsideScope        -- court_outcome: Dismissed };
-    GroundFinding { -- ground: S31_2_d_OutsideScope        -- court_outcome: AllowedInPart }
+    GroundFinding { -- ground: S31_4_b_PublicPolicy        -- court_outcome: Dismissed     -- is_severable: false };
+    GroundFinding { -- ground: S31_2_c_NaturalJustice      -- court_outcome: Dismissed     -- is_severable: false };
+    GroundFinding { -- ground: S31_2_d_OutsideScope        -- court_outcome: Dismissed     -- is_severable: false };
+    GroundFinding { -- ground: S31_2_d_OutsideScope        -- court_outcome: AllowedInPart -- is_severable: true  }
   ]
   assertion disposition.application_disposition = ApplicationAllowedInPart
   assertion disposition.award_enforced = true
@@ -161,8 +376,7 @@ scope TestDKTvDKU_AllConditionsMet:
 scope TestDKTvDKU_OneConditionFails:
   definition challenge_succeeds equals composite.challenge_succeeds
   ## In trace-06, the second condition (point essential to the dispute)
-  ## was not made out — the "take back Singapore" point was not put
-  ## as an issue distinct from the broader plan to recover the stores.
+  ## was not made out.
   definition composite.conditions equals
     DKTConditions {
       -- point_properly_before_tribunal: true
@@ -171,4 +385,50 @@ scope TestDKTvDKU_OneConditionFails:
       -- prejudice_demonstrated: false
     }
   assertion challenge_succeeds = false
+
+#[test] declaration scope TestIAA_S31_SeverabilityRelief:
+  composite scope IAA_S31_Refusal
+  output disposition content RefusalDisposition
+
+scope TestIAA_S31_SeverabilityRelief:
+  definition disposition equals composite.disposition
+  ## A fully-allowed (d) ground that is severable per s 31(3) yields
+  ## ApplicationAllowedInPart with the award still enforced (the
+  ## in-scope decisions). Compare TestIAA_S31_FullSetAside_NoSeverability
+  ## below where the same fact-pattern without severability yields
+  ## AwardSetAside.
+  definition composite.grounds equals [
+    GroundFinding { -- ground: S31_2_d_OutsideScope -- court_outcome: AllowedInFull -- is_severable: true }
+  ]
+  assertion disposition.application_disposition = ApplicationAllowedInPart
+  assertion disposition.award_enforced = true
+
+#[test] declaration scope TestIAA_S31_FullSetAside_NoSeverability:
+  composite scope IAA_S31_Refusal
+  output disposition content RefusalDisposition
+
+scope TestIAA_S31_FullSetAside_NoSeverability:
+  definition disposition equals composite.disposition
+  ## Same OutsideScope ground but NOT severable: no s 31(3) relief,
+  ## the award is set aside.
+  definition composite.grounds equals [
+    GroundFinding { -- ground: S31_2_d_OutsideScope -- court_outcome: AllowedInFull -- is_severable: false }
+  ]
+  assertion disposition.application_disposition = AwardSetAside
+  assertion disposition.award_enforced = false
+
+#[test] declaration scope TestIAA_S31_NaturalJusticeNotSeverable:
+  composite scope IAA_S31_Refusal
+  output disposition content RefusalDisposition
+
+scope TestIAA_S31_NaturalJusticeNotSeverable:
+  definition disposition equals composite.disposition
+  ## Even with `is_severable: true`, a fully-allowed natural-justice
+  ## ground (s 31(2)(c)) does not get severability relief — the
+  ## proviso in s 31(3) applies only to ground (d). Award is set aside.
+  definition composite.grounds equals [
+    GroundFinding { -- ground: S31_2_c_NaturalJustice -- court_outcome: AllowedInFull -- is_severable: true }
+  ]
+  assertion disposition.application_disposition = AwardSetAside
+  assertion disposition.award_enforced = false
 ```

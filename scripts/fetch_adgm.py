@@ -22,7 +22,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PDF_DIR = HERE + "/../data/raw/adgm/pdfs"
 TXT_DIR = HERE + "/../data/raw/adgm/text"
 
-sys.path.insert(0, "/Users/hamzaqureshi/Library/Python/3.9/lib/python/site-packages")
+# Note: site-packages is on sys.path by default; no manual insertion needed.
 
 
 def fetch(url, dest):

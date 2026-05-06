@@ -1,0 +1,21 @@
+module: adgm_cpr_admissions
+version_id: "adgm-cpr-2016-as-amended"
+source_authority:
+  jurisdiction: ADGM
+  instrument: "ADGM Court Procedure Rules 2016, Rule 42 (admissions and withdrawal)"
+  url: "https://assets.adgm.com/download/assets/ADGM+Court+Procedure+Rules+2016+-+30112023+-+FINAL.pdf/1e4cdd0c45c011efa7762ac4d0cba84b"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: "f6f06d494067e3ecd49a225b47050783b586376e7cf22676135df032975414fe"    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 2016-12-30
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://assets.adgm.com/download/assets/ADGM+Court+Procedure+Rules+2016+-+30112023+-+FINAL.pdf/1e4cdd0c45c011efa7762ac4d0cba84b"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: false
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Admissions and set-off arithmetic.

@@ -32,16 +32,17 @@ KNOWN_SOURCES: dict[str, dict] = {
             {"kind": "rules_of_court", "citation": "Rules of the DIFC Courts (RDC), Part 38"},
         ],
     },
-    "difc_rdc_38_7_indemnity": {
-        "human_label": "DIFC RDC 38.7 — indemnity-basis costs review (bounded discretion)",
+    "difc_rdc_38_19_indemnity": {
+        "human_label": "DIFC RDC 38.17 + 38.19 — indemnity-basis costs review (bounded discretion)",
         "sources": [
-            {"kind": "rules_of_court", "citation": "Rules of the DIFC Courts (RDC) 38.7"},
+            {"kind": "rules_of_court", "citation": "Rules of the DIFC Courts (RDC) 38.17 (assessment bases) and RDC 38.19 (indemnity basis)"},
         ],
     },
     "difc_practice_direction_4_2017": {
-        "human_label": "DIFC PD 4/2017 — arbitration costs framework (80% / 14-day / 9%)",
+        "human_label": "DIFC arbitration costs framework — PD 4/2017 (interest) + RDC 38.40 (14-day deadline) + 80% practice convention",
         "sources": [
-            {"kind": "practice_direction", "citation": "DIFC Courts Practice Direction No. 4 of 2017"},
+            {"kind": "practice_direction", "citation": "DIFC Courts Practice Direction No. 4 of 2017 — Interest on Judgments"},
+            {"kind": "rules_of_court", "citation": "Rules of the DIFC Courts (RDC) 38.40 — payment timeline"},
         ],
     },
     "difc_third_party_disclosure": {
@@ -62,16 +63,20 @@ KNOWN_SOURCES: dict[str, dict] = {
         ],
     },
     "adgm_cpr_summary_judgment": {
-        "human_label": "ADGM CPR Rule 24 — summary judgment two-limb test",
+        "human_label": "ADGM CPR Rule 68 — summary judgment two-limb test",
         "sources": [
-            {"kind": "rules_of_court", "citation": "ADGM Court Procedure Rules 2016, Rule 24"},
+            {"kind": "rules_of_court", "citation": "ADGM Court Procedure Rules 2016, Rule 68 (Grounds for summary judgment)"},
         ],
     },
     "adgm_arbitration_regulations_2015": {
-        "human_label": "ADGM Arbitration Regulations 2015 — recognition of foreign awards (parallel of SG IAA s 31)",
+        "human_label": "ADGM Arbitration Regulations 2015 — recognition of foreign awards (parallel of SG IAA s 31) + s 62(2) adjournment-and-security + s 62(3) carve-out",
         "sources": [
-            {"kind": "statute", "citation": "ADGM Arbitration Regulations 2015, ss 56-58"},
+            {"kind": "statute", "citation": "ADGM Arbitration Regulations 2015, s 62 (current numbering; was s 56 in the 2015 enacted version)"},
             {"kind": "international_convention", "citation": "New York Convention 1958, Article V"},
+        ],
+        "public_scopes": [
+            "ADGMRecognition",
+            "ADGM_S62_2_Adjournment",
         ],
         "cross_jurisdiction_note": "Structurally parallel to sg_iaa_s_31. Statutory references and public-policy authority differ.",
     },
@@ -99,12 +104,18 @@ KNOWN_SOURCES: dict[str, dict] = {
         "cross_jurisdiction_note": "Applied by ADGM via the AELR. Persuasive in DIFC and SICC.",
     },
     "sg_iaa_s_31": {
-        "human_label": "Singapore IAA s 31 (NY Convention Art V refusal grounds) + DKT v DKU framework",
+        "human_label": "Singapore IAA s 31 (NY Convention Art V refusal grounds) + DKT v DKU framework + s 31(5) adjournment-and-security",
         "sources": [
             {"kind": "statute", "citation": "International Arbitration Act 1994 (2020 Rev Ed), s 31"},
             {"kind": "international_convention", "citation": "New York Convention 1958, Article V"},
             {"kind": "case", "citation": "DKT v DKU [2025] 1 SLR 806 (CA)"},
             {"kind": "case", "citation": "COD v COE [2023] 4 SLR 708"},
+        ],
+        "public_scopes": [
+            "IAA_S31_Refusal",
+            "DKTvDKUChallenge",
+            "IAA_S31_5_Adjournment",
+            "IAA_S31_2_c_InfraPetita",
         ],
         "cross_jurisdiction_note": "Structurally parallel to adgm_arbitration_regulations_2015.",
     },
@@ -141,8 +152,11 @@ def main():
         meta = {
             "module_name": module,
             "human_label": info["human_label"],
+            "author": "Hamza Qureshi <thehamzaq@gmail.com>",
             "source_authorities": info["sources"],
             "test_scopes": extract_test_scopes(rule_path),
+            "reviewers": [],
+            "lawyer_of_record": None,
             "certification": {
                 "state": "draft",
                 "states_history": [],

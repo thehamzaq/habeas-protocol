@@ -1,33 +1,69 @@
-## DIFC Rules of the Court — RDC 38.7 (indemnity-basis costs review)
-##
-## Source: Rules of the DIFC Courts, RDC 38.7. Where the court orders
-## costs on the *indemnity basis*, the proportionality limb of the
-## standard-basis assessment is stripped: only **reasonableness** of the
-## sum claimed remains, and any doubt is resolved in favour of the
-## receiving party (the inverse of the standard-basis convention).
-##
-## The structure of the review is:
-##
-##   1. The court walks each defendant's *named objection* and triages
-##      it into one of four buckets:
-##        Mechanically_disposed    — no specific line item named;
-##                                   the objection cannot move the sum.
-##        Held_to_zero             — held to zero on evidence (e.g.
-##                                   line item is unsupported).
-##        Deterministic_reduction  — named amount reduced by named amount.
-##        Requires_human_judgment  — proportionality-style argument that
-##                                   does not fall through the
-##                                   reasonableness gate alone.
-##
-##   2. The award is the original claim minus the deterministic
-##      reductions and the held-to-zero items. The *residue* is the sum
-##      that would only be reachable through human judgment.
-##
-## Used in:
-##   trace-03 — ENF 271/2025 *Taylor v Yao Affi* (Cooke J).
-##
-## This rule is the canonical *bounded-discretion* shape: the predicate
-## says exactly what it can decide and exactly what it cannot.
+# DIFC Rules of the Court — indemnity-basis costs review (RDC 38.17 + 38.19)
+
+Source: Rules of the DIFC Courts, RDC 38.17 and RDC 38.19. Pinned URL
+in `difc_rdc_38_19_indemnity_source.yaml`. In force; current.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): © DIFC Courts. Reproduced
+under fair-dealing for research, with attribution, in a non-commercial
+academic working paper.
+
+NOTE: this module's filename and historical heading referred to "RDC
+38.7", but in the consolidated DIFC Rules RDC 38.7 is the general
+"loser pays" rule on cost orders. The **indemnity-basis** assessment
+is governed by RDC 38.17 (which sets the two assessment bases) and
+RDC 38.19 (which states the indemnity-basis convention). The encoding's
+logic and tests are unchanged; only the citation is corrected here.
+
+## RDC 38.17 — bases for assessment (verbatim)
+
+Reproduced verbatim from the Rules of the DIFC Courts:
+
+38.17 Where the Court is to assess the amount of costs (whether by
+immediate or detailed assessment) it will assess those costs:
+
+  (1) on the standard basis; or
+
+  (2) on the indemnity basis;
+
+but the Court will not in either case allow costs which have been
+unreasonably incurred or are unreasonable in amount.
+
+## RDC 38.19 — indemnity basis (verbatim)
+
+Reproduced verbatim from the Rules of the DIFC Courts:
+
+38.19 Where the amount of costs is to be assessed on the indemnity
+basis, the Court will resolve any doubt which it may have as to
+whether costs were reasonably incurred or were reasonable in amount in
+favour of the receiving party.
+
+The structural significance: relative to the standard basis (RDC 38.18,
+see `difc_rdc_part_38.catala_en`), the indemnity basis (i) drops the
+proportionality limb so only reasonableness remains, and (ii) reverses
+the doubt-resolution convention — doubt is resolved in favour of the
+receiving party rather than the paying party.
+
+The structure of the review is:
+
+1. The court walks each defendant's named objection and triages it into
+   one of four buckets:
+     Mechanically_disposed    — no specific line item named; the
+                                objection cannot move the sum.
+     Held_to_zero             — held to zero on evidence (e.g. line
+                                item is unsupported).
+     Deterministic_reduction  — named amount reduced by named amount.
+     Requires_human_judgment  — proportionality-style argument that
+                                does not fall through the
+                                reasonableness gate alone.
+
+2. The award is the original claim minus the deterministic reductions
+   and the held-to-zero items. The residue is the sum reachable only
+   through human judgment.
+
+This rule is the canonical *bounded-discretion* shape: the predicate
+says exactly what it can decide and exactly what it cannot.
+
+## Encoding
 
 ```catala
 declaration enumeration ObjectionBucket:
@@ -93,14 +129,18 @@ scope IndemnityBasisReview:
     }
 ```
 
-## Test — replays trace-03's headline disposition.
+## Used in
+
+trace-03 — ENF 271/2025 *Taylor v Yao Affi* (Cooke J).
+
+## Tests
 
 ```catala
-#[test] declaration scope TestRDC38_7Taylor:
+#[test] declaration scope TestRDC38_19Taylor:
   composite scope IndemnityBasisReview
   output review content IndemnityReview
 
-scope TestRDC38_7Taylor:
+scope TestRDC38_19Taylor:
   definition review equals composite.review
   ## Claim AED 128,914.80; objections from Taylor v Yao Affi:
   ## (1) generic "fees too high" — mechanically disposed.

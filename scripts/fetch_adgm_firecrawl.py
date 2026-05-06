@@ -31,7 +31,7 @@ PDF_DIR = ROOT + "/data/raw/adgm/pdfs"
 TXT_DIR = ROOT + "/data/raw/adgm/text"
 FC_DIR = ROOT + "/data/raw/adgm/firecrawl"
 
-sys.path.insert(0, "/Users/hamzaqureshi/Library/Python/3.9/lib/python/site-packages")
+# Note: site-packages is on sys.path by default; no manual insertion needed.
 
 ASSET_PATTERN = re.compile(
     r"https://assets\.adgm\.com/download/assets/[^\"'\s<>)]+\.pdf/[a-f0-9]+",

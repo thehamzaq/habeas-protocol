@@ -1,15 +1,18 @@
 [
   {"module":"adgm_arbitration_regulations_2015","scope":"ADGMRecognition","file":"adgm_arbitration_regulations_2015.catala_en","schema":"adgm_arbitration_regulations_2015__ADGMRecognition.schema.json"},
+  {"module":"adgm_arbitration_regulations_2015","scope":"ADGM_S62_2_Adjournment","file":"adgm_arbitration_regulations_2015.catala_en","schema":"adgm_arbitration_regulations_2015__ADGM_S62_2_Adjournment.schema.json"},
   {"module":"adgm_cpr_admissions","scope":"AdmissionsAndSetOff","file":"adgm_cpr_admissions.catala_en","schema":"adgm_cpr_admissions__AdmissionsAndSetOff.schema.json"},
   {"module":"adgm_cpr_summary_judgment","scope":"SummaryJudgmentTest","file":"adgm_cpr_summary_judgment.catala_en","schema":"adgm_cpr_summary_judgment__SummaryJudgmentTest.schema.json"},
   {"module":"caparo_three_stage_test","scope":"CaparoTest","file":"caparo_three_stage_test.catala_en","schema":"caparo_three_stage_test__CaparoTest.schema.json"},
   {"module":"difc_practice_direction_4_2017","scope":"OutstandingArbitrationCosts","file":"difc_practice_direction_4_2017.catala_en","schema":"difc_practice_direction_4_2017__OutstandingArbitrationCosts.schema.json"},
-  {"module":"difc_rdc_38_7_indemnity","scope":"IndemnityBasisReview","file":"difc_rdc_38_7_indemnity.catala_en","schema":"difc_rdc_38_7_indemnity__IndemnityBasisReview.schema.json"},
+  {"module":"difc_rdc_38_19_indemnity","scope":"IndemnityBasisReview","file":"difc_rdc_38_19_indemnity.catala_en","schema":"difc_rdc_38_19_indemnity__IndemnityBasisReview.schema.json"},
   {"module":"difc_rdc_part_38","scope":"StandardBasisAssessment","file":"difc_rdc_part_38.catala_en","schema":"difc_rdc_part_38__StandardBasisAssessment.schema.json"},
   {"module":"difc_third_party_disclosure","scope":"ThirdPartyDisclosureGates","file":"difc_third_party_disclosure.catala_en","schema":"difc_third_party_disclosure__ThirdPartyDisclosureGates.schema.json"},
   {"module":"english_contract_interpretation","scope":"WoodVCapita","file":"english_contract_interpretation.catala_en","schema":"english_contract_interpretation__WoodVCapita.schema.json"},
   {"module":"ladd_v_marshall","scope":"LaddMarshallTest","file":"ladd_v_marshall.catala_en","schema":"ladd_v_marshall__LaddMarshallTest.schema.json"},
   {"module":"sg_iaa_s_31","scope":"IAA_S31_Refusal","file":"sg_iaa_s_31.catala_en","schema":"sg_iaa_s_31__IAA_S31_Refusal.schema.json"},
   {"module":"sg_iaa_s_31","scope":"DKTvDKUChallenge","file":"sg_iaa_s_31.catala_en","schema":"sg_iaa_s_31__DKTvDKUChallenge.schema.json"},
+  {"module":"sg_iaa_s_31","scope":"IAA_S31_5_Adjournment","file":"sg_iaa_s_31.catala_en","schema":"sg_iaa_s_31__IAA_S31_5_Adjournment.schema.json"},
+  {"module":"sg_iaa_s_31","scope":"IAA_S31_2_c_InfraPetita","file":"sg_iaa_s_31.catala_en","schema":"sg_iaa_s_31__IAA_S31_2_c_InfraPetita.schema.json"},
   {"module":"uae_civil_code_art_390","scope":"Article390Cap","file":"uae_civil_code_art_390.catala_en","schema":"uae_civil_code_art_390__Article390Cap.schema.json"}
 ]

@@ -1,0 +1,13 @@
+{
+  "trace_id": "trace-01",
+  "case_no": "CFI 058/2024",
+  "kind": "clerical_arithmetic",
+  "quantum": {
+    "value": 6.0,
+    "unit": "AED"
+  },
+  "operative_value": 7127.75,
+  "predicate_value": 7121.75,
+  "paragraph_ref": "operative order vs Schedule of Reasons",
+  "note": "Operative order states AED 7,127.75; Schedule of Reasons computes AED 7,121.75. The protocol reproduces the Schedule total; the 6 AED gap is consistent with a clerical error in the operative paragraph."
+}

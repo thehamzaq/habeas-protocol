@@ -1,0 +1,21 @@
+module: sg_iaa_s_31
+version_id: "sg-iaa-2002-as-amended-2020"
+source_authority:
+  jurisdiction: SG
+  instrument: "Singapore International Arbitration Act 2002, s 31 (NY Convention Article V grounds)"
+  url: "https://sso.agc.gov.sg/Act/IAA1994#pr31-"
+  retrieved_at: 2026-05-05
+  retrieved_sha256: "a7e7caf3e865cac09031eebc75a2c9ae026a30c261d3232d12268fa17c45a0a5"    # re-pinned 2026-05-05 after live-page reflow on sso.agc.gov.sg; statute text unchanged. Earlier pin: 204754f...
+amendment_window:
+  in_force_from: 2002-01-31
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://sso.agc.gov.sg/Act/IAA1994#pr31-"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: false
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Refusal-of-recognition grounds + DKT v DKU four-condition framework.

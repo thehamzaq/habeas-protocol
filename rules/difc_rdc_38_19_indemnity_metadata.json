@@ -1,0 +1,20 @@
+{
+  "module_name": "difc_rdc_38_19_indemnity",
+  "human_label": "DIFC RDC 38.17 + 38.19 \u2014 indemnity-basis costs review (bounded discretion)",
+  "source_authorities": [
+    {
+      "kind": "rules_of_court",
+      "citation": "Rules of the DIFC Courts (RDC) 38.17 (assessment bases) and RDC 38.19 (indemnity basis)"
+    }
+  ],
+  "test_scopes": [
+    "TestRDC38_19Taylor"
+  ],
+  "certification": {
+    "state": "draft",
+    "states_history": []
+  },
+  "author": "Hamza Qureshi <thehamzaq@gmail.com>",
+  "reviewers": [],
+  "lawyer_of_record": null
+}

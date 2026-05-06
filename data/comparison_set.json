@@ -1,0 +1,3297 @@
+{
+  "$schema": "data/schema_comparison.json",
+  "version": "v0.2",
+  "purpose": "Peer-court comparison set (n=90 across 3 courts × 30 case-type slots). Tests whether the v0.2 rubric translates beyond the DIFC/ADGM/SICC family to other commercial courts of comparable stature, including a civil-law foil (ICCP-CA Paris). The falsifiable prediction is that all three peer courts score near-ceiling on per-ruling primitives — confirming the rubric measures procedural form rather than DIFC/ADGM/SICC-specific idiom. The civil-law foil specifically tests PR3.",
+  "scoring_provenance": "Each entry is a class-default slot keyed by (court, claim type). Slots are NOT bound to named cases; binding + hand-validation happens via scripts/fetch_peer_courts.py (TODO) and an IRR exercise. Coder tag 'MaximLabs (provisional-class-default)' marks this provenance. These provisional scores function as the falsifiable prediction; deviations on hand-validation are themselves the empirical contribution.",
+  "courts": {
+    "EWHC_Comm": "English Commercial Court (King's Bench Division, Commercial Court)",
+    "DEL_Chancery": "Delaware Court of Chancery",
+    "ICCP_CA_Paris": "Cour d'appel de Paris — Chambre internationale commerciale"
+  },
+  "claim_type_strata": [
+    {
+      "claim_type": "substantive_breach",
+      "n_per_court": 8
+    },
+    {
+      "claim_type": "costs_assessment",
+      "n_per_court": 4
+    },
+    {
+      "claim_type": "jurisdictional_challenge",
+      "n_per_court": 4
+    },
+    {
+      "claim_type": "interim_relief",
+      "n_per_court": 3
+    },
+    {
+      "claim_type": "arbitration_recognition",
+      "n_per_court": 3
+    },
+    {
+      "claim_type": "arbitration_enforcement",
+      "n_per_court": 2
+    },
+    {
+      "claim_type": "summary_judgment",
+      "n_per_court": 2
+    },
+    {
+      "claim_type": "interpretation",
+      "n_per_court": 2
+    },
+    {
+      "claim_type": "permission_to_appeal",
+      "n_per_court": 1
+    },
+    {
+      "claim_type": "case_management",
+      "n_per_court": 1
+    }
+  ],
+  "n_total": 90,
+  "n_per_court": 30,
+  "entries": [
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-01",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-02",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-03",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-04",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-05",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-06",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-07",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-substantive_breach-08",
+      "court": "EWHC_Comm",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-costs_assessment-01",
+      "court": "EWHC_Comm",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "1 — intra-jurisdictional order; enforcement implicit via High Court process, not externally bridged",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-costs_assessment-02",
+      "court": "EWHC_Comm",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "1 — intra-jurisdictional order; enforcement implicit via High Court process, not externally bridged",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-costs_assessment-03",
+      "court": "EWHC_Comm",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "1 — intra-jurisdictional order; enforcement implicit via High Court process, not externally bridged",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-costs_assessment-04",
+      "court": "EWHC_Comm",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "1 — intra-jurisdictional order; enforcement implicit via High Court process, not externally bridged",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-jurisdictional_challenge-01",
+      "court": "EWHC_Comm",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-jurisdictional_challenge-02",
+      "court": "EWHC_Comm",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-jurisdictional_challenge-03",
+      "court": "EWHC_Comm",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-jurisdictional_challenge-04",
+      "court": "EWHC_Comm",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-interim_relief-01",
+      "court": "EWHC_Comm",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-interim_relief-02",
+      "court": "EWHC_Comm",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-interim_relief-03",
+      "court": "EWHC_Comm",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-arbitration_recognition-01",
+      "court": "EWHC_Comm",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-arbitration_recognition-02",
+      "court": "EWHC_Comm",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-arbitration_recognition-03",
+      "court": "EWHC_Comm",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-arbitration_enforcement-01",
+      "court": "EWHC_Comm",
+      "claim_type": "arbitration_enforcement",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-arbitration_enforcement-02",
+      "court": "EWHC_Comm",
+      "claim_type": "arbitration_enforcement",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-summary_judgment-01",
+      "court": "EWHC_Comm",
+      "claim_type": "summary_judgment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-summary_judgment-02",
+      "court": "EWHC_Comm",
+      "claim_type": "summary_judgment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-interpretation-01",
+      "court": "EWHC_Comm",
+      "claim_type": "interpretation",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-interpretation-02",
+      "court": "EWHC_Comm",
+      "claim_type": "interpretation",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "2 — judgment debt enforceable; arbitration awards enforced under Arbitration Act 1996 ss 66, 100–104 (NY Convention)",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-permission_to_appeal-01",
+      "court": "EWHC_Comm",
+      "claim_type": "permission_to_appeal",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "1 — intra-jurisdictional order; enforcement implicit via High Court process, not externally bridged",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "EWHC_Comm-case_management-01",
+      "court": "EWHC_Comm",
+      "claim_type": "case_management",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.bailii.org/cgi-bin/markup.cgi?doc=/ew/cases/EWHC/Comm/&query=&method=boolean",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, parties' counsel, judge in published header",
+        "PR2": "2 — procedural history, witness statements, exhibits referenced with dates and bundle pagination",
+        "PR3": "2 — CPR rule + practice direction, statute + section, precedent + paragraph cited specifically",
+        "PR4": "2 — pleadings → CMC → trial → judgment triplet documented",
+        "PR5": "2 — operative order with quantum, interest, costs",
+        "PR6": "1 — intra-jurisdictional order; enforcement implicit via High Court process, not externally bridged",
+        "SP1": "2 — CPR Rules Committee + Parliament make rules; KBD applies them",
+        "SP2": "2 — Court of Appeal + UKSC"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-01",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-02",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-03",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-04",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-05",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-06",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-07",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-substantive_breach-08",
+      "court": "DEL_Chancery",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-costs_assessment-01",
+      "court": "DEL_Chancery",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "1 — intra-Delaware order; cross-border enforcement implicit only",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-costs_assessment-02",
+      "court": "DEL_Chancery",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "1 — intra-Delaware order; cross-border enforcement implicit only",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-costs_assessment-03",
+      "court": "DEL_Chancery",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "1 — intra-Delaware order; cross-border enforcement implicit only",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-costs_assessment-04",
+      "court": "DEL_Chancery",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "1 — intra-Delaware order; cross-border enforcement implicit only",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-jurisdictional_challenge-01",
+      "court": "DEL_Chancery",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-jurisdictional_challenge-02",
+      "court": "DEL_Chancery",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-jurisdictional_challenge-03",
+      "court": "DEL_Chancery",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-jurisdictional_challenge-04",
+      "court": "DEL_Chancery",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-interim_relief-01",
+      "court": "DEL_Chancery",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-interim_relief-02",
+      "court": "DEL_Chancery",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-interim_relief-03",
+      "court": "DEL_Chancery",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-arbitration_recognition-01",
+      "court": "DEL_Chancery",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-arbitration_recognition-02",
+      "court": "DEL_Chancery",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-arbitration_recognition-03",
+      "court": "DEL_Chancery",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-arbitration_enforcement-01",
+      "court": "DEL_Chancery",
+      "claim_type": "arbitration_enforcement",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-arbitration_enforcement-02",
+      "court": "DEL_Chancery",
+      "claim_type": "arbitration_enforcement",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-summary_judgment-01",
+      "court": "DEL_Chancery",
+      "claim_type": "summary_judgment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-summary_judgment-02",
+      "court": "DEL_Chancery",
+      "claim_type": "summary_judgment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-interpretation-01",
+      "court": "DEL_Chancery",
+      "claim_type": "interpretation",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-interpretation-02",
+      "court": "DEL_Chancery",
+      "claim_type": "interpretation",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "2 — Full Faith and Credit + Hague Service for cross-border; specific to corporate-law remedies",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-permission_to_appeal-01",
+      "court": "DEL_Chancery",
+      "claim_type": "permission_to_appeal",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "1 — intra-Delaware order; cross-border enforcement implicit only",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "DEL_Chancery-case_management-01",
+      "court": "DEL_Chancery",
+      "claim_type": "case_management",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://courts.delaware.gov/opinions/",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 1
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — full party names, counsel, Vice Chancellor in caption",
+        "PR2": "2 — Chancery's evidentiary record (exhibits JX-1, JX-2 …) indexed in opinion",
+        "PR3": "2 — DGCL § cited with subsection; Court of Chancery Rule cited; precedent (e.g., Aronson, Caremark) with paragraph",
+        "PR4": "2 — pleadings, motion practice, trial / paper record, opinion",
+        "PR5": "2 — order in DCM-style: declarations, injunctions, fee awards with quantum",
+        "PR6": "1 — intra-Delaware order; cross-border enforcement implicit only",
+        "SP1": "2 — General Assembly + DGCL amendments; Chancery applies",
+        "SP2": "2 — Delaware Supreme Court direct appeal"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-03",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-04",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-05",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-06",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-07",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-substantive_breach-08",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "substantive_breach",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-costs_assessment-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-costs_assessment-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-costs_assessment-03",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-costs_assessment-04",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "costs_assessment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-jurisdictional_challenge-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-jurisdictional_challenge-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-jurisdictional_challenge-03",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-jurisdictional_challenge-04",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "jurisdictional_challenge",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-interim_relief-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-interim_relief-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-interim_relief-03",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "interim_relief",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-arbitration_recognition-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-arbitration_recognition-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-arbitration_recognition-03",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "arbitration_recognition",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-arbitration_enforcement-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "arbitration_enforcement",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-arbitration_enforcement-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "arbitration_enforcement",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-summary_judgment-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "summary_judgment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-summary_judgment-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "summary_judgment",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-interpretation-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "interpretation",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-interpretation-02",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "interpretation",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-permission_to_appeal-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "permission_to_appeal",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    },
+    {
+      "slot_id": "ICCP_CA_Paris-case_management-01",
+      "court": "ICCP_CA_Paris",
+      "claim_type": "case_management",
+      "named_case": null,
+      "neutral_citation": null,
+      "representative_url": "https://www.cours-appel.justice.fr/paris/international-chamber-paris-court-appeal",
+      "primitive_scores_v02": {
+        "PR1": 2,
+        "PR2": 2,
+        "PR3": 2,
+        "PR4": 2,
+        "PR5": 2,
+        "PR6": 2
+      },
+      "system_properties_v02": {
+        "SP1": 2,
+        "SP2": 2
+      },
+      "rationale": {
+        "PR1": "2 — caption identifies parties, counsel (avocats), composition",
+        "PR2": "2 — pièces de procédure indexed; conclusions communiquées dated",
+        "PR3": "2 — articles of the Code de commerce / Code civil cited with the in-force version applicable to the facts (versioning is implicit in French civilian practice but operationally equivalent to common-law version-pinning)",
+        "PR4": "2 — mise en état + plaidoirie + délibéré documented",
+        "PR5": "2 — dispositif unambiguous: confirme / infirme / condamne with quantum and astreinte where applicable",
+        "PR6": "2 — Brussels I bis Recast for EU + NY Convention for arbitration; ICCP cases are by design cross-border",
+        "SP1": "2 — Parlement + Conseil constitutionnel make law; the court applies",
+        "SP2": "2 — Cour de cassation"
+      },
+      "coding": {
+        "coder": "MaximLabs (provisional-class-default)",
+        "coded_on": "2026-05-03",
+        "gold_set": false,
+        "notes": "Class-default per-claim-type score. Bind to named case via fetch_peer_courts.py + hand-validate before publication."
+      }
+    }
+  ]
+}

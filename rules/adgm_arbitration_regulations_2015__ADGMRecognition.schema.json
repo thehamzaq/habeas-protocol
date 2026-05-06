@@ -8,19 +8,20 @@
       "ADGMArbitrationGroundId": {
         "type": "string",
         "enum": [
-          "S56_2_a_Incapacity", "S56_2_b_NaturalJustice",
-          "S56_2_c_OutsideScope", "S56_2_d_TribunalComposition",
-          "S56_2_e_NotBinding", "S56_3_a_NotArbitrable",
-          "S56_3_b_PublicPolicy"
+          "S62_a_i_Incapacity", "S62_a_ii_InvalidAgreement",
+          "S62_a_iii_NaturalJustice", "S62_a_iv_OutsideScope",
+          "S62_a_v_TribunalComposition", "S62_a_vi_NotBindingOrSetAside",
+          "S62_b_i_NotArbitrable", "S62_b_ii_PublicPolicy"
         ]
       },
       "ADGMGroundFinding": {
         "type": "object",
         "properties": {
           "ground": { "$ref": "#/definitions/ADGMArbitrationGroundId" },
-          "court_outcome": { "$ref": "#/definitions/ADGMGroundOutcome" }
+          "court_outcome": { "$ref": "#/definitions/ADGMGroundOutcome" },
+          "is_severable": { "type": "boolean" }
         },
-        "required": [ "court_outcome", "ground" ],
+        "required": [ "court_outcome", "ground", "is_severable" ],
         "additionalProperties": false
       },
       "ADGMGroundOutcome": {
@@ -33,9 +34,10 @@
           "grounds": {
             "type": "array",
             "items": { "$ref": "#/definitions/ADGMGroundFinding" }
-          }
+          },
+          "s58_was_or_could_have_been_available": { "type": "boolean" }
         },
-        "required": [ "grounds" ],
+        "required": [ "grounds", "s58_was_or_could_have_been_available" ],
         "additionalProperties": false
       }
     }
@@ -59,6 +61,12 @@
         "enum": [
           "RecognitionGranted", "RecognitionGrantedInPart",
           "RecognitionRefused"
+        ]
+      },
+      "ADGMApplicationStatus": {
+        "type": "string",
+        "enum": [
+          "ApplicationProperlyMade", "ApplicationBarredByS62_3"
         ]
       },
       "ADGMRefusalDisposition": {
@@ -107,9 +115,13 @@
           "overall_disposition": {
             "$ref": "#/definitions/ADGMRecognitionDisposition"
           },
-          "award_recognised": { "type": "boolean" }
+          "award_recognised": { "type": "boolean" },
+          "application_status": {
+            "$ref": "#/definitions/ADGMApplicationStatus"
+          }
         },
         "required": [
+          "application_status",
           "award_recognised", "overall_disposition", "n_grounds_full",
           "n_grounds_partial", "n_grounds_dismissed", "n_grounds_pleaded"
         ],

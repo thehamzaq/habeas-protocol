@@ -8,13 +8,14 @@
       "CaparoFacts": {
         "type": "object",
         "properties": {
+          "is_established_category": { "type": "boolean" },
           "harm_reasonably_foreseeable": { "type": "boolean" },
           "sufficient_proximity": { "type": "boolean" },
           "fair_just_reasonable_to_impose": { "type": "boolean" }
         },
         "required": [
           "fair_just_reasonable_to_impose", "sufficient_proximity",
-          "harm_reasonably_foreseeable"
+          "harm_reasonably_foreseeable", "is_established_category"
         ],
         "additionalProperties": false
       },
@@ -40,9 +41,27 @@
         "required": [ "disposition" ],
         "additionalProperties": false
       },
+      "CaparoPath": {
+        "type": "string",
+        "enum": [
+          "EstablishedCategory_DutyByPrecedent",
+          "NovelCategory_AllStagesMade",
+          "NovelCategory_FailsAtStage"
+        ]
+      },
+      "CaparoStage": {
+        "type": "string",
+        "enum": [
+          "Stage_None",
+          "Stage_1_Foreseeability",
+          "Stage_2_Proximity",
+          "Stage_3_FairJustReasonable"
+        ]
+      },
       "DutyOfCareDisposition": {
         "type": "object",
         "properties": {
+          "path": { "$ref": "#/definitions/CaparoPath" },
           "n_stages_satisfied": {
             "oneOf": [
               {
@@ -53,9 +72,13 @@
               { "type": "string" }
             ]
           },
+          "first_failing_stage": { "$ref": "#/definitions/CaparoStage" },
           "duty_of_care_owed": { "type": "boolean" }
         },
-        "required": [ "duty_of_care_owed", "n_stages_satisfied" ],
+        "required": [
+          "duty_of_care_owed", "first_failing_stage",
+          "n_stages_satisfied", "path"
+        ],
         "additionalProperties": false
       }
     }

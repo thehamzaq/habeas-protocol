@@ -1,0 +1,22 @@
+module: ladd_v_marshall
+version_id: "ladd-v-marshall-1954"
+source_authority:
+  jurisdiction: England
+  instrument: "Ladd v Marshall [1954] 1 WLR 1489"
+  url: "https://www.bailii.org/ew/cases/EWCA/Civ/1954/1.html"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: null    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 1954-11-29
+  in_force_until: null      # current
+drift_check:
+  method: manual
+  url: "https://www.bailii.org/ew/cases/EWCA/Civ/1954/1.html"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: true
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Three-prong fresh-evidence test. Doctrine; drift = higher-court overrule
+  (none to date).

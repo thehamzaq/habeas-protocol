@@ -1,0 +1,13 @@
+{
+  "trace_id": "trace-04",
+  "case_no": "ADGMCFI-2024-320",
+  "kind": "daycount_methodology",
+  "quantum": {
+    "value": 1.44,
+    "unit": "AED"
+  },
+  "operative_value": 877.48,
+  "predicate_value": 876.04,
+  "paragraph_ref": "pre-judgment interest computation",
+  "note": "Calendar daycount (609 days from 2024-02-29 to 2025-10-30) yields AED 876.04. The court's stated AED 877.48 corresponds to 610 days, indicating an inclusive-endpoint convention. Methodological gap, not arithmetic \u2014 the protocol surfaces the daycount choice for review. Net principal AED 10,500.96 reproduces exactly."
+}

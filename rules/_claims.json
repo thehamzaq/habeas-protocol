@@ -16,7 +16,7 @@
           "when": "Standard-basis assessment ordered. Hours allowed × hourly rate + reasonable disbursements."
         },
         {
-          "module": "difc_rdc_38_7_indemnity",
+          "module": "difc_rdc_38_19_indemnity",
           "scope": "IndemnityBasisReview",
           "role": "disposition",
           "tribunal": "DIFC",
@@ -27,7 +27,7 @@
           "scope": "OutstandingArbitrationCosts",
           "role": "arithmetic",
           "tribunal": "DIFC",
-          "when": "DIFC-seated arbitration costs order under PD 4/2017. 80% discretion + 14-day deadline + 9% interest if late."
+          "when": "DIFC-seated arbitration costs order. Composes three sources: PD 4/2017 (Interest on Judgments — 9% pa), RDC 38.40 (14-day payment deadline), and the 80% practice convention applied across DIFC arbitration costs orders."
         }
       ]
     },
@@ -56,7 +56,7 @@
           "scope": "ADGMRecognition",
           "role": "disposition",
           "tribunal": "ADGM",
-          "when": "Foreign award presented for recognition in ADGM. Defendant pleads grounds under Arbitration Regulations s 56."
+          "when": "Foreign award presented for recognition in ADGM. Defendant pleads grounds under Arbitration Regulations s 62 (was s 56 in the 2015 enacted numbering)."
         }
       ]
     },
@@ -100,7 +100,7 @@
           "scope": "Article390Cap",
           "role": "arithmetic",
           "tribunal": "ADGM",
-          "when": "A liquidated-damages clause is engaged and the claimant seeks payment under it. Court may cap at proportionate amount under Art 390(2) if grossly exaggerated."
+          "when": "A liquidated-damages clause is engaged and the claimant seeks payment under it. The contract's own LD cap (e.g. 10% of contract value) engages automatically; the court may further vary the agreed compensation under Art 390(2) on application by either party where it finds gross disproportion between agreed sum and actual loss."
         },
         {
           "module": "adgm_cpr_admissions",
@@ -129,7 +129,7 @@
           "scope": "SummaryJudgmentTest",
           "role": "disposition",
           "tribunal": "ADGM",
-          "when": "Court is asked to give summary judgment under ADGM CPR Rule 24. Conjunctive test: no realistic prospect AND no other compelling reason for trial."
+          "when": "Court is asked to give summary judgment under ADGM CPR Rule 68. Conjunctive test: no realistic prospect AND no other compelling reason for trial."
         }
       ]
     },

@@ -1,0 +1,23 @@
+module: caparo_three_stage_test
+version_id: "caparo-v-dickman-1990"
+source_authority:
+  jurisdiction: "Common-law"
+  instrument: "Caparo Industries plc v Dickman [1990] UKHL 2, [1990] 2 AC 605"
+  url: "https://www.bailii.org/uk/cases/UKHL/1990/2.html"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: null    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 1990-02-08
+  in_force_until: null      # current
+drift_check:
+  method: manual
+  url: "https://www.bailii.org/uk/cases/UKHL/1990/2.html"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: true
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Three-stage duty-of-care test. Doctrine; drift = Supreme Court overrule.
+  Note that Robinson v CC West Yorkshire [2018] UKSC 4 narrowed the
+  application of stage 2; check on update.

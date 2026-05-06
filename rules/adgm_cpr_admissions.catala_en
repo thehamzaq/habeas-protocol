@@ -1,20 +1,58 @@
-## ADGM Court Procedure Rules 2016 — admissions framework
-##
-## Source: ADGM Court Procedure Rules 2016 ("ADGM CPR"). The rules
-## include an admissions framework whereby a party who admits a fact
-## or a sum may have judgment entered for that admitted amount without
-## further proof; disputed amounts proceed to trial. Combined with the
-## ADGM Civil Evidence, Judgments, Enforcement and Judicial Cooperation
-## Regulations 2015, the court may apply set-off between admitted sums
-## and counterclaim sums proven on the balance of probabilities.
-##
-## Used in:
-##   trace-04 — ADGMCFI-2024-320 Projeco v Ideacrate (admissions on
-##              individual contract items, set-off against counterclaim).
-##
-## This module captures the *arithmetic* of the admissions/set-off
-## composition. The "what was admitted" and "what counterclaim items
-## were proven" are human-judgment inputs.
+# ADGM Court Procedure Rules 2016 — admissions and set-off
+
+Source: ADGM Court Procedure Rules 2016 ("ADGM CPR"), admissions
+framework. Pinned URL in `adgm_cpr_admissions_source.yaml`. In force;
+current.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): ADGM Court Procedure Rules
+2016, © Abu Dhabi Global Market. Reproduced from the ADGM-published
+PDF for academic / research purposes.
+
+## Rule 42 — Admissions (verbatim)
+
+Reproduced verbatim from the ADGM Court Procedure Rules 2016 (consolidated
+30 November 2023):
+
+42. Admissions
+
+(1) Rule 109 deals with the procedure in relation to a notice to admit
+facts.
+
+(2) Where the only remedy which the claimant is seeking is the payment
+of money, the defendant may admit, by giving notice in writing in
+accordance with the relevant practice direction, liability to pay the
+whole or part of a claim for a specified amount of money or, where the
+amount is not specified, the whole amount or part only of that claim.
+
+(3) Where the defendant makes an admission as mentioned in paragraph
+(2), the claimant has the right to enter judgment for the amount of
+money for which liability has been admitted.
+
+(4) The court may allow a party to amend or withdraw any admission made
+by him on such terms as it thinks just.
+
+(5) Where the Court has entered judgment in relation to a part of a
+claim that has been admitted and the defendant has filed a defence in
+relation to part of the claim that has not been admitted, the Court
+shall proceed to determine that part of the claim.
+
+(6) Where the Court has entered judgment in relation to a part of a
+claim that has been admitted and the defendant has not filed a defence
+in relation to part of the claim that has not been admitted, the
+claimant may apply for default judgment on that part of the claim.
+
+The set-off arithmetic between admitted sums (under Rule 42(3)) and
+counterclaim sums proven on the balance of probabilities sits alongside
+Rule 42 by force of the ADGM Civil Evidence, Judgments, Enforcement and
+Judicial Cooperation Regulations 2015. This module captures that
+arithmetic; the "what was admitted" and "what counterclaim items were
+proven" are human-judgment inputs.
+
+This module captures the *arithmetic* of the admissions/set-off
+composition. The "what was admitted" and "what counterclaim items were
+proven" are human-judgment inputs.
+
+## Encoding
 
 ```catala
 declaration structure AdmittedItem:
@@ -28,8 +66,17 @@ declaration structure CounterclaimItem:
 declaration structure AdmissionsAward:
   data admissions_total_aed content decimal
   data counterclaim_total_aed content decimal
+  ## Clamped at 0.00 — under the admissions framework the *claimant's*
+  ## right to enter judgment is for the admitted sums net of any
+  ## proven counterclaim set-off. If the counterclaim exceeds the
+  ## admissions, the surplus is a separate matter for the defendant's
+  ## counterclaim — it is NOT a negative payment to the claimant. The
+  ## raw signed difference is exposed in `signed_net_aed` for
+  ## downstream consumers that want it.
   data net_to_claimant_aed content decimal
+  data signed_net_aed content decimal
   data counterclaim_exceeds_admissions content boolean
+  data counterclaim_surplus_aed content decimal
 
 declaration scope AdmissionsAndSetOff:
   input admitted_items content list of AdmittedItem
@@ -46,16 +93,29 @@ scope AdmissionsAndSetOff:
       sum decimal of (map each c among counterclaim_items
                       to c.proven_aed)
     in
-    let net equals admitted_total - counter_total in
+    let signed_net equals admitted_total - counter_total in
+    let net_clamped equals
+      if signed_net > 0.00 then signed_net else 0.00
+    in
+    let surplus equals
+      if signed_net < 0.00 then 0.00 - signed_net else 0.00
+    in
     AdmissionsAward {
       -- admissions_total_aed: admitted_total
       -- counterclaim_total_aed: counter_total
-      -- net_to_claimant_aed: net
-      -- counterclaim_exceeds_admissions: net < 0.00
+      -- net_to_claimant_aed: net_clamped
+      -- signed_net_aed: signed_net
+      -- counterclaim_exceeds_admissions: signed_net < 0.00
+      -- counterclaim_surplus_aed: surplus
     }
 ```
 
-## Test — toy admissions/counterclaim arithmetic.
+## Used in
+
+trace-04 — ADGMCFI-2024-320 *Projeco v Ideacrate* (admissions on
+individual contract items, set-off against counterclaim).
+
+## Tests
 
 ```catala
 #[test] declaration scope TestAdmissionsNetPositive:
@@ -88,6 +148,11 @@ scope TestCounterclaimSwallowsAdmissions:
   definition composite.counterclaim_items equals [
     CounterclaimItem { -- item_no: 1 -- proven_aed: 250000.00 }
   ]
-  assertion award.net_to_claimant_aed = -150000.00
+  ## Clamped: net to claimant cannot be negative under the admissions
+  ## framework. The surplus is the defendant's counterclaim issue, a
+  ## separate matter from the claimant's right to judgment.
+  assertion award.net_to_claimant_aed = 0.00
+  assertion award.signed_net_aed = -150000.00
   assertion award.counterclaim_exceeds_admissions = true
+  assertion award.counterclaim_surplus_aed = 150000.00
 ```

@@ -1,0 +1,20 @@
+{
+  "name": "Habeas Protocol",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "remoteEnv": {
+    "OPAMROOT": "/root/.opam",
+    "PATH": "/root/.opam/catala/bin:${containerEnv:PATH}"
+  },
+  "postCreateCommand": "eval $(opam env --switch=catala) && make test",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ocamllabs.ocaml-platform"
+      ]
+    }
+  },
+  "remoteUser": "root"
+}

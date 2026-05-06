@@ -1,0 +1,10 @@
+{
+  "trace_id": "trace-02",
+  "case_no": "ARB 008/2026",
+  "kind": "none",
+  "quantum": null,
+  "operative_value": null,
+  "predicate_value": null,
+  "paragraph_ref": null,
+  "note": "All five scenarios (on-time, at-deadline, 1/61/92 days late) reproduce the implicit schedule exactly. No discrepancy surfaced."
+}

@@ -1,29 +1,94 @@
-## English law of contractual interpretation
-##
-## Source: *Wood v Capita Insurance Services Ltd* [2017] UKSC 24,
-## applying *Rainy Sky SA v Kookmin Bank* [2011] UKSC 50, with
-## *Arnold v Britton* [2015] UKSC 36 supplying the textual-emphasis
-## limb. The unitary approach: read the contract as a whole, balance
-## the *natural meaning* of the words against business common sense
-## and the *factual matrix*. Where the language is unambiguous, the
-## court enforces it; where rival readings are equally arguable, the
-## one that better accords with business common sense prevails.
-##
-## ADGM applies this body of law wholesale via the *Application of
-## English Law Regulations 2015*, so this module is the rule-of-decision
-## for every ADGM contract dispute. DIFC reaches the same place by
-## analogy through DIFC Contract Law (which codifies the same
-## principles).
-##
-## Used in:
-##   trace-05 — ADGMCFI-2024-158 *Xetech v Pulsar* (Heath KC).
-##              Clauses 2(b), 7, 10 unambiguously aligned ⇒ unitary
-##              reading carries the day, business-common-sense limb
-##              never reached.
-##
-## The rule is decision-shaped: the court picks one of {Plain meaning
-## carries, Business common sense carries, Genuinely ambiguous} and
-## decides accordingly.
+# English law of contractual interpretation — *Wood v Capita* [2017] UKSC 24
+
+Source: *Wood v Capita Insurance Services Ltd* [2017] UKSC 24, [2017]
+AC 1173 (Supreme Court of the United Kingdom). Pinned URL:
+https://www.supremecourt.uk/cases/uksc-2015-0091.html. Doctrine — drift
+= Supreme Court overrule. Builds on *Rainy Sky SA v Kookmin Bank*
+[2011] UKSC 50 and *Arnold v Britton* [2015] UKSC 36.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): Contains public-sector
+information licensed under the Open Government Licence v3.0 —
+http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/.
+
+## The unitary approach — Lord Hodge
+
+Lord Hodge (with whom Lord Neuberger, Lord Mance, Lord Clarke and Lord
+Sumption agreed) reaffirmed the unitary, iterative approach to
+contractual interpretation. Quoting paragraphs 10 to 14 verbatim from
+the official judgment text:
+
+10. The court's task is to ascertain the objective meaning of the
+language which the parties have chosen to express their agreement. It
+has long been accepted that this is not a literalist exercise focused
+solely on a parsing of the wording of the particular clause but that
+the court must consider the contract as a whole and, depending on the
+nature, formality and quality of drafting of the contract, give more or
+less weight to elements of the wider context in reaching its view as to
+that objective meaning.
+
+11. Lord Clarke elegantly summarised the approach to construction in
+Rainy Sky at para 21f. In Arnold all of the judgments confirmed the
+approach in Rainy Sky. Interpretation is, as Lord Clarke stated in
+Rainy Sky (para 21), a unitary exercise; where there are rival meanings,
+the court can give weight to the implications of rival constructions by
+reaching a view as to which construction is more consistent with
+business common sense. But, in striking a balance between the
+indications given by the language and the implications of the competing
+constructions the court must consider the quality of drafting of the
+clause; and it must also be alive to the possibility that one side may
+have agreed to something which with hindsight did not serve his
+interest. Similarly, the court must not lose sight of the possibility
+that a provision may be a negotiated compromise or that the negotiators
+were not able to agree more precise terms.
+
+12. This unitary exercise involves an iterative process by which each
+suggested interpretation is checked against the provisions of the
+contract and its commercial consequences are investigated.
+
+13. Textualism and contextualism are not conflicting paradigms in a
+battle for exclusive occupation of the field of contractual
+interpretation. Rather, the lawyer and the judge, when interpreting any
+contract, can use them as tools to ascertain the objective meaning of
+the language which the parties have chosen to express their agreement.
+The extent to which each tool will assist the court in its task will
+vary according to the circumstances of the particular agreement or
+agreements.
+
+14. On the approach to contractual interpretation, Rainy Sky and Arnold
+were saying the same thing.
+
+The rule of decision distilled from the unitary approach is structurally:
+
+1. Read the contract as a whole. Where the language used by the
+   parties, read in context, is **unambiguous**, the court enforces it
+   even where the result appears uncommercial (*Arnold v Britton*).
+2. Where rival readings are equally arguable on the language, the
+   court adopts the construction more consistent with **business
+   common sense**, supported by the **factual matrix** (*Rainy Sky*).
+3. Where neither limb resolves the question, the contract is
+   **genuinely ambiguous** and the court reaches for further
+   interpretive aids (*contra proferentem*, expert evidence on trade
+   usage, etc.) outside the scope of this module.
+
+## Encoding
+
+The rule is decision-shaped: the court picks one of {Plain meaning
+carries, Business common sense carries, Genuinely ambiguous} and decides
+accordingly.
+
+DOCTRINAL NOTE on Stage 2 (post-2026-05 audit): an earlier encoding
+required strict conjunction of `common_sense_supports_one_reading AND
+factual_matrix_supports_that_reading` for the business-common-sense
+limb. Lord Hodge in *Wood v Capita* paras 11–12 frames the unitary
+exercise as **iterative balancing**, not strict conjunction —
+common-sense and factual-matrix indicators are *both* weighed but
+neither is individually necessary. The encoding now uses a balancing
+rule: **at least one of** common-sense or factual-matrix must support
+a reading, AND the other must not affirmatively contradict it. The
+strict-conjunctive view remains expressible by setting both inputs
+true; the new rule additionally allows the realistic case where one
+indicator is silent or weakly-supporting while the other is
+load-bearing.
 
 ```catala
 declaration enumeration InterpretationLimb:
@@ -31,10 +96,20 @@ declaration enumeration InterpretationLimb:
   -- BusinessCommonSenseCarries
   -- GenuinelyAmbiguous
 
+declaration enumeration MatrixSignal:
+  -- Supports
+  -- Silent
+  -- Contradicts
+
 declaration structure ClauseEvidence:
   data clauses_unambiguously_aligned content boolean
   data common_sense_supports_one_reading content boolean
-  data factual_matrix_supports_that_reading content boolean
+  ## Tri-state: does the factual matrix support the candidate reading,
+  ## stay silent on it, or affirmatively cut against it? Lord Hodge's
+  ## balancing test does not require positive support from BOTH limbs;
+  ## it requires that one limb support the reading and the other not
+  ## affirmatively contradict it.
+  data factual_matrix_signal content MatrixSignal
 
 declaration structure InterpretationDisposition:
   data limb content InterpretationLimb
@@ -48,12 +123,22 @@ declaration scope WoodVCapita:
 scope WoodVCapita:
   definition disposition equals
     let plain equals evidence.clauses_unambiguously_aligned in
+    let cs equals evidence.common_sense_supports_one_reading in
+    let mtx_supports equals
+      evidence.factual_matrix_signal = Supports
+    in
+    let mtx_contradicts equals
+      evidence.factual_matrix_signal = Contradicts
+    in
+    ## Lord Hodge balancing: BCS limb carries when (i) at least one of
+    ## common-sense or factual-matrix supports a reading, AND (ii) the
+    ## factual matrix does not affirmatively contradict it. A silent
+    ## matrix is permissive; a contradicting matrix is a hard cut.
     let bcs equals
       (not plain)
-      and evidence.common_sense_supports_one_reading
-      and evidence.factual_matrix_supports_that_reading
+      and (cs or mtx_supports)
+      and (not mtx_contradicts)
     in
-    let ambig equals (not plain) and (not bcs) in
     let chosen equals
       if plain then PlainMeaningCarries
       else (if bcs then BusinessCommonSenseCarries
@@ -66,7 +151,20 @@ scope WoodVCapita:
     }
 ```
 
-## Tests — three rule-of-decision branches.
+## Application in ADGM and DIFC
+
+ADGM applies this body of law wholesale via the *Application of English
+Law Regulations 2015*, so this module is the rule-of-decision for every
+ADGM contract dispute. DIFC reaches the same place by analogy through
+DIFC Contract Law (DIFC Law No. 6 of 2004), which codifies substantially
+the same principles in Articles 49–53 (interpretation of contracts).
+
+Used in:
+  trace-05 — ADGMCFI-2024-158 *Xetech v Pulsar* (Heath KC). Clauses
+             2(b), 7, 10 unambiguously aligned ⇒ unitary reading carries
+             the day; the business-common-sense limb was never reached.
+
+## Tests — three rule-of-decision branches
 
 ```catala
 #[test] declaration scope TestWoodVCapita_PlainMeaning:
@@ -81,7 +179,7 @@ scope TestWoodVCapita_PlainMeaning:
     ClauseEvidence {
       -- clauses_unambiguously_aligned: true
       -- common_sense_supports_one_reading: true
-      -- factual_matrix_supports_that_reading: true
+      -- factual_matrix_signal: Supports
     }
   assertion disposition.limb = PlainMeaningCarries
 
@@ -91,13 +189,46 @@ scope TestWoodVCapita_PlainMeaning:
 
 scope TestWoodVCapita_BusinessSenseCarries:
   definition disposition equals composite.disposition
+  ## Both common-sense and factual-matrix support the same reading.
   definition composite.evidence equals
     ClauseEvidence {
       -- clauses_unambiguously_aligned: false
       -- common_sense_supports_one_reading: true
-      -- factual_matrix_supports_that_reading: true
+      -- factual_matrix_signal: Supports
     }
   assertion disposition.limb = BusinessCommonSenseCarries
+
+#[test] declaration scope TestWoodVCapita_BCS_OnCommonSenseAlone:
+  composite scope WoodVCapita
+  output disposition content InterpretationDisposition
+
+scope TestWoodVCapita_BCS_OnCommonSenseAlone:
+  definition disposition equals composite.disposition
+  ## Lord Hodge balancing — BCS still carries where common-sense
+  ## supports a reading and the factual matrix is silent on it.
+  definition composite.evidence equals
+    ClauseEvidence {
+      -- clauses_unambiguously_aligned: false
+      -- common_sense_supports_one_reading: true
+      -- factual_matrix_signal: Silent
+    }
+  assertion disposition.limb = BusinessCommonSenseCarries
+
+#[test] declaration scope TestWoodVCapita_FactualMatrixContradicts:
+  composite scope WoodVCapita
+  output disposition content InterpretationDisposition
+
+scope TestWoodVCapita_FactualMatrixContradicts:
+  definition disposition equals composite.disposition
+  ## Common-sense supports a reading but the factual matrix
+  ## affirmatively contradicts it: BCS does not carry; ambiguity.
+  definition composite.evidence equals
+    ClauseEvidence {
+      -- clauses_unambiguously_aligned: false
+      -- common_sense_supports_one_reading: true
+      -- factual_matrix_signal: Contradicts
+    }
+  assertion disposition.limb = GenuinelyAmbiguous
 
 #[test] declaration scope TestWoodVCapita_Ambiguous:
   composite scope WoodVCapita
@@ -109,7 +240,7 @@ scope TestWoodVCapita_Ambiguous:
     ClauseEvidence {
       -- clauses_unambiguously_aligned: false
       -- common_sense_supports_one_reading: false
-      -- factual_matrix_supports_that_reading: false
+      -- factual_matrix_signal: Silent
     }
   assertion disposition.limb = GenuinelyAmbiguous
 ```

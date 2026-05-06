@@ -4,7 +4,7 @@
   "source_authorities": [
     {
       "kind": "statute",
-      "citation": "ADGM Arbitration Regulations 2015, ss 56-58"
+      "citation": "ADGM Arbitration Regulations 2015, s 62 (current numbering; was s 56 in the 2015 enacted version)"
     },
     {
       "kind": "international_convention",
@@ -13,11 +13,20 @@
   ],
   "test_scopes": [
     "TestADGMRecognitionGranted",
-    "TestADGMRecognitionRefused"
+    "TestADGMRecognitionRefused",
+    "TestADGMSeverabilityRelief",
+    "TestADGMS62_3_BarsApplication"
+  ],
+  "public_scopes": [
+    "ADGMRecognition",
+    "ADGM_S62_2_Adjournment"
   ],
   "certification": {
     "state": "draft",
     "states_history": []
   },
-  "cross_jurisdiction_note": "Structurally parallel to sg_iaa_s_31. Statutory references and public-policy authority differ."
+  "cross_jurisdiction_note": "Structurally parallel to sg_iaa_s_31. Statutory references and public-policy authority differ.",
+  "author": "Hamza Qureshi <thehamzaq@gmail.com>",
+  "reviewers": [],
+  "lawyer_of_record": null
 }

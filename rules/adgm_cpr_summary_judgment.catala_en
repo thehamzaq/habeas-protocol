@@ -1,28 +1,60 @@
-## ADGM Court Procedure Rules 2016 — Rule 24 (summary judgment)
-##
-## Source: ADGM Court Procedure Rules 2016, Rule 24 (Summary Judgment).
-## The court may give summary judgment against a party (claimant or
-## defendant) on the whole of a claim, or on a particular issue, if it
-## considers that:
-##
-##   (a) that party has *no realistic prospect of succeeding* on the
-##       claim or issue (or, for a defendant, of successfully defending
-##       it); AND
-##   (b) there is *no other compelling reason* why the case or issue
-##       should be disposed of at trial.
-##
-## Both limbs must be satisfied — the test is conjunctive. The "no
-## realistic prospect" limb is read against the *Easyair* gloss
-## (ICI Chemicals Industries v Tesco Plc): the prospect must be more
-## than fanciful but the court must avoid conducting a mini-trial.
-##
-## Used by ADGM CFI for early disposal across the contract-dispute
-## docket. Reciprocal in shape to DIFC RDC Rule 24 (which uses the
-## identical English-CPR-derived test).
-##
-## Applies in:
-##   ADGM contract disputes; default-judgment contests; jurisdictional
-##   summary applications.
+# ADGM Court Procedure Rules 2016, Rule 68 — summary judgment
+
+Source: ADGM Court Procedure Rules 2016, Rule 68 (Grounds for Summary
+Judgment). Pinned URL in `adgm_cpr_summary_judgment_source.yaml`. In
+force; current.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): ADGM Court Procedure Rules
+2016, © Abu Dhabi Global Market. Reproduced from the ADGM-published
+PDF for academic / research purposes.
+
+NOTE: this module was previously labelled "Rule 24" by analogy with
+the English CPR; in the ADGM CPR 2016 the operative rule number is
+**Rule 68**. The encoding's logic and tests are unchanged — only the
+citation is corrected here.
+
+## Rule 68 — Grounds for summary judgment (verbatim)
+
+Reproduced verbatim from the ADGM Court Procedure Rules 2016
+(consolidated 30 November 2023):
+
+68. Grounds for summary judgment
+
+(1) The Court may give summary judgment against a claimant or defendant
+on the whole of a claim or on a particular issue if it considers that —
+
+  (a) the claimant has no real prospect of succeeding on the claim or
+      issue; or
+
+  (b) the defendant has no real prospect of successfully defending the
+      claim or issue; and
+
+  (c) there is no other compelling reason why the case or issue should
+      be disposed of at trial.
+
+(2) An application for summary judgment may be made in accordance with
+the provisions in Part 8.
+
+(3) A claimant may not apply for summary judgment until the defendant
+against whom summary judgment is sought has filed an acknowledgment of
+service unless the Court gives permission, or a rule or relevant
+practice direction provides otherwise.
+
+(4) Paragraph (3) does not apply to a claim filed in the Small Claims
+Division to which Part 37 applies, to a claim filed in the Employment
+Division to which Part 38 applies, or to a claim filed in the Real
+Property Division to which Part 41 applies.
+
+(5) If a claimant applies for summary judgment before a defendant
+against whom the application is made has filed a defence, that
+defendant need not file a defence before the summary judgment hearing.
+
+The "no real prospect" limb is read against the *Easyair* gloss
+(*Easyair Ltd v Opal Telecom Ltd* [2009] EWHC 339 (Ch), per Lewison J):
+the prospect must be more than fanciful, but the court must avoid
+conducting a mini-trial. Limbs (a)/(b) and (c) are conjunctive.
+
+## Encoding
 
 ```catala
 declaration structure SummaryJudgmentApplication:
@@ -49,7 +81,18 @@ scope SummaryJudgmentTest:
     }
 ```
 
-## Tests — both limbs convolved.
+## Application
+
+ADGM CFI applies Rule 68 across the contract-dispute docket for early
+disposal. Structurally parallel to DIFC RDC Part 24 (DIFC's
+summary-judgment rule, which is itself patterned on English CPR Pt 24
+and applies the identical conjunctive two-limb test).
+
+Applies in:
+  ADGM contract disputes; default-judgment contests; jurisdictional
+  summary applications.
+
+## Tests
 
 ```catala
 #[test] declaration scope TestSummaryJudgmentBothLimbs:

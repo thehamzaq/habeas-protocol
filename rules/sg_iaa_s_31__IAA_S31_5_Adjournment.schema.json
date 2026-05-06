@@ -1,0 +1,58 @@
+[
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope IAA_S31_5_Adjournment input",
+    "description": "Input structure of scope IAA_S31_5_Adjournment (SG IAA s 31(5) — adjournment-with-security power, exercisable while a parallel set-aside application is pending at the seat).",
+    "$ref": "#/definitions/IAA_S31_5_Adjournment_in",
+    "definitions": {
+      "S31_5_Inputs": {
+        "type": "object",
+        "properties": {
+          "setting_aside_pending_at_seat": { "type": "boolean" },
+          "adjournment_ordered": { "type": "boolean" },
+          "security_ordered": { "type": "boolean" }
+        },
+        "required": [
+          "security_ordered", "adjournment_ordered",
+          "setting_aside_pending_at_seat"
+        ],
+        "additionalProperties": false
+      },
+      "IAA_S31_5_Adjournment_in": {
+        "type": "object",
+        "properties": { "inputs": { "$ref": "#/definitions/S31_5_Inputs" } },
+        "required": [ "inputs" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Scope IAA_S31_5_Adjournment output",
+    "description": "Output structure of scope IAA_S31_5_Adjournment.",
+    "$ref": "#/definitions/IAA_S31_5_Adjournment",
+    "definitions": {
+      "S31_5_Output": {
+        "type": "object",
+        "properties": {
+          "proceedings_adjourned": { "type": "boolean" },
+          "security_required": { "type": "boolean" },
+          "adjournment_engaged_lawfully": { "type": "boolean" }
+        },
+        "required": [
+          "adjournment_engaged_lawfully", "security_required",
+          "proceedings_adjourned"
+        ],
+        "additionalProperties": false
+      },
+      "IAA_S31_5_Adjournment": {
+        "type": "object",
+        "properties": {
+          "adjournment": { "$ref": "#/definitions/S31_5_Output" }
+        },
+        "required": [ "adjournment" ],
+        "additionalProperties": false
+      }
+    }
+  }
+]

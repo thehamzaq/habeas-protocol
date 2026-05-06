@@ -73,7 +73,20 @@ declaration structure Disposition:
   data ld_cap_aed content decimal
   data ld_awarded_aed content decimal
   data ld_was_capped content boolean
-  data counterclaim_sum_aed content decimal
+  ## Defendant's proven counterclaim items only — i.e. the sum of
+  ## items in the input list. The CALLER is responsible for excluding
+  ## the claimant's own LD line from `counterclaim_items` (the trace
+  ## evaluator marks the LD line with `computed_from_rule=true`; the
+  ## Catala scope receives only the *real* defendant counterclaim).
+  ## If the caller mistakenly passes LD inside counterclaim_items,
+  ## `total_offsets_aed` will double-count.
+  data defendant_counterclaim_aed content decimal
+  ## Combined offsets against the claimant's withheld funds: the
+  ## defendant's proven counterclaim plus the claimant's own LD
+  ## entitlement (which the defendant has already paid by withholding).
+  ## Renamed from `counterclaim_sum_aed` (the prior name conflated the
+  ## two and was flagged in the 2026-05-05 audit).
+  data total_offsets_aed content decimal
   data net_to_claimant_aed content decimal
   data days_to_judgment content decimal
   data interest_aed content decimal
@@ -95,14 +108,17 @@ scope CompositeJudgment:
       if ld_uncapped > ld_cap then ld_cap else ld_uncapped
     in
     let ld_was_capped equals ld_uncapped > ld_cap in
-    let counterclaim_sum equals
-      (sum decimal of (map each item among facts.counterclaim_items
-                       such that item.found_proven
-                       to item.amount_aed))
-        + (if ld_awarded > 0.0 then ld_awarded else 0.0)
+    let defendant_counterclaim equals
+      sum decimal of (map each item among facts.counterclaim_items
+                      such that item.found_proven
+                      to item.amount_aed)
+    in
+    let total_offsets equals
+      defendant_counterclaim
+      + (if ld_awarded > 0.0 then ld_awarded else 0.0)
     in
     let net equals
-      facts.amount_withheld_by_defendant_aed - counterclaim_sum
+      facts.amount_withheld_by_defendant_aed - total_offsets
     in
     let days equals
       (facts.judgment_date - facts.handover_date) / 1 day
@@ -115,7 +131,8 @@ scope CompositeJudgment:
       -- ld_cap_aed: ld_cap
       -- ld_awarded_aed: ld_awarded
       -- ld_was_capped: ld_was_capped
-      -- counterclaim_sum_aed: counterclaim_sum
+      -- defendant_counterclaim_aed: defendant_counterclaim
+      -- total_offsets_aed: total_offsets
       -- net_to_claimant_aed: net
       -- days_to_judgment: days
       -- interest_aed: interest
@@ -159,8 +176,13 @@ scope TestProjeco:
   ## Court awarded LDs at the cap of AED 608,521.19
   assertion disposition.ld_was_capped = true
   assertion disposition.ld_awarded_aed = 608521.19
-  ## Court found counterclaim sum AED 755,786.19
-  assertion disposition.counterclaim_sum_aed = 755786.19
+  ## Defendant's proven counterclaim items (smoke management only,
+  ## remediation not proven) sum to AED 147,265.00. The Catala scope
+  ## input excludes the LD line (per the docstring contract); LD is
+  ## added separately to total_offsets via ld_awarded.
+  assertion disposition.defendant_counterclaim_aed = 147265.00
+  ## Total offsets (defendant counterclaim + LD) sum to AED 755,786.19
+  assertion disposition.total_offsets_aed = 755786.19
   ## Court found net principal AED 10,500.96
   assertion disposition.net_to_claimant_aed = 10500.96
 ```

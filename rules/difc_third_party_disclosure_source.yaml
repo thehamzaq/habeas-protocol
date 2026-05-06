@@ -1,0 +1,22 @@
+module: difc_third_party_disclosure
+version_id: "rdc-2024-11-01+norwich-pharmacal+bankers-trust"
+source_authority:
+  jurisdiction: DIFC
+  instrument: "DIFC RDC 28.52 + Norwich Pharmacal v Customs and Excise [1974] AC 133 + Bankers Trust v Shapira [1980] 1 WLR 1274"
+  url: "https://www.difccourts.ae/rules-decisions/rules"
+  retrieved_at: 2026-04-15
+  retrieved_sha256: "77c8640f9699a9cab8e0742e4d2d74840f666847d71be1ee5c1e229c5bcb156c"    # populated by scripts/check_rule_drift.py
+amendment_window:
+  in_force_from: 2024-11-01
+  in_force_until: null      # current
+drift_check:
+  method: http_get
+  url: "https://www.difccourts.ae/rules-decisions/rules"
+  canonicalisation: strip-whitespace-and-html
+case_law_doctrine: true
+expiry:
+  reminder_at: 2027-04-15
+  hard_expiry_at: 2028-04-15
+notes: |
+  Composite rule: RDC 28.52 + two House of Lords / CA doctrines. Drift on
+  RDC checks via http_get; drift on doctrines is manual review.

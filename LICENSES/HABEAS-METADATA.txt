@@ -1,0 +1,96 @@
+Habeas Protocol Structured-Metadata Licence v1
+================================================
+
+This licence applies to the structured-metadata files under `data/`:
+
+  - data/judgments.json
+  - data/primitives.json
+  - data/schema.json
+  - data/falsification_set.json
+  - data/comparison_set.json
+  - data/sources.md
+  - data/tos_audit.md
+  - data/PROVENANCE.md (and per-source provenance files)
+  - data/sicc_stratification_plan.md
+  - data/falsification_results.md
+  - data/comparison_results.md
+  - data/irr/* (sample, coder templates, README)
+
+It does NOT apply to the source judgments scraped under data/raw/. Those
+remain the property of the issuing court (the DIFC Courts, the ADGM
+Courts, and the Singapore Courts) and are NOT redistributed by this
+project. data/raw/ is gitignored and must not be committed.
+
+Why a custom licence rather than CC-BY-4.0
+------------------------------------------
+
+The DIFC, ADGM, and Singapore Courts terms of use prohibit reproduction
+and redistribution of website content. CC-BY-4.0 expressly permits
+commercial redistribution by downstream users; that grant is incompatible
+with the source ToS. A non-commercial-research, takedown-respecting
+licence is the closest open-licence shape that does not exceed our
+underlying rights. See data/tos_audit.md for the full audit.
+
+Permitted uses
+--------------
+
+You may, free of charge:
+
+  1. Read, copy, and redistribute the structured metadata for
+     non-commercial academic research, criticism, or review.
+  2. Cite Maxim Labs (and reproduce attribution) when doing so.
+  3. Modify and build upon the structured metadata for the same
+     non-commercial-research purpose, provided derivative works carry
+     this licence (or are clearly labelled as not redistributable).
+  4. Quote short excerpts of source judgments retained in the metadata
+     under the fair-dealing exception in your jurisdiction (Singapore
+     Copyright Act 2021 ss 190–196; UAE Federal Decree-Law 38/2021;
+     equivalent common-law criticism-and-review).
+
+Not permitted
+-------------
+
+  1. Commercial use of the structured metadata, including any
+     subscription, paid-API, or paid-product offering, without prior
+     written permission from Maxim Labs AND from the rightsholder of
+     the underlying source content (DIFC Courts / ADGM Courts /
+     Singapore Courts as applicable).
+  2. Redistribution of source judgment text scraped from
+     difccourts.ae, adgm.com, assets.adgm.com, or elitigation.sg.
+     Source judgment text is NOT covered by this licence and is NOT
+     in this repository.
+  3. Use that misrepresents the metadata as an authoritative legal
+     determination. The artifact is a research output; reliance is
+     research-only.
+
+Attribution
+-----------
+
+When citing or redistributing under the permitted-uses clause, attribute
+as:
+
+  Maxim Labs, "Habeas Protocol: Structured Metadata of DIFC, ADGM, and
+  SICC Commercial Judgments," v0.2 (2026). See data/judgments.json.
+
+Disclaimer
+----------
+
+This is a research artifact. Maxim Labs does not warrant accuracy,
+completeness, or fitness for any particular purpose. The structured
+metadata may diverge from the issuing court's authoritative source
+record; the source record governs. Maxim Labs is not engaged in the
+practice of law in any jurisdiction.
+
+Takedown
+--------
+
+Rightsholders, registrars, or named individuals who wish disputed
+content removed: see TAKEDOWN.md. Disputed material is removed within
+7 days pending verification.
+
+Changes to this licence
+-----------------------
+
+Versioned. The version that applies to a given derivative work is the
+version in force at the time of redistribution. Changes are recorded
+in CHANGELOG entries on the repository.

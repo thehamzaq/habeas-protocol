@@ -54,13 +54,13 @@ description = "ADGM Court Procedure Rules 2016 — admissions and set-off arithm
 file = "adgm_cpr_admissions.catala_en"
 
 [[modules]]
-name = "difc_rdc_38_7_indemnity"
-description = "DIFC RDC 38.7 — indemnity-basis costs review (bounded discretion: residue is the human-judgment limb)"
-file = "difc_rdc_38_7_indemnity.catala_en"
+name = "difc_rdc_38_19_indemnity"
+description = "DIFC RDC 38.17 + 38.19 — indemnity-basis costs review (bounded discretion: residue is the human-judgment limb)"
+file = "difc_rdc_38_19_indemnity.catala_en"
 
 [[modules]]
 name = "adgm_cpr_summary_judgment"
-description = "ADGM CPR Rule 24 — summary judgment two-limb conjunctive test"
+description = "ADGM CPR Rule 68 — summary judgment two-limb conjunctive test"
 file = "adgm_cpr_summary_judgment.catala_en"
 
 [[modules]]

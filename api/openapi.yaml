@@ -18,7 +18,7 @@ info:
       - **Rule runs** (`POST /api/rule_run`) execute Catala-encoded
         rules over user-supplied inputs and write an audit row.
   license:
-    name: MIT (code) + CC-BY-4.0 (data)
+    name: MIT (code) + Habeas Protocol Structured-Metadata Licence v1 (data — non-commercial research)
   contact:
     name: Maxim Labs
     url: https://github.com/thehamzaq/habeas-protocol
@@ -491,6 +491,79 @@ paths:
                   applicable_rules: { type: array, items: { $ref: "#/components/schemas/RuleRef" } }
                   public_policy_overrides: { type: array, items: { $ref: "#/components/schemas/RuleRef" } }
                   narrative: { type: array, items: { type: string } }
+
+  /api/certification_spec:
+    get:
+      tags: [rules]
+      summary: Returns the rule-module certification specification
+      description: |
+        Returns the contents of `rules/_certification.yaml` — the
+        lifecycle states (draft / submitted / reviewed / certified /
+        deprecated), allowed transitions, required metadata per state,
+        source-authority kinds, review checklist, distribution tiers,
+        and open questions.
+      responses:
+        "200":
+          description: Certification spec (YAML rendered as JSON).
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/certification_states:
+    get:
+      tags: [rules]
+      summary: Per-module certification state
+      description: |
+        Returns each rule module's current certification state from its
+        `_metadata.json` file (state, author, reviewers,
+        lawyer_of_record, certification.state).
+      responses:
+        "200":
+          description: Per-module certification state.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    module: { type: string }
+                    state: { type: string, enum: [draft, submitted, reviewed, certified, deprecated] }
+                    author: { type: string, nullable: true }
+                    reviewers:
+                      type: array
+                      items: { type: string }
+                    lawyer_of_record: { type: string, nullable: true }
+
+  /api/corpus/coverage:
+    get:
+      tags: [corpus]
+      summary: Per-tribunal coverage statistics
+      description: |
+        Returns per-tribunal counts of structured / hand-coded /
+        AI-graded entries in `data/judgments.json`, plus the
+        per-tribunal mean primitive scores. Drives the dashboard's
+        coverage widget.
+      responses:
+        "200":
+          description: Coverage statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  per_tribunal:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tribunal: { type: string, enum: [DIFC, ADGM, SICC] }
+                        n_total: { type: integer }
+                        n_hand_coded: { type: integer }
+                        n_ai_graded: { type: integer }
+                        means:
+                          type: object
 
 components:
   schemas:

@@ -1,0 +1,27 @@
+{
+  "n": 20,
+  "selection_seed": 42,
+  "stratification": "one per (tribunal, claim_type) cell in gold set, remainder proportional to bucket size",
+  "case_nos": [
+    "ADGMCFI-2024-322 + 323",
+    "ADGMCFI-2025-198",
+    "ADGMCFI-2022-265",
+    "ADGMCFI-2020-020",
+    "ADGMCFI-2023-249 + ADGMCFI-2024-047",
+    "ADGMCFI-2024-158",
+    "ADGMCFI-2025-283",
+    "ENF 053/2025",
+    "ARB 029/2025",
+    "CFI 036/2025",
+    "CFI 098/2025",
+    "CFI 110/2025",
+    "CA 002/2025",
+    "CFI 022/2025",
+    "CFI 058/2024",
+    "CFI 092/2024",
+    "CFI 072/2025",
+    "CFI 035/2025",
+    "CFI 067/2024",
+    "TCD 001/2024"
+  ]
+}

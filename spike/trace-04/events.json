@@ -32,6 +32,16 @@
     "Withdrawal of admission application refused under ADGM CPR Rule 42(4)",
     "Article 390 application to vary LDs refused: Projeco failed to show actual loss < cap"
   ],
+  "rule_inputs": {
+    "uae_civil_code_art_390__Article390Cap": {
+      "uncapped_amount_aed": 9700000.00,
+      "contract_value_aed": 6085211.90,
+      "contract_cap_rate": 0.10,
+      "contract_caps_ld": true,
+      "court_asked_to_vary_under_390_2": true,
+      "court_finds_grossly_disproportionate": false
+    }
+  },
   "facts": {
     "adjusted_contract_price_aed": 6085211.90,
     "ld_cap_pct": 0.10,
@@ -50,7 +60,7 @@
   "human_ruling": {
     "ld_awarded_aed": 608521.19,
     "ld_basis": "10% of adjusted contract price (cap)",
-    "counterclaim_sum_aed": 755786.19,
+    "total_offsets_aed": 755786.19,
     "principal_aed": 10500.96,
     "pre_judgment_interest_aed": 877.48,
     "interest_basis": "5% per annum from 29 February 2024 to 30 October 2025",

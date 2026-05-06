@@ -6,7 +6,7 @@ arithmetic composition layer of ADGMCFI-2024-320:
 
     1. Liquidated damages   = min(daily_rate * delay_days, cap_pct * price)
     2. Counterclaim sum     = sum of proven counterclaim items (incl. LDs)
-    3. Net principal        = withheld - counterclaim_sum
+    3. Net principal        = withheld - total_offsets
     4. Pre-judgment interest = principal * rate * days_to_judgment / 365
     5. Total judgment       = principal + interest
 
@@ -57,19 +57,32 @@ def composite_judgment(facts):
     ld_was_capped = ld_uncapped > ld_cap
     ld_awarded = ld_cap if ld_was_capped else ld_uncapped
 
-    # Counterclaim sum (only items with found_proven=true contribute)
+    # Decompose the offsets against the claimant's withheld funds into
+    # (i) the claimant's LD entitlement (which the defendant has paid
+    # by withholding) and (ii) the defendant's proven counterclaim
+    # items (a separate set-off matter).
+    # events.json lists LD as one of `counterclaim_items` with
+    # `computed_from_rule=true`; we treat that flag as the marker for
+    # "this is the LD line, not a real defendant counterclaim" so the
+    # split is canonical regardless of input shape. The Catala rule
+    # adds ld_awarded explicitly; the Python evaluator instead
+    # respects the events.json explicit listing — both yield the same
+    # total_offsets number when the input is well-formed.
     proven = [
         item for item in facts["counterclaim_items"]
         if item.get("found_proven")
     ]
-    # If LDs are listed as a counterclaim item with computed_from_rule=true,
-    # we already have its amount in the list; otherwise the rule's
-    # computed ld_awarded is the LDs entry. We respect the events.json
-    # explicit listing.
-    counterclaim_sum = sum((_d(item["amount_aed"]) for item in proven), _d(0))
+    proven_excluding_ld = [
+        item for item in proven
+        if not item.get("computed_from_rule")
+    ]
+    defendant_counterclaim = sum(
+        (_d(item["amount_aed"]) for item in proven_excluding_ld), _d(0)
+    )
+    total_offsets = sum((_d(item["amount_aed"]) for item in proven), _d(0))
 
     # Net principal
-    net = withheld - counterclaim_sum
+    net = withheld - total_offsets
 
     # Pre-judgment interest (calendar daycount)
     days = (judgment - handover).days
@@ -84,7 +97,8 @@ def composite_judgment(facts):
         "ld_cap_aed": _q(ld_cap),
         "ld_awarded_aed": _q(ld_awarded),
         "ld_was_capped": ld_was_capped,
-        "counterclaim_sum_aed": _q(counterclaim_sum),
+        "defendant_counterclaim_aed": _q(defendant_counterclaim),
+        "total_offsets_aed": _q(total_offsets),
         "net_to_claimant_aed": _q(net),
         "calendar_days_to_judgment": days,
         "interest_calendar_daycount_aed": _q(interest_calendar),
@@ -119,8 +133,8 @@ def main():
     print(f"  LD uncapped (daily_rate × delay):            AED {out['ld_uncapped_aed']:>14,}")
     print(f"  LD cap (10% × adjusted price):                AED {out['ld_cap_aed']:>14,}")
     print(f"  LD awarded (capped: {out['ld_was_capped']}):                  AED {out['ld_awarded_aed']:>14,}")
-    print(f"  Counterclaim sum (proven items only):         AED {out['counterclaim_sum_aed']:>14,}")
-    print(f"  Net principal (withheld − counterclaim_sum):  AED {out['net_to_claimant_aed']:>14,}")
+    print(f"  Total offsets (proven counterclaim + LD):     AED {out['total_offsets_aed']:>14,}")
+    print(f"  Net principal (withheld − total_offsets):     AED {out['net_to_claimant_aed']:>14,}")
     print()
     print(f"  Calendar daycount: {out['calendar_days_to_judgment']} days → "
           f"interest AED {out['interest_calendar_daycount_aed']}")
@@ -133,7 +147,7 @@ def main():
     print("=== Validation against human ruling ===")
     checks = [
         ("LD awarded", out["ld_awarded_aed"], _d(human["ld_awarded_aed"])),
-        ("Counterclaim sum", out["counterclaim_sum_aed"], _d(human["counterclaim_sum_aed"])),
+        ("Total offsets", out["total_offsets_aed"], _d(human["total_offsets_aed"])),
         ("Net principal", out["net_to_claimant_aed"], _d(human["principal_aed"])),
     ]
     for label, got, exp in checks:

@@ -1,39 +1,114 @@
-## ADGM Arbitration Regulations 2015 — recognition and enforcement of
-## foreign arbitral awards
-##
-## Source: ADGM Arbitration Regulations 2015. Sections 56–58 implement
-## the New York Convention 1958 in ADGM, in close parallel to Singapore
-## IAA s 31. The grounds for refusing recognition / enforcement of a
-## foreign arbitral award track Article V of the Convention:
-##
-##   s 56(2)(a)  incapacity / invalid arbitration agreement
-##   s 56(2)(b)  improper notice / unable to present case
-##   s 56(2)(c)  award beyond scope of submission to arbitration
-##   s 56(2)(d)  composition of tribunal not in accordance with
-##               party agreement
-##   s 56(2)(e)  award not yet binding / set aside / suspended at seat
-##   s 56(3)(a)  subject matter not arbitrable in ADGM
-##   s 56(3)(b)  enforcement contrary to ADGM public policy
-##
-## The shape of refusal is identical to the Singapore IAA s 31 shape
-## (see `sg_iaa_s_31.catala_en`); both modules exist because (a) the
-## statutory references differ and a Stage-2 simulator routes by
-## tribunal-of-filing, and (b) the public-policy gate in particular is
-## tribunal-specific.
-##
-## Used in:
-##   ADGM arbitration_recognition / arbitration_enforcement claims (10
-##   coded judgments cite this instrument).
+# ADGM Arbitration Regulations 2015 — recognition and enforcement
+
+Source: ADGM Arbitration Regulations 2015. Pinned URL in
+`adgm_arbitration_regulations_2015_source.yaml` (ADGM-direct PDF at
+assets.adgm.com — NOT the Thomson Reuters–hosted consolidated rulebook
+at en.adgm.thomsonreuters.com, which would carry separate compilation
+copyright). In force; current.
+
+ATTRIBUTION (per RULES-ATTRIBUTION.md): ADGM Arbitration Regulations
+2015, © Abu Dhabi Global Market. Reproduced from the ADGM-published
+PDF for academic / research purposes.
+
+Implements New York Convention 1958, Art V, in close parallel to
+Singapore IAA s 31.
+
+NUMBERING NOTE: the operative grounds-for-refusal provision in the
+current consolidated text is **section 62** (Part 4 — Recognition and
+Enforcement). The earlier 2015 enacted version had this material at
+section 56; the encoding's enum names were historically `S56_2_*` /
+`S56_3_*`. They were renamed to `S62_a_*` / `S62_b_*` to track the
+current statutory numbering, which uses `(1)(a)(i)..(vi)` and
+`(1)(b)(i)..(ii)`. A second adversarial audit also discovered that the
+historical letter-suffixes had been mis-aligned (e.g. `_b_` was
+labelled "NaturalJustice" when the source text has (a)(ii) as
+"InvalidAgreement" and (a)(iii) as natural justice); the eight-ground
+list below now matches the source text letter-for-letter.
+
+## Section 62 — verbatim text
+
+Reproduced verbatim from the ADGM Arbitration Regulations 2015 (Part 4
+— The Recognition and Enforcement of Awards):
+
+62. Grounds for refusing recognition or enforcement
+
+(1) Recognition or enforcement of an arbitral award, irrespective of
+the State or jurisdiction in which it was made, may be refused by the
+Court only if:
+
+  (a) the party making the application furnishes proof that:
+
+      (i)   a party to the arbitration agreement was, under the law
+            applicable to it, under some incapacity;
+
+      (ii)  the arbitration agreement is not valid under the law to
+            which the parties have subjected it or, failing any
+            indication thereon, under the law of the country where the
+            award was made;
+
+      (iii) the party against whom the award is invoked was not given
+            proper notice of the appointment of an arbitrator or of
+            the arbitral proceedings or was otherwise unable to
+            present his case;
+
+      (iv)  the award deals with a difference not contemplated by or
+            not falling within the terms of the submission to
+            arbitration, or it contains decisions on matters beyond
+            the scope of the submission to arbitration, provided that,
+            if the decisions on matters submitted to arbitration can
+            be separated from those not so submitted, that part of the
+            award which contains decisions on matters submitted to
+            arbitration may be recognised and enforced;
+
+      (v)   the composition of the arbitral tribunal or the arbitral
+            procedure was not in accordance with the agreement of the
+            parties, or failing such agreement, was not in accordance
+            with the law of the country where the arbitration took
+            place; or
+
+      (vi)  the award has not yet become binding on the parties, or
+            has been set aside or suspended by a competent authority
+            of the country in which, or under the law of which, that
+            award was made.
+
+  (b) the Court finds that:
+
+      (i)   the subject-matter of the difference is not capable of
+            settlement by arbitration under the laws of the Abu Dhabi
+            Global Market; or
+
+      (ii)  the recognition or enforcement of the award would be
+            contrary to the public policy of the UAE.
+
+(2) If an application for the setting aside or suspension of an award
+has been made to a court referred to in subsection (1), the Court may,
+if it considers it proper, adjourn its decision and may also, on the
+application of the party seeking recognition or enforcement of the
+award, order the other party to provide appropriate security.
+
+(3) Any party seeking recourse against an arbitral award made in the
+seat of the Abu Dhabi Global Market shall not be permitted to make an
+application under subsection (1) if it has made or could have made an
+application under section 58 of these Regulations.
+
+The shape of refusal mirrors the Singapore IAA s 31 shape (see
+`sg_iaa_s_31.catala_en`); both modules exist because the statutory
+references differ and a Stage-2 simulator routes by tribunal-of-filing.
+The public-policy gate is jurisdiction-specific (UAE public policy
+under ADGM s 62; Singapore public policy under SG IAA s 31(4)(b)).
+
+## Encoding
 
 ```catala
 declaration enumeration ADGMArbitrationGroundId:
-  -- S56_2_a_Incapacity
-  -- S56_2_b_NaturalJustice
-  -- S56_2_c_OutsideScope
-  -- S56_2_d_TribunalComposition
-  -- S56_2_e_NotBinding
-  -- S56_3_a_NotArbitrable
-  -- S56_3_b_PublicPolicy
+  -- S62_a_i_Incapacity
+  -- S62_a_ii_InvalidAgreement
+  -- S62_a_iii_NaturalJustice
+  -- S62_a_iv_OutsideScope
+  -- S62_a_v_TribunalComposition
+  -- S62_a_vi_NotBindingOrSetAside
+  -- S62_b_i_NotArbitrable
+  -- S62_b_ii_PublicPolicy
 
 declaration enumeration ADGMGroundOutcome:
   -- Dismissed
@@ -48,6 +123,14 @@ declaration enumeration ADGMRecognitionDisposition:
 declaration structure ADGMGroundFinding:
   data ground content ADGMArbitrationGroundId
   data court_outcome content ADGMGroundOutcome
+  ## s 62(1)(a)(iv) severability proviso. Applies only to OutsideScope
+  ## ground (a)(iv). True iff the in-scope decisions can be separated
+  ## from the out-of-scope ones.
+  data is_severable content boolean
+
+declaration enumeration ADGMApplicationStatus:
+  -- ApplicationProperlyMade
+  -- ApplicationBarredByS62_3
 
 declaration structure ADGMRefusalDisposition:
   data n_grounds_pleaded content integer
@@ -56,9 +139,15 @@ declaration structure ADGMRefusalDisposition:
   data n_grounds_full content integer
   data overall_disposition content ADGMRecognitionDisposition
   data award_recognised content boolean
+  data application_status content ADGMApplicationStatus
 
 declaration scope ADGMRecognition:
   input grounds content list of ADGMGroundFinding
+  ## s 62(3): a party seeking recourse against an ADGM-seated award is
+  ## barred from a s 62 application if it has made or could have made
+  ## an application under s 58. When this flag is true, the s 62
+  ## application is barred regardless of the grounds pleaded.
+  input s58_was_or_could_have_been_available content boolean
   output disposition content ADGMRefusalDisposition
 
 scope ADGMRecognition:
@@ -75,10 +164,33 @@ scope ADGMRecognition:
       number of (list of g among grounds
                  such that g.court_outcome = AllowedInFull)
     in
+    ## s 62(1)(a)(iv) severability: a fully-allowed OutsideScope
+    ## ground that is severable yields recognition-in-part, not
+    ## refusal.
+    let full_severable_relief equals
+      number of (list of g among grounds
+                 such that g.court_outcome = AllowedInFull
+                       and g.ground = S62_a_iv_OutsideScope
+                       and g.is_severable)
+    in
+    let full_dispositive equals full - full_severable_relief in
+    let app_status equals
+      if s58_was_or_could_have_been_available
+      then ApplicationBarredByS62_3
+      else ApplicationProperlyMade
+    in
+    ## When the s 62 application is barred by s 62(3), no disposition
+    ## on the merits is reached. The encoding emits RecognitionGranted
+    ## (the application failed to engage s 62 at all) with
+    ## award_recognised=true, plus the application_status flag so
+    ## downstream consumers can distinguish "application barred" from
+    ## "application succeeded".
     let overall equals
-      if full > 0 then RecognitionRefused
-      else (if partial > 0 then RecognitionGrantedInPart
-            else RecognitionGranted)
+      if s58_was_or_could_have_been_available then RecognitionGranted
+      else (if full_dispositive > 0 then RecognitionRefused
+            else (if partial > 0 or full_severable_relief > 0
+                  then RecognitionGrantedInPart
+                  else RecognitionGranted))
     in
     ADGMRefusalDisposition {
       -- n_grounds_pleaded: number of grounds
@@ -86,11 +198,56 @@ scope ADGMRecognition:
       -- n_grounds_partial: partial
       -- n_grounds_full: full
       -- overall_disposition: overall
-      -- award_recognised: full = 0
+      -- award_recognised: (full_dispositive = 0)
+                            or s58_was_or_could_have_been_available
+      -- application_status: app_status
     }
 ```
 
-## Tests — recognition granted, partial, refused.
+## s 62(2) — adjournment and security
+
+Reproduced verbatim from s 62(2): "If an application for the setting
+aside or suspension of an award has been made to a court referred to
+in subsection (1), the Court may, if it considers it proper, adjourn
+its decision and may also, on the application of the party seeking
+recognition or enforcement of the award, order the other party to
+provide appropriate security."
+
+Parallel to SG IAA s 31(5). Modelled by an analogous scope that
+reports whether the adjournment / security power was lawfully
+engaged.
+
+```catala
+declaration structure S62_2_Inputs:
+  data setting_aside_pending_at_seat content boolean
+  data adjournment_ordered content boolean
+  data security_ordered content boolean
+
+declaration structure S62_2_Output:
+  data proceedings_adjourned content boolean
+  data security_required content boolean
+  data adjournment_engaged_lawfully content boolean
+
+declaration scope ADGM_S62_2_Adjournment:
+  input inputs content S62_2_Inputs
+  output adjournment content S62_2_Output
+
+scope ADGM_S62_2_Adjournment:
+  definition adjournment equals
+    let lawful equals inputs.setting_aside_pending_at_seat in
+    S62_2_Output {
+      -- proceedings_adjourned: inputs.adjournment_ordered and lawful
+      -- security_required: inputs.security_ordered and lawful
+      -- adjournment_engaged_lawfully: lawful
+    }
+```
+
+## Used in
+
+ADGM arbitration_recognition / arbitration_enforcement claims (10 coded
+judgments in the gold set cite this instrument).
+
+## Tests
 
 ```catala
 #[test] declaration scope TestADGMRecognitionGranted:
@@ -99,12 +256,14 @@ scope ADGMRecognition:
 
 scope TestADGMRecognitionGranted:
   definition disposition equals composite.disposition
+  definition composite.s58_was_or_could_have_been_available equals false
   definition composite.grounds equals [
-    ADGMGroundFinding { -- ground: S56_3_b_PublicPolicy   -- court_outcome: Dismissed };
-    ADGMGroundFinding { -- ground: S56_2_c_OutsideScope   -- court_outcome: Dismissed }
+    ADGMGroundFinding { -- ground: S62_b_ii_PublicPolicy  -- court_outcome: Dismissed     -- is_severable: false };
+    ADGMGroundFinding { -- ground: S62_a_iv_OutsideScope  -- court_outcome: Dismissed     -- is_severable: false }
   ]
   assertion disposition.overall_disposition = RecognitionGranted
   assertion disposition.award_recognised = true
+  assertion disposition.application_status = ApplicationProperlyMade
 
 #[test] declaration scope TestADGMRecognitionRefused:
   composite scope ADGMRecognition
@@ -112,11 +271,48 @@ scope TestADGMRecognitionGranted:
 
 scope TestADGMRecognitionRefused:
   definition disposition equals composite.disposition
+  definition composite.s58_was_or_could_have_been_available equals false
   ## A single fully-allowed public-policy ground is dispositive.
   definition composite.grounds equals [
-    ADGMGroundFinding { -- ground: S56_3_b_PublicPolicy   -- court_outcome: AllowedInFull };
-    ADGMGroundFinding { -- ground: S56_2_c_OutsideScope   -- court_outcome: Dismissed }
+    ADGMGroundFinding { -- ground: S62_b_ii_PublicPolicy  -- court_outcome: AllowedInFull -- is_severable: false };
+    ADGMGroundFinding { -- ground: S62_a_iv_OutsideScope  -- court_outcome: Dismissed     -- is_severable: false }
   ]
   assertion disposition.overall_disposition = RecognitionRefused
   assertion disposition.award_recognised = false
+
+#[test] declaration scope TestADGMSeverabilityRelief:
+  composite scope ADGMRecognition
+  output disposition content ADGMRefusalDisposition
+
+scope TestADGMSeverabilityRelief:
+  definition disposition equals composite.disposition
+  definition composite.s58_was_or_could_have_been_available equals false
+  ## s 62(1)(a)(iv) severability proviso: a fully-allowed OutsideScope
+  ## ground that is severable yields recognition-in-part rather than
+  ## refusal — the in-scope decisions can be recognised separately.
+  definition composite.grounds equals [
+    ADGMGroundFinding { -- ground: S62_a_iv_OutsideScope  -- court_outcome: AllowedInFull -- is_severable: true }
+  ]
+  assertion disposition.overall_disposition = RecognitionGrantedInPart
+  assertion disposition.award_recognised = true
+
+#[test] declaration scope TestADGMS62_3_BarsApplication:
+  composite scope ADGMRecognition
+  output disposition content ADGMRefusalDisposition
+
+scope TestADGMS62_3_BarsApplication:
+  definition disposition equals composite.disposition
+  ## s 62(3) bars an applicant who has made or could have made an
+  ## application under s 58 from invoking s 62. Even on what would
+  ## otherwise be a fully-allowed public-policy ground, the s 62
+  ## application is treated as not properly made; recognition is
+  ## granted (the application failed to engage s 62) and
+  ## application_status flags the bar.
+  definition composite.s58_was_or_could_have_been_available equals true
+  definition composite.grounds equals [
+    ADGMGroundFinding { -- ground: S62_b_ii_PublicPolicy  -- court_outcome: AllowedInFull -- is_severable: false }
+  ]
+  assertion disposition.overall_disposition = RecognitionGranted
+  assertion disposition.award_recognised = true
+  assertion disposition.application_status = ApplicationBarredByS62_3
 ```
