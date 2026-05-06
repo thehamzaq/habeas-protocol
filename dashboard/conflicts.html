@@ -168,8 +168,9 @@ async function load() {
   API_BASE = await findApi();
   if (!API_BASE) {
     document.body.insertAdjacentHTML('afterbegin',
-      '<div style="padding:14px;background:#fee;border:1px solid #c33;color:#900;font-family:sans-serif;font-size:13px;">' +
-      '<strong>API unavailable.</strong> Start with <code>python3 api/server.py</code>.' +
+      '<div style="padding:14px 18px;background:#fff7e0;border:1px solid #d4b952;color:#4a3a00;font-family:sans-serif;font-size:13px;line-height:1.55">' +
+      '<strong>The conflict-of-laws router needs the local API.</strong> ' +
+      'Static GitHub Pages can\'t serve it; clone the repo and run <code>docker build -t habeas . && docker run --rm -p 5544:5544 habeas bash -lc \'eval $(opam env --switch=catala) && python3 api/server.py\'</code> to use this page.' +
       '</div>');
     return;
   }

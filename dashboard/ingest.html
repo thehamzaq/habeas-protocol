@@ -138,7 +138,7 @@ async function runExtraction() {
     return;
   }
   if (!API_BASE) {
-    setStatus('API unavailable. Start with `python3 api/server.py` and reload.');
+    setStatus('Local API not running — text extraction needs the loopback API server. Run the repo locally via `docker run --rm -p 5544:5544 habeas`, or use the static GH Pages copy for read-only browsing.');
     return;
   }
   setStatus('extracting…');
@@ -278,7 +278,7 @@ document.getElementById('downloadBtn').onclick = () => {
 (async () => {
   API_BASE = await findApi();
   if (!API_BASE) {
-    setStatus('API unavailable — extraction disabled. Start with `python3 api/server.py`.');
+    setStatus('Local API not running — extraction is disabled on the static GitHub Pages copy. Clone the repo and run `docker run --rm -p 5544:5544 habeas` to enable.');
   }
 })();
 </script>

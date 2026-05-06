@@ -592,7 +592,7 @@ async function validateRule() {
   setStatus('info', 'validating…');
   document.getElementById('saveBtn').disabled = true;
   if (!API_BASE) {
-    setStatus('err', 'API unavailable — cannot validate. Start with `python3 api/server.py`.');
+    setStatus('err', 'Local API not running — Catala validation needs the loopback API. Run the repo locally via `docker run --rm -p 5544:5544 habeas` to enable.');
     return;
   }
   try {
@@ -658,7 +658,7 @@ async function saveBack() {
 async function bootstrap() {
   API_BASE = await findApi();
   if (!API_BASE) {
-    setStatus('err', 'API unavailable. Validation and save-back disabled. Start with `python3 api/server.py` (and `HABEAS_ADMIN_MODE=1` for save-back).');
+    setStatus('err', 'Local API not running — validation and save-back are disabled on the static GH Pages copy. Clone the repo and run `docker run --rm -p 5544:5544 habeas` (set `HABEAS_ADMIN_MODE=1` to enable save-back).');
   }
   const tmplDiv = document.getElementById('templates');
   Object.entries(TEMPLATES).forEach(([k, t]) => {

@@ -704,8 +704,19 @@ async function bootstrap() {
   API_BASE = await findApi();
   const sel = document.getElementById('ruleSel');
   if (!API_BASE) {
-    sel.innerHTML = '<option>API unavailable</option>';
-    document.getElementById('pgForm').innerHTML = `<p class="pg-error">Could not reach the local API. Start it with:<br><code>eval $(./scripts/postgres_local.sh env) &amp;&amp; eval $(opam env --switch=catala) &amp;&amp; python3 api/server.py</code></p>`;
+    sel.innerHTML = '<option>API not running</option>';
+    document.getElementById('pgForm').innerHTML = `
+      <div class="pg-error" style="line-height:1.55">
+        <p><strong>The playground needs the local API to evaluate rules.</strong> The static GitHub Pages copy of this dashboard can't run Catala server-side — there's no Postgres, no <code>catala interpret</code>, no rule-runs audit log on a static host.</p>
+        <p>To use it locally — clone the repo and run:</p>
+        <pre style="background:#f3f1ea;padding:10px;border:1px solid var(--rule);font-size:12px;overflow:auto"><code>git clone https://github.com/thehamzaq/habeas-protocol
+cd habeas-protocol
+docker build -t habeas .
+docker run --rm -p 5544:5544 habeas \
+  bash -lc 'eval $(opam env --switch=catala) && python3 api/server.py'</code></pre>
+        <p style="margin-top:10px">Then reload this page from <code>http://127.0.0.1:8001/dashboard/playground.html</code> (serve <code>dashboard/</code> via any static server) and the playground will reach the API on <code>:5544</code>.</p>
+        <p style="margin-top:10px;color:var(--ink-3);font-size:12px">If you're already running the API locally and seeing this — check that <code>HABEAS_API_HOST=127.0.0.1</code> and <code>HABEAS_API_PORT=5544</code> match the dashboard's expectation, and that no firewall is blocking loopback.</p>
+      </div>`;
     return;
   }
   await loadCertificationStates();
