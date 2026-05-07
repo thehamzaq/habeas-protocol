@@ -7,9 +7,12 @@ as either "saturating" (all heuristics indicate 2) or "borderline" (any
 primitive triggers a 1-or-0 signal).
 
 The output is a triage report at data/adgm_triage.json plus a printable
-summary. The report is NOT a substitute for the gold-set rubric; it is
-a sieve that lets a human reader skip the obviously-saturating cases and
-focus on the ~20-30% that actually need a careful read.
+summary. The report is a structural-default classifier (NOT a graded
+application of the rubric) that lets a downstream reader skip the
+obviously-saturating cases and focus on the ~20-30% that actually
+need a careful read. Entries written by this script are tagged
+`coding.coder = "MaximLabs (heuristic-triage)"` and
+`coding.grader_type = "regex_heuristic"`.
 
 Heuristic rationale:
 
@@ -58,7 +61,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TXT_DIR = os.path.join(HERE, "..", "data", "raw", "adgm", "text")
 OUT = os.path.join(HERE, "..", "data", "adgm_triage.json")
 
-# Cases already in the gold set (case_no fragments to skip)
+# Cases already in the first-pass set (case_no fragments to skip)
 ALREADY_CODED = {
     "ADGMCFI-2025-283",
     "ADGMCFI-2024-158",

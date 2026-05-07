@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Habeas Protocol — Judgment Coding Schema v0.2",
-  "description": "Per-judgment record schema. Supports both v0.1 (7-primitive) and v0.2 (6-primitive + 2 system) scoring layers. Every entry in judgments.json must validate against this. v0.2 is the active schema; v0.1 is retained for provenance on the original DIFC gold set.",
+  "description": "Per-judgment record schema. Supports both v0.1 (7-primitive) and v0.2 (6-primitive + 2 system) scoring layers. Every entry in judgments.json must validate against this. v0.2 is the active schema; v0.1 is retained for provenance on the original DIFC first-pass set.",
   "type": "object",
   "required": [
     "case_no",
@@ -64,7 +64,7 @@
     },
     "primitive_scores_v01": {
       "type": "object",
-      "description": "7-primitive scoring (deprecated). Retained for provenance on original DIFC gold set.",
+      "description": "7-primitive scoring (deprecated). Retained for provenance on original DIFC first-pass set.",
       "properties": {
         "P1": { "type": "integer", "enum": [0, 1, 2] },
         "P2": { "type": "integer", "enum": [0, 1, 2] },
@@ -92,10 +92,29 @@
       "type": "object",
       "required": ["coder", "coded_on", "notes"],
       "properties": {
-        "coder": { "type": "string" },
+        "coder": {
+          "type": "string",
+          "description": "Procedure label, one of: 'MaximLabs (first-pass-claude)', 'MaximLabs (heuristic-triage)', 'MaximLabs (heuristic-graded)', 'MaximLabs (provisional-class-default)'."
+        },
         "coded_on": { "type": "string", "format": "date" },
-        "gold_set": { "type": "boolean" },
-        "notes": { "type": "string" }
+        "run_date": { "type": "string", "format": "date" },
+        "first_pass": { "type": "boolean", "description": "True for the 39-entry LLM-graded first-pass set." },
+        "gold_set": { "type": "boolean", "description": "Deprecated alias for first_pass; retained for backwards compatibility." },
+        "grader_type": {
+          "type": "string",
+          "enum": ["llm", "regex_heuristic", "author_class_default"],
+          "description": "Three grader types. 'llm': Claude Sonnet 4.5 read the judgment text and applied the rubric (first-pass set). 'regex_heuristic': deterministic Python script applied the rubric (heuristic-triage and heuristic-graded sets). 'author_class_default': author-assigned class-level default reflecting the published structural form of an instrument class — used for the falsification set and the peer-court comparison set; NOT a per-instance grading."
+        },
+        "model": { "type": "string", "description": "LLM model identifier (only for grader_type=llm)." },
+        "temperature": { "type": "number" },
+        "prompt_template_id": { "type": "string" },
+        "system_prompt_sha256": { "type": "string" },
+        "grader_script": { "type": "string", "description": "Producing-script path (only for grader_type=regex_heuristic)." },
+        "scoring_basis": { "type": "string", "description": "Free-text description of how the class default was assigned (only for grader_type=author_class_default)." },
+        "notes": { "type": "string" },
+        "rationale": {
+          "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
+        }
       }
     }
   }

@@ -6,5 +6,6 @@
   "operative_value": null,
   "predicate_value": null,
   "paragraph_ref": null,
-  "note": "All five scenarios (on-time, at-deadline, 1/61/92 days late) reproduce the implicit schedule exactly. No discrepancy surfaced."
+  "note": "All five scenarios (on-time, at-deadline, 1/61/92 days late) reproduce the implicit schedule exactly. No discrepancy surfaced. Stance: none. No predicate-vs-court divergence.",
+  "stance": "none"
 }

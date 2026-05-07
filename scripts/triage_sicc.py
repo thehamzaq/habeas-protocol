@@ -486,8 +486,8 @@ def to_judgment_entry(g):
         f"{' | '.join(cw[:3]) if cw else 'n/a'}. "
         f"Heuristic flags: "
         f"{', '.join(f'{k}({v[0]})' for k, v in g.get('flags', {}).items()) or 'none'}. "
-        f"AI-coded against the v0.2 rubric using the same heuristics applied "
-        f"to the ADGM borderline set; not gold-set."
+        f"Regex-heuristic graded against the v0.2 rubric using the same "
+        f"heuristics applied to the ADGM borderline set; not in first-pass set."
     )
     slug = g["file"].replace(".txt", "")
     return {

@@ -161,7 +161,7 @@
     <div class="howto-card">
       <div class="howto-card-h">Cross-border / API / more</div>
       <a class="howto-card-link" href="conflicts.html">Route a multi-jurisdiction dispute →</a>
-      <p>Plus <a href="authoring.html">authoring</a>, <a href="ingest.html">ingestion</a>, and a 18-endpoint <a href="api.html">API</a> with first-party Python + TypeScript clients.</p>
+      <p>Plus <a href="authoring.html">authoring</a>, <a href="ingest.html">ingestion</a>, and an 18-endpoint <a href="api.html">API</a> with first-party Python + TypeScript clients.</p>
     </div>
   </div>
 </aside>
@@ -170,7 +170,7 @@
   <h2>At a glance</h2>
   <div class="stats-row">
     <div class="stat"><div class="stat-num" id="totalJudgments">—</div><div class="stat-label">Judgments coded</div></div>
-    <div class="stat"><div class="stat-num" id="goldSet">—</div><div class="stat-label">Hand-coded gold set</div></div>
+    <div class="stat"><div class="stat-num" id="goldSet">—</div><div class="stat-label">First-pass set (LLM-graded)</div></div>
     <div class="stat"><div class="stat-num" id="difcCount">—</div><div class="stat-label">DIFC</div></div>
     <div class="stat"><div class="stat-num" id="adgmCount">—</div><div class="stat-label">ADGM</div></div>
     <div class="stat"><div class="stat-num" id="siccCount">—</div><div class="stat-label">SICC</div></div>
@@ -184,11 +184,12 @@
 <section class="section">
   <h2>Empirical findings</h2>
   <p class="finding">All three tribunals score at near-ceiling on every per-ruling primitive, and 2/2 on both architectural system properties. The pattern is robust to two stress tests, and seven executable traces from the corpus demonstrate the protocol's methodological coverage across formula, deferred conditional, bounded discretion, arithmetic and Boolean composition, statutory partial-refusal, and a third-party-jurisdiction gate.</p>
-  <p class="finding"><strong>Inferential layer.</strong> Bootstrap 95% CIs (10000 resamples): <strong>ADGM</strong> 1.91 [1.89,&nbsp;1.94], <strong>SICC</strong> 1.85 [1.80,&nbsp;1.90], <strong>DIFC</strong> 1.72 [1.62,&nbsp;1.81]. All three pairwise differences exclude zero at α=0.05 — the ranking is statistically supported, not point-estimate noise. Raw values: <code>data/bootstrap_ci.json</code>; computation: <code>scripts/compute_bootstrap_ci.py</code>.</p>
-  <p>Of the 188 judgments scored, <strong>39 form a hand-coded gold set</strong> (32 DIFC + 7 ADGM); the remaining 149 entries (69 ADGM + 80 SICC) are AI-triaged and AI-graded against the same rubric, with per-entry provenance recorded in the <code>coding.coder</code> field.</p>
+  <p class="finding"><strong>Inferential layer.</strong> Bootstrap 95% <em>coder-resampling intervals</em> (10000 resamples; describe coding-procedure variance over the n=188 corpus, not population variance): <strong>ADGM</strong> 1.91 [1.89,&nbsp;1.94], <strong>SICC</strong> 1.85 [1.80,&nbsp;1.90], <strong>DIFC</strong> 1.72 [1.62,&nbsp;1.81]. All three pairwise differences exclude zero at α=0.05 — the ranking is statistically supported, not point-estimate noise. Raw values: <code>data/bootstrap_ci.json</code>; computation: <code>scripts/compute_bootstrap_ci.py</code>.</p>
+  <p class="finding"><strong>Construct validity (external correlate, ran 2026-05-07).</strong> Per-judgment v0.2 mean correlates with appeal status at <strong>Spearman ρ = +0.32</strong> and with subsequent-citation count at <strong>ρ = +0.12</strong> across n=186 (<code>data/robustness/external_correlate.json</code>). The pre-registered H8 stop rule (|ρ| ≥ 0.10 in predicted direction on any of three external metrics) passes. Higher-scoring judgments are more likely to be referenced by appellate-court output.</p>
+  <p>Of the 188 judgments scored, <strong>39 form an LLM-graded first-pass set</strong> (32 DIFC + 7 ADGM, scored by Claude Sonnet 4.5); the remaining <strong>149 entries</strong> (69 ADGM + 80 SICC) are scored by deterministic regex heuristics — <em>no LLM in the loop for these 149</em>. Per-entry grader-type and provenance are recorded in <code>coding.grader_type</code>, <code>coding.coder</code>, and grader-type-specific fields (model + prompt SHA for LLM entries; producing-script path for regex entries).</p>
   <ul>
-    <li><strong>Sample-size robustness (ADGM, passes).</strong> The ADGM saturation pattern survives a 10× expansion: mean primitive score drifts from <strong>1.93 at n=7</strong> (hand-coded) to <strong>1.91 at n=76</strong> (hand + AI). The near-ceiling reading isn't an artefact of small-sample noise.</li>
-    <li><strong>Sample-size robustness (SICC, qualified).</strong> The SICC expansion from <strong>1.95 at n=13</strong> to <strong>1.85 at n=80</strong> drops 0.10 — driven almost entirely by PR4 (procedure heuristic limit on SICC's narrative-style grounds-of-decision documents) rather than a tribunal-quality regression. Reported in full rather than smoothed away.</li>
+    <li><strong>Grader-type stability (ADGM, the only tribunal with both grader types).</strong> The LLM grader (n=7) scores ADGM at <strong>1.93</strong>; the regex heuristic-triage (n=16) scores <strong>1.93</strong>; the regex heuristic-graded (n=53) scores <strong>1.91</strong>. The two graders agree to within 0.02 on the overall mean — the within-corpus evidence that the saturation finding is a property of the tribunal rather than the grading instrument.</li>
+    <li><strong>SICC PR4 heuristic limitation, corrected.</strong> The regex grader produces PR4 = 1.55 for SICC because the four-marker triplet test fails on narrative grounds-of-decision documents. The corrected PR4 (Claude re-grades PR4 only with a prompt explicitly instructed to read narrative form) is what enters the headline SICC mean of 1.85. The regex result is preserved as the known-flawed measurement.</li>
     <li><strong>Falsification cross-check.</strong> A 30-instrument falsification set across five non-court instrument classes (sealed awards, on-chain DAOs, regulator notices, platform adjudicators, UDRP panels) confirms the rubric separates real commercial courts from non-courts cleanly and does NOT mark down a positive control (UDRP, gap +0.05). The rubric measures procedural form, not pedigree.</li>
     <li><strong>Cross-family replication.</strong> The protocol crosses legal-family boundaries — Singapore common law via the IAA, vs DIFC's own statutes and ADGM's English-law-via-statute — and translates to a civil-law foil under the peer-court comparison set. The protocol is not court-specific.</li>
     <li><strong>Architectural system properties.</strong> All three tribunals score <strong>2/2</strong> on separation of powers (SP1) and enforceability under the New York Convention (SP2). These are the structural pre-conditions for plugging software into the bench.</li>
@@ -328,7 +329,7 @@
 </main>
 
 <footer class="foot">
-  <p><strong>Citation.</strong> Maxim Labs, “Habeas Protocol: An Empirical Analysis of DIFC + ADGM Courts as Working Prototypes for Constitutional Digital Tribunals,” v0.2 (May 2026).</p>
+  <p><strong>Citation.</strong> Maxim Labs, “Habeas Protocol: An Empirical Analysis of DIFC, ADGM, and Singapore SICC as Working Prototypes for Constitutional Digital Tribunals,” v0.2 (May 2026).</p>
   <p><strong>Primary sources.</strong> <a href="https://www.difccourts.ae/rules-decisions/judgments-orders">DIFC Courts judgments</a> · <a href="https://www.adgm.com/adgm-courts/judgments">ADGM Courts judgments</a>.</p>
   <p><strong>Sibling stacks.</strong> The encoding language used here is <a href="https://catala-lang.org">Catala</a> (Merigoux, Chataing, Protzenko, <em>PACMPL</em> 5 ICFP, 2021) — a programming language for default-and-exception decision logic of statutes and tribunal rules. The contract-side counterpart in Singapore is the <a href="https://legalese.com">L4</a> DSL developed by Legalese with the <a href="https://cclaw.smu.edu.sg">SMU Centre for Computational Law</a> (Hsu, Lim, Wong, Chun et al., JURIX 2023). The two are the natural left- and right-hand of an end-to-end computational-law stack.</p>
   <p>License: code MIT, structured metadata under <a href="../LICENSES/HABEAS-METADATA.txt">Habeas Protocol Structured-Metadata Licence v1</a> (non-commercial research, takedown-respecting). Source judgments under <code>data/raw/</code> are not redistributed by this project. See <code>data/sources.md</code> for corpus provenance, <code>data/tos_audit.md</code> for the licensing rationale, and <code>data/primitives.json</code> for the full scoring rubric.</p>

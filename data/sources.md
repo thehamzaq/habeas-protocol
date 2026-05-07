@@ -1,5 +1,36 @@
 # Sources
 
+## Sampling frame and bias direction (read first)
+
+The 188-judgment corpus is a **convenience sample**, not a random
+draw from any defined population. Per tribunal:
+
+- **DIFC** (n=32): the first 32 judgments returned by
+  `scripts/fetch_difc.py` from the difccourts.ae listing endpoint
+  (paginated April 2026). The full scrape returned ~294 unique
+  judgments saved as HTML; the 32 coded entries are the first
+  page-by-page fetched, not a stratified or random sample of the
+  ~5,000+ judgments in the historical DIFC index.
+- **ADGM** (n=76): the 76 PDFs returned by
+  `scripts/fetch_adgm_pages.py` and `scripts/fetch_adgm_firecrawl.py`
+  from the adgm.com listing pages (April 2026), spanning 2017–2026.
+- **SICC** (n=80): the 80 HTML grounds-of-decision documents
+  returned by `scripts/fetch_sicc_direct.py` from elitigation.sg
+  (April–May 2026), spanning 2023–2026.
+
+**Bias direction:** the sample is biased toward judgments that are
+**findable** (indexed in the public listing), **recent** (the date
+ranges above), **well-formatted** (parseable by the scrapers
+without manual recovery), and **English-language**. It is
+specifically *not* a random draw, and it is *not* claimed to be
+representative of the population of all rulings each tribunal has
+ever issued.
+
+The pre-registration (`PREREGISTRATION.md` §2) states the same
+sampling frame for any future analysis run on this corpus.
+
+---
+
 ## Primary corpus — DIFC Courts
 
 - **Index:** https://www.difccourts.ae/rules-decisions/judgments-orders
@@ -36,7 +67,7 @@
 - **Index:** https://www.vara.ae/en/regulations/regulatory-notices/
 - **Format:** Press-release-style notices, not structured judgments. Five notices identified for 2024–2025 plus an Aug-2024-to-Aug-2025 enforcement summary covering 36 firms.
 - **Penalty range:** AED 50,000 to AED 600,000; statutory maximum AED 10M.
-- **Phase 1 status:** structure documented; per-notice scraping deferred to Phase 2 — adds a meaningful ~5 hand-coded items (not 30, as the plan assumed).
+- **Phase 1 status:** structure documented; per-notice scraping deferred to Phase 2 — would add a meaningful ~5 first-pass items (not 30, as the plan assumed).
 - **Rules instrument:** VARA Rulebook (versioned, public, available at https://rulebooks.vara.ae/).
 
 ## Tertiary corpus — Próspera Arbitration Center (PAC)

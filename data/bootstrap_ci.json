@@ -1,4 +1,5 @@
 {
+  "interpretation": "These are coder-resampling intervals over the n=188 procedure-mixed corpus. They describe coding-procedure variance, not population variance. The 188 entries are not a random sample of any defined population of judgments; they are a convenience sample assembled by the procedures documented in data/sources.md.",
   "n_resamples": 10000,
   "alpha": 0.05,
   "seed": 20260505,

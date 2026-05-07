@@ -347,9 +347,11 @@ function renderStats() {
   const difc = judgments.filter(j => j.tribunal === 'DIFC Courts');
   const adgm = judgments.filter(j => j.tribunal === 'ADGM Courts');
   const sicc = judgments.filter(j => j.tribunal === 'Singapore International Commercial Court');
-  const gold = judgments.filter(j => j.coding && j.coding.gold_set);
+  // Stat shows the LLM-graded first-pass set count (label updated to
+  // "First-pass set (LLM-graded)" in index.html).
+  const firstPass = judgments.filter(j => j.coding && (j.coding.first_pass || j.coding.gold_set));
   set('totalJudgments', judgments.length);
-  set('goldSet', gold.length);
+  set('goldSet', firstPass.length);
   set('difcCount', difc.length);
   set('adgmCount', adgm.length);
   set('siccCount', sicc.length);
@@ -1095,10 +1097,21 @@ function renderJudgmentsTable() {
           j.tribunal === 'DIFC Courts' ? 'tag-difc' :
           j.tribunal === 'ADGM Courts' ? 'tag-adgm' : 'tag-sicc';
         const tribShort = TRIBUNAL_SHORT[j.tribunal] || j.tribunal;
+        // grader_type chip — shows whether this row was scored by the LLM
+        // grader (Claude on the 39-entry first-pass) or the regex grader
+        // (149 entries; no LLM in the loop). Surfaced so a viewer can see
+        // provenance per record.
+        const gt = (j.coding && j.coding.grader_type) || 'unknown';
+        const gtLabel = gt === 'llm' ? 'LLM' : gt === 'regex_heuristic' ? 'regex' : gt;
+        const gtTitle =
+          gt === 'llm' ? 'LLM-graded (Claude Sonnet 4.5, temp 0.0)' :
+          gt === 'regex_heuristic' ? 'Regex-heuristic-graded (deterministic Python; no LLM)' :
+          'Unknown grader type';
+        const gtClass = gt === 'llm' ? 'tag-grader-llm' : 'tag-grader-regex';
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${escape(j.case_no)}</strong><br><span class="muted" style="font-size:12px">${escape((j.parties && j.parties.claimant) || '')} v ${escape((j.parties && j.parties.defendant) || '')}</span></td>
-          <td><span class="tag ${tribClass}">${tribShort}</span></td>
+          <td><span class="tag ${tribClass}">${tribShort}</span> <span class="tag ${gtClass}" title="${escape(gtTitle)}" style="font-size:10px;margin-left:4px">${escape(gtLabel)}</span></td>
           <td>${escape(j.date_issued || '—')}</td>
           <td>${escape(j.judge || '—')}</td>
           <td class="num">${m.toFixed(2)}</td>

@@ -1,0 +1,45 @@
+{
+  "description": "Leave-one-tribunal-out: falsification discrimination using each tribunal as the sole 'court' baseline",
+  "tribunals": {
+    "DIFC": {
+      "n": 32,
+      "court_baseline_mean": 1.724,
+      "gap_vs_class": {
+        "A_sealed_award": 1.0573,
+        "B_on_chain": 1.1684,
+        "C_regulator": -0.1927,
+        "D_platform": 0.9184,
+        "E_specialised_positive": -0.0538
+      }
+    },
+    "ADGM": {
+      "n": 76,
+      "court_baseline_mean": 1.9145,
+      "gap_vs_class": {
+        "A_sealed_award": 1.2478,
+        "B_on_chain": 1.3589,
+        "C_regulator": -0.0022,
+        "D_platform": 1.1089,
+        "E_specialised_positive": 0.1367
+      }
+    },
+    "SICC": {
+      "n": 80,
+      "court_baseline_mean": 1.8521,
+      "gap_vs_class": {
+        "A_sealed_award": 1.1854,
+        "B_on_chain": 1.2965,
+        "C_regulator": -0.0646,
+        "D_platform": 1.0465,
+        "E_specialised_positive": 0.0743
+      }
+    }
+  },
+  "falsification_classes": {
+    "A_sealed_award": 0.6667,
+    "B_on_chain": 0.5556,
+    "C_regulator": 1.9167,
+    "D_platform": 0.8056,
+    "E_specialised_positive": 1.7778
+  }
+}

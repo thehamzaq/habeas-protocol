@@ -9,5 +9,6 @@
   "operative_value": 7127.75,
   "predicate_value": 7121.75,
   "paragraph_ref": "operative order vs Schedule of Reasons",
-  "note": "Operative order states AED 7,127.75; Schedule of Reasons computes AED 7,121.75. The protocol reproduces the Schedule total; the 6 AED gap is consistent with a clerical error in the operative paragraph."
+  "note": "Operative order states AED 7,127.75; Schedule of Reasons computes AED 7,121.75. The protocol reproduces the Schedule total; the 6 AED gap is consistent with a clerical error in the operative paragraph. Stance: court_clerical_error. Schedule of Reasons sums to AED 7,121.75; operative paragraph states AED 7,127.75. The predicate is correct against the schedule arithmetic; we conclude the operative paragraph contains a 6-AED clerical transposition.",
+  "stance": "court_clerical_error"
 }

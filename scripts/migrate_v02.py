@@ -6,7 +6,7 @@ v0.1 → v0.2 changes per record:
   - rename primitive_scores → primitive_scores_v01
   - add primitive_scores_v02 (6-primitive scoring; tribunal-level SP1/SP2 in primitives.json)
 
-Then append the ADGM gold-set entries.
+Then append the ADGM first-pass entries.
 """
 import json
 import os

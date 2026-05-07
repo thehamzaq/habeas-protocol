@@ -6,5 +6,6 @@
   "operative_value": null,
   "predicate_value": null,
   "paragraph_ref": null,
-  "note": "Boolean composition. Judgment Sum GBP 409,870, costs USD 125,483.84, counterclaim dismissed \u2014 all match exactly."
+  "note": "Boolean composition. Judgment Sum GBP 409,870, costs USD 125,483.84, counterclaim dismissed \u2014 all match exactly. Stance: none. No predicate-vs-court divergence.",
+  "stance": "none"
 }

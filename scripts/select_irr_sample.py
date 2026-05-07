@@ -1,16 +1,17 @@
 """
-Select a stratified 20-judgment subsample from the hand-coded gold set
+Select a stratified 20-judgment subsample from the first-pass set
 (n=39) for inter-rater-reliability (IRR) re-coding.
 
 Stratification: at least one judgment per (tribunal, claim_type) cell
-present in the gold set; remaining slots filled proportionally.
+present in the first-pass set; remaining slots filled proportionally.
 
 Outputs:
   - data/irr/sample.json         : the 20 selected case_no's (ordered)
   - data/irr/coder_a.json        : Coder A scores (lifted from judgments.json)
   - data/irr/coder_b.template.json: blank coding sheet for Coder B (human)
 
-Coder A is the original Maxim Labs hand-coder. Coder B MUST be an
+Coder A is the original LLM-grader procedure (Claude Sonnet 4.5,
+2026-04-27 first-pass run). Coder B MUST be an
 independent human reviewer (UAE/SG-licensed counsel, common-law
 academic). The κ exercise compares A and B.
 
@@ -40,11 +41,14 @@ SEED = 42  # reproducible
 def main():
     OUT_DIR.mkdir(exist_ok=True)
     judgments = json.loads(JUDGMENTS.read_text())
-    hand = [j for j in judgments
-            if (j.get("coding") or {}).get("coder") == "MaximLabs"]
-    if len(hand) < TARGET_N:
-        raise SystemExit(f"hand-coded set has only {len(hand)} entries; "
+    first_pass = [j for j in judgments
+                  if (j.get("coding") or {}).get("coder") == "MaximLabs (first-pass-claude)"
+                  or (j.get("coding") or {}).get("first_pass") is True
+                  or (j.get("coding") or {}).get("gold_set") is True]
+    if len(first_pass) < TARGET_N:
+        raise SystemExit(f"first-pass set has only {len(first_pass)} entries; "
                          f"cannot draw n={TARGET_N}")
+    hand = first_pass  # local alias preserved for the rest of this function
 
     # Bucket by (tribunal, claim_type)
     buckets = defaultdict(list)
@@ -89,13 +93,14 @@ def main():
     sample_path.write_text(json.dumps({
         "n": len(sample),
         "selection_seed": SEED,
-        "stratification": "one per (tribunal, claim_type) cell in gold set, "
+        "stratification": "one per (tribunal, claim_type) cell in first-pass set, "
                           "remainder proportional to bucket size",
         "case_nos": [j["case_no"] for j in sample],
     }, indent=2))
 
     coder_a = {
-        "coder": "Coder A — original Maxim Labs hand-coder (lifted from "
+        "coder": "Coder A — original LLM-grader procedure (Claude Sonnet 4.5, "
+                 "2026-04-27 first-pass; scores lifted from "
                  "data/judgments.json without re-reading)",
         "coding_method": "lifted-from-master",
         "rubric_version": "v0.2",

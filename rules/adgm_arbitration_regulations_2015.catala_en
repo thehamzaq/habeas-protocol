@@ -245,7 +245,7 @@ scope ADGM_S62_2_Adjournment:
 ## Used in
 
 ADGM arbitration_recognition / arbitration_enforcement claims (10 coded
-judgments in the gold set cite this instrument).
+judgments in the first-pass set cite this instrument).
 
 ## Tests
 

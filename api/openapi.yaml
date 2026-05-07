@@ -541,10 +541,10 @@ paths:
       tags: [corpus]
       summary: Per-tribunal coverage statistics
       description: |
-        Returns per-tribunal counts of structured / hand-coded /
-        AI-graded entries in `data/judgments.json`, plus the
-        per-tribunal mean primitive scores. Drives the dashboard's
-        coverage widget.
+        Returns per-tribunal counts of LLM-graded first-pass / regex
+        heuristic-triage / regex heuristic-graded entries in
+        `data/judgments.json`, plus the per-tribunal mean primitive
+        scores. Drives the dashboard's coverage widget.
       responses:
         "200":
           description: Coverage statistics.

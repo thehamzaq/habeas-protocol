@@ -6,5 +6,6 @@
   "operative_value": null,
   "predicate_value": null,
   "paragraph_ref": null,
-  "note": "Bounded-discretion case by design. Predicate triages objections and surfaces the AED 8,914.80 (\u22486.92%) discretion residue. This is the *operating point* of the rule, not a discrepancy with the court."
+  "note": "Bounded-discretion case by design. Predicate triages objections and surfaces the AED 8,914.80 (\u22486.92%) discretion residue. This is the *operating point* of the rule, not a discrepancy with the court. Stance: none. No predicate-vs-court divergence.",
+  "stance": "none"
 }

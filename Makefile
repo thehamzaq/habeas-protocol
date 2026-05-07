@@ -1,4 +1,4 @@
-.PHONY: help typecheck interpret conformance test drift schemas property-tests trace-tests api clean
+.PHONY: help typecheck interpret conformance test drift schemas property-tests trace-tests api clean robustness provenance-audit zenodo-tarball
 
 help:
 	@echo "Habeas Protocol — make targets:"
@@ -54,7 +54,38 @@ drift:
 schemas:
 	bash scripts/build_rule_schemas.sh
 
-test: typecheck conformance trace-tests property-tests
+test: typecheck conformance trace-tests property-tests provenance-audit
+
+robustness:
+	python3 scripts/analyse_robustness.py
+	@echo
+	@echo "Static robustness analyses written to data/robustness/"
+	@echo "API-dependent perturbations (require ANTHROPIC_API_KEY):"
+	@echo "  python3 scripts/perturbation_test_retest.py"
+	@echo "  python3 scripts/perturbation_tribunal_blind.py"
+	@echo "  python3 scripts/perturbation_model_size.py"
+	@echo "  python3 scripts/perturbation_prompt_rephrase.py"
+	@echo "  python3 scripts/recode_sicc_pr4_claude.py"
+	@echo "  python3 scripts/sub_rubric_alternative.py"
+	@echo "  python3 scripts/external_correlate.py"
+
+provenance-audit:
+	python3 scripts/check_grading_provenance.py
+
+zenodo-tarball:
+	@mkdir -p dist
+	@VERSION=$$(date -u +%Y%m%d); \
+	tar --exclude='dist/*' --exclude='_build' --exclude='_targets' \
+	    --exclude='__pycache__' --exclude='data/raw' --exclude='.venv' \
+	    --exclude='.git' \
+	    -czf dist/habeas-protocol-snapshot-$$VERSION.tar.gz \
+	    data rules spike scripts paper.md README.md GRADING_SPEC.md \
+	    PREREGISTRATION.md ZENODO.md LICENSE LICENSES CONTRIBUTING.md \
+	    SECURITY.md TRADEMARK.md TAKEDOWN.md Makefile Dockerfile \
+	    requirements.txt; \
+	echo "  → dist/habeas-protocol-snapshot-$$VERSION.tar.gz"
+	@echo
+	@echo "Next: follow ZENODO.md to deposit and obtain a DOI."
 
 api:
 	@echo "Starting stdlib HTTP API at 127.0.0.1:5544"

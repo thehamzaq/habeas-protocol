@@ -10,8 +10,9 @@ Output:
 
 Provenance: every new entry is tagged with
   coder: "MaximLabs (heuristic-triage)"  or  "MaximLabs (heuristic-graded)"
-  gold_set: false
-The original 39 hand-coded entries keep their gold_set: true.
+  grader_type: "regex_heuristic"
+  first_pass: false
+The original 39 LLM-graded entries keep their first_pass: true.
 
 The merger refuses to add a duplicate of an existing case_no.
 """

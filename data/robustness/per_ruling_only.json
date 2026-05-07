@@ -1,0 +1,17 @@
+{
+  "description": "Per-ruling-only (PR1-PR6) means \u2014 SP1/SP2 are architectural pre-conditions, scored once per tribunal, not blended into the per-ruling mean. This is the headline statistic.",
+  "tribunals": {
+    "DIFC": {
+      "n": 32,
+      "per_ruling_mean": 1.724
+    },
+    "ADGM": {
+      "n": 76,
+      "per_ruling_mean": 1.9145
+    },
+    "SICC": {
+      "n": 80,
+      "per_ruling_mean": 1.8521
+    }
+  }
+}

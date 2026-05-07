@@ -1,0 +1,65 @@
+{
+  "description": "Leave-one-primitive-out: tribunal means with each PR dropped",
+  "tribunals": {
+    "DIFC": {
+      "all_six": 1.724,
+      "drop_each": {
+        "drop_PR1": 1.7063,
+        "drop_PR2": 1.7125,
+        "drop_PR3": 1.7312,
+        "drop_PR4": 1.7188,
+        "drop_PR5": 1.6938,
+        "drop_PR6": 1.7812
+      },
+      "n": 32,
+      "delta_from_all_six": {
+        "PR1": -0.0177,
+        "PR2": -0.0115,
+        "PR3": 0.0072,
+        "PR4": -0.0052,
+        "PR5": -0.0302,
+        "PR6": 0.0572
+      }
+    },
+    "ADGM": {
+      "all_six": 1.9145,
+      "drop_each": {
+        "drop_PR1": 1.9026,
+        "drop_PR2": 1.8974,
+        "drop_PR3": 1.9105,
+        "drop_PR4": 1.8974,
+        "drop_PR5": 1.9053,
+        "drop_PR6": 1.9737
+      },
+      "n": 76,
+      "delta_from_all_six": {
+        "PR1": -0.0119,
+        "PR2": -0.0171,
+        "PR3": -0.004,
+        "PR4": -0.0171,
+        "PR5": -0.0092,
+        "PR6": 0.0592
+      }
+    },
+    "SICC": {
+      "all_six": 1.8521,
+      "drop_each": {
+        "drop_PR1": 1.8575,
+        "drop_PR2": 1.8225,
+        "drop_PR3": 1.83,
+        "drop_PR4": 1.9125,
+        "drop_PR5": 1.83,
+        "drop_PR6": 1.86
+      },
+      "n": 80,
+      "delta_from_all_six": {
+        "PR1": 0.0054,
+        "PR2": -0.0296,
+        "PR3": -0.0221,
+        "PR4": 0.0604,
+        "PR5": -0.0221,
+        "PR6": 0.0079
+      }
+    }
+  }
+}

@@ -1,7 +1,22 @@
 # Inter-rater reliability (IRR) exercise
 
-The audit recommended a Cohen's κ check on a stratified subsample of the
-hand-coded gold set, with an independent human as the second coder.
+A Cohen's κ check on a stratified 20-judgment subsample of the corpus,
+with an independent human as the second coder. Coder A's grades are
+the original-procedure scores from `data/judgments.json` (LLM grader
+on the first-pass set, regex grader on the heuristic-graded set,
+recorded with grader-type provenance). Coder B is a qualified
+independent human reviewer; LLM-as-Coder-B is excluded by design
+(see "Why a single LLM coder is insufficient" below).
+
+**Scope limit on the κ exercise.** The 20-judgment sample is drawn
+from the n=39 first-pass set (LLM grader), per
+`scripts/select_irr_sample.py`. The κ this exercise produces speaks
+to **LLM-grader stability against an independent human coder**, not
+to the validity of the regex-graded n=149 expansion. A separate IRR
+exercise on a stratified subset of the regex-graded entries is open
+work; until it runs, the regex-grader's heuristic validity is bound
+only by the within-corpus checks in `paper.md` §4.8 (adversarial
+self-sample) and §4.9 (SICC PR4 LLM recode).
 
 ## Files
 

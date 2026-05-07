@@ -1,0 +1,29 @@
+{
+  "description": "Per-tribunal mean under three score-collapse rules: identity (0/1/2), 1\u21920, 1\u21922",
+  "tribunals": {
+    "DIFC": {
+      "n": 32,
+      "identity": 1.724,
+      "down": 1.4896,
+      "up": 1.9583,
+      "delta_down_minus_identity": -0.2344,
+      "delta_up_minus_identity": 0.2343
+    },
+    "ADGM": {
+      "n": 76,
+      "identity": 1.9145,
+      "down": 1.8289,
+      "up": 2,
+      "delta_down_minus_identity": -0.0856,
+      "delta_up_minus_identity": 0.0855
+    },
+    "SICC": {
+      "n": 80,
+      "identity": 1.8521,
+      "down": 1.7625,
+      "up": 1.9417,
+      "delta_down_minus_identity": -0.0896,
+      "delta_up_minus_identity": 0.0896
+    }
+  }
+}

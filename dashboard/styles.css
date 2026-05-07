@@ -329,6 +329,8 @@ h1 {
 .tag-difc { background: #e8eef3; border-color: #b8c8d2; color: #2a4858; }
 .tag-adgm { background: #f8e8e8; border-color: #d8b8b8; color: #883030; }
 .tag-sicc { background: #e8f1ec; border-color: #b8d0c0; color: #2d5040; }
+.tag-grader-llm    { background: #efeaf6; border-color: #c8b8d8; color: #4a3870; }
+.tag-grader-regex  { background: #f4f0e6; border-color: #d6cdb6; color: #5a4818; }
 
 .trace-grid {
   display: grid;

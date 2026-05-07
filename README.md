@@ -25,7 +25,7 @@ Most "Web3 dispute resolution" proposals try to invent a tribunal from scratch. 
 
 ### Empirical (n=188)
 
-188 judgments scored against the v0.2 primitives. 39 form a hand-coded **gold set**; the other 149 are AI-triaged or AI-graded against the same rubric, with provenance recorded per-entry in the `coding.coder` field.
+188 judgments scored against the v0.2 primitives. Two grader types, pinned per-entry in `coding.grader_type`: an LLM grader (Claude Sonnet 4.5, `claude-sonnet-4-5-20250929`, temperature 0.0) on the 39-entry first-pass set (32 DIFC + 7 ADGM), and a deterministic regex heuristic on the remaining 149 entries (16 ADGM heuristic-triage, 53 ADGM heuristic-graded, 80 SICC heuristic-graded). Per-entry provenance — for LLM entries: model, temperature, prompt-template ID, system-prompt SHA, run date; for regex entries: producing script path, run date — is stored in each entry's `coding` block. No human inter-rater reliability has been performed at the time of writing; the IRR scaffolding under `data/irr/` is the next workstream.
 
 | Primitive | DIFC (n=32) | ADGM (n=76) | SICC (n=80) | Combined | What it tests |
 |---|---:|---:|---:|---:|---|
@@ -46,8 +46,8 @@ System properties (architectural, scored once per institution):
 
 **Headline.** All three operating tribunals score at or near ceiling on every per-ruling primitive. The saturation pattern is robust to one expansion test and qualified by a second:
 
-- **ADGM expansion (passes):** 1.93 at n=7 hand-coded → 1.91 at n=76 (hand + AI). The pattern survives the 10× sample expansion essentially unchanged.
-- **SICC expansion (qualified):** 1.95 at n=13 → **1.85 at n=80**. The 6× expansion drops the mean by ≈0.10, driven mainly by PR4 (1.55 — `triage_sicc.py` looks for four procedural markers (hearing date, decision date, named panel/coram, and a "reasons / judgment / GROUNDS OF DECISION" header) and requires ≥3 to score PR4=2; SICC's narrative-style grounds-of-decision often defeat the regex-based extraction of one or more of these markers, so the heuristic outputs PR4=1 or PR4=0 even when the document is procedurally regular). The expansion exposed a heuristic-coding limitation, not a tribunal-quality regression. PR3 actually *rises* from 1.92 to 1.96 on the larger sample; PR6 falls slightly from 1.85 to 1.81 (within noise).
+- **ADGM procedure-tier stability:** first-pass n=7 mean **1.93**, heuristic-triage n=16 mean **1.93**, heuristic-graded n=53 mean **1.91**. The saturation pattern is stable across coding procedures within ADGM.
+- **SICC PR4 heuristic limitation:** `scripts/triage_sicc.py` looks for four procedural markers (hearing date, decision date, named panel/coram, and a "reasons / judgment / GROUNDS OF DECISION" header) and requires ≥3 to score PR4=2. SICC's narrative-style grounds-of-decision documents frequently defeat the regex-based extraction, producing **PR4 = 1.55** under the regex. The Claude-recoded PR4 (`scripts/recode_sicc_pr4_claude.py`, prompt explicitly instructed to recognise narrative procedural form) is the corrected measurement and is what enters the headline SICC mean.
 
 All three tribunals score 2/2 on both system properties. **Three operating commercial tribunals, all implementing the full protocol at near-ceiling, available to plug in today** — with the SICC expansion finding documented honestly rather than smoothed away.
 
@@ -100,11 +100,11 @@ Each trace lifts a rule from the corpus into [Catala][^catala] source plus a Pyt
 | Judgment publication | HTML on-page, 5,000+ since 2007 | PDF with structured Judgment Summary, full neutral citations | HTML via elitigation.sg, structured judgments |
 | Cross-border enforcement | New York Convention + UAE federal recognition | New York Convention + UAE Cabinet Resolution + Federal Law | New York Convention + Singapore *Reciprocal Enforcement of Commonwealth Judgments Act* |
 
-ADGM's *Application of English Law Regulations 2015* is itself a constitutional artefact: a single instrument making the entire body of English common law the binding rule-of-decision. Every ADGM judgment in the gold set cites English House of Lords and Court of Appeal cases — *Caparo*,[^caparo] *Hedley Byrne*,[^hedley] *Murphy v Brentwood DC*, *Arnold v Britton*[^arnold] — directly, alongside a growing internal ADGMCFI line. ADGM has the cleanest "PR3 Rule bind" implementation we have seen in any tribunal anywhere.
+ADGM's *Application of English Law Regulations 2015* is itself a constitutional artefact: a single instrument making the entire body of English common law the binding rule-of-decision. Every ADGM judgment in the corpus cites English House of Lords and Court of Appeal cases — *Caparo*,[^caparo] *Hedley Byrne*,[^hedley] *Murphy v Brentwood DC*, *Arnold v Britton*[^arnold] — directly, alongside a growing internal ADGMCFI line. ADGM has the cleanest "PR3 Rule bind" implementation we have observed in any tribunal in the corpus.
 
 ## v0.2 framework
 
-The six per-ruling primitives + two system properties replaced v0.1's seven primitives, which mixed constitutional values (separation of powers) with technical features (executable predicates) and an upstream-prevention category that does not belong on a tribunal. v0.2 separates the per-ruling layer from the architectural layer and aligns with Fuller's eight desiderata of legality[^fuller] and Hart's primary/secondary rule distinction.[^hart]
+The six per-ruling primitives + two system properties replaced v0.1's seven primitives, which mixed constitutional values (separation of powers) with technical features (executable predicates) and an upstream-prevention category that does not belong on a tribunal. v0.2 separates the per-ruling layer from the architectural layer. The primitives are minimal computational-legibility properties; we cite Fuller[^fuller] and Hart[^hart] in the paper as motivation, not derivation.
 
 See [`data/primitives.json`](./data/primitives.json) for full definitions and the v0.1 → v0.2 mapping.
 

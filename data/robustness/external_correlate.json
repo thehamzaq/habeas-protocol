@@ -1,0 +1,1526 @@
+{
+  "per_metric": {
+    "subsequent_citations": {
+      "n_pairs": 186,
+      "spearman_rho": 0.1226,
+      "interpretation": "positive correlation: rubric tracks this metric"
+    },
+    "was_appealed": {
+      "n_pairs": 186,
+      "spearman_rho": 0.3222,
+      "interpretation": "positive correlation: rubric tracks this metric"
+    },
+    "days_to_judgment": {
+      "n_pairs": 0,
+      "spearman_rho": null,
+      "interpretation": "null correlation: rubric and metric measure different things"
+    }
+  },
+  "n": 188,
+  "rows": [
+    {
+      "case_no": "CFI 058/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ARB 008/2026",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ENF 271/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 110/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 079/2020",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 072/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ARB 024/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 3,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 057/2021",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 034/2022",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CA 002/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "DEC 001/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 035/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 076/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ENF 053/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 053/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "TCD 001/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 5,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 010/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 092/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ARB 032/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 5,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 067/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 071/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 098/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 078/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 022/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 039/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ARB 029/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 007/2026",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "DIFC Courts Order No. 3 of 2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 0.6666666666666666,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 045/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 036/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 011/2025",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "CFI 067/2024",
+      "tribunal": "DIFC Courts",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-283",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-158",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-198",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 3,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-322 + 323",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-249 + ADGMCFI-2024-047",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-265",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 12,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-020",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 31,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-319",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-045",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 5,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-011",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-019",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-162",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-169",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 3,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-144",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-101",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-PCA-2025-005",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-160",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-320",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-370",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-PCA-2025-006",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-004",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-227",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-208",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-143",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2018-011",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2019-003",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 10,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2019-007",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2019-008",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "20200316_ADGMCFI_2019003_Judgment_of_Justice_Stone_SBS_QC_costs_final.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-019",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCA-2023-001",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCA-2025-001",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCA-2025-002",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "APP-2019-001",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "APP-2025-005",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCA-2022-001",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCA-2019-001",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCA-2019-002",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "APP-2019-002",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2018-013",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-015",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-051",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2021-042",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2021-057",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-002",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-017",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-020",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-111",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 12,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-178",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-225",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-238",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-299",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 16,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-013",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-021",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-028",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-071",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-130",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-180",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-248",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-073",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2024-179",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-165",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2025-178",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-PCA-2025-005_-_Judgment_Interim_Freezing_Injunction_01092025_SEALED.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-PCA-2025-006_-_Judgment_Preliminary_Application_28112025_SEALED.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-005",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-014",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2020-026",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2021-021",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2022-129",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFI-2023-140",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "ADGMCFIPCA2021003_ADCB_v_Shetty_Ors_Judgment_22042021.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-fikry-26112017.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "adgmcfi-2017-003-judgment-afkar-capital-limited-v-saifallah-fikry-justice-sir-andrew-smith-02052018.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "adgmcfi-2017-004-judgment-on-application-for-stay-and-costs-of-justice-sir-michael-burton-20042018.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "adgmcfi-2018-011-judgment-of-justice-sir-michael-burton-25022019.txt",
+      "tribunal": "ADGM Courts",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 20/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 3/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 4/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 9/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 2/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 4/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 15/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2026",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2023] SGHC(I) 7",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 1,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": null,
+      "was_appealed": null,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2023] SGHC(I) 6",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 0,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2022] SGHC(I) 1",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2023] SGHC(I) 21",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 0,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.1666666666666667,
+      "subsequent_citations": null,
+      "was_appealed": null,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2023] SGHC(I) 22",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 9/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 2,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 14/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 3/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2022",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 10",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 1/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 14",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 15",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.6666666666666667,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 15/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 6/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2022",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 1/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 2",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 18,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 1/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 15/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 9/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 2,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 25",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.1666666666666667,
+      "subsequent_citations": 1,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 1/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 4,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 23/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 5,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 28",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 2/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 1/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 7/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 14/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 17/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 3/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 7",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 1/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 18/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2024] SGHC(I) 14",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 8/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 7/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.3333333333333333,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 16/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 4/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 2,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "[2025] SGHC(I) 12",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 15/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 10/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 20/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 18/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 3/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.8333333333333333,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 2/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 3/2025",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 5/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 23/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 23/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 5,
+      "was_appealed": true,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 2/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 16/2023",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 15/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 2,
+      "subsequent_citations": 0,
+      "was_appealed": false,
+      "days_to_judgment": null
+    },
+    {
+      "case_no": "OA 3/2024",
+      "tribunal": "Singapore International Commercial Court",
+      "rubric_mean": 1.5,
+      "subsequent_citations": 1,
+      "was_appealed": false,
+      "days_to_judgment": null
+    }
+  ]
+}

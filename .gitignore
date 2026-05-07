@@ -39,3 +39,19 @@ clients/python/dist/
 clients/python/*.egg-info/
 clients/typescript/node_modules/
 clients/typescript/dist/
+
+# Perturbation script outputs — only commit when populated by a real
+# (non-dry-run) API run. The scripts also emit these on --dry-run with
+# status="would_grade"; do not ship dry-run state to the public repo.
+data/sicc_pr4_recoded.json
+data/robustness/test_retest.json
+data/robustness/test_retest_summary.json
+data/robustness/tribunal_blind.json
+data/robustness/tribunal_blind_summary.json
+data/robustness/model_size.json
+data/robustness/model_size_summary.json
+data/robustness/prompt_rephrase.json
+data/robustness/prompt_rephrase_summary.json
+data/robustness/sub_rubric_proposed.json
+data/robustness/sub_rubric_scores.json
+data/robustness/sub_rubric_summary.json

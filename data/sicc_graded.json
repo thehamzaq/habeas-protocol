@@ -36,7 +36,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -79,7 +79,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -122,7 +122,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Injunctions \u2014 Mareva injunction \u2014 Setting aside | Arbitration \u2014 Injunction \u2014 Court\u2019s powers under section 12A of the International Arbitration Act 1994 (2020 Rev Ed). Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Injunctions \u2014 Mareva injunction \u2014 Setting aside | Arbitration \u2014 Injunction \u2014 Court\u2019s powers under section 12A of the International Arbitration Act 1994 (2020 Rev Ed). Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -165,7 +165,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice. Heuristic flags: PR5(no operative verb / annex / amount in tail). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice. Heuristic flags: PR5(no operative verb / annex / amount in tail). Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -208,7 +208,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside | Partnership\u2019s | DNP\u2019s damages. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside | Partnership\u2019s | DNP\u2019s damages. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -251,7 +251,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Public policy. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Breach of natural justice | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Public policy. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -293,7 +293,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: n/a. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -336,7 +336,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Enforcement \u2014 Foreign award | Civil Procedure \u2014 Judgments and orders. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Enforcement \u2014 Foreign award | Civil Procedure \u2014 Judgments and orders. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -378,7 +378,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Breach of natural justice | Country A. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside | Arbitration \u2014 Award \u2014 Recourse against award \u2014 Breach of natural justice | Country A. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -420,7 +420,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -463,7 +463,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -505,7 +505,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction \u2014 Whether proper party to arbitration agreement. Heuristic flags: none. AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Arbitration \u2014 Award \u2014 Recourse against award \u2014 Setting aside \u2014 Jurisdiction \u2014 Whether proper party to arbitration agreement. Heuristic flags: none. Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     },
     {
@@ -537,7 +537,7 @@
         "coder": "MaximLabs (heuristic-graded)",
         "coded_on": "2026-04-28",
         "gold_set": false,
-        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Injunctions \u2014 Proprietary injunction | Blockchain B | Platform C. Heuristic flags: PR3(no specific Rule/Order/Section/Article numbers found), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). AI-coded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not gold-set."
+        "notes": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Injunctions \u2014 Proprietary injunction | Blockchain B | Platform C. Heuristic flags: PR3(no specific Rule/Order/Section/Article numbers found), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
       }
     }
   ]

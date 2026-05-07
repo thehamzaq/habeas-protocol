@@ -1,0 +1,196 @@
+{
+  "description": "Lowest-scoring rulings per tribunal under v0.2 rubric",
+  "tribunals": {
+    "DIFC": [
+      {
+        "case_no": "DIFC Courts Order No. 3 of 2025",
+        "neutral_citation": null,
+        "tribunal": "DIFC Courts",
+        "claim_type": "other",
+        "outcome": "other",
+        "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-administrative-orders/difc-courts-order-no-3-2025-respect-difc-courts-small-claims-tribunal",
+        "primitive_scores_v02": {
+          "PR1": 0,
+          "PR2": 0,
+          "PR3": 2,
+          "PR4": 0,
+          "PR5": 2,
+          "PR6": 0
+        },
+        "mean": 0.6667,
+        "coder": "MaximLabs (first-pass-claude)",
+        "rationale": "Administrative appointment of 4 additional Small Claims Tribunal members. NOT an adjudicative ruling \u2014 it is a *rule-making* / appointment act by the Chief Justice in administrative capacity. P4=2 because this is exactly the separation-of-powers moment: the Chief Justice sitting as administrator authorises the bench, then sits separately when adjudicating cases brought to it. P3=0 (no parties), P6=0 (administrative). Including this in the first-pass set is intentional \u2014 it shows the corpus contains rule-making acts AND adjudicative acts, and the protocol must distinguish them."
+      },
+      {
+        "case_no": "CFI 076/2024",
+        "neutral_citation": null,
+        "tribunal": "DIFC Courts",
+        "claim_type": "costs_assessment",
+        "outcome": "claim_granted",
+        "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/court-first-instance/cfi-0762024-aptiva-technologies-fze-v-liberty-steel-group-holdings-emea-ltd-1",
+        "primitive_scores_v02": {
+          "PR1": 2,
+          "PR2": 1,
+          "PR3": 1,
+          "PR4": 1,
+          "PR5": 2,
+          "PR6": 1
+        },
+        "mean": 1.3333,
+        "coder": "MaximLabs (first-pass-claude)",
+        "rationale": "USD 45,000 awarded as claimed; defendant filed no submissions. P3=1 because while opposing party had opportunity, none was taken \u2014 partial trace. P2=2 because in absence of opposition, the rule reduces to 'is the amount reasonable on its face' which is more deterministic than contested cases."
+      },
+      {
+        "case_no": "ARB 032/2025",
+        "neutral_citation": null,
+        "tribunal": "DIFC Courts",
+        "claim_type": "costs_assessment",
+        "outcome": "claim_partially_granted",
+        "url": "https://www.difccourts.ae/rules-decisions/judgments-orders/arbitration/arb-0322025-oswin-v-1-otila-2-ondray-1",
+        "primitive_scores_v02": {
+          "PR1": 1,
+          "PR2": 1,
+          "PR3": 1,
+          "PR4": 1,
+          "PR5": 2,
+          "PR6": 2
+        },
+        "mean": 1.3333,
+        "coder": "MaximLabs (first-pass-claude)",
+        "rationale": "Indemnity-basis costs reduced from AED 85,417.50 to AED 80,000. P3=1 because Second Defendant failed to file written submissions despite opportunity. Court reasons: 27 hours = 3 man-days; reduction for 'duplication of work'. Bounded discretion under indemnity standard, parallel to ENF 271/2025."
+      }
+    ],
+    "ADGM": [
+      {
+        "case_no": "ADGMCFI-2023-028",
+        "neutral_citation": null,
+        "tribunal": "ADGM Courts",
+        "claim_type": "insolvency",
+        "outcome": null,
+        "url": "",
+        "primitive_scores_v02": {
+          "PR1": 2,
+          "PR2": 2,
+          "PR3": 1,
+          "PR4": 2,
+          "PR5": 1,
+          "PR6": 1
+        },
+        "mean": 1.5,
+        "coder": "MaximLabs (heuristic-graded)",
+        "rationale": [
+          "PR1=2 parties + judge identifiable",
+          "PR2=2 issuance date + 4 body-dated reference(s)",
+          "PR3=1 only general references",
+          "PR4=2 procedural signals + identity + dated record",
+          "PR5=1 no clear operative outcome",
+          "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+        ]
+      },
+      {
+        "case_no": "ADGMCFI-2025-198",
+        "neutral_citation": "[2026] ADGMCFI 0007",
+        "tribunal": "ADGM Courts",
+        "claim_type": "costs_assessment",
+        "outcome": "claim_partially_granted",
+        "url": "https://www.adgm.com/adgm-courts/judgments",
+        "primitive_scores_v02": {
+          "PR1": 1,
+          "PR2": 2,
+          "PR3": 2,
+          "PR4": 2,
+          "PR5": 2,
+          "PR6": 1
+        },
+        "mean": 1.6667,
+        "coder": "MaximLabs (first-pass-claude)",
+        "rationale": "Anti-suit injunction case (anonymised). Costs allocation following discontinuance. PR1=1 because parties are anonymised \u2014 but this is a structural protection, not an absence of identity (court has full identity, public does not). PR3 cites both ADGM Court Procedure Rules 2016 Rule 172(1) presumption + Section 49 of Courts Regulations broad discretion. Demonstrates the ADGM tribunal's facility with English-law costs jurisprudence."
+      },
+      {
+        "case_no": "ADGMCFI-2018-011",
+        "neutral_citation": null,
+        "tribunal": "ADGM Courts",
+        "claim_type": "other",
+        "outcome": null,
+        "url": "",
+        "primitive_scores_v02": {
+          "PR1": 2,
+          "PR2": 2,
+          "PR3": 1,
+          "PR4": 2,
+          "PR5": 2,
+          "PR6": 1
+        },
+        "mean": 1.6667,
+        "coder": "MaximLabs (heuristic-graded)",
+        "rationale": [
+          "PR1=2 parties + judge identifiable",
+          "PR2=2 issuance date + 4 body-dated reference(s)",
+          "PR3=1 only general references",
+          "PR4=2 procedural signals + identity + dated record",
+          "PR5=2 operative outcome (2 verbs, e.g. 'I conclude')",
+          "PR6=1 implicit enforceability via standard procedure; no explicit bridge"
+        ]
+      }
+    ],
+    "SICC": [
+      {
+        "case_no": "",
+        "neutral_citation": "",
+        "tribunal": "Singapore International Commercial Court",
+        "claim_type": "permission_to_appeal",
+        "outcome": "claim_partially_granted",
+        "url": "https://www.elitigation.sg/gd/sic/2024_SGCAI_5",
+        "primitive_scores_v02": {
+          "PR1": 1,
+          "PR2": 2,
+          "PR3": 1,
+          "PR4": 0,
+          "PR5": 2,
+          "PR6": 1
+        },
+        "mean": 1.1667,
+        "coder": "MaximLabs (heuristic-graded)",
+        "rationale": "Heuristic-graded SICC entry. Catchwords: Equity \u2014 Fiduciary relationships \u2014 Duties \u2014 Duty to act in good faith | Equity \u2014 Remedies \u2014 Equitable compensation | Evidence \u2014 Principles \u2014 Expert evidence on appeal. Heuristic flags: PR1(coram not parsed), PR3(no specific Rule/Order/Section/Article numbers found), PR4(procedural triplet not visible), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
+      },
+      {
+        "case_no": "[2024] SGHC(I) 25",
+        "neutral_citation": "[2024] SGHC(I) 25",
+        "tribunal": "Singapore International Commercial Court",
+        "claim_type": "costs_assessment",
+        "outcome": "claim_partially_granted",
+        "url": "https://www.elitigation.sg/gd/sic/2024_SGHCI_25",
+        "primitive_scores_v02": {
+          "PR1": 1,
+          "PR2": 2,
+          "PR3": 1,
+          "PR4": 0,
+          "PR5": 2,
+          "PR6": 1
+        },
+        "mean": 1.1667,
+        "coder": "MaximLabs (heuristic-graded)",
+        "rationale": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs. Heuristic flags: PR1(coram not parsed), PR3(no specific Rule/Order/Section/Article numbers found), PR4(procedural triplet not visible), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
+      },
+      {
+        "case_no": "[2022] SGHC(I) 1",
+        "neutral_citation": "[2022] SGHC(I) 1",
+        "tribunal": "Singapore International Commercial Court",
+        "claim_type": "costs_assessment",
+        "outcome": "other",
+        "url": "https://www.elitigation.sg/gd/sic/2024_SGCAI_3",
+        "primitive_scores_v02": {
+          "PR1": 1,
+          "PR2": 2,
+          "PR3": 2,
+          "PR4": 0,
+          "PR5": 2,
+          "PR6": 1
+        },
+        "mean": 1.3333,
+        "coder": "MaximLabs (heuristic-graded)",
+        "rationale": "Heuristic-graded SICC entry. Catchwords: Civil Procedure \u2014 Costs | Civil Procedure \u2014 Damages \u2014 Interest. Heuristic flags: PR1(coram not parsed), PR4(procedural triplet not visible), PR6(non-arbitration matter; no explicit cross-border enforcement bridge cited). Regex-heuristic graded against the v0.2 rubric using the same heuristics applied to the ADGM borderline set; not in first-pass set."
+      }
+    ]
+  }
+}

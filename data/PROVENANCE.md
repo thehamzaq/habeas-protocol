@@ -18,7 +18,7 @@ is what the project redistributes (under `LICENSES/HABEAS-METADATA.txt`).
 - **Last pull:** April 2026 — 294 HTML pages spanning recent DIFC output
   across the Court of First Instance (CFI), Court of Appeal (CA), Arbitration
   Division (ARB), and Enforcement Division (ENF).
-- **Coded n:** 32 (all hand-coded, MaximLabs gold set).
+- **Coded n:** 32 (first-pass-claude; AI-coded with Claude Sonnet 4.5).
 - **ToS at pull time:** https://www.difccourts.ae/terms-of-use, asserting
   copyright and prohibiting electronic storage / redistribution of website
   content. See `data/tos_audit.md` §1 for verbatim clauses.
@@ -47,7 +47,7 @@ is what the project redistributes (under `LICENSES/HABEAS-METADATA.txt`).
 - **Stripper:** `scripts/strip_html.py` (HTML); native PDF text extraction
   for `data/raw/adgm/pdfs/`.
 - **Last pull:** April 2026 — 174 ADGM PDFs spanning 2017–2026.
-- **Coded n:** 76 (7 hand-coded gold + 16 AI-triaged + 53 AI-graded).
+- **Coded n:** 76 (7 first-pass-claude + 16 heuristic-triage + 53 heuristic-graded).
 - **ToS at pull time:** https://www.adgm.com/information/terms-and-conditions,
   asserting copyright and prohibiting reproduction or storage on another
   website / public retrieval system. See `data/tos_audit.md` §2 for
@@ -55,10 +55,12 @@ is what the project redistributes (under `LICENSES/HABEAS-METADATA.txt`).
 - **Intended use:** non-commercial academic research; criticism and review.
 - **Anonymisation posture:** ADGM publishes Judgment Summary templates with
   full party identification; we preserve as published.
-- **Known biases:** ADGM PR2 = 2.00 by construction in the AI-triage tier
-  (Judgment Summary template scores PR2 ceiling automatically). Reported
-  in §3 of `paper.md` as a methodological caveat. The 7-judgment hand-coded
-  subset corroborates the AI-triaged scoring within ±0.02 per primitive.
+- **Known biases:** ADGM PR2 = 2.00 by construction in the heuristic-triage
+  tier (Judgment Summary template scores PR2 ceiling automatically).
+  Reported in §3 of `paper.md` as a methodological caveat. Procedure-tier
+  per-primitive comparison (`paper.md` §4.6, `data/robustness/adgm_procedure_comparison.json`)
+  shows the three procedure tiers (first-pass, heuristic-triage, heuristic-graded)
+  produce overall means within ±0.02 of each other on ADGM.
 - **Takedown contact:** see `TAKEDOWN.md`.
 
 ---
@@ -77,7 +79,7 @@ is what the project redistributes (under `LICENSES/HABEAS-METADATA.txt`).
   direct fetcher.
 - **Last pull:** May 2026 — 80 HTML grounds-of-decision documents spanning
   SICC and SICC-CA judgments from 2023 through April 2026.
-- **Coded n:** 80 (all heuristic-graded via `scripts/triage_sicc.py`).
+- **Coded n:** 80 (all heuristic-graded via `scripts/triage_sicc.py`; PR4 recoded with Claude via `scripts/recode_sicc_pr4_claude.py` — see §4.9 of `paper.md`).
 - **ToS at pull time:** https://www.judiciary.gov.sg/terms-of-use, asserting
   IP rights and prohibiting commercial reproduction. Singapore Copyright Act
   2021 ss 190–196 (fair dealing for research / criticism / review) is the
@@ -89,10 +91,13 @@ is what the project redistributes (under `LICENSES/HABEAS-METADATA.txt`).
 - **Known biases:**
   - **PR4 heuristic limitation.** SICC writes integrated-narrative grounds-
     of-decision rather than the canonical "notice → hearing → decision"
-    structural triplet that `scripts/triage_sicc.py` looks for. PR4 = 1.55
-    on the n=80 expansion vs PR4 = 2.00 on the n=13 hand-coded subset
-    reflects this. Hand-validation of a stratified subset would refine the
-    heuristic. Reported in `paper.md` §4.1.
+    structural triplet that `scripts/triage_sicc.py` looks for. The regex
+    produces PR4 = 1.55 on the n=80 corpus. The Claude-recoded PR4
+    (`scripts/recode_sicc_pr4_claude.py`, prompt explicitly instructed to
+    recognise narrative procedural form) is the corrected measurement and
+    enters the headline SICC mean. The regex result is retained in
+    `data/robustness/sicc_pr4_regex.json` as the known-flawed measurement.
+    Reported in `paper.md` §4.1 and §4.9.
   - **Time bias.** Sample is concentrated 2024–2026; pre-2023 SICC output
     under-represented.
 - **Pipeline notes:**

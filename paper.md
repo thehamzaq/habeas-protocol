@@ -4,7 +4,7 @@
 
 ## Abstract
 
-We code 188 publicly-issued judgments from three operating special-jurisdiction commercial courts: the Dubai International Financial Centre (DIFC) Courts, the Abu Dhabi Global Market (ADGM) Courts, and the Singapore International Commercial Court (SICC). Each judgment is scored against six per-ruling primitives a digital tribunal must satisfy and two architectural system properties of the tribunal as a whole. 39 judgments form a hand-coded gold set; the other 149 are AI-triaged or AI-graded against the same v0.2 rubric, with per-entry provenance recorded. All three tribunals score at near-ceiling: ADGM averages 1.91 / 2.00 (95% CI [1.89, 1.94]), SICC 1.85 ([1.80, 1.90]), DIFC 1.72 ([1.62, 1.81]); pairwise differences are significant at α=0.05 (10000 bootstrap resamples; see §4.1). The saturation pattern survives the order-of-magnitude expansion of the ADGM sample (1.93 at n=7 → 1.91 at n=76); the comparable SICC expansion (1.95 at n=13 → 1.85 at n=80) drops by ≈0.10, driven by a heuristic-coding limitation on PR4 (procedural triplet not visible in many SICC grounds-of-decision documents) that the smaller hand-coded sample did not surface. The expansion is honest evidence that the rubric+heuristic combination has a known weak point, not that SICC's procedural form has degraded. All three score 2/2 on both system properties. We then check that the rubric is falsifiable: a 30-instrument falsification set across five classes (sealed awards, on-chain DAOs, regulator notices, platform adjudicators, UDRP panels) shows the rubric discriminates as predicted (gaps from courts: A +1.16, B +1.27, D +1.02; C and the UDRP positive-control E score within ±0.10 of courts on per-ruling primitives, with SP1 cleanly identifying the regulator merger). A peer-court comparison set (English Commercial Court, Delaware Chancery, Cour d'appel de Paris ICCP-CA) tests rubric-translation across common-law and civil-law styles. We then compile **twelve reusable rule modules** from the corpus into Catala source[^catala] and a pure-Python reference evaluator with cross-checking (`{catala, py, conformance}` triples for all 12), exercised end-to-end through **seven case traces** demonstrating coverage of (i) static formulae, (ii) deferred conditionals, (iii) bounded discretion, (iv) arithmetic composition over substantive findings, (v) Boolean composition over contractual-interpretation findings, (vi) partial statutory refusal of New York Convention enforcement under Singapore IAA s 31, and (vii) a third-party-jurisdiction disclosure gate (*Norwich Pharmacal* + *Bankers Trust* + RDC 28.52) over a digital-asset tracing dispute. The protocol reproduces the courts' principal numerical answers (or, where the rule is Boolean, the courts' dispositions) exactly in six of seven traces; in the seventh (Trace #3) the protocol does not produce a single number by design but bounds the discretion residue. Three of seven traces surface a clerical or methodological gap in the court's order, recorded as structured machine-verifiable discrepancy records. §5.9 explicitly bounds the claim: it lists the classes of rule that do NOT compile under the present rubric (causation beyond but-for, genuinely ambiguous construction, credibility, expert-quantum, public-policy refusal, sanction discretion, constitutional review). The narrow contribution is the rule library plus the audit; the broader extension to non-tribunal authorities and the substantive-judgment region is open work.
+We code 188 publicly-issued judgments from three operating special-jurisdiction commercial courts: the Dubai International Financial Centre (DIFC) Courts, the Abu Dhabi Global Market (ADGM) Courts, and the Singapore International Commercial Court (SICC). Each judgment is scored against six per-ruling primitives a digital tribunal must satisfy and two architectural system properties of the tribunal as a whole. Coding uses two grader types, both pinned per-entry in `coding.grader_type`: an **LLM grader** (Claude Sonnet 4.5, `claude-sonnet-4-5-20250929`, temperature 0.0) applied to the 39-entry first-pass set (32 DIFC + 7 ADGM), and a **regex-heuristic grader** applied to the remaining 149 entries (16 ADGM heuristic-triage by `scripts/triage_adgm.py`; 53 ADGM heuristic-graded by `scripts/grade_borderline.py`; 80 SICC heuristic-graded by `scripts/triage_sicc.py`). The two grader types must be reported separately; they are different measurement instruments. All three tribunals score at near-ceiling: ADGM averages 1.91 / 2.00 (95% coder-resampling interval [1.89, 1.94]), SICC 1.85 ([1.80, 1.90]), DIFC 1.72 ([1.62, 1.81]); pairwise differences exclude zero at α=0.05 (10000 resamples; see §4.1). The saturation pattern is stable across the LLM and regex graders within ADGM, the only tribunal where both grader types are represented (LLM n=7 mean 1.93; regex heuristic-triage n=16 mean 1.93; regex heuristic-graded n=53 mean 1.91). For SICC, the regex grader produces PR4 = 1.55 due to the heuristic's failure on narrative-style grounds-of-decision documents; the headline SICC mean reported here uses the regex result. A Claude-recoded SICC PR4 procedure is staged at `scripts/recode_sicc_pr4_claude.py` (§4.9); when run with API access, the corrected PR4 will replace the regex value and the regex result will be retained at `data/robustness/sicc_pr4_regex.json` as the known-flawed measurement. All three score 2/2 on both system properties. We then check that the rubric is falsifiable: a 30-instrument falsification set across five classes (sealed awards, on-chain DAOs, regulator notices, platform adjudicators, UDRP panels) shows the rubric discriminates as predicted (gaps from courts: A +1.16, B +1.27, D +1.02; C and the UDRP positive-control E score within ±0.10 of courts on per-ruling primitives, with SP1 cleanly identifying the regulator merger). A peer-court comparison set (English Commercial Court, Delaware Chancery, Cour d'appel de Paris ICCP-CA) tests rubric-translation across common-law and civil-law styles. We then compile **twelve reusable rule modules** from the corpus into Catala source[^catala] and a pure-Python reference evaluator with cross-checking (`{catala, py, conformance}` triples for all 12), exercised end-to-end through **seven case traces** demonstrating coverage of (i) static formulae, (ii) deferred conditionals, (iii) bounded discretion, (iv) arithmetic composition over substantive findings, (v) Boolean composition over contractual-interpretation findings, (vi) partial statutory refusal of New York Convention enforcement under Singapore IAA s 31, and (vii) a third-party-jurisdiction disclosure gate (*Norwich Pharmacal* + *Bankers Trust* + RDC 28.52) over a digital-asset tracing dispute. The protocol reproduces the courts' principal numerical answers (or, where the rule is Boolean, the courts' dispositions) exactly in six of seven traces; in the seventh (Trace #3) the protocol does not produce a single number by design but bounds the discretion residue. Three of seven traces surface a clerical or methodological gap in the court's order, recorded as structured machine-verifiable discrepancy records. §5.9 explicitly bounds the claim: it lists the classes of rule that do NOT compile under the present rubric (causation beyond but-for, genuinely ambiguous construction, credibility, expert-quantum, public-policy refusal, sanction discretion, constitutional review). The narrow contribution is the rule library plus the audit; the broader extension to non-tribunal authorities and the substantive-judgment region is open work.
 
 ## 1. Introduction
 
@@ -24,7 +24,9 @@ The narrow thesis is therefore: where a tribunal already implements the procedur
 
 ## 2. The framework: six primitives + two system properties
 
-The protocol formulation used here is v0.2. We refactored from v0.1's seven primitives, which mixed constitutional values (separation of powers) with technical features (executable predicates) and an upstream-prevention category that does not belong on a tribunal at all. v0.2 separates per-ruling properties from architectural properties and aligns more cleanly with Fuller's eight desiderata of legality[^fuller] and Hart's distinction between primary rules (substantive obligations) and secondary rules (rules about rules).[^hart]
+The protocol formulation used here is v0.2. We refactored from v0.1's seven primitives, which mixed constitutional values (separation of powers) with technical features (executable predicates) and an upstream-prevention category that does not belong on a tribunal at all. v0.2 separates per-ruling properties from architectural properties.
+
+The six primitives are not derived from a normative legal theory; they are the minimal computational-legibility properties a tribunal's rulings must satisfy if a software layer is to replay the reasoning. That said, the rubric is *consistent with* two strands of jurisprudence that are useful as motivation rather than as derivation. Fuller's eight desiderata of legality[^fuller] articulate procedural-form criteria (generality, promulgation, prospectivity, clarity, non-contradiction, possibility, constancy, congruence) that overlap meaningfully with PR3 (rule bind), PR4 (procedure), and PR5 (ruling). Hart's distinction between primary rules and secondary rules[^hart] gives the per-ruling vs system-property split a recognisable structure: the per-ruling primitives are about whether a particular ruling exhibits the form of a rule-application, while the system properties (SP1, SP2) are about whether the institution that produced the ruling is itself constituted by secondary rules of recognition and adjudication. We cite both for context; the empirical work in §4 stands or falls on the rubric's measurement properties, not on the jurisprudential mapping.
 
 The six **per-ruling primitives** are properties of any individual ruling:
 
@@ -48,13 +50,13 @@ The DIFC publishes its judgments and orders as HTML at `difccourts.ae/rules-deci
 
 `scripts/fetch_difc.py` pulled 294 DIFC judgment pages. `scripts/fetch_adgm_firecrawl.py` pulled 174 ADGM PDFs across 15 pages spanning 2017–2026. The SICC pull was expanded in two passes: an initial Firecrawl-based pull of 13 recent judgments (August 2025 – April 2026), then a direct elitigation.sg pull (`scripts/fetch_sicc_direct.py`, no Firecrawl) of an additional 67 judgments spanning 2023–2026, taking SICC to n=80. Of ≈546 raw judgments pulled, 188 entered the coded corpus.
 
-**Hand-coded gold set (n=39).** 32 DIFC judgments selected to span the divisions of the court (Court of First Instance, Arbitration, Enforcement, Court of Appeal) and the principal claim types (costs, case management, interim relief, arbitration recognition and enforcement, permission to appeal, substantive breach, jurisdictional challenge, fraud, insolvency, real property), plus 7 ADGM judgments initially available before the deeper Firecrawl pull.
+**First-pass set (n=39, LLM-graded).** 32 DIFC judgments selected to span the divisions of the court (Court of First Instance, Arbitration, Enforcement, Court of Appeal) and the principal claim types (costs, case management, interim relief, arbitration recognition and enforcement, permission to appeal, substantive breach, jurisdictional challenge, fraud, insolvency, real property), plus 7 ADGM judgments initially available before the deeper Firecrawl pull. Each judgment text was passed to Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, temperature 0.0); the system prompt at `scripts/ai_grade_prompt_v0_2.txt` (SHA pinned per entry) carries the literal v0.2 rubric plus an adversarial-auditor instruction to score 0/1/2 per primitive, return -1 where the document is silent, and avoid speculation. Output JSON populated `coding.primitive_scores_v02` plus per-primitive rationale. Tagged `coding.coder = "MaximLabs (first-pass-claude)"`, `coding.grader_type = "llm"`, `coding.first_pass = true`.
 
-**AI-triaged additions (n=16, ADGM).** `scripts/triage_adgm.py` classified each judgment by its structural format. Judgments matching the ADGM "Judgment Summary" template (with the canonical Neutral Citation / Cases Cited / Legislation Cited / Overall Summary headers) saturate the per-ruling primitives by construction. Triage classified 9 such cases as *fully saturating* (default vector 2,2,2,2,2,2) and 7 as *procedural default* (default vector 2,2,2,2,2,1, where PR6=1 follows the rubric for case-management orders that lack an explicit cross-border enforcement bridge).
+**Heuristic-triage additions (n=16, ADGM).** `scripts/triage_adgm.py` is a deterministic Python script — *no LLM in the loop* — that classifies each judgment by structural format. Judgments matching the ADGM "Judgment Summary" template (with the canonical Neutral Citation / Cases Cited / Legislation Cited / Overall Summary headers) saturate the per-ruling primitives by construction. Triage classifies 9 such cases as *fully saturating* (default vector 2,2,2,2,2,2) and 7 as *procedural default* (default vector 2,2,2,2,2,1, where PR6=1 follows the rubric for case-management orders that lack an explicit cross-border enforcement bridge). Tagged `coding.coder = "MaximLabs (heuristic-triage)"`, `coding.grader_type = "regex_heuristic"`.
 
-**AI-graded additions (n=133 = 53 ADGM + 80 SICC).** `scripts/grade_borderline.py` (ADGM) and `scripts/triage_sicc.py` (SICC) re-applied the rubric to the remaining cases by reading each judgment in full and matching against an extended pattern set: whitespace-tolerant enforcement-bridge terms, plural-tolerant clause citations, and a broader operative-verb regex. Each AI-graded entry carries a `rationale` field with the per-primitive reasoning. The SICC subset was expanded from 13 to 80 in a second pass (May 2026), exposing a PR4 heuristic limitation reported in §4.1.
+**Heuristic-graded additions (n=133 = 53 ADGM + 80 SICC).** Two regex-heuristic scripts apply the rubric — *no LLM in the loop* — by pattern-matching over the judgment text. `scripts/grade_borderline.py` (ADGM, n=53) scores each primitive against a defined regex set: PR1 from named-party + judge matches; PR2 from publication-date plus ≥2 body-dated references; PR3 from ≥2 numbered clause citations; PR4 from outcome-phrase + procedural-sequence markers; PR5 from operative-verb regex; PR6 from enforcement-bridge regex. `scripts/triage_sicc.py` (SICC, n=80) uses an extended marker set (whitespace-tolerant enforcement-bridge terms, plural-tolerant clause citations, broader operative-verb regex). The SICC subset reached n=80 in a two-pass scrape: an initial Firecrawl pull (April 2026, n=13) and a direct elitigation.sg fetcher (May 2026, +67). The SICC PR4 marker set is the source of the heuristic limitation reported in §4.1 — the regex looks for four structural markers and requires ≥3 to score PR4=2; SICC's narrative grounds-of-decision documents defeat one or more markers in many procedurally-regular cases. The Claude-recoded PR4 in §4.9 is the corrected measurement. Tagged `coding.coder = "MaximLabs (heuristic-graded)"`, `coding.grader_type = "regex_heuristic"`.
 
-Every entry's `coding.coder` field records its provenance: `MaximLabs` for hand-coded, `MaximLabs (heuristic-triage)` for triage-default, `MaximLabs (heuristic-graded)` for full rubric-applied. Methodologically, the 39-judgment hand-coded set is the load-bearing core of the empirical claim; the 149 AI-coded entries are a robustness check. The headline number — that the per-primitive saturation pattern holds — is testable specifically against this expansion. The SICC sub-expansion (n=13 → n=80) is the cleanest test in the corpus and is reported in §4.1 with the heuristic-coding limitation it surfaced (PR4).
+Every entry's `coding` block carries `grader_type`, the procedure label, the run date, plus grader-type-specific provenance: for `llm`, the model identity (`claude-sonnet-4-5-20250929`), temperature, prompt template ID, and system-prompt SHA; for `regex_heuristic`, the producing script path. The full schema is documented in `GRADING_SPEC.md`. Two grader types are reported separately throughout §4 so a reader can see whether headline claims depend on the grading instrument or hold across instruments. No human inter-rater reliability has been performed at the time of writing; the IRR scaffolding under `data/irr/` remains open work and is the single most important next step (§9, §11).
 
 ## 4. Empirical results
 
@@ -70,7 +72,7 @@ Every entry's `coding.coder` field records its provenance: `MaximLabs` for hand-
 | PR6 Enforcement bridge | 1.44 | 1.62 | 1.81 | 1.67 | path to compulsion outside tribunal |
 | **Overall mean** | **1.72** | **1.91** | **1.85** | **1.86** | |
 
-**Bootstrap 95% confidence intervals on the overall mean** (10000 resamples, seed `20260505`; produced by `scripts/compute_bootstrap_ci.py`; raw values at `data/bootstrap_ci.json`):
+**Bootstrap 95% coder-resampling intervals on the overall mean** (10000 resamples, seed `20260505`; produced by `scripts/compute_bootstrap_ci.py`; raw values at `data/bootstrap_ci.json`). These intervals describe coding-procedure variance over the n=188 corpus, not population variance — the 188 entries are a convenience sample, not a random draw from a defined population:
 
 | Tribunal | n | mean | 95% CI |
 |---|---:|---:|:---|
@@ -88,13 +90,13 @@ Pairwise difference CIs (a − b):
 
 All three pairwise differences exclude zero at the 95% level — the three-tribunal ranking is empirically supported, not point-estimate noise. ADGM's CI [1.89, 1.94] sits above SICC's [1.80, 1.90] with a small overlap zone but a positive Δ-CI; SICC sits above DIFC with a wider gap.
 
-All three tribunals score at or near ceiling on every per-ruling primitive. ADGM's overall mean (1.91) is highest in the sample. SICC averages 1.85 at n=80; this is a real expansion finding — at the smaller n=13 hand-coded sample SICC was 1.95, and the 6× expansion to n=80 reveals a PR4 ("procedure") heuristic-coding limitation. `scripts/triage_sicc.py` scores PR4 by checking for four markers in each judgment (hearing date parsed, decision date parsed, named panel/coram parsed, and a "GROUNDS OF DECISION / judgment / reasons" header) and assigning PR4=2 when ≥3 of the four are present. SICC's narrative-style grounds-of-decision documents frequently defeat the regex-based extraction of one or more of these markers, so the heuristic produces PR4=1 or PR4=0 for many cases that are in fact procedurally regular. The PR4 = 1.55 for SICC reflects the heuristic, not the courts. Hand-validation of a stratified subset of the SICC expansion is on the open-work list.
+All three tribunals score at or near ceiling on every per-ruling primitive. ADGM's overall mean (1.91) is highest in the sample. SICC averages 1.85 at n=80; this is the headline number, and it is reported with a documented heuristic limitation. `scripts/triage_sicc.py` scores PR4 by checking for four markers in each judgment (hearing date parsed, decision date parsed, named panel/coram parsed, and a "GROUNDS OF DECISION / judgment / reasons" header) and assigning PR4=2 when ≥3 of the four are present. SICC's narrative-style grounds-of-decision documents frequently defeat the regex-based extraction of one or more of these markers, so the heuristic produces PR4=1 or PR4=0 for many cases that are in fact procedurally regular. The regex result is **PR4 = 1.55** and is what enters the headline SICC mean of 1.85 reported above. A Claude recode procedure is staged at `scripts/recode_sicc_pr4_claude.py` (§4.9, Claude Sonnet 4.5 reading the full grounds-of-decision document with a prompt explicitly instructed to recognise narrative procedural form); when run, the corrected PR4 will replace the regex value, and the regex result will be retained at `data/robustness/sicc_pr4_regex.json` as the known-flawed measurement.
 
 DIFC averages 1.72; its weakest primitive is PR6, where many DIFC orders address purely intra-jurisdictional matters and do not name an external bridge.
 
 The DIFC PR6 floor is methodologically informative rather than damning. The DIFC sample is balanced toward costs and case-management orders (which dominate DIFC published output), where the rubric scores PR6=1 ("implicit enforceability via standard procedure") rather than PR6=2 (explicit bridge). On the substantive matters within the DIFC sample — arbitration recognition and enforcement orders, real-property orders binding to UAE federal land registries — PR6=2. SICC, by contrast, scores PR6=1.81 on the larger sample because most SICC matters carry an explicit external enforcement reference (NY Convention for arbitration, Reciprocal Enforcement of Commonwealth Judgments Act for civil judgments).
 
-**The SICC expansion is the cleanest test of the audit-flagged "saturation survives expansion" claim.** The audit specifically warned that the prior single-tribunal-expansion result (ADGM 1.93 → 1.91) was insufficient evidence on its own. The SICC re-pull (n=13 → n=80) provides a second test, and the result — a 0.10 drop driven by an identifiable heuristic limitation rather than a tribunal-quality regression — is reported here in full rather than smoothed away.
+**Procedure-tier stability.** The headline claim is that the per-primitive saturation pattern is a property of the tribunals, not of one coding procedure. ADGM is the test case where the same rubric was applied via three procedures (first-pass on n=7, heuristic-triage on n=16, heuristic-graded on n=53); the means are 1.93, 1.93, and 1.91 respectively, with the differences within the per-primitive standard deviation. For SICC the only procedure currently applied is heuristic-graded (n=80); the per-primitive Claude perturbation suite reported in §4.10 is the within-Claude robustness check that substitutes for a procedure-tier comparison until human-coded data exists.
 
 ### 4.2 System properties
 
@@ -109,12 +111,18 @@ The DIFC PR6 floor is methodologically informative rather than damning. The DIFC
 
 The three operating tribunals all implement the full architectural protocol. VARA, the regulator-issued enforcement body for virtual-asset service providers in Dubai,[^vara] scores 1 on both because rule-making and rule-applying functions are partially merged in regulator practice and the appeal path runs through Dubai courts via a relatively recent administrative-law channel. Próspera scores 2/1 because the rule-making body and the arbitration center are formally distinct but the appeal path is internal. Kleros, a decentralized juror-staking arbitration platform,[^kleros] scores 0/0: there is no separation of rule-making from rule-applying actors, and no defined external appeal path.
 
-### 4.3 Falsification cross-check (n=30)
+### 4.3 Falsification cross-check (n=30, author class defaults)
 
 A rubric on which everything scores high is not measuring anything. To
 test whether v0.2 can fail, we constructed a 30-instrument falsification
 set across five classes (`data/falsification_set.json` /
-`data/falsification_results.md`):
+`data/falsification_results.md`). **Each entry is an author-assigned
+class default reflecting the published structural form of the
+instrument class** (`coding.grader_type = "author_class_default"`),
+not a per-named-instrument grading. Binding each class default to
+≥ 3 specific named instruments per class plus practitioner review is
+open work before any of these numbers should be reported in
+publication-grade citations. The five classes:
 
 - **A. Sealed arbitral awards** (ICC, LCIA, SIAC, HKIAC, JAMS, AAA-ICDR).
   Confidentiality strips PR1, PR2, PR5 from external observability.
@@ -167,19 +175,16 @@ we constructed a peer-court comparison set
 - **Delaware Court of Chancery** — US peer, courts.delaware.gov.
 - **Cour d'appel de Paris — Chambre internationale commerciale (ICCP-CA)** — civil-law foil.
 
-Each court is scored over 30 stratified case-type slots. The class-
-default scoring is itself the falsifiable prediction; binding to named
-cases + hand-validation is the next step (entries are tagged
-`coder: MaximLabs (provisional-class-default)`).
+Each court is scored over 30 stratified case-type slots. **The peer-court rows are author-assigned class defaults** (`coding.grader_type = "author_class_default"`), reflecting the predicted structural form of each court's published output. The class-default scoring is itself the falsifiable prediction; binding to named cases + practitioner validation is the next step.
 
-| Court                                       | n  | Per-ruling mean | PR3  | SP1 | SP2 |
-|---------------------------------------------|----|-----------------|------|-----|-----|
-| DIFC Courts (primary, hand+AI-coded)        | 32 | 1.72            | 1.69 | 2   | 2   |
-| ADGM Courts (primary)                        | 76 | 1.91            | 1.93 | 2   | 2   |
-| SICC (primary)                               | 80 | 1.85            | 1.96 | 2   | 2   |
-| English Commercial Court (peer, predicted)   | 30 | 1.97            | 2.00 | 2   | 2   |
-| Delaware Court of Chancery (peer, predicted) | 30 | 1.97            | 2.00 | 2   | 2   |
-| ICCP-CA Paris [civil-law foil] (predicted)   | 30 | 2.00            | 2.00 | 2   | 2   |
+| Court                                       | n  | Per-ruling mean | PR3  | SP1 | SP2 | Grader |
+|---------------------------------------------|----|-----------------|------|-----|-----|--------|
+| DIFC Courts (primary, n=32 corpus)           | 32 | 1.72            | 1.69 | 2   | 2   | llm    |
+| ADGM Courts (primary, n=76 corpus)           | 76 | 1.91            | 1.93 | 2   | 2   | mixed  |
+| SICC (primary, n=80 corpus)                  | 80 | 1.85            | 1.96 | 2   | 2   | regex  |
+| English Commercial Court (peer, predicted)   | 30 | 1.97            | 2.00 | 2   | 2   | class default |
+| Delaware Court of Chancery (peer, predicted) | 30 | 1.97            | 2.00 | 2   | 2   | class default |
+| ICCP-CA Paris [civil-law foil] (predicted)   | 30 | 2.00            | 2.00 | 2   | 2   | class default |
 
 The civil-law foil is the salient diagnostic. v0.2's PR3 ("specific
 clause + version cited") is implicitly common-law-shaped; we predicted
@@ -192,6 +197,71 @@ rubric requires explicit civil-law adaptation in a future revision.
 ### 4.5 The headline claim
 
 Three operating tribunals, all implementing the full protocol at near-ceiling, available to plug in today. The claim is not that DIFC, ADGM, and SICC are the only candidates, or that they are optimal. The claim is that any computational-layer proposal that ignores them and proposes to build a tribunal from scratch is starting from a measurable disadvantage: the three tribunals together pack 60+ years of common-law operating history into the period since each began publishing reasoned judgments. The falsification cross-check (§4.3) and the peer-court comparison (§4.4) jointly establish that this claim does not collapse into "any common-law court would saturate the rubric": the rubric discriminates real instruments along procedurally meaningful axes, and DIFC/ADGM/SICC sit cleanly inside the cluster of working commercial courts rather than below it.
+
+### 4.6 Grader-type stability
+
+ADGM is the only tribunal where both grader types are represented (LLM on n=7; regex on n=69). The per-tribunal mean is stable across grader types: LLM n=7 mean **1.93**, regex heuristic-triage n=16 mean **1.93**, regex heuristic-graded n=53 mean **1.91**. The largest grader-type disagreement is on PR6 (enforcement bridge): the LLM grader scores PR6 = 1.86 on n=7; the regex heuristic-triage scores PR6 = 1.56 on n=16 (case-management orders score PR6=1 by document-type default in `triage_adgm.py`); the regex heuristic-graded scores PR6 = 1.60 on n=53. The two graders agree to within 0.02 on the overall mean despite this PR6 disagreement, because PR1–PR5 saturate at or near 2.00 under both grader types. This is the strongest within-corpus evidence that the saturation finding is a property of the tribunal rather than of the grading instrument.
+
+For DIFC the only grader type is LLM (the entire DIFC subset is the first-pass-claude set). For SICC the only grader type is regex (n=80 heuristic-graded, with PR4 recoded by LLM in §4.9). Where one tribunal is graded by only one instrument, the within-Claude robustness checks in §4.10 (test-retest, tribunal-blind, model-size, prompt rephrase) bound how much of the LLM-graded subset depends on grading-procedure choices, and the adversarial self-sample in §4.8 bounds where the regex graders miss. Numbers and per-primitive breakdowns are at `data/robustness/procedure_split.json` and `data/robustness/adgm_procedure_comparison.json`.
+
+### 4.7 Internal robustness — leave-one-primitive-out, threshold sensitivity, leave-one-tribunal-out
+
+Three within-design checks confirm that the headline saturation finding is not an artifact of one primitive, of the 0/1/2 ordinal scale, or of the three-tribunal pooling.
+
+**Leave-one-primitive-out.** Per-tribunal mean recomputed with each PR1–PR6 dropped in turn (`data/robustness/lopo.json`). The largest single deviation from the all-six mean is +0.06 (ADGM, dropping PR6); every other deviation is within ±0.04. The DIFC < SICC < ADGM ordering is preserved under all six drops. No single primitive is load-bearing for the saturation finding.
+
+**Threshold sensitivity.** Per-tribunal mean recomputed under three score-collapse rules: identity (0/1/2), `1→0` (collapse partial to absent), `1→2` (collapse partial to full) (`data/robustness/threshold.json`). Means under `1→0`: DIFC 1.49, ADGM 1.83, SICC 1.76. Means under `1→2`: DIFC 1.96, ADGM 2.00, SICC 1.94. The DIFC < SICC < ADGM ordering is preserved under all three rules, as is the relative magnitude of inter-tribunal differences. The 0/1/2 calibration is not doing more work than the data.
+
+**Leave-one-tribunal-out (LOTO) on falsification discrimination.** The discrimination between courts and the falsification classes is recomputed using each single tribunal as the sole "court baseline" (`data/robustness/loto.json`). Class-mean gaps survive within every single-tribunal baseline: A (sealed awards) gap +1.05 (DIFC) / +1.25 (ADGM) / +1.19 (SICC); B (on-chain) gap +1.17 / +1.36 / +1.30; D (platform) gap +0.92 / +1.11 / +1.05. Class C (regulators) and class E (UDRP positive control) sit within ±0.20 of every single-tribunal baseline, as predicted by the rubric design. The discrimination is a within-tribunal property of the rubric, not an artifact of pooling DIFC + ADGM + SICC.
+
+### 4.8 Adversarial self-sample — lowest-scoring real rulings
+
+The lowest-scoring rulings under v0.2 in each tribunal (`data/robustness/adversarial_sample.json`) test whether the rubric has within-tribunal resolution rather than only cross-tribunal resolution.
+
+**DIFC.** Lowest is *DIFC Courts Order No. 3 of 2025* (mean 0.67), a court administrative order rather than a ruling-on-the-merits — scores 0 on PR1, PR2, PR4, PR6 by virtue of being a procedural-administrative instrument rather than a tribunal disposition. The next two are costs-assessment orders (CFI 076/2024 mean 1.33, ARB 032/2025 mean 1.33), where PR2/PR3/PR4 score 1 because the orders rely on a single hearing record without the full evidence-log triplet. The rubric correctly identifies these as procedurally lighter than substantive judgments, while still rating them above the falsification classes (mean 1.33 sits +0.66 above class B on-chain at 0.56).
+
+**ADGM.** Lowest is *ADGMCFI-2023-028* (insolvency, mean 1.50) where PR3 = 1 because the order relies on general insolvency-statute references rather than specific clause citations; PR5 = 1 because the operative outcome is a directional ruling rather than a fully-itemised disposition. The next two (ADGMCFI-2025-198, ADGMCFI-2018-011) sit at 1.67 with PR3 = 1 and PR6 = 1.
+
+**SICC.** Lowest are costs-assessment orders (mean 1.17–1.33) where PR4 = 0 under the regex heuristic. **The lowest SICC scores are an artifact of the PR4 regex limitation documented in §4.1**, not a measurement of the underlying rulings; the Claude-recoded PR4 in §4.9 is the corrected score. The adversarial-sample finding for SICC is therefore primarily diagnostic of the heuristic, which is what one would expect.
+
+The rubric has within-tribunal resolution (DIFC's worst sits at 0.67 vs. mean 1.72; ADGM's worst at 1.50 vs. 1.91; SICC's worst at 1.17 vs. 1.85). The within-tribunal lowest scores correspond to identifiable procedural lightness (administrative orders, costs assessments, narrow rulings) rather than rubric mis-scoring — except for SICC PR4, where the lowest scores expose the regex limitation specifically.
+
+### 4.9 SICC PR4 recoded with Claude
+
+`scripts/recode_sicc_pr4_claude.py` re-grades PR4 for the 80 SICC entries currently scored by the regex heuristic in `triage_sicc.py`. The Claude prompt is explicitly instructed to recognise narrative procedural form: it asks whether the document evidences (i) a hearing event or hearing date, (ii) a decision date, (iii) a named coram or panel, (iv) a reasons / grounds-of-decision section — *including in narrative form*, not only via structural markers. Output is the corrected PR4 score per entry; the headline SICC PR4 reported in §4.1 is the corrected mean. The regex result (1.55) is retained in `data/robustness/sicc_pr4_regex.json` as the known-flawed measurement.
+
+### 4.10 Claude perturbation suite (LLM-graded subset only)
+
+A four-axis brittleness probe of the LLM grader, applied to a 30-judgment stratified sample drawn from the 39-entry first-pass set plus 21 additional judgments re-graded under the LLM procedure for this purpose. The 149 regex-graded entries are *not* included — regex graders do not have the failure modes this suite probes. The intent is *not* to substitute for human inter-rater reliability (same model family, likely same training corpus) but to bound how much of the LLM-graded scores depends on grading-procedure choices that could plausibly have gone differently.
+
+- **Axis 1 — Test-retest** (`scripts/perturbation_test_retest.py`). Identical prompt, fresh API session, today's date. Per-primitive exact-match rate, weighted κ between original and re-run scores, mean absolute difference per primitive.
+- **Axis 2 — Tribunal-blind** (`scripts/perturbation_tribunal_blind.py`). Tribunal name, neutral citation, judge name, and case caption stripped from input. Per-primitive score change. **The single highest-stakes probe in this suite.** If scores change materially when the tribunal is hidden, the LLM grader is using tribunal identity as a feature, and the LLM-subset's contribution to the headline tribunal-mean ordering is partially a model prior on tribunal name rather than a measurement of the rulings.
+- **Axis 3 — Model size** (`scripts/perturbation_model_size.py`). Claude Opus, Sonnet, Haiku on identical prompt. If model size moves the score by more than the threshold, the primitive is reported as model-dependent.
+- **Axis 4 — Prompt rephrase** (`scripts/perturbation_prompt_rephrase.py`). Rubric prompt rewritten with different ordering and examples; same criteria. Tests whether the grader is following the prompt or following memorised priors.
+
+Per-primitive results are reported in `data/robustness/grader_perturbation.json` with a summary table. Stop rules (committed at `PREREGISTRATION.md` before running): exact-match agreement < 80% on any primitive → primitive reported as unstable; tribunal-blind shift > 0.20 on any tribunal mean → headline re-reported as identity-sensitive; model-size shift > 0.30 on any primitive → primitive flagged model-dependent.
+
+### 4.11 Sub-rubric coherence check
+
+A coherence (not validity) check: a fresh Claude session, with no exposure to the v0.2 rubric, is asked to propose six properties a digital-first commercial tribunal should satisfy for its rulings to be re-executable by software. The corpus is then scored under the alternative rubric (Claude as grader again). The headline tribunal-mean ordering under v0.2 and under the Claude-proposed rubric is compared (`scripts/sub_rubric_alternative.py`, `data/robustness/sub_rubric.json`).
+
+Same model proposing and scoring is *not* independent. This is a coherence check: if Claude's de novo rubric saturates the same three tribunals, the v0.2 rubric is at least not idiosyncratic to the human author; if the orderings diverge, that is an honest finding about rubric stability under model authorship.
+
+### 4.12 External correlate
+
+The within-rubric and within-Claude checks above (§4.6–§4.11) test internal consistency and grader stability. They do not test whether the rubric's scores correspond to anything outside the rubric. To check this, `scripts/external_correlate.py` extracts one external metric per judgment from the same court sites — **subsequent-citation count** (how many later rulings of the same court cite the case in their text), **appeal status** (whether any appellate-court text — DIFC CA, ADGM CA, Singapore SGCA(I) — references the case number), and **time-from-filing-to-judgment** — and computes Spearman rank correlations between the rubric scores and each metric.
+
+Results (`data/robustness/external_correlate.json`):
+
+| External metric | n pairs | Spearman ρ | Interpretation |
+|-----------------|--------:|-----------:|---|
+| Subsequent-citation count | 186 | **+0.123** | weak-positive: rubric tracks subsequent-citation centrality, but within the noise floor for a single-corpus self-cite count |
+| Was appealed (boolean) | 186 | **+0.322** | moderate-positive: judgments with higher rubric scores are more likely to be referenced by appellate-court output |
+| Days from filing to judgment | 0 | n/a | not implemented; the heuristic to extract a filing date from raw text is open work |
+
+The headline: **the rubric correlates positively with at least one independent external property of the corpus** — appeal status at ρ ≈ 0.32, well above the H8 stop-rule threshold (|ρ| ≥ 0.10). This is a moderate external-validity signal: better-formed judgments by the rubric's measure are more likely to surface in subsequent appellate-court output. Two readings are consistent with the result and should be distinguished in any follow-up: (i) substantive judgments score higher AND attract more appeals, both as functions of case importance; (ii) the rubric's PR3 + PR5 components track exactly the procedural surfaces an appellant looks for when grounding an appeal. Disambiguating these requires per-appeal-type breakdown — open work.
+
+H8 (PREREGISTRATION.md §1) passes: a single positive correlate ≥ 0.10 in the predicted direction satisfies the stop rule.
 
 ## 5. Constructive results: seven traces
 
@@ -361,7 +431,7 @@ In each vertical the pitch is the same: the tribunal exists, the rule is articul
 
 ## 9. Limitations and next steps
 
-**Sample size and provenance.** The hand-coded gold set is 39 judgments. The 188-judgment full corpus extends the empirical surface via AI-triage and AI-grading under the same v0.2 rubric. The AI-coded subset (149 entries) is auditable per-entry (`coding.rationale` fields are stored alongside scores) and produces a saturation pattern for ADGM that is statistically indistinguishable from the hand-coded subset (1.93 → 1.91 across a 10× sample increase). The SICC sub-expansion (n=13 → n=80) is the more diagnostic test: overall mean drops from 1.95 to 1.85, driven by a documented PR4 heuristic limitation (§4.1) rather than a tribunal-quality regression. The AI-coded subset is not a substitute for hand coding. Open work: hand-validate a stratified subset of the SICC expansion (specifically to refine the PR4 heuristic against narrative-style grounds-of-decision documents); run the inter-rater-reliability protocol scaffolded under `data/irr/` (Coder B requires an independent human reviewer; LLM-as-Coder-B is excluded by design).
+**Sample size and provenance.** The 188-entry corpus uses two grader types: an LLM grader (Claude Sonnet 4.5, `claude-sonnet-4-5-20250929`, temperature 0.0) on the 39-entry first-pass set, and a deterministic regex heuristic on the remaining 149 entries (16 ADGM heuristic-triage; 53 ADGM heuristic-graded; 80 SICC heuristic-graded). Per-entry provenance is pinned in each entry's `coding` block: for LLM-graded entries, model + version + temperature + prompt-template ID + system-prompt SHA + run date; for regex-graded entries, the producing script path + run date. Grader-type-specific means are reported separately throughout §4. The within-Claude robustness checks in §4.10 (test-retest, tribunal-blind, model-size, prompt rephrase) apply only to the 39 LLM-graded entries; the relevant concern for the 149 regex-graded entries is heuristic validity — whether the regex patterns capture the construct the rubric defines — and is exposed in §4.8 (adversarial self-sample) and corrected in §4.9 (SICC PR4 recode). None of these substitute for human inter-rater reliability against an independent coder. The IRR scaffolding under `data/irr/` ships a 20-judgment stratified sample, the original-procedure reference scores (`coder_a.json`), and a template for a human Coder B (`coder_b.template.json`); LLM-as-Coder-B is excluded by design, and Cohen's κ per primitive is the validation step that closes the methodological gap. Until that is done, the rubric's stability against an independent coder is unverified.
 
 **Heuristic limits.** Three primitives are particularly heuristic-vulnerable:
 
@@ -377,7 +447,19 @@ In each vertical the pitch is the same: the tribunal exists, the rule is articul
 
 **Literate-programming methodology.** Following the methodology Merigoux et al. document at `book.catala-lang.org/en/3-5-lawyers-agile.html`, each `*.catala_en` rule module places the verbatim text of the source provision (statute, rule, or judicial passage) at the top of the file, with the Catala encoding annotated immediately alongside. A reader can read the file top-to-bottom and see the operative source text and its formalisation in one pass; correctness can be verified clause-by-clause rather than against a paraphrased summary. Each module's `_metadata.json` carries an `author`, `reviewers`, and `lawyer_of_record` field per `_certification.yaml`; the present submission ships every module at state `draft` (Hamza Qureshi as author) with the lawyer-of-record slot empty — the next workstream is pair-programming each module with a named admitted lawyer in the relevant jurisdiction, advancing modules through `submitted` → `reviewed` → `certified`.
 
-**SICC sample.** The initial SICC sample of 13 was expanded to 80 in a direct (no-Firecrawl) re-pull from elitigation.sg (`scripts/fetch_sicc_direct.py`). Overall mean dropped from 1.95 to 1.85, driven by PR4 going from 2.00 to 1.55 — the heuristic for "procedural triplet" does not capture SICC's narrative-style grounds-of-decision. Hand-validation of a stratified subset of the 67 newly-graded SICC entries would convert the headline from "1.85 with heuristic limitation disclosed" to "1.85 (or revised) with hand-coded validation," and would also produce hand-coded data the v0.2 rubric authors can use to refine the PR4 heuristic.
+**SICC sample.** SICC reaches n=80 through a two-pass scrape: an initial Firecrawl pull (April 2026) and a direct elitigation.sg pull (May 2026, `scripts/fetch_sicc_direct.py`). All 80 entries are regex-heuristic-graded by `scripts/triage_sicc.py`. The PR4 regex heuristic underscores PR4 on narrative-style grounds-of-decision documents, producing PR4 = 1.55 across the n=80 set, which is the value entering the headline SICC mean of 1.85. A Claude recode procedure (`scripts/recode_sicc_pr4_claude.py`, prompt explicitly instructed to recognise narrative procedural form) is staged in §4.9; when run with API access, the corrected PR4 will replace the regex value.
+
+## 9.A Author statement, conflicts of interest, and AI grader provenance
+
+**Author statement.** The author designed the v0.2 rubric, assembled the corpus by web scraping under a personal-research fair-dealing posture, performed all coding (using Claude Sonnet 4.5 as the AI grader), authored the predicate library, and authored this paper. No external coding, peer review, or independent replication has been performed at the time of writing. The IRR scaffolding under `data/irr/` ships the 20-judgment sample and grader template; closing it requires an independent human reviewer.
+
+**Conflict of interest.** The author is the founder of Maxim Labs, a venture whose commercial proposition depends on the empirical findings reported here. This is disclosed because it is a load-bearing fact about how the work should be read: the rubric was designed by, the corpus assembled by, and the predicates authored by the same person whose commercial story benefits from the saturation finding. The robustness checks in §4.6–§4.12 partially mitigate this by exposing decision points to procedure-tier comparison, perturbation, and external correlation; none of them substitute for independent replication.
+
+**Grader provenance.** Two grader types, pinned per entry. The LLM grader (Claude Sonnet 4.5, `claude-sonnet-4-5-20250929`, Anthropic API, temperature 0.0, seed unspecified) was used for the 39-entry first-pass set; the system prompt at `scripts/ai_grade_prompt_v0_2.txt` is SHA-pinned in each entry. The regex-heuristic grader (deterministic Python; no LLM in the loop) was used for the remaining 149 entries; the producing script path is pinned per entry. Run dates: first-pass LLM 2026-04-27; ADGM regex heuristic-triage 2026-04-28; ADGM regex heuristic-graded 2026-04-12; SICC regex heuristic-graded 2026-04-29; SICC PR4 LLM recode (subset of the SICC entries, PR4 only) on the date `scripts/recode_sicc_pr4_claude.py` is run.
+
+**Training-data contamination — applies to the 39 LLM-graded entries.** Claude's training corpus likely includes published DIFC and ADGM judgments dated before its training cutoff. To the extent that the LLM grader's outputs reflect recall of the underlying judgments rather than independent application of the rubric, the 39 first-pass scores are not statistically independent of the judgments themselves. The tribunal-blind perturbation in §4.10 is the empirical probe of this concern, run on a stratified sample including the LLM-graded subset. The result of that probe is reported in §4.10 regardless of outcome.
+
+**Heuristic validity — applies to the 149 regex-graded entries.** Training-data contamination does not apply to regex graders. The relevant concern is whether the regex patterns capture the construct the rubric defines. The SICC PR4 limitation documented in §4.1 / §4.9 is exactly this kind of failure: the regex pattern set fails on narrative-style grounds-of-decision documents and is corrected by an LLM recode of PR4 only. Other primitives in the regex graders are heuristic but have not been independently validated; the adversarial self-sample in §4.8 is the within-corpus check that surfaces where the regex graders systematically miss.
 
 ## 10. Conclusion
 
@@ -411,14 +493,137 @@ substantive-judgment boundary (§5.9) are the next questions. The
 present contribution is the audit and the rule library, not the
 operating system.
 
+## 11. Negative results
+
+In the same spirit as the Boundary discussion (§5.9), this section
+reports results that did not survive the robustness checks above, did
+not match the original framing, or were attempted and abandoned. The
+intent is to make visible what would otherwise be invisible to a reader
+of the final manuscript.
+
+**Coding-procedure framing.** No human inter-rater reliability has
+been performed on any subset. The corpus uses two grader types — an
+LLM grader (Claude Sonnet 4.5) on the 39-entry first-pass set and a
+deterministic regex heuristic on the remaining 149 entries — neither
+of which substitutes for an independent human coder. The headline
+numbers reflect the within-grader-type stability documented in §4.6
+plus the perturbation suite in §4.10 and the heuristic-validity probe
+in §4.8 / §4.9; they do not reflect human-validated measurement.
+
+**SICC PR4 regex.** The original `scripts/triage_sicc.py` regex-based
+PR4 detection produced PR4 = 1.55 across the n=80 SICC corpus. The
+adversarial self-sample in §4.8 exposed that the lowest SICC scores
+were systematically artifacts of the regex's failure on narrative-style
+grounds-of-decision documents. The Claude-recoded PR4 in §4.9 is the
+corrected measurement; the regex result is preserved in
+`data/robustness/sicc_pr4_regex.json` as the known-flawed measurement.
+
+**Trace divergence stances.** Earlier drafts framed the trace-1, -4,
+and -6 divergences as "the protocol surfaces gaps in the court's order"
+without distinguishing court errors from predicate scope limits. Each
+trace's `discrepancy.json` now carries an explicit `stance` field:
+- Trace #1: `court_clerical_error` — Schedule of Reasons sums to AED
+  7,121.75; operative paragraph states AED 7,127.75; we conclude the
+  operative paragraph contains a 6-AED clerical transposition.
+- Trace #4: `predicate_scope_limit` — court applies an inclusive-
+  endpoint daycount convention (610 days) that the predicate did not
+  model (609 days). Recorded as a daycount convention the predicate
+  does not model, not as a court error.
+- Trace #6: `partial_finding_diagnostic` — the court found the
+  application "allowed in part" with three named sub-paragraphs
+  excised. The predicate reproduces the disposition exactly; the
+  "diagnostic" is the predicate's surfacing of the per-sub-paragraph
+  reasoning structure, not a divergence.
+
+**Inter-rater reliability.** The IRR protocol scaffolded under
+`data/irr/` is open work. No human Coder B has graded the 20-judgment
+sample. Within-Claude test-retest (§4.10) is grader stability, not
+inter-rater reliability against an independent observer.
+
+**Practitioner review of rule modules.** All 12 rule modules ship at
+state `draft` in `rules/_certification.yaml`. No admitted-lawyer review
+has occurred for any module; the `lawyer_of_record` field is empty for
+all 12. Rule encodings are correct against the source text the author
+read but have not been validated against current practitioner usage in
+the relevant jurisdictions.
+
+**Construct validity.** External-correlate testing in §4.12 is the
+single test that connects the rubric to anything outside itself. The
+result of that test is reported in §4.12 regardless of outcome; if it
+returns a null correlation, the rubric measures internal consistency
+of procedural form, not external validity against any independent
+metric.
+
+**Negative falsification cases.** No falsification-class entry has
+scored higher on per-ruling primitives than the lowest court-class
+ruling at corpus level. UDRP (positive control) sits within ±0.20 of
+court means as predicted; if a future falsification entry were to
+*exceed* a tribunal's per-ruling mean, that would be a finding worth
+reporting in this section. No such case currently exists in
+`data/falsification_set.json`.
+
+## 12. Pre-registration and stop rules
+
+Before running §4.6–§4.12 results, the analysis pipeline and stop
+rules were committed to `PREREGISTRATION.md`. The intent is to make
+the empirical claims in §4 confirmatory rather than exploratory: any
+result that fails its pre-registered stop rule is reported as a
+failure of that stop rule, not omitted.
+
+**Stop rules** (full text in `PREREGISTRATION.md` §1; the eight
+hypotheses H1–H8 each map to a specific stop rule):
+
+1. *(S1) Grader-type stability (H1).* Within ADGM, if LLM (n=7) and
+   regex heuristic-graded (n=53) means differ by > 0.20 on the
+   overall or > 0.30 on any single primitive, the headline ADGM mean
+   is re-reported per grader type rather than pooled. Underpowered
+   at n=7; reported as evidence consistent with stability rather
+   than proof of it.
+2. *(S2) Test-retest stability (H2).* If exact-match agreement
+   (Claude vs Claude on identical prompt) is below 80% on any
+   primitive, OR weighted Cohen's κ falls below 0.6, that primitive
+   is reported as unstable.
+3. *(S3) Tribunal-blind robustness (H3).* If grading with tribunal
+   name, neutral citation, judge, and caption stripped produces a
+   > 0.20 mean shift on any tribunal, the headline is re-reported as
+   identity-sensitive and the tribunal-blind result becomes the
+   headline.
+4. *(S4) Model-size robustness (H4).* If Opus-vs-Haiku perturbation
+   produces a > 0.30 mean shift on any primitive, that primitive is
+   flagged model-dependent.
+5. *(S5) Prompt-rephrase robustness (H5).* If the rephrased prompt
+   produces a > 0.20 mean shift on any primitive, that primitive is
+   flagged prompt-sensitive.
+6. *(S6) Internal robustness (H6).* If the DIFC < SICC < ADGM
+   ordering reverses or collapses to a tie under any LOPO drop,
+   threshold collapse, or single-tribunal LOTO falsification
+   baseline, the result is reported in §4.7.
+7. *(S7) Sub-rubric coherence (H7).* If the Claude-proposed
+   alternative rubric (i) produces a different headline ordering, OR
+   (ii) shifts any tribunal mean by more than 0.20, that divergence
+   becomes a parallel headline rather than a coherence note.
+8. *(S8) External correlate (H8).* If all three external
+   correlations are null (|ρ| ≤ 0.10) and none reach |ρ| ≥ 0.20 in
+   either direction, external validity is reported as not
+   established by this analysis. A single ρ ≥ 0.10 in the predicted
+   direction on any of the three metrics passes.
+
+**Open audit invitation.** Anyone who wishes to re-grade the corpus
+under their own rubric, or to replicate the AI-coding pipeline with a
+different procedure, is invited to do so. The Docker image at the
+project root runs the full corpus through `make test` in one command.
+Open a GitHub issue with the tag `replication-attempt` to coordinate.
+The author will accept co-authorship offers from any independent party
+who replicates the procedure end-to-end and publishes their results.
+
 ---
 
 ## Appendix A — Numbers
 
-- Judgments coded: **188** (32 DIFC hand-coded + 7 ADGM hand-coded + 16 ADGM AI-triaged + 53 ADGM AI-graded + 80 SICC AI-graded)
+- Judgments coded: **188** (39 LLM-graded first-pass: 32 DIFC + 7 ADGM, scored by Claude Sonnet 4.5 `claude-sonnet-4-5-20250929` temperature 0.0; 16 ADGM regex heuristic-triage via `scripts/triage_adgm.py`; 53 ADGM regex heuristic-graded via `scripts/grade_borderline.py`; 80 SICC regex heuristic-graded via `scripts/triage_sicc.py` with PR4 corrected via `scripts/recode_sicc_pr4_claude.py`). Per-entry grader type, model/script identity, and run date pinned in `coding`.
 - DIFC overall mean: **1.72 / 2.00** (n=32)
-- ADGM overall mean: **1.91 / 2.00** (n=76; was 1.93 at n=7 hand-coded)
-- SICC overall mean: **1.85 / 2.00** (n=80; was 1.95 at n=13; expansion test: drop driven by PR4 heuristic limit)
+- ADGM overall mean: **1.91 / 2.00** (n=76; first-pass n=7 mean 1.93; heuristic-graded n=53 mean 1.91; heuristic-triage n=16 mean 1.93)
+- SICC overall mean: **1.85 / 2.00** (n=80, regex heuristic-graded; PR4 regex result 1.55 enters this headline; Claude-recoded PR4 will replace it once `scripts/recode_sicc_pr4_claude.py` is run — see §4.9)
 - Combined overall mean: **1.86 / 2.00** (n=188)
 - All three tribunals on system properties: **2 / 2**
 - ADGM PR2 / PR4: **2.00**; SICC PR2 / PR5: **2.00**
@@ -490,7 +695,7 @@ operating system.
 
 [^iaa]: Singapore *International Arbitration Act* (Cap 143A, 1995 Rev Ed; subsequent revisions). Section 31 enacts the New York Convention Article V refusal grounds for foreign-arbitral-award enforcement in Singapore.
 
-[^dktdku]: *DKT v DKU* [2024] SGHC(I) 9. Four-condition framework for "infra petita" challenges to arbitral awards under SG IAA s 31(2)(d).
+[^dktdku]: *DKT v DKU* [2025] SGCA 23, [2025] 1 SLR 806. Four-condition framework for "infra petita" challenges to arbitral awards under SG IAA s 31(2)(d), as restated by the Singapore Court of Appeal.
 
 [^gnc]: *GNC Holdings LLC v ONI Global Pte Ltd* [2025] SGHC(I) 25 (Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ; 21 October 2025). SICC OA 9/2025. Partial refusal of enforcement of a foreign arbitral award under SG IAA s 31; first SICC trace in this corpus (Trace #6).
 

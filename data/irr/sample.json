@@ -1,7 +1,7 @@
 {
   "n": 20,
   "selection_seed": 42,
-  "stratification": "one per (tribunal, claim_type) cell in gold set, remainder proportional to bucket size",
+  "stratification": "one per (tribunal, claim_type) cell in first-pass set, remainder proportional to bucket size",
   "case_nos": [
     "ADGMCFI-2024-322 + 323",
     "ADGMCFI-2025-198",

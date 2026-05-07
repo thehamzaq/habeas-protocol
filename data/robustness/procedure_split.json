@@ -1,0 +1,77 @@
+{
+  "description": "Per-tribunal \u00d7 per-procedure-tier means + per-primitive splits",
+  "tribunals": {
+    "DIFC": {
+      "by_procedure": {
+        "MaximLabs (first-pass-claude)": {
+          "n": 32,
+          "overall_mean": 1.724,
+          "per_primitive": {
+            "PR1": 1.8125,
+            "PR2": 1.7812,
+            "PR3": 1.6875,
+            "PR4": 1.75,
+            "PR5": 1.875,
+            "PR6": 1.4375
+          }
+        }
+      }
+    },
+    "ADGM": {
+      "by_procedure": {
+        "MaximLabs (first-pass-claude)": {
+          "n": 7,
+          "overall_mean": 1.9286,
+          "per_primitive": {
+            "PR1": 1.7143,
+            "PR2": 2,
+            "PR3": 2,
+            "PR4": 2,
+            "PR5": 2,
+            "PR6": 1.8571
+          }
+        },
+        "MaximLabs (heuristic-triage)": {
+          "n": 16,
+          "overall_mean": 1.9271,
+          "per_primitive": {
+            "PR1": 2,
+            "PR2": 2,
+            "PR3": 2,
+            "PR4": 2,
+            "PR5": 2,
+            "PR6": 1.5625
+          }
+        },
+        "MaximLabs (heuristic-graded)": {
+          "n": 53,
+          "overall_mean": 1.9088,
+          "per_primitive": {
+            "PR1": 2,
+            "PR2": 2,
+            "PR3": 1.9057,
+            "PR4": 2,
+            "PR5": 1.9434,
+            "PR6": 1.6038
+          }
+        }
+      }
+    },
+    "SICC": {
+      "by_procedure": {
+        "MaximLabs (heuristic-graded)": {
+          "n": 80,
+          "overall_mean": 1.8521,
+          "per_primitive": {
+            "PR1": 1.825,
+            "PR2": 2,
+            "PR3": 1.9625,
+            "PR4": 1.55,
+            "PR5": 1.9625,
+            "PR6": 1.8125
+          }
+        }
+      }
+    }
+  }
+}

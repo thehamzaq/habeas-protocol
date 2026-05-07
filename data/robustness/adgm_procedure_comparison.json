@@ -1,0 +1,36 @@
+{
+  "description": "ADGM per-primitive means by procedure tier (the only tribunal with all three tiers represented)",
+  "MaximLabs (first-pass-claude)": {
+    "n": 7,
+    "per_primitive": {
+      "PR1": 1.7143,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1.8571
+    }
+  },
+  "MaximLabs (heuristic-triage)": {
+    "n": 16,
+    "per_primitive": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 2,
+      "PR4": 2,
+      "PR5": 2,
+      "PR6": 1.5625
+    }
+  },
+  "MaximLabs (heuristic-graded)": {
+    "n": 53,
+    "per_primitive": {
+      "PR1": 2,
+      "PR2": 2,
+      "PR3": 1.9057,
+      "PR4": 2,
+      "PR5": 1.9434,
+      "PR6": 1.6038
+    }
+  }
+}

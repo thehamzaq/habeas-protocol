@@ -6,6 +6,37 @@ a rule library. Contributions are welcome at every layer — corpus coding,
 rule modules, API features, dashboard UX, documentation, and the
 certification process itself.
 
+## Open audit and replication invitation
+
+Anyone who wishes to re-grade the corpus under their own rubric, or to
+replicate the AI-coding pipeline with a different procedure, is invited
+to do so. Open a GitHub issue using the `replication-attempt` template
+(see `.github/ISSUE_TEMPLATE/replication-attempt.md`).
+
+The Docker image at the repository root runs the full corpus through
+`make test` in one command. Reproducibility scripts live under
+`scripts/`. The pre-registered analysis pipeline is in
+`PREREGISTRATION.md`.
+
+The author will accept co-authorship offers on the next paper revision
+from any independent party who replicates the procedure end-to-end and
+publishes their results, whether their findings agree with or contradict
+the published numbers.
+
+## Practitioner review of rule modules
+
+All 12 rule modules under `rules/` ship at state `draft` per
+`rules/_certification.yaml`. Movement to `submitted` → `reviewed` →
+`certified` requires named admitted-lawyer review in the relevant
+jurisdiction. If you are an admitted UAE / Singapore / English-law
+practitioner willing to review one or more rule modules, please open
+an issue tagged `practitioner-review` describing which module(s) you
+can review.
+
+The interpretive choices made during the original encoding are
+documented at `rules/ENCODING_DECISIONS.md`; that file is the starting
+point for review.
+
 ## Ways to contribute
 
 1. **File an issue** — bug reports, corpus errors, miscoded judgments,
