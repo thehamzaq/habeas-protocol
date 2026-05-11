@@ -1,5 +1,9 @@
 # Habeas Protocol
 
+> ### 🔗 **Live dashboard:** **<https://thehamzaq.github.io/habeas-protocol/dashboard/>**
+>
+> Interactive view of all 188 scored judgments, the 12 executable Catala rule modules, the rule playground, and the read-only API explorer. No install required.
+
 A measurement framework + open-source rule library for the *computational legitimacy* of commercial courts that already handle digital and cross-border disputes. Built on three working tribunals: the **DIFC Courts** in Dubai, the **ADGM Courts** in Abu Dhabi, and the **Singapore International Commercial Court (SICC)**.
 
 ## In plain English
