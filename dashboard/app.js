@@ -351,6 +351,7 @@ function renderStats() {
   // "First-pass set (LLM-graded)" in index.html).
   const firstPass = judgments.filter(j => j.coding && (j.coding.first_pass || j.coding.gold_set));
   set('totalJudgments', judgments.length);
+  set('tracesWorking', TRACES.length);
   set('goldSet', firstPass.length);
   set('difcCount', difc.length);
   set('adgmCount', adgm.length);
