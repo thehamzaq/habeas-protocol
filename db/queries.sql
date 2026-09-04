@@ -113,7 +113,7 @@ WHERE to_tsvector('english', coalesce(text_extracted, ''))
 ORDER BY rank DESC
 LIMIT 10;
 
--- 11. Show the gold-set entries (39 hand-coded judgments).
+-- 11. Show the gold-set entries (39 judgments graded first-pass by LLM, not by hand).
 SELECT case_no, tribunal_code, date_issued, claim_type, operative_amount_aed
 FROM judgments
 WHERE gold_set
