@@ -50,6 +50,13 @@ MAX_BODY_BYTES = 2_000_000
 MAX_CONCURRENT_REQUESTS = 8
 _request_slots = threading.BoundedSemaphore(MAX_CONCURRENT_REQUESTS)
 LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+# Host names the server answers to. Loopback always; add others explicitly
+# (comma-separated) when the API is deliberately reachable under another name.
+ALLOWED_HOSTS = LOOPBACK_HOSTS | {
+    h.strip().lower() for h in os.environ.get("HABEAS_ALLOWED_HOSTS", "").split(",") if h.strip()
+}
+# 1 = refuse to return a rule run that could not be written to the audit log.
+AUDIT_REQUIRED = os.environ.get("HABEAS_AUDIT_REQUIRED") == "1"
 
 
 class ClientError(RuntimeError):
@@ -504,60 +511,86 @@ def handle_rule_save(_qs, body: bytes):
 def _audit_log(module: str, scope: str, inputs: dict,
                output: dict | None, success: bool, error: str | None,
                duration_ms: int, source_label: str | None) -> None:
-    """Insert an audit row for a single /api/rule_run call. Soft-fail —
-    if Postgres is unreachable the run still returns successfully; the
-    log is best-effort, not a gate.
+    """Insert an audit row for a single /api/rule_run call.
+
+    Default (local dev): if the row cannot be written the run still
+    returns, and the loss is logged loudly. With HABEAS_AUDIT_REQUIRED=1
+    the log is a gate: an unrecorded run returns an error instead.
 
     Strategy: pack the row as a single JSON document, send to psql, and
     let `jsonb_populate_record` do the typing. Avoids the brittle psql
     `\\set` quoting path (which choked on box-drawing characters in
     catala's error messages).
     """
+    canonical_inputs = json.dumps(inputs, sort_keys=True, separators=(",", ":"))
+    sha = hashlib.sha256(canonical_inputs.encode("utf-8")).hexdigest()
+    row = {
+        "module": module,
+        "scope": scope,
+        "inputs": inputs,
+        "output": output,
+        "success": success,
+        "error": (error or "")[:4000] if error else None,
+        "duration_ms": int(duration_ms),
+        "inputs_sha256": sha,
+        "source_label": (source_label or "")[:64] if source_label else None,
+    }
+    failure = _insert_audit_row(row)
+    if failure is None:
+        return
+    # The full row was rejected. Inputs are request-controlled (a \u0000
+    # is enough to make jsonb refuse them), so a caller must not be able to
+    # run a rule and leave no trace: record a reduced row that keeps the
+    # module, scope, outcome and input hash.
+    sys.stderr.write(f"[api] audit row rejected, writing reduced row: {failure}\n")
+    reduced = dict(row, inputs={"_audit": "inputs omitted: full row rejected"},
+                   output=None, source_label=None,
+                   error=("audit: full row rejected; " + (row["error"] or ""))[:4000]
+                   .replace("\x00", ""))
+    failure = _insert_audit_row(reduced)
+    if failure is None:
+        return
+    sys.stderr.write(f"[api] AUDIT ROW LOST for {module}/{scope} sha256={sha}: {failure}\n")
+    if AUDIT_REQUIRED:
+        raise RuntimeError("rule run could not be recorded in the audit log; "
+                           "result withheld (HABEAS_AUDIT_REQUIRED=1)")
+
+
+def _insert_audit_row(row: dict) -> str | None:
+    """Insert one rule_runs row. Returns None on success, else the reason."""
+    cmd = [
+        "psql",
+        "-h", PGHOST, "-p", PGPORT, "-U", PGUSER, "-d", PGDATABASE,
+        "-At", "--no-psqlrc",
+        "-v", "ON_ERROR_STOP=1",
+    ]
+    # Pass the JSON payload as a dollar-quoted string so embedded
+    # quotes, newlines, and backslashes (e.g. \uXXXX inside
+    # catala's box-drawing error messages) round-trip cleanly. The
+    # payload is request-controlled, so the tag is random per call:
+    # a fixed tag could be closed from inside the payload, and
+    # stripping it could re-create it ("$$j$j$" -> "$j$").
+    json_line = json.dumps(row, separators=(",", ":"))
+    tag = "$j" + secrets.token_hex(16) + "$"
+    if tag in json_line:
+        return "payload collides with its quote tag"
+    sql = (
+        "INSERT INTO rule_runs\n"
+        "  (module, scope, inputs, output, success, error,\n"
+        "   duration_ms, inputs_sha256, source_label)\n"
+        "SELECT j->>'module', j->>'scope', j->'inputs', j->'output',\n"
+        "       (j->>'success')::boolean, j->>'error',\n"
+        "       (j->>'duration_ms')::integer, j->>'inputs_sha256',\n"
+        "       j->>'source_label'\n"
+        f"FROM (SELECT {tag}{json_line}{tag}::jsonb AS j) t;\n"
+    )
     try:
-        canonical_inputs = json.dumps(inputs, sort_keys=True, separators=(",", ":"))
-        sha = hashlib.sha256(canonical_inputs.encode("utf-8")).hexdigest()
-        row = {
-            "module": module,
-            "scope": scope,
-            "inputs": inputs,
-            "output": output,
-            "success": success,
-            "error": (error or "")[:4000] if error else None,
-            "duration_ms": int(duration_ms),
-            "inputs_sha256": sha,
-            "source_label": (source_label or "")[:64] if source_label else None,
-        }
-        cmd = [
-            "psql",
-            "-h", PGHOST, "-p", PGPORT, "-U", PGUSER, "-d", PGDATABASE,
-            "-At", "--no-psqlrc",
-            "-v", "ON_ERROR_STOP=1",
-        ]
-        # Pass the JSON payload as a dollar-quoted string so embedded
-        # quotes, newlines, and backslashes (e.g. \uXXXX inside
-        # catala's box-drawing error messages) round-trip cleanly. The
-        # payload is request-controlled, so the tag is random per call:
-        # a fixed tag could be closed from inside the payload, and
-        # stripping it could re-create it ("$$j$j$" -> "$j$").
-        json_line = json.dumps(row, separators=(",", ":"))
-        tag = "$j" + secrets.token_hex(16) + "$"
-        if tag in json_line:
-            raise RuntimeError("audit payload collides with its quote tag")
-        sql = (
-            "INSERT INTO rule_runs\n"
-            "  (module, scope, inputs, output, success, error,\n"
-            "   duration_ms, inputs_sha256, source_label)\n"
-            "SELECT j->>'module', j->>'scope', j->'inputs', j->'output',\n"
-            "       (j->>'success')::boolean, j->>'error',\n"
-            "       (j->>'duration_ms')::integer, j->>'inputs_sha256',\n"
-            "       j->>'source_label'\n"
-            f"FROM (SELECT {tag}{json_line}{tag}::jsonb AS j) t;\n"
-        )
-        subprocess.run(cmd, input=sql, capture_output=True, text=True, timeout=5)
-    except Exception as e:
-        # Audit logging is best-effort: it never fails the caller, but a
-        # dropped audit row is logged so it is not silent.
-        sys.stderr.write(f"[api] audit log write failed: {type(e).__name__}: {e}\n")
+        out = subprocess.run(cmd, input=sql, capture_output=True, text=True, timeout=5)
+    except (OSError, subprocess.TimeoutExpired) as e:
+        return f"{type(e).__name__}: {e}"
+    # psql's exit status was previously ignored, so a rejected insert
+    # looked like success.
+    return None if out.returncode == 0 else (out.stderr.strip() or f"psql exit {out.returncode}")
 
 
 def handle_rule_run(_qs, body: bytes):
@@ -948,14 +981,13 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def _host_ok(self) -> bool:
-        """Reject DNS-rebinding: when bound to loopback, the Host header
-        must name loopback too. Skipped when deliberately bound wider
-        (HABEAS_API_HOST=0.0.0.0 inside a container)."""
-        if API_HOST not in LOOPBACK_HOSTS:
-            return True
+        """Reject DNS-rebinding: the Host header must be a name this server
+        is meant to answer to. Enforced whatever the bind address, since a
+        container bound to 0.0.0.0 and published on the host's loopback is
+        still reached as 127.0.0.1. Other names need HABEAS_ALLOWED_HOSTS."""
         host = self.headers.get("Host", "")
         try:
-            return urlparse("//" + host).hostname in LOOPBACK_HOSTS
+            return (urlparse("//" + host).hostname or "") in ALLOWED_HOSTS
         except ValueError:
             return False
 
