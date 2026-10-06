@@ -1,5 +1,10 @@
 # Falsification analysis — v0.2 rubric
 
+> Scores for the 30 non-court instruments are author-assigned class defaults
+> (`grader_type: author_class_default`), not measured per instrument.
+> The courts baseline is the unweighted mean of the three tribunal means;
+> the pooled n=188 mean is higher by about 0.03.
+
 ## Per-ruling primitive means
 
 | Group / class                       |    n |  PR1 |  PR2 |  PR3 |  PR4 |  PR5 |  PR6 | Mean |

@@ -15,11 +15,11 @@ When a deal goes wrong online — a smart-contract exit gone sideways, a SaaS di
 This repo does four things:
 
 1. **Measures.** It scores 188 real judgments from the three tribunals against six "per-ruling primitives" a digital court must satisfy (Are the parties identified? Is the evidence dated? Is the rule cited with version? etc.) plus two architectural properties (separation of powers, appeal path).
-2. **Falsifies.** It scores a 30-instrument falsification set — sealed arbitral awards, on-chain DAO "tribunals," regulator notices, platform adjudicators, UDRP panels — to demonstrate the rubric *can* fail and to identify the cells that actually distinguish a court from a non-court. Includes a positive-control class (UDRP panels) the rubric correctly does NOT mark down.
+2. **Falsifies.** It scores a 30-instrument falsification set — sealed arbitral awards, on-chain DAO "tribunals," regulator notices, platform adjudicators, UDRP panels — to demonstrate the rubric *can* fail and to identify the cells that actually distinguish a court from a non-court. Includes a positive-control class (UDRP and similar specialised panels) the rubric does NOT mark down. Scores in this set are assigned by the author per class (`grader_type: author_class_default`), not graded per instrument.
 3. **Encodes.** It rewrites 12 of the corpus rules into Catala source plus a pure-Python reference evaluator (`{catala, py, conformance}` triples for all 12). Seven case traces run end-to-end; six reproduce the court's principal output exactly and the seventh bounds a structured-discretion residue by design (Trace #3, ~6.92% of the claim). Each rule module pins a specific version of its source instrument; CI checks for drift against the live URL.
 4. **Bounds.** It is explicit about what does NOT compile: causation beyond simple but-for, ambiguous contractual construction, witness credibility, expert-quantum, public-policy refusal, sanction discretion, constitutional review. The protocol is a calculator for the deterministic parts and an auditor for the rest — not a substitute for substantive judicial reasoning.
 
-The headline finding: **the rubric saturates on three serious commercial courts AND discriminates against five non-court instrument classes that share some, but not all, of the procedural form of a court ruling.** The computational layer is buildable today for the arithmetic-and-Boolean parts of court decision-making, on top of the legal substrate that already exists.
+The headline finding: **the rubric saturates on three serious commercial courts AND separates three of five non-court instrument classes (sealed awards, on-chain tribunals, platform adjudicators) from them. Regulator notices and specialised panels score level with the courts by design, as the control showing the rubric measures procedural form and not pedigree.** The 30 falsification scores are author-assigned class defaults, not per-instrument measurements. The computational layer is buildable today for the arithmetic-and-Boolean parts of court decision-making, on top of the legal substrate that already exists.
 
 ## Thesis in one paragraph (academic version)
 
@@ -51,7 +51,7 @@ System properties (architectural, scored once per institution):
 **Headline.** All three operating tribunals score at or near ceiling on every per-ruling primitive. The saturation pattern is robust to one expansion test and qualified by a second:
 
 - **ADGM procedure-tier stability:** first-pass n=7 mean **1.93**, heuristic-triage n=16 mean **1.93**, heuristic-graded n=53 mean **1.91**. The saturation pattern is stable across coding procedures within ADGM.
-- **SICC PR4 heuristic limitation:** `scripts/triage_sicc.py` looks for four procedural markers (hearing date, decision date, named panel/coram, and a "reasons / judgment / GROUNDS OF DECISION" header) and requires ≥3 to score PR4=2. SICC's narrative-style grounds-of-decision documents frequently defeat the regex-based extraction, producing **PR4 = 1.55** under the regex. The Claude-recoded PR4 (`scripts/recode_sicc_pr4_claude.py`, prompt explicitly instructed to recognise narrative procedural form) is the corrected measurement and is what enters the headline SICC mean.
+- **SICC PR4 heuristic limitation:** `scripts/triage_sicc.py` looks for four procedural markers (hearing date, decision date, named panel/coram, and a "reasons / judgment / GROUNDS OF DECISION" header) and requires ≥3 to score PR4=2. SICC's narrative-style grounds-of-decision documents frequently defeat the regex-based extraction, producing **PR4 = 1.55** under the regex. The headline SICC mean (1.85) uses this regex PR4 and is therefore a known-flawed measurement on that primitive. A Claude recode of PR4 (`scripts/recode_sicc_pr4_claude.py`, prompt instructed to recognise narrative procedural form) is staged and has not been run.
 
 All three tribunals score 2/2 on both system properties. **Three operating commercial tribunals, all implementing the full protocol at near-ceiling, available to plug in today** — with the SICC expansion finding documented honestly rather than smoothed away.
 
@@ -193,6 +193,7 @@ habeas-protocol/
 > ```bash
 > docker build -t habeas .
 > docker run --rm habeas       # runs `make test`
+> make api-docker               # or: build and serve the API on 127.0.0.1:5544
 > ```
 
 ```bash

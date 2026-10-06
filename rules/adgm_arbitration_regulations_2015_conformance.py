@@ -8,6 +8,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from adgm_arbitration_regulations_2015_eval import (  # noqa: E402
     adgm_recognition,
     adgm_s62_2_adjournment,
@@ -129,9 +131,9 @@ def main():
         if not ok:
             fails += 1
 
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "adgm_arbitration_regulations_2015.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

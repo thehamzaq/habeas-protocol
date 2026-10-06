@@ -9,6 +9,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from uae_civil_code_art_390_eval import article_390_cap  # noqa: E402
 
 
@@ -93,9 +95,9 @@ def main():
                   f"contract_capped={c['expected_contract_capped']} "
                   f"390_2_varied={c['expected_390_2_varied']}, got {out}")
 
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "uae_civil_code_art_390.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

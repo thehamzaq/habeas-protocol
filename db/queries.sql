@@ -71,7 +71,7 @@ ORDER BY 1;
 -- C. RULE FREQUENCY
 -- =====================================================================
 
--- 7. Top-cited instruments across the gold set + AI-coded corpus.
+-- 7. Top-cited instruments across the LLM first-pass set + heuristic-graded corpus.
 SELECT instrument, n_judgments, n_difc, n_adgm, n_sicc
 FROM rule_frequency
 LIMIT 20;

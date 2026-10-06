@@ -57,7 +57,7 @@ In scope:
 
 Out of scope:
 
-- The 121-judgment dataset under `data/judgments.json`. This is sourced
+- The 188-judgment dataset under `data/judgments.json`. This is sourced
   from public court records; factual errors should be reported as
   regular GitHub issues, not as security reports.
 - Third-party services referenced but not operated by this project

@@ -31,7 +31,7 @@ RULES = ROOT + "/rules"
 random.seed(20260501)
 N_TRIALS = 50  # per property; bumps to 200 in CI if HABEAS_PROPERTY_TRIALS=200
 
-CATALA_BIN = shutil.which("catala")
+CATALA_BIN = os.environ.get("HABEAS_CATALA") or shutil.which("catala")
 if not CATALA_BIN:
     candidate = os.path.expanduser("~/.opam/catala/bin/catala")
     CATALA_BIN = candidate if os.path.exists(candidate) else None
@@ -348,11 +348,12 @@ def prop_adgm_s62():
 
 # ---------------------------------------------------------------------
 # difc_third_party_disclosure / ThirdPartyDisclosureGates
-#   order_grantable iff all elements of all three gates made_out
+#   order_grantable iff at least one route has all its elements made_out;
+#   all_gates_satisfied iff all three do
 # ---------------------------------------------------------------------
 
 def prop_third_party():
-    print("\n— difc_third_party_disclosure · three-gate conjunctive —")
+    print("\n— difc_third_party_disclosure · three independent routes —")
     NPH = ["NPE_WrongEstablished", "NPE_RespondentMixedUp", "NPE_PossessesInformation",
            "NPE_DisclosureNecessaryInInterestsOfJustice"]
     BT = ["BTE_TracingClaimAsserted", "BTE_HoldsTraceableProceeds", "BTE_DisclosureNecessaryForTracing"]
@@ -369,7 +370,8 @@ def prop_third_party():
         check("nph_made_out", out["nph_made_out"] == nph_ok)
         check("bankers_trust_made_out", out["bankers_trust_made_out"] == bt_ok)
         check("rdc_2852_made_out", out["rdc_2852_made_out"] == rdc_ok)
-        check("order_grantable iff all gates", out["order_grantable"] == (nph_ok and bt_ok and rdc_ok))
+        check("order_grantable iff any route", out["order_grantable"] == (nph_ok or bt_ok or rdc_ok))
+        check("all_gates_satisfied iff all routes", out["all_gates_satisfied"] == (nph_ok and bt_ok and rdc_ok))
 
 
 # ---------------------------------------------------------------------

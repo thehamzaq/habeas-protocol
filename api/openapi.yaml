@@ -63,7 +63,7 @@ paths:
               example:
                 status:
                   ok: true
-                  judgments: 119
+                  judgments: 188
 
   /api/judgments:
     get:
@@ -541,29 +541,32 @@ paths:
       tags: [corpus]
       summary: Per-tribunal coverage statistics
       description: |
-        Returns per-tribunal counts of LLM-graded first-pass / regex
-        heuristic-triage / regex heuristic-graded entries in
-        `data/judgments.json`, plus the per-tribunal mean primitive
-        scores. Drives the dashboard's coverage widget.
+        Returns one row per tribunal: how many judgments are scored, how
+        many raw documents are on disk and linked, and how many known
+        cases are not yet scored. Drives the dashboard's coverage widget.
       responses:
         "200":
-          description: Coverage statistics.
+          description: Coverage statistics, one object per tribunal.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  per_tribunal:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        tribunal: { type: string, enum: [DIFC, ADGM, SICC] }
-                        n_total: { type: integer }
-                        n_hand_coded: { type: integer }
-                        n_ai_graded: { type: integer }
-                        means:
-                          type: object
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tribunal_code: { type: string, enum: [DIFC, ADGM, SICC] }
+                    tribunal_name: { type: string }
+                    coded_judgments: { type: integer }
+                    gold_set:
+                      type: integer
+                      description: >
+                        Legacy column name. Counts the LLM first-pass set
+                        (grader_type llm). These entries are not human-coded.
+                    raw_docs: { type: integer }
+                    linked_docs: { type: integer }
+                    link_pct: { type: number, nullable: true }
+                    discovered_uncoded_cases: { type: integer }
+                    total_known_cases: { type: integer }
 
 components:
   schemas:
@@ -602,7 +605,7 @@ components:
           properties:
             coder: { type: string }
             coded_on: { type: string, format: date }
-            gold_set: { type: boolean }
+            gold_set: { type: boolean, description: "Legacy name. True for the LLM first-pass set; not human-coded." }
             notes: { type: string }
 
     RuleRef:

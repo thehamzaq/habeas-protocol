@@ -111,11 +111,18 @@ Commissioners* [1974] AC 133 (HL); *Bankers Trust Co v Shapira*
 common-law; drift = higher-court overrule. Manual drift check.
 
 **Interpretive choices:**
-- Three conjunctive jurisdictional gates: (i) constructive-trust
-  threshold (Bankers Trust), (ii) innocent-mixed-up-party gate
-  (Norwich Pharmacal), (iii) procedural route under RDC 28.52. The
-  predicate composes all three; failure at any gate denies the
-  disclosure jurisdiction.
+- Three independent routes: (i) Bankers Trust tracing disclosure
+  (Art 15(3)), (ii) Norwich Pharmacal identity disclosure (Art 15(2)),
+  (iii) non-party production under RDC 28.52. Each is conjunctive over
+  its own elements. `order_grantable` is true when any one route is
+  made out; `all_gates_satisfied` is true when all three are, which is
+  what the court found in trace #7. Until 2026-10-05 the predicate
+  required all three together, which refused a pure Norwich Pharmacal
+  application; corrected because the heads of jurisdiction are
+  separately numbered and Norwich Pharmacal relief is available before
+  proceedings exist, where RDC 28.52 cannot apply.
+- `order_grantable` is a threshold. The relief is discretionary and the
+  predicate does not model the discretion.
 - The "innocent" requirement is treated as a tribunal finding, not a
   computed property.
 

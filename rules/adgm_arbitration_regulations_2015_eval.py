@@ -17,6 +17,16 @@ from typing import List
 VALID_OUTCOMES = {"Dismissed", "AllowedInPart", "AllowedInFull"}
 
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from _inputs import as_bool, as_choice  # noqa: E402
+
+OUTCOMES = frozenset({"Dismissed", "AllowedInPart", "AllowedInFull"})
+
+
 def adgm_recognition(
     grounds: List[dict],
     s58_was_or_could_have_been_available: bool = False,
@@ -27,6 +37,10 @@ def adgm_recognition(
     s58_was_or_could_have_been_available: s 62(3) carve-out. When True,
         the s 62 application is barred regardless of grounds.
     """
+    for g in grounds:
+        as_choice(g, "court_outcome", OUTCOMES)
+        if "is_severable" in g:
+            as_bool(g, "is_severable")
     dismissed = sum(1 for g in grounds if g["court_outcome"] == "Dismissed")
     partial = sum(1 for g in grounds if g["court_outcome"] == "AllowedInPart")
     full = sum(1 for g in grounds if g["court_outcome"] == "AllowedInFull")
@@ -37,7 +51,7 @@ def adgm_recognition(
         1 for g in grounds
         if g["court_outcome"] == "AllowedInFull"
         and g.get("ground") == "S62_a_iv_OutsideScope"
-        and bool(g.get("is_severable", False))
+        and g.get("is_severable", False) is True
     )
     full_dispositive = full - full_severable_relief
 
@@ -75,10 +89,10 @@ def adgm_s62_2_adjournment(inputs: dict) -> dict:
     The adjournment / security order is lawful only where a parallel
     set-aside application is pending at the seat.
     """
-    lawful = bool(inputs["setting_aside_pending_at_seat"])
+    lawful = as_bool(inputs, "setting_aside_pending_at_seat")
     return {
-        "proceedings_adjourned": bool(inputs["adjournment_ordered"]) and lawful,
-        "security_required": bool(inputs["security_ordered"]) and lawful,
+        "proceedings_adjourned": as_bool(inputs, "adjournment_ordered") and lawful,
+        "security_required": as_bool(inputs, "security_ordered") and lawful,
         "adjournment_engaged_lawfully": lawful,
     }
 

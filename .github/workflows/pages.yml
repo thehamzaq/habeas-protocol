@@ -33,7 +33,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          cp -r dashboard data spike rules _site/
+          cp -r dashboard data spike rules api LICENSE LICENSES SECURITY.md _site/
           cat > _site/index.html <<'HTML'
           <!doctype html><meta charset="utf-8">
           <title>Habeas Protocol</title>

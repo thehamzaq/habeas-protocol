@@ -16,6 +16,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from difc_third_party_disclosure_eval import (  # noqa: E402
     third_party_disclosure_gates,
     third_party_disclosure,
@@ -47,27 +49,51 @@ RDC_FAILS_GATES = [
 ]
 
 
+NO_ROUTE = (
+    [{"element": "NPE_WrongEstablished", "made_out": True}],
+    [{"element": "BTE_TracingClaimAsserted", "made_out": True}],
+    RDC_FAILS_GATES,
+)
+
+# In every "one route fails" case below the other two routes are made out,
+# so the order stays grantable while all_gates_satisfied is false.
 GATE_CASES = [
+    {
+        "label": "synthetic: Norwich Pharmacal alone, no tracing claim, no proceedings",
+        "args": (TRACE_07_NPH_GATES, [], []),
+        "expected_grantable": True,
+        "expected_all_gates": False,
+    },
+    {
+        "label": "synthetic: no route complete, order not grantable",
+        "args": NO_ROUTE,
+        "expected_grantable": False,
+        "expected_all_gates": False,
+    },
     {
         "label": "trace-07 — Techteryx v IG (all gates satisfied)",
         "args": (TRACE_07_NPH_GATES, TRACE_07_BT_GATES, TRACE_07_RDC_GATES),
         "expected_grantable": True,
+        "expected_all_gates": True,
     },
     {
         "label": "synthetic — RDC 28.52 fails (jurisdiction)",
         "args": (TRACE_07_NPH_GATES, TRACE_07_BT_GATES, RDC_FAILS_GATES),
-        "expected_grantable": False,
+        "expected_grantable": True,
+        "expected_all_gates": False,
     },
     {
         "label": "synthetic — empty NPh list rejects (vacuous-satisfaction guard)",
         "args": ([], TRACE_07_BT_GATES, TRACE_07_RDC_GATES),
-        "expected_grantable": False,
+        "expected_grantable": True,
+        "expected_all_gates": False,
     },
     {
         "label": "synthetic — duplicate NPh element pleadings still pass",
         "args": (TRACE_07_NPH_GATES + [TRACE_07_NPH_GATES[0]],
                  TRACE_07_BT_GATES, TRACE_07_RDC_GATES),
         "expected_grantable": True,
+        "expected_all_gates": True,
     },
     {
         "label": "synthetic — over-pleaded NPh (5 entries with all 4 distinct made out)",
@@ -75,12 +101,14 @@ GATE_CASES = [
             {"element": "NPE_WrongEstablished", "made_out": True}
         ], TRACE_07_BT_GATES, TRACE_07_RDC_GATES),
         "expected_grantable": True,
+        "expected_all_gates": True,
     },
     {
         "label": "synthetic — 4 entries all of one element rejects (no distinct coverage)",
         "args": ([{"element": "NPE_WrongEstablished", "made_out": True}] * 4,
                  TRACE_07_BT_GATES, TRACE_07_RDC_GATES),
-        "expected_grantable": False,
+        "expected_grantable": True,
+        "expected_all_gates": False,
     },
 ]
 
@@ -140,7 +168,8 @@ def main():
     # Catala-mirroring tests.
     for c in GATE_CASES:
         out = third_party_disclosure_gates(*c["args"])
-        if out["order_grantable"] == c["expected_grantable"]:
+        if (out["order_grantable"] == c["expected_grantable"]
+                and out["all_gates_satisfied"] == c["expected_all_gates"]):
             print(f"  PY-OK  {c['label']}: order_grantable={out['order_grantable']}")
         else:
             fails += 1
@@ -160,9 +189,9 @@ def main():
             fails += 1
             print(f"  PY-FAIL {c['label']}: {out}")
 
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "difc_third_party_disclosure.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

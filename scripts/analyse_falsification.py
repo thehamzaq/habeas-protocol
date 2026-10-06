@@ -76,8 +76,7 @@ def fmt_row(label, m, n=None):
 def header():
     return ("| Group / class                       |    n |  PR1 |  PR2 |"
             "  PR3 |  PR4 |  PR5 |  PR6 | Mean |\n"
-            "|" + "-" * 38 + "|" + "-" * 6 + "|" +
-            ("|" + "-" * 6) * 7 + "|")
+            "|" + "-" * 38 + ("|" + "-" * 5 + ":") * 8 + "|")
 
 
 def main():
@@ -86,6 +85,11 @@ def main():
     fal_cls = class_means(fal)
 
     print("# Falsification analysis — v0.2 rubric")
+    print()
+    print("> Scores for the 30 non-court instruments are author-assigned class defaults")
+    print("> (`grader_type: author_class_default`), not measured per instrument.")
+    print("> The courts baseline is the unweighted mean of the three tribunal means;")
+    print("> the pooled n=188 mean is higher by about 0.03.")
     print()
     print("## Per-ruling primitive means")
     print()

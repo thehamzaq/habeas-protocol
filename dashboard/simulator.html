@@ -128,7 +128,7 @@
   <div class="sim-step" id="stepClaim" data-active="1">
     <div class="sim-step-h"><span class="sim-num">1</span>Pick a claim type</div>
     <h2 id="claimChosen">Choose below</h2>
-    <p class="muted">Six claim types coded across the corpus. Selection drives which rule modules light up.</p>
+    <p class="muted">Seven claim types coded across the corpus. Selection drives which rule modules light up.</p>
     <div class="sim-claims" id="claimList"></div>
     <div class="sim-tribs" id="tribList" style="margin-top:14px;"></div>
   </div>
@@ -156,7 +156,9 @@
 </div>
 
 <script>
-const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+// Probe the loopback API only when this page is itself served from loopback.
+const API_BASE_CANDIDATES = ['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname)
+  ? ['http://127.0.0.1:5544', '/api'] : [];
 let API_BASE = null;
 let CLAIMS = null;
 let RULE_INDEX = null;
@@ -193,10 +195,10 @@ async function loadAll() {
       '<strong>The simulator needs the local API.</strong> ' +
       'Static GitHub Pages can\'t run Catala server-side. To use it locally:'+
       '<pre style="margin-top:8px;background:#faf6e6;padding:8px;font-size:12px;overflow:auto"><code>git clone https://github.com/thehamzaq/habeas-protocol\n' +
-      'cd habeas-protocol && docker build -t habeas .\n' +
-      'docker run --rm -p 5544:5544 habeas \\\n' +
-      '  bash -lc \'eval $(opam env --switch=catala) &amp;&amp; python3 api/server.py\'</code></pre>' +
-      'Then serve <code>dashboard/</code> via any static server and reload.'+
+      'cd habeas-protocol && make api-docker\n' +
+      '# second terminal, from the repo root:\n' +
+      'python3 -m http.server 8001</code></pre>' +
+      'Then open <code>http://127.0.0.1:8001/dashboard/simulator.html</code>.'+
       '</div>');
     return;
   }

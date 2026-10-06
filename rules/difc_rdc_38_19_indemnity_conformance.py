@@ -9,6 +9,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from difc_rdc_38_19_indemnity_eval import indemnity_basis_review  # noqa: E402
 
 
@@ -59,9 +61,9 @@ def main():
     else:
         print("  PY-OK  no deterministic award (bounded-discretion residue)")
 
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "difc_rdc_38_19_indemnity.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

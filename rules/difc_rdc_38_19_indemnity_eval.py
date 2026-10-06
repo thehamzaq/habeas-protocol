@@ -13,6 +13,19 @@ Lifted from spike/trace-03/evaluate.py.
 from decimal import Decimal, ROUND_HALF_UP
 from typing import Optional
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _inputs import as_bool, as_choice, as_decimal  # noqa: E402
+
+FINDINGS = frozenset({
+    "rejected_on_evidence",
+    "accepted_with_named_amount",
+    "requires_human_judgment",
+    "rejected_unspecific",
+})
+
 
 def _D(x) -> Decimal:
     return Decimal(str(x))
@@ -40,7 +53,7 @@ def indemnity_basis_review(schedule: dict) -> dict:
       ]
     }
     """
-    claimed = _D(schedule["claimed_aed"])
+    claimed = as_decimal(schedule, "claimed_aed")
 
     mechanically_disposed = []
     held_to_zero = []
@@ -48,14 +61,14 @@ def indemnity_basis_review(schedule: dict) -> dict:
     residual = []
 
     for o in schedule["objections"]:
-        specific = bool(o["names_specific_line_item"])
-        finding = o["factual_finding"]
+        specific = as_bool(o, "names_specific_line_item")
+        finding = as_choice(o, "factual_finding", FINDINGS)
         if not specific and finding != "requires_human_judgment":
             mechanically_disposed.append(o["label"])
         elif specific and finding == "rejected_on_evidence":
             held_to_zero.append(o["label"])
         elif specific and finding == "accepted_with_named_amount":
-            deterministic.append((o["label"], _D(o["named_amount_aed"])))
+            deterministic.append((o["label"], as_decimal(o, "named_amount_aed")))
         else:
             residual.append(o["label"])
 

@@ -8,6 +8,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from ladd_v_marshall_eval import ladd_marshall_test  # noqa: E402
 
 
@@ -66,9 +68,9 @@ def main():
             fails += 1
             print(f"  PY-FAIL {c['label']}: {out}")
 
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "ladd_v_marshall.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

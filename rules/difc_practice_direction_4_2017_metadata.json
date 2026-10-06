@@ -13,7 +13,9 @@
   ],
   "test_scopes": [
     "TestPD4_PaidOnTime",
-    "TestPD4_Unpaid61Days"
+    "TestPD4_Unpaid61Days",
+    "TestPD4_OneDayLate",
+    "TestPD4_EIBORPreEffectiveDateRegime"
   ],
   "certification": {
     "state": "draft",

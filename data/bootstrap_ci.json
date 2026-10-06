@@ -1,5 +1,5 @@
 {
-  "interpretation": "These are coder-resampling intervals over the n=188 procedure-mixed corpus. They describe coding-procedure variance, not population variance. The 188 entries are not a random sample of any defined population of judgments; they are a convenience sample assembled by the procedures documented in data/sources.md.",
+  "interpretation": "These are case-resampling (ordinary nonparametric bootstrap) intervals: judgments are resampled with replacement within each tribunal. They describe how much each mean moves with which cases are in the sample. They do not capture grader error, and they are not population intervals: the 188 entries are a convenience sample assembled by the procedures documented in data/sources.md, not a random draw from a defined population of judgments.",
   "n_resamples": 10000,
   "alpha": 0.05,
   "seed": 20260505,

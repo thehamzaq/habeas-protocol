@@ -21,6 +21,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from difc_practice_direction_4_2017_eval import (  # noqa: E402
     outstanding_arbitration_costs,
     quantize_award,
@@ -88,7 +90,7 @@ CATALA_MIRROR_CASES = [
         "expected_interest": Decimal("0"),
     },
     {
-        "label": "[catala-mirror] Unpaid61Days — in breach with 47 days accrued",
+        "label": "[catala-mirror] Unpaid61Days: in breach, 61 days accrued from order date",
         "claim": {
             "reasonable_costs_aed": "95982.26",
             "discount_rate": "0.80",
@@ -97,9 +99,23 @@ CATALA_MIRROR_CASES = [
             "simple_interest_rate": "0.09",
         },
         "expected_in_breach": True,
-        "expected_days_accrued": Decimal("47.0"),
-        # 76785.808 × 0.09 × 47/365 = 889.872... full precision
+        "expected_days_accrued": Decimal("61.0"),
+        # 76785.808 × 0.09 × 61/365 = 1154.94 (matches trace-02 day 61)
+        "expected_interest_quantized": Decimal("1154.94"),
         "expected_principal_quantized": Decimal("76785.81"),
+    },
+    {
+        "label": "[catala-mirror] OneDayLate: day 15, interest from order date",
+        "claim": {
+            "reasonable_costs_aed": "95982.26",
+            "discount_rate": "0.80",
+            "deadline_days": "14.0",
+            "days_paid_after_order": "15.0",
+            "simple_interest_rate": "0.09",
+        },
+        "expected_in_breach": True,
+        "expected_days_accrued": Decimal("15.0"),
+        "expected_interest_quantized": Decimal("284.00"),
     },
     {
         "label": "[catala-mirror] EIBOR pre-effective-date regime (3.5% rate)",
@@ -111,7 +127,7 @@ CATALA_MIRROR_CASES = [
             "simple_interest_rate": "0.035",
         },
         "expected_in_breach": True,
-        "expected_days_accrued": Decimal("47.0"),
+        "expected_days_accrued": Decimal("61.0"),
     },
 ]
 
@@ -127,6 +143,8 @@ def main():
             ok = ok and out["interest_aed"] == case["expected_interest"]
         if "expected_days_accrued" in case:
             ok = ok and out["days_accrued"] == case["expected_days_accrued"]
+        if "expected_interest_quantized" in case:
+            ok = ok and quantize_award(out)["interest_aed"] == case["expected_interest_quantized"]
         if "expected_principal_quantized" in case:
             q = quantize_award(out)
             ok = ok and q["principal_aed"] == case["expected_principal_quantized"]
@@ -152,7 +170,7 @@ def main():
             fails += 1
             print(f"  PY-FAIL [date-based] {case['label']}: {out}")
 
-    catala = shutil.which("catala")
+    catala = find_catala()
     if not catala:
         print("  CATALA SKIP")
     else:

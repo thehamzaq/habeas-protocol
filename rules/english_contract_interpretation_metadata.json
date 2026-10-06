@@ -18,6 +18,8 @@
   "test_scopes": [
     "TestWoodVCapita_PlainMeaning",
     "TestWoodVCapita_BusinessSenseCarries",
+    "TestWoodVCapita_BCS_OnCommonSenseAlone",
+    "TestWoodVCapita_FactualMatrixContradicts",
     "TestWoodVCapita_Ambiguous"
   ],
   "certification": {

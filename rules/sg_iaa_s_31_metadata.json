@@ -21,11 +21,11 @@
   ],
   "test_scopes": [
     "TestIAA_S31_TraceShape",
+    "TestDKTvDKU_AllConditionsMet",
+    "TestDKTvDKU_OneConditionFails",
     "TestIAA_S31_SeverabilityRelief",
     "TestIAA_S31_FullSetAside_NoSeverability",
-    "TestIAA_S31_NaturalJusticeNotSeverable",
-    "TestDKTvDKU_AllConditionsMet",
-    "TestDKTvDKU_OneConditionFails"
+    "TestIAA_S31_NaturalJusticeNotSeverable"
   ],
   "public_scopes": [
     "IAA_S31_Refusal",

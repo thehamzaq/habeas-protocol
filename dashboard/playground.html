@@ -232,7 +232,9 @@
 </div>
 
 <script>
-const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+// Probe the loopback API only when this page is itself served from loopback.
+const API_BASE_CANDIDATES = ['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname)
+  ? ['http://127.0.0.1:5544', '/api'] : [];
 let API_BASE = null;
 let CURRENT_SCHEMA = null;
 let CURRENT_RULE = null;
@@ -711,10 +713,10 @@ async function bootstrap() {
         <p>To use it locally — clone the repo and run:</p>
         <pre style="background:#f3f1ea;padding:10px;border:1px solid var(--rule);font-size:12px;overflow:auto"><code>git clone https://github.com/thehamzaq/habeas-protocol
 cd habeas-protocol
-docker build -t habeas .
-docker run --rm -p 5544:5544 habeas \
-  bash -lc 'eval $(opam env --switch=catala) && python3 api/server.py'</code></pre>
-        <p style="margin-top:10px">Then reload this page from <code>http://127.0.0.1:8001/dashboard/playground.html</code> (serve <code>dashboard/</code> via any static server) and the playground will reach the API on <code>:5544</code>.</p>
+make api-docker
+# second terminal, from the repo root:
+python3 -m http.server 8001</code></pre>
+        <p style="margin-top:10px">Then reload this page from <code>http://127.0.0.1:8001/dashboard/playground.html</code> (the static server must run from the repo root, since the page reads <code>../rules/</code>) and the playground will reach the API on <code>:5544</code>.</p>
         <p style="margin-top:10px;color:var(--ink-3);font-size:12px">If you're already running the API locally and seeing this — check that <code>HABEAS_API_HOST=127.0.0.1</code> and <code>HABEAS_API_PORT=5544</code> match the dashboard's expectation, and that no firewall is blocking loopback.</p>
       </div>`;
     return;

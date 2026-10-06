@@ -32,18 +32,24 @@ Outputs (LDAward):
 
 from decimal import Decimal
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _inputs import as_bool, as_decimal  # noqa: E402
+
 
 def _D(x) -> Decimal:
     return Decimal(str(x))
 
 
 def article_390_cap(claim: dict) -> dict:
-    contract_value = _D(claim["contract_value_aed"])
-    cap_rate = _D(claim["contract_cap_rate"])
-    uncapped = _D(claim["uncapped_amount_aed"])
-    contract_caps_ld = bool(claim["contract_caps_ld"])
-    asked_to_vary = bool(claim["court_asked_to_vary_under_390_2"])
-    finds_disproportion = bool(claim["court_finds_grossly_disproportionate"])
+    contract_value = as_decimal(claim, "contract_value_aed")
+    cap_rate = as_decimal(claim, "contract_cap_rate", maximum=Decimal(1))
+    uncapped = as_decimal(claim, "uncapped_amount_aed")
+    contract_caps_ld = as_bool(claim, "contract_caps_ld")
+    asked_to_vary = as_bool(claim, "court_asked_to_vary_under_390_2")
+    finds_disproportion = as_bool(claim, "court_finds_grossly_disproportionate")
 
     raw_cap = contract_value * cap_rate
     contract_cap = raw_cap if contract_caps_ld else _D(0)
@@ -63,6 +69,9 @@ def article_390_cap(claim: dict) -> dict:
         "awarded_aed": after_contract_cap,
         "was_contract_capped": was_contract_capped,
         "was_390_2_varied": was_390_2_varied,
+        # False when Art 390(2) engaged: awarded_aed is then the sum BEFORE
+        # the court's variation, which this module does not compute.
+        "awarded_is_final": not was_390_2_varied,
     }
 
 

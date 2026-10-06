@@ -1,4 +1,4 @@
-.PHONY: help typecheck interpret conformance test drift schemas property-tests trace-tests api clean robustness provenance-audit zenodo-tarball
+.PHONY: help typecheck interpret conformance test drift schemas guard-tests property-tests trace-tests api api-docker clean robustness provenance-audit zenodo-tarball
 
 help:
 	@echo "Habeas Protocol — make targets:"
@@ -7,11 +7,13 @@ help:
 	@echo "  make interpret       Catala interpret (run #[test] scopes)"
 	@echo "  make conformance     Run all 12 rule conformance tests (Python)"
 	@echo "  make trace-tests     Run all 7 trace evaluators (Python)"
-	@echo "  make property-tests  Run rules/property_tests.py (random invariants)"
+	@echo "  make guard-tests     Hostile-input and boundary tests on the Python evaluators"
+	@echo "  make property-tests  Run tests/property_tests.py (random invariants)"
 	@echo "  make drift           Check rule sources against pinned URL hashes"
 	@echo "  make schemas         Regenerate rules/*__*.schema.json from .catala_en"
 	@echo "  make test            All of the above (typecheck + conformance + traces + drift + property)"
-	@echo "  make api             Start the local HTTP API at :8000"
+	@echo "  make api             Start the local HTTP API at :5544"
+	@echo "  make api-docker      Build the image and run the API in Docker (loopback only)"
 	@echo "  make clean           Remove _build/, _targets/, __pycache__/"
 	@echo ""
 	@echo "Toolchain (install once):"
@@ -33,20 +35,30 @@ interpret:
 	  $(CATALA) interpret --no-stdlib "$$f" 2>&1 | tail -8; \
 	done
 
+# Fails on the first non-zero exit and reports whether the Catala side
+# actually ran: a script that only printed its last line used to hide both.
 conformance:
-	@for f in rules/*_conformance.py; do \
-	  printf "%-60s " "$$(basename $$f)"; \
-	  python3 "$$f" 2>&1 | tail -1; \
-	done
+	@fail=0; for f in rules/*_conformance.py; do \
+	  printf "%-52s " "$$(basename $$f)"; \
+	  out=$$(python3 "$$f" 2>&1); rc=$$?; \
+	  if echo "$$out" | grep -q "CATALA SKIP"; then cat="catala SKIPPED"; else cat="catala ran"; fi; \
+	  if [ $$rc -ne 0 ]; then echo "FAIL ($$cat)"; echo "$$out" | tail -15; fail=1; \
+	  else echo "OK ($$cat)"; fi; \
+	done; exit $$fail
 
 trace-tests:
-	@for f in spike/trace-*/evaluate.py; do \
-	  printf "%-60s " "$$(dirname $$f | xargs basename)"; \
-	  python3 "$$f" 2>&1 | tail -1; \
-	done
+	@fail=0; for f in spike/trace-*/evaluate.py; do \
+	  printf "%-12s " "$$(dirname $$f | xargs basename)"; \
+	  out=$$(python3 "$$f" 2>&1); rc=$$?; \
+	  echo "$$out" | tail -1; \
+	  if [ $$rc -ne 0 ]; then echo "  ^ exit $$rc"; fail=1; fi; \
+	done; exit $$fail
 
 property-tests:
 	python3 tests/property_tests.py
+
+guard-tests:
+	python3 tests/evaluator_guard_tests.py
 
 drift:
 	python3 scripts/check_rule_drift.py --soft
@@ -54,7 +66,7 @@ drift:
 schemas:
 	bash scripts/build_rule_schemas.sh
 
-test: typecheck conformance trace-tests property-tests provenance-audit
+test: typecheck conformance trace-tests guard-tests property-tests provenance-audit
 
 robustness:
 	python3 scripts/analyse_robustness.py
@@ -91,6 +103,14 @@ api:
 	@echo "Starting stdlib HTTP API at 127.0.0.1:5544"
 	@echo "Postgres env first: eval \$$(./scripts/postgres_local.sh env)"
 	python3 api/server.py
+
+# The server binds 127.0.0.1 by default, which is unreachable through a
+# published container port, so bind 0.0.0.0 inside the container and
+# publish on the host's loopback only: the API has no authentication.
+api-docker:
+	docker build -t habeas .
+	docker run --rm -p 127.0.0.1:5544:5544 -e HABEAS_API_HOST=0.0.0.0 habeas \
+	  bash -lc 'eval $$(opam env --switch=catala) && python3 api/server.py'
 
 clean:
 	rm -rf _build _targets

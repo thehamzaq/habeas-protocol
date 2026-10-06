@@ -21,14 +21,20 @@ exposed in `signed_net_aed`.
 
 from decimal import Decimal
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _inputs import as_decimal  # noqa: E402
+
 
 def _D(x) -> Decimal:
     return Decimal(str(x))
 
 
 def admissions_and_set_off(admitted_items: list, counterclaim_items: list) -> dict:
-    admitted_total = sum((_D(a["admitted_aed"]) for a in admitted_items), _D(0))
-    counter_total = sum((_D(c["proven_aed"]) for c in counterclaim_items), _D(0))
+    admitted_total = sum((as_decimal(a, "admitted_aed") for a in admitted_items), _D(0))
+    counter_total = sum((as_decimal(c, "proven_aed") for c in counterclaim_items), _D(0))
     signed_net = admitted_total - counter_total
     net_to_claimant = signed_net if signed_net > _D(0) else _D("0.00")
     surplus = -signed_net if signed_net < _D(0) else _D("0.00")

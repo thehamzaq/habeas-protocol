@@ -1,5 +1,5 @@
 {
-  "coder": "Coder A \u2014 original Maxim Labs hand-coder (lifted from data/judgments.json without re-reading)",
+  "coder": "Coder A \u2014 Claude Sonnet 4.5 first-pass scores (grader_type llm), lifted from data/judgments.json without re-reading. Not a human coder.",
   "coding_method": "lifted-from-master",
   "rubric_version": "v0.2",
   "entries": [

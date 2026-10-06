@@ -26,9 +26,12 @@ import hashlib
 import json
 import os
 import re
+import secrets
 import subprocess
 import sys
+import threading
 import time
+import traceback
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
@@ -40,6 +43,34 @@ PGDATABASE = os.environ.get("PGDATABASE", "habeas")
 API_HOST = os.environ.get("HABEAS_API_HOST", "127.0.0.1")
 API_PORT = int(os.environ.get("HABEAS_API_PORT", "5544"))
 
+# Largest request body read into memory. The per-field limits further down
+# (200 KB of rule source, 1 MB of ingest text) only apply after the read.
+MAX_BODY_BYTES = 2_000_000
+# Each request can spawn psql and catala; cap how many run at once.
+MAX_CONCURRENT_REQUESTS = 8
+_request_slots = threading.BoundedSemaphore(MAX_CONCURRENT_REQUESTS)
+LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
+
+
+class ClientError(RuntimeError):
+    """The request itself is wrong (maps to a 4xx, never a 500)."""
+
+    def __init__(self, message: str, status: int = 400):
+        super().__init__(message)
+        self.status = status
+
+
+def _json_object(body: bytes) -> dict:
+    """Parse a request body that must be a JSON object."""
+    try:
+        req = json.loads(body.decode("utf-8") if body else "{}")
+    except (UnicodeDecodeError, json.JSONDecodeError) as e:
+        raise ClientError(f"bad JSON request: {e}")
+    if not isinstance(req, dict):
+        raise ClientError("request body must be a JSON object")
+    return req
+
+
 REPO_ROOT = os.path.abspath(os.path.dirname(__file__) + "/..")
 RULES_DIR = REPO_ROOT + "/rules"
 
@@ -48,6 +79,9 @@ def _find_catala() -> str | None:
     """Locate the catala binary even when the API is launched without
     opam env sourced. Defers any error to the request that needs it."""
     import shutil
+    explicit = os.environ.get("HABEAS_CATALA")
+    if explicit:
+        return explicit if os.path.exists(explicit) else None
     on_path = shutil.which("catala")
     if on_path:
         return on_path
@@ -73,7 +107,10 @@ def psql_json(sql: str) -> object:
     ]
     out = subprocess.run(cmd, input=sql, capture_output=True, text=True, timeout=15)
     if out.returncode != 0:
-        raise RuntimeError(f"psql failed: {out.stderr.strip()}")
+        # stderr names the host, port, user and database: log it, do not
+        # return it to the caller.
+        sys.stderr.write(f"[api] psql failed: {out.stderr.strip()}\n")
+        raise RuntimeError("database query failed (see the API server log)")
     raw = out.stdout.strip()
     if not raw or raw == "":
         return []
@@ -288,10 +325,7 @@ def handle_conflict_route(_qs, body: bytes):
          catalogue's recognition chain — these are the gates that must
          be cleared *before* the substantive rules in (2) bind.
     """
-    try:
-        req = json.loads(body or b"{}")
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"bad JSON request: {e}")
+    req = _json_object(body)
     forum = str(req.get("forum", "")).upper()
     originating_forum = (req.get("originating_forum") or None)
     if originating_forum:
@@ -400,10 +434,7 @@ def handle_rule_validate(_qs, body: bytes):
     discarded immediately. Does not touch the rules/ directory."""
     if CATALA_BIN is None:
         raise RuntimeError("catala binary not found")
-    try:
-        req = json.loads(body or b"{}")
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"bad JSON request: {e}")
+    req = _json_object(body)
     source = req.get("source")
     if not isinstance(source, str) or len(source) > 200_000:
         raise RuntimeError("source must be a string under 200KB")
@@ -443,10 +474,7 @@ def handle_rule_save(_qs, body: bytes):
         raise RuntimeError("save-back is disabled. Start the API with HABEAS_ADMIN_MODE=1 to enable.")
     if CATALA_BIN is None:
         raise RuntimeError("catala binary not found")
-    try:
-        req = json.loads(body or b"{}")
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"bad JSON request: {e}")
+    req = _json_object(body)
     filename = str(req.get("filename", ""))
     source = req.get("source")
     if not _FILENAME_RE.match(filename):
@@ -461,8 +489,15 @@ def handle_rule_save(_qs, body: bytes):
 
     dest = f"{RULES_DIR}/{filename}"
     overwrote = os.path.exists(dest)
-    with open(dest, "w") as f:
+    if overwrote:
+        # Keep the previous version (*.bak is gitignored) so an overwrite
+        # of an existing module is recoverable.
+        os.replace(dest, dest + ".bak")
+    # Write-then-rename: a crash mid-write cannot leave a truncated rule.
+    tmp = dest + ".tmp"
+    with open(tmp, "w") as f:
         f.write(source)
+    os.replace(tmp, dest)
     return {"saved": True, "path": f"rules/{filename}", "overwrote_existing": overwrote}
 
 
@@ -501,11 +536,13 @@ def _audit_log(module: str, scope: str, inputs: dict,
         # Pass the JSON payload as a dollar-quoted string so embedded
         # quotes, newlines, and backslashes (e.g. \uXXXX inside
         # catala's box-drawing error messages) round-trip cleanly. The
-        # `$j$` tag is unique to this code path; we just sanity-check
-        # the payload doesn't contain it (it never legitimately would).
+        # payload is request-controlled, so the tag is random per call:
+        # a fixed tag could be closed from inside the payload, and
+        # stripping it could re-create it ("$$j$j$" -> "$j$").
         json_line = json.dumps(row, separators=(",", ":"))
-        if "$j$" in json_line:
-            json_line = json_line.replace("$j$", "")  # paranoia
+        tag = "$j" + secrets.token_hex(16) + "$"
+        if tag in json_line:
+            raise RuntimeError("audit payload collides with its quote tag")
         sql = (
             "INSERT INTO rule_runs\n"
             "  (module, scope, inputs, output, success, error,\n"
@@ -514,13 +551,13 @@ def _audit_log(module: str, scope: str, inputs: dict,
             "       (j->>'success')::boolean, j->>'error',\n"
             "       (j->>'duration_ms')::integer, j->>'inputs_sha256',\n"
             "       j->>'source_label'\n"
-            f"FROM (SELECT $j${json_line}$j$::jsonb AS j) t;\n"
+            f"FROM (SELECT {tag}{json_line}{tag}::jsonb AS j) t;\n"
         )
         subprocess.run(cmd, input=sql, capture_output=True, text=True, timeout=5)
-    except Exception:
-        # Audit logging is best-effort. Never let an audit failure
-        # surface to the caller.
-        pass
+    except Exception as e:
+        # Audit logging is best-effort: it never fails the caller, but a
+        # dropped audit row is logged so it is not silent.
+        sys.stderr.write(f"[api] audit log write failed: {type(e).__name__}: {e}\n")
 
 
 def handle_rule_run(_qs, body: bytes):
@@ -532,10 +569,7 @@ def handle_rule_run(_qs, body: bytes):
             "catala binary not found. Activate the opam switch or install "
             "catala at ~/.opam/catala/bin/catala."
         )
-    try:
-        req = json.loads(body or b"{}")
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"bad JSON request: {e}")
+    req = _json_object(body)
     module = str(req.get("module", ""))
     scope = str(req.get("scope", ""))
     inputs = req.get("inputs", {})
@@ -658,10 +692,7 @@ def handle_ingest(_qs, body: bytes):
     deliberately additive (records every match) and lossy (no dedup at
     this layer beyond exact string equality); the human author edits
     the result before saving alongside a Catala rule."""
-    try:
-        req = json.loads(body or b"{}")
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"bad JSON request: {e}")
+    req = _json_object(body)
     text = req.get("text", "")
     if not isinstance(text, str) or len(text) > 1_000_000:
         raise RuntimeError("text must be a string under 1MB")
@@ -874,6 +905,7 @@ POST_ROUTES = {
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "habeas-api/0.1"
+    timeout = 30  # seconds a client may stall a connection
 
     def _cors(self):
         # The server binds to 127.0.0.1 by default; the dashboard is served from
@@ -881,12 +913,13 @@ class Handler(BaseHTTPRequestHandler):
         # otherwise omit ACAO entirely. Wildcard "*" was the prior behaviour and
         # turns every POST endpoint into a cross-origin CSRF target.
         origin = self.headers.get("Origin", "")
-        allowed = (
-            origin.startswith("http://127.0.0.1")
-            or origin.startswith("http://localhost")
-            or origin.startswith("http://[::1]")
-            or origin == "null"  # file:// origin, common during local dashboard dev
-        )
+        # Compare the parsed hostname. A prefix test also matched
+        # http://localhost.evil.com, and "null" matched any sandboxed iframe.
+        try:
+            parsed = urlparse(origin)
+            allowed = parsed.scheme == "http" and parsed.hostname in LOOPBACK_HOSTS
+        except ValueError:
+            allowed = False
         if allowed and origin:
             self.send_header("Access-Control-Allow-Origin", origin)
             self.send_header("Vary", "Origin")
@@ -914,35 +947,73 @@ class Handler(BaseHTTPRequestHandler):
         self._cors()
         self.end_headers()
 
+    def _host_ok(self) -> bool:
+        """Reject DNS-rebinding: when bound to loopback, the Host header
+        must name loopback too. Skipped when deliberately bound wider
+        (HABEAS_API_HOST=0.0.0.0 inside a container)."""
+        if API_HOST not in LOOPBACK_HOSTS:
+            return True
+        host = self.headers.get("Host", "")
+        try:
+            return urlparse("//" + host).hostname in LOOPBACK_HOSTS
+        except ValueError:
+            return False
+
+    def _dispatch(self, call):
+        """Run a route handler and turn every outcome into a JSON reply."""
+        if not _request_slots.acquire(timeout=20):
+            return self._json(503, {"error": "server busy, retry shortly"})
+        try:
+            return self._json(200, call())
+        except ClientError as e:
+            return self._json(e.status, {"error": str(e)})
+        except RuntimeError as e:
+            return self._json(500, {"error": str(e)})
+        except subprocess.TimeoutExpired:
+            return self._json(504, {"error": "subprocess timed out"})
+        except Exception:
+            # Anything unexpected: full trace to the log, nothing internal
+            # to the client. Without this the connection just dropped.
+            sys.stderr.write("[api] unhandled error on " + self.path + "\n"
+                             + traceback.format_exc())
+            return self._json(500, {"error": "internal error (see the API server log)"})
+        finally:
+            _request_slots.release()
+
     def do_GET(self):
+        if not self._host_ok():
+            return self._json(403, {"error": "unexpected Host header"})
         url = urlparse(self.path)
         handler = ROUTES.get(url.path)
         if handler is None:
             return self._json(404, {"error": "not found", "path": url.path,
                                     "routes": sorted(list(ROUTES.keys()) + list(POST_ROUTES.keys()))})
-        try:
-            data = handler(parse_qs(url.query))
-            return self._json(200, data)
-        except RuntimeError as e:
-            return self._json(500, {"error": str(e)})
-        except subprocess.TimeoutExpired:
-            return self._json(504, {"error": "subprocess timed out"})
+        return self._dispatch(lambda: handler(parse_qs(url.query)))
 
     def do_POST(self):
+        if not self._host_ok():
+            return self._json(403, {"error": "unexpected Host header"})
         url = urlparse(self.path)
         handler = POST_ROUTES.get(url.path)
         if handler is None:
             return self._json(404, {"error": "not found", "path": url.path,
                                     "post_routes": sorted(POST_ROUTES.keys())})
-        n = int(self.headers.get("Content-Length") or 0)
-        body = self.rfile.read(n) if n > 0 else b""
+        # Requiring application/json forces a CORS preflight, which only
+        # loopback origins pass. A text/plain "simple" POST from any website
+        # used to reach these handlers with no preflight at all.
+        ctype = (self.headers.get("Content-Type") or "").split(";")[0].strip().lower()
+        if ctype != "application/json":
+            return self._json(415, {"error": "Content-Type must be application/json"})
         try:
-            data = handler(parse_qs(url.query), body)
-            return self._json(200, data)
-        except RuntimeError as e:
-            return self._json(500, {"error": str(e)})
-        except subprocess.TimeoutExpired:
-            return self._json(504, {"error": "subprocess timed out"})
+            n = int(self.headers.get("Content-Length") or 0)
+        except ValueError:
+            return self._json(400, {"error": "Content-Length must be an integer"})
+        if n < 0:
+            return self._json(400, {"error": "Content-Length must not be negative"})
+        if n > MAX_BODY_BYTES:
+            return self._json(413, {"error": f"request body over {MAX_BODY_BYTES} bytes"})
+        body = self.rfile.read(n) if n > 0 else b""
+        return self._dispatch(lambda: handler(parse_qs(url.query), body))
 
     # quieter access log
     def log_message(self, fmt, *args):

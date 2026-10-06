@@ -17,7 +17,13 @@ predicate honours that order so the surfaced "first failing prong" is
 the one a court would cite.
 """
 
+import os
+import sys
 from typing import List
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from _inputs import as_bool  # noqa: E402
 
 
 def ladd_marshall_test(prongs: List[dict]) -> dict:
@@ -32,8 +38,11 @@ def ladd_marshall_test(prongs: List[dict]) -> dict:
       short_circuited_at (int | None)  -- 1-indexed position of the
                                            first failing prong (None if all pass)
     """
+    if len(prongs) != 3:
+        raise ValueError(
+            f"Ladd v Marshall has exactly three prongs (a), (b), (c); got {len(prongs)}")
     for i, p in enumerate(prongs, 1):
-        if not p["satisfied"]:
+        if not as_bool(p, "satisfied"):
             return {
                 "new_evidence_admissible": False,
                 "first_failing_prong": p["label"],

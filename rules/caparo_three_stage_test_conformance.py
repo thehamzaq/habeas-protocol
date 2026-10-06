@@ -8,6 +8,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from caparo_three_stage_test_eval import caparo_test  # noqa: E402
 
 
@@ -76,9 +78,9 @@ def main():
         else:
             fails += 1
             print(f"  PY-FAIL {c['label']}: {out}")
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "caparo_three_stage_test.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

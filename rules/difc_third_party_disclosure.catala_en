@@ -142,10 +142,24 @@ in Article 36 (or an analogous statutory or common-law claim), the
 
 ## Structural map
 
-The DIFC Courts have three independent jurisdictional gates by which
-they can order disclosure against a non-party. ALL three must be made
-out for the Court to reach over to the non-party. Each gate is itself
-conjunctive over its own elements.
+The DIFC Courts have three independent routes by which they can order
+disclosure against a non-party. Each route is conjunctive over its own
+elements, and ANY ONE route made out gives the Court a basis for the
+order. Article 15(2) and Article 15(3) are separately numbered heads of
+jurisdiction; Norwich Pharmacal relief is available before any
+proceedings exist, which RDC 28.52 (production "by a person who is not
+a party to the proceedings") cannot be, so the routes cannot be
+cumulative requirements. English practice is the same: the tests
+differ and applications are commonly made on more than one basis.
+
+`order_grantable` therefore means "at least one route is made out".
+It is a threshold only: the relief stays discretionary.
+`all_gates_satisfied` records the stronger fact that all three were
+made out, which is what the court found in DEC 001/2025 (trace-07).
+
+Corrected 2026-10-05: this module previously required all three
+routes together, so a pure identity-disclosure application with every
+Norwich Pharmacal element made out was reported as not grantable.
 
 *Gate 1 — Norwich Pharmacal* (codified in DIFC Courts Law Art 15(2);
 underlying doctrine [1974] AC 133). Four conjunctive elements:
@@ -254,7 +268,7 @@ scope ThirdPartyDisclosureGates:
       -- bankers_trust_made_out: bt
       -- rdc_2852_made_out: rdc
       -- all_gates_satisfied: all_gates
-      -- order_grantable: all_gates
+      -- order_grantable: nph or bt or rdc
     }
 ```
 
@@ -300,7 +314,8 @@ scope TestThirdPartyDisclosureGranted:
 
 scope TestThirdPartyDisclosureRefused:
   definition gates equals composite.gates
-  ## A single missing Norwich Pharmacal element is dispositive.
+  ## A single missing element defeats its own route. Here every route
+  ## is missing one element, so no basis for the order remains.
   definition composite.nph_findings equals [
     NPFinding { -- element: NPE_WrongEstablished                       -- made_out: true };
     NPFinding { -- element: NPE_RespondentMixedUp                      -- made_out: false };
@@ -309,13 +324,33 @@ scope TestThirdPartyDisclosureRefused:
   ]
   definition composite.bt_findings equals [
     BTFinding { -- element: BTE_TracingClaimAsserted        -- made_out: true };
-    BTFinding { -- element: BTE_HoldsTraceableProceeds      -- made_out: true };
+    BTFinding { -- element: BTE_HoldsTraceableProceeds      -- made_out: false };
     BTFinding { -- element: BTE_DisclosureNecessaryForTracing -- made_out: true }
   ]
   definition composite.rdc_findings equals [
     RDCFinding { -- rdc_condition: RDC_LikelyToSupportOrAffect       -- made_out: true };
-    RDCFinding { -- rdc_condition: RDC_NecessaryToDisposeOrSaveCosts -- made_out: true }
+    RDCFinding { -- rdc_condition: RDC_NecessaryToDisposeOrSaveCosts -- made_out: false }
   ]
   assertion gates.order_grantable = false
   assertion gates.nph_made_out = false
+
+#[test] declaration scope TestThirdPartyDisclosureNorwichPharmacalAlone:
+  composite scope ThirdPartyDisclosureGates
+  output gates content DisclosureGates
+
+scope TestThirdPartyDisclosureNorwichPharmacalAlone:
+  definition gates equals composite.gates
+  ## Pure identity-disclosure application: all four Norwich Pharmacal
+  ## elements made out, no tracing claim, no proceedings on foot.
+  definition composite.nph_findings equals [
+    NPFinding { -- element: NPE_WrongEstablished                       -- made_out: true };
+    NPFinding { -- element: NPE_RespondentMixedUp                      -- made_out: true };
+    NPFinding { -- element: NPE_PossessesInformation                   -- made_out: true };
+    NPFinding { -- element: NPE_DisclosureNecessaryInInterestsOfJustice -- made_out: true }
+  ]
+  definition composite.bt_findings equals []
+  definition composite.rdc_findings equals []
+  assertion gates.order_grantable = true
+  assertion gates.all_gates_satisfied = false
+  assertion gates.bankers_trust_made_out = false
 ```

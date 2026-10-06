@@ -5,8 +5,9 @@ analyses. The static + non-API analyses have already been run:
 
 - `scripts/analyse_robustness.py` — done; outputs in `data/robustness/`
 - `scripts/external_correlate.py` — **done**; result at
-  `data/robustness/external_correlate.json` (H8 passes, ρ=0.32 on
-  was_appealed)
+  `data/robustness/external_correlate.json` (H8 not satisfied: ρ=−0.26 on
+  was_appealed, ρ=−0.04 on citations; recomputed 2026-10-05 after a
+  tied-rank formula fix)
 - `scripts/relabel_coding_provenance.py` — idempotent; already applied
 - `scripts/clean_legacy_notes.py` — idempotent; already applied
 - `scripts/check_grading_provenance.py` — clean (188 / 30 / 90)
@@ -102,7 +103,7 @@ python3 scripts/sub_rubric_alternative.py --dry-run
 
 Each script's output JSON includes a `stop_rule_violation: true|false`
 field on each per-primitive or per-tribunal record. After running,
-check the summary file for any stop-rule violation. The pre-registered
+check the summary file for any stop-rule violation. The
 stop rules are documented in `PREREGISTRATION.md` §1 and listed
 verbatim in `paper.md` §12.
 

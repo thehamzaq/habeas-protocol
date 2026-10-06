@@ -89,7 +89,7 @@
   <div class="ig-grid">
     <div class="ig-panel">
       <h3>Input — paste text or HTML</h3>
-      <textarea class="ig-textarea" id="igText" placeholder="Paste judgment text, order, pleading, or HTML here…"></textarea>
+      <textarea class="ig-textarea" id="igText" aria-label="Judgment text or HTML to extract from" placeholder="Paste judgment text, order, pleading, or HTML here…"></textarea>
       <div class="ig-actions">
         <button class="primary" id="ingestBtn">Run extraction</button>
         <button class="secondary" id="clearBtn">Clear</button>
@@ -112,7 +112,9 @@
 </div>
 
 <script>
-const API_BASE_CANDIDATES = ['http://127.0.0.1:5544', '/api'];
+// Probe the loopback API only when this page is itself served from loopback.
+const API_BASE_CANDIDATES = ['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname)
+  ? ['http://127.0.0.1:5544', '/api'] : [];
 let API_BASE = null;
 let LAST_RESULT = null;
 
@@ -138,7 +140,7 @@ async function runExtraction() {
     return;
   }
   if (!API_BASE) {
-    setStatus('Local API not running — text extraction needs the loopback API server. Run the repo locally via `docker run --rm -p 5544:5544 habeas`, or use the static GH Pages copy for read-only browsing.');
+    setStatus('Local API not running — text extraction needs the loopback API server. Run `make api-docker` from a clone of the repo, then `python3 -m http.server 8001` from the repo root and open http://127.0.0.1:8001/dashboard/ingest.html. The static GitHub Pages copy is read-only.');
     return;
   }
   setStatus('extracting…');
@@ -278,7 +280,7 @@ document.getElementById('downloadBtn').onclick = () => {
 (async () => {
   API_BASE = await findApi();
   if (!API_BASE) {
-    setStatus('Local API not running — extraction is disabled on the static GitHub Pages copy. Clone the repo and run `docker run --rm -p 5544:5544 habeas` to enable.');
+    setStatus('Local API not running — extraction is disabled on the static GitHub Pages copy. Run `make api-docker` from a clone of the repo, then `python3 -m http.server 8001` from the repo root and open http://127.0.0.1:8001/dashboard/ingest.html.');
   }
 })();
 </script>

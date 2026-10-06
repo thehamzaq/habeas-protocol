@@ -143,6 +143,14 @@ def main():
         module = rule_path.stem
         meta_path = RULES / f"{module}_metadata.json"
         if meta_path.exists():
+            # Hand-maintained fields are left alone; test_scopes is derived
+            # from the .catala_en and is refreshed so it cannot go stale.
+            meta = json.loads(meta_path.read_text())
+            scopes = extract_test_scopes(rule_path)
+            if meta.get("test_scopes") != scopes:
+                meta["test_scopes"] = scopes
+                meta_path.write_text(json.dumps(meta, indent=2) + "\n")
+                print(f"  refreshed test_scopes in rules/{module}_metadata.json")
             skipped += 1
             continue
         info = KNOWN_SOURCES.get(module, {

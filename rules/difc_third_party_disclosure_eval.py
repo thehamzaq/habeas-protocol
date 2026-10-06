@@ -42,12 +42,17 @@ RDC_REQUIRED_CONDITIONS = (
 def _all_required_made_out(findings, key, required):
     """True iff every value in `required` appears with field
     `made_out=True` somewhere in `findings` (where each finding has
-    the discriminant under `key`). Tolerates duplicates and
-    over-pleading; empty inputs reject."""
-    for r in required:
-        if not any(f.get(key) == r and f.get("made_out") for f in findings):
-            return False
-    return True
+    the discriminant under `key`). Empty inputs reject. A finding
+    recorded twice with opposite values is an error, not a pass."""
+    seen = {}
+    for f in findings:
+        made_out = f.get("made_out")
+        if not isinstance(made_out, bool):
+            raise ValueError(
+                f"made_out must be true or false for {f.get(key)!r}, got {made_out!r}")
+        if seen.setdefault(f.get(key), made_out) != made_out:
+            raise ValueError(f"contradictory findings for {f.get(key)!r}")
+    return all(seen.get(r) is True for r in required)
 
 
 def third_party_disclosure_gates(
@@ -73,7 +78,9 @@ def third_party_disclosure_gates(
         "bankers_trust_made_out": bt,
         "rdc_2852_made_out": rdc,
         "all_gates_satisfied": all_gates,
-        "order_grantable": all_gates,
+        # The three routes are independent: any one made out is a basis
+        # for the order (a threshold; the relief stays discretionary).
+        "order_grantable": nph or bt or rdc,
     }
 
 
@@ -95,12 +102,16 @@ def third_party_disclosure(
     compliance windows. NOT a Catala mirror — see
     third_party_disclosure_gates above for that.
     """
-    nph = all(x["satisfied"] for x in norwich_pharmacal_elements) and len(
-        norwich_pharmacal_elements) > 0
-    bt = all(x["satisfied"] for x in bankers_trust_elements) and len(
-        bankers_trust_elements) > 0
-    rdc = all(x["satisfied"] for x in rdc_2852_conditions) and len(
-        rdc_2852_conditions) > 0
+    def _gate(items):
+        for x in items:
+            if not isinstance(x["satisfied"], bool):
+                raise ValueError(
+                    f"satisfied must be true or false, got {x['satisfied']!r}")
+        return len(items) > 0 and all(x["satisfied"] for x in items)
+
+    nph = _gate(norwich_pharmacal_elements)
+    bt = _gate(bankers_trust_elements)
+    rdc = _gate(rdc_2852_conditions)
     all_gates = nph and bt and rdc
 
     n_resp = len(respondents)

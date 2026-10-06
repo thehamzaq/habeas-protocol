@@ -4,9 +4,13 @@
 // Try the local read-only API first (api/server.py — Postgres-backed).
 // If it isn't running, fall back to the static JSON file. The static fallback
 // is what the public GitHub Pages build uses, since it can't run a server.
+// The loopback API is only probed when the page itself is served from
+// loopback. On the public Pages copy the probe can never succeed (the API
+// allows loopback origins only) and triggers a local-network prompt in
+// some browsers.
+const ON_LOOPBACK = ['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname);
 const JUDGMENTS_URLS = [
-  'http://127.0.0.1:5544/api/judgments',
-  '/api/judgments',
+  ...(ON_LOOPBACK ? ['http://127.0.0.1:5544/api/judgments', '/api/judgments'] : []),
   '../data/judgments.json',
   'data/judgments.json',
   '/data/judgments.json',
@@ -115,7 +119,7 @@ const TRACES = [
     outputs: [
       { label: 'objection 1 (claimant did work himself)',          computed: 'mechanically disposed — non-specific',     court: 'rejected (Cooke J., §4)', match: true },
       { label: 'objection 2 (double counsel for hearing)',         computed: 'held to zero on evidence',                  court: 'rejected (Cooke J., §3)', match: true },
-      { label: 'objection 3 (excess senior associate time)',       computed: 'flagged: requires_human_judgment',          court: 'reduction applied (Cooke J., §5)', match: true, note: 'protocol flags but cannot quantify' },
+      { label: 'objection 3 (excess senior associate time)',       computed: 'flagged: requires_human_judgment',          court: 'reduction applied (Cooke J., §5)', match: true, residue: true, note: 'protocol flags but cannot quantify' },
       { label: 'deterministic_reductions_aed',                     computed: '0.00',                                      court: 'no rule-derivable reduction',  match: true },
       { label: 'discretion residue (claim − awarded)',             computed: 'AED 8,914.80 (≈6.92%)',                     court: 'AED 8,914.80',                 match: true, note: 'the irreducible human-judgment residue' },
     ],
@@ -1031,8 +1035,13 @@ function renderOutputPanel(trace) {
     </div>`;
   });
   html += '</div>';
-  const summaryCls = allMatch ? 'viewer-summary-ok' : 'viewer-summary-warn';
-  const summaryText = allMatch
+  // A row the predicate can only flag for human judgment is not a
+  // reproduction, even though the flag itself agrees with the court.
+  const hasResidue = (trace.outputs || []).some(o => o.residue);
+  const summaryCls = (allMatch && !hasResidue) ? 'viewer-summary-ok' : 'viewer-summary-warn';
+  const summaryText = hasResidue
+    ? `BOUNDED, NOT REPRODUCED: the predicate disposes of the rule-governed objections and flags the rest for human judgment. It does not compute the court's final figure.`
+    : allMatch
     ? `PASS — predicate reproduces every line of the court's ruling.`
     : `Predicate matches the court's substantive findings; surfaces a discrepancy on flagged rows above.`;
   html += `<div class="viewer-summary ${summaryCls}">${summaryText}</div>`;

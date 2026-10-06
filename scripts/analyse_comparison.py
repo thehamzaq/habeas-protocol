@@ -80,6 +80,9 @@ def main():
 
     print("# Comparison-set analysis — v0.2 rubric, peer commercial courts")
     print()
+    print("> Scores for the 90 peer-court entries are author-assigned class defaults")
+    print("> (`grader_type: author_class_default`), not measured per judgment.")
+    print()
     print("## Per-ruling primitive means")
     print()
     print("| Court                                          |  n |  PR1 |  "

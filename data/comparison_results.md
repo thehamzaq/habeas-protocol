@@ -1,5 +1,8 @@
 # Comparison-set analysis — v0.2 rubric, peer commercial courts
 
+> Scores for the 90 peer-court entries are author-assigned class defaults
+> (`grader_type: author_class_default`), not measured per judgment.
+
 ## Per-ruling primitive means
 
 | Court                                          |  n |  PR1 |  PR2 |  PR3 |  PR4 |  PR5 |  PR6 | Mean |

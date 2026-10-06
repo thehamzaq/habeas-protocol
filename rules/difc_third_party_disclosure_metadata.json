@@ -25,7 +25,8 @@
   ],
   "test_scopes": [
     "TestThirdPartyDisclosureGranted",
-    "TestThirdPartyDisclosureRefused"
+    "TestThirdPartyDisclosureRefused",
+    "TestThirdPartyDisclosureNorwichPharmacalAlone"
   ],
   "certification": {
     "state": "draft",

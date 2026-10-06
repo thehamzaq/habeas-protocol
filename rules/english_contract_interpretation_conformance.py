@@ -15,6 +15,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from english_contract_interpretation_eval import (  # noqa: E402
     wood_v_capita,
     clause_alignment,
@@ -131,9 +133,9 @@ def main():
             fails += 1
             print(f"  PY-FAIL {c['label']}: {out}")
 
-    if shutil.which("catala"):
+    if find_catala():
         proc = subprocess.run(
-            ["catala", "interpret", "--no-stdlib",
+            [find_catala(), "interpret", "--no-stdlib",
              str(HERE / "english_contract_interpretation.catala_en")],
             capture_output=True, text=True, timeout=30,
         )

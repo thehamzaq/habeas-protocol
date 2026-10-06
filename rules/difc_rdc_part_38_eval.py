@@ -32,6 +32,12 @@ class StandardBasisAward(TypedDict):
     disbursements_aed: Decimal
     total_aed: Decimal
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _inputs import as_decimal  # noqa: E402
+
 
 def _D(x) -> Decimal:
     return Decimal(str(x))
@@ -45,9 +51,9 @@ def assess_standard_basis(claim: CostsClaim) -> StandardBasisAward:
         disbursements_aed     = reasonable_disbursements_aed
         total_aed             = professional_time + disbursements
     """
-    hours = _D(claim["hours_worked"])
-    rate = _D(claim["hourly_rate_aed"])
-    disb = _D(claim["reasonable_disbursements_aed"])
+    hours = as_decimal(claim, "hours_worked")
+    rate = as_decimal(claim, "hourly_rate_aed")
+    disb = as_decimal(claim, "reasonable_disbursements_aed")
     pt = hours * rate
     return {
         "professional_time_aed": pt,

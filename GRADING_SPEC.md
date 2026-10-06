@@ -226,6 +226,5 @@ pattern set fails on narrative-style grounds-of-decision documents.
   whole corpus.
 - Regex-graded entries: scripts are deterministic Python; running
   them again on the same input text produces the same scores.
-- The pre-registration document at `PREREGISTRATION.md` captures the
-  analysis pipeline and stop rules committed before the §4.6–§4.12
-  robustness checks were run.
+- The analysis plan at `PREREGISTRATION.md` (see its status note on what it does and does not pre-register) captures the
+  analysis pipeline and stop rules for the §4.6–§4.12 robustness checks.

@@ -177,22 +177,22 @@
     <div class="stat"><div class="stat-num" id="siccMean">—</div><div class="stat-label">SICC mean / 2.00</div></div>
     <div class="stat"><div class="stat-num" id="adgmMean">—</div><div class="stat-label">ADGM mean / 2.00</div></div>
     <div class="stat"><div class="stat-num" id="difcMean">—</div><div class="stat-label">DIFC mean / 2.00</div></div>
-    <div class="stat"><div class="stat-num" id="tracesWorking">—</div><div class="stat-label">Working traces</div></div>
+    <div class="stat"><div class="stat-num" id="tracesWorking">—</div><div class="stat-label">Worked traces</div></div>
   </div>
 </section>
 
 <section class="section">
   <h2>Empirical findings</h2>
   <p class="finding">All three tribunals score at near-ceiling on every per-ruling primitive, and 2/2 on both architectural system properties. The pattern is robust to two stress tests, and seven executable traces from the corpus demonstrate the protocol's methodological coverage across formula, deferred conditional, bounded discretion, arithmetic and Boolean composition, statutory partial-refusal, and a third-party-jurisdiction gate.</p>
-  <p class="finding"><strong>Inferential layer.</strong> Bootstrap 95% <em>coder-resampling intervals</em> (10000 resamples; describe coding-procedure variance over the n=188 corpus, not population variance): <strong>ADGM</strong> 1.91 [1.89,&nbsp;1.94], <strong>SICC</strong> 1.85 [1.80,&nbsp;1.90], <strong>DIFC</strong> 1.72 [1.62,&nbsp;1.81]. All three pairwise differences exclude zero at α=0.05 — the ranking is statistically supported, not point-estimate noise. Raw values: <code>data/bootstrap_ci.json</code>; computation: <code>scripts/compute_bootstrap_ci.py</code>.</p>
-  <p class="finding"><strong>Construct validity (external correlate, ran 2026-05-07).</strong> Per-judgment v0.2 mean correlates with appeal status at <strong>Spearman ρ = +0.32</strong> and with subsequent-citation count at <strong>ρ = +0.12</strong> across n=186 (<code>data/robustness/external_correlate.json</code>). The pre-registered H8 stop rule (|ρ| ≥ 0.10 in predicted direction on any of three external metrics) passes. Higher-scoring judgments are more likely to be referenced by appellate-court output.</p>
+  <p class="finding"><strong>Inferential layer.</strong> Bootstrap 95% <em>case-resampling intervals</em> (10000 resamples of the judgments within each tribunal; they describe how much each mean moves with which cases are in the sample, and do not capture grader error): <strong>ADGM</strong> 1.91 [1.89,&nbsp;1.94], <strong>SICC</strong> 1.85 [1.80,&nbsp;1.90], <strong>DIFC</strong> 1.72 [1.62,&nbsp;1.81]. All three pairwise differences exclude zero at α=0.05 — the ranking is statistically supported, not point-estimate noise. Raw values: <code>data/bootstrap_ci.json</code>; computation: <code>scripts/compute_bootstrap_ci.py</code>.</p>
+  <p class="finding"><strong>Construct validity (external correlate, recomputed 2026-10-05).</strong> No positive external correlate was found, so hypothesis H8 is not satisfied. Per-judgment v0.2 mean against subsequent-citation count: <strong>Spearman ρ = −0.04</strong> (n=186, null). Against appeal status: <strong>ρ = −0.26</strong> (n=163): the 10 first-instance judgments later referenced by appellate output score lower (1.70) than the rest (1.90). Raw values: <code>data/robustness/external_correlate.json</code>. An earlier release reported +0.32 and +0.12; those came from a rank formula that is invalid for tied data and are withdrawn (paper §4.12).</p>
   <p>Of the 188 judgments scored, <strong>39 form an LLM-graded first-pass set</strong> (32 DIFC + 7 ADGM, scored by Claude Sonnet 4.5); the remaining <strong>149 entries</strong> (69 ADGM + 80 SICC) are scored by deterministic regex heuristics — <em>no LLM in the loop for these 149</em>. Per-entry grader-type and provenance are recorded in <code>coding.grader_type</code>, <code>coding.coder</code>, and grader-type-specific fields (model + prompt SHA for LLM entries; producing-script path for regex entries).</p>
   <ul>
     <li><strong>Grader-type stability (ADGM, the only tribunal with both grader types).</strong> The LLM grader (n=7) scores ADGM at <strong>1.93</strong>; the regex heuristic-triage (n=16) scores <strong>1.93</strong>; the regex heuristic-graded (n=53) scores <strong>1.91</strong>. The two graders agree to within 0.02 on the overall mean — the within-corpus evidence that the saturation finding is a property of the tribunal rather than the grading instrument.</li>
-    <li><strong>SICC PR4 heuristic limitation, corrected.</strong> The regex grader produces PR4 = 1.55 for SICC because the four-marker triplet test fails on narrative grounds-of-decision documents. The corrected PR4 (Claude re-grades PR4 only with a prompt explicitly instructed to read narrative form) is what enters the headline SICC mean of 1.85. The regex result is preserved as the known-flawed measurement.</li>
-    <li><strong>Falsification cross-check.</strong> A 30-instrument falsification set across five non-court instrument classes (sealed awards, on-chain DAOs, regulator notices, platform adjudicators, UDRP panels) confirms the rubric separates real commercial courts from non-courts cleanly and does NOT mark down a positive control (UDRP, gap +0.05). The rubric measures procedural form, not pedigree.</li>
+    <li><strong>SICC PR4 heuristic limitation.</strong> The regex grader produces PR4 = 1.55 for SICC because the four-marker triplet test fails on narrative grounds-of-decision documents. The headline SICC mean of 1.85 uses this regex result and is a known-flawed measurement on PR4. A Claude re-grade of PR4 with a prompt instructed to read narrative form is staged and has not been run.</li>
+    <li><strong>Falsification cross-check.</strong> A 30-instrument falsification set across five non-court instrument classes (sealed awards, on-chain DAOs, regulator notices, platform adjudicators, UDRP panels) separates sealed awards, on-chain tribunals and platform adjudicators from the courts (18 of 30 instruments score low). Regulator notices (1.92) and specialised panels (1.78, the positive control) score level with the courts (1.83) by design: the rubric measures procedural form, and pedigree does not enter it. These 30 scores are author-assigned class defaults, not per-instrument measurements.</li>
     <li><strong>Cross-family replication.</strong> The protocol crosses legal-family boundaries — Singapore common law via the IAA, vs DIFC's own statutes and ADGM's English-law-via-statute — and translates to a civil-law foil under the peer-court comparison set. The protocol is not court-specific.</li>
-    <li><strong>Architectural system properties.</strong> All three tribunals score <strong>2/2</strong> on separation of powers (SP1) and enforceability under the New York Convention (SP2). These are the structural pre-conditions for plugging software into the bench.</li>
+    <li><strong>Architectural system properties.</strong> All three tribunals score <strong>2/2</strong> on separation of powers (SP1) and a reviewable appeal path (SP2). These are the structural pre-conditions for plugging software into the bench.</li>
     <li><strong>Methodological coverage.</strong> Seven executable traces from the corpus show the protocol covers (i) static-rule arithmetic, (ii) deferred conditionals, (iii) rule-bounded human judgment, (iv) arithmetic composition over substantive findings, (v) Boolean composition over contractual interpretation, (vi) NY-Convention partial refusal under Singapore IAA s 31, and (vii) a third-party-jurisdiction gate under <em>Norwich Pharmacal</em> + <em>Bankers Trust</em> + RDC 28.52.</li>
   </ul>
   <p class="finding">The tribunals already exist; what is missing is the computational layer.</p>
@@ -228,7 +228,7 @@
 
     <div class="controls">
       <div class="filters">
-        <button class="on" data-f="all">All · <span data-c="all">…</span></button>
+        <button class="on" aria-pressed="true" data-f="all">All · <span data-c="all">…</span></button>
         <button data-f="DIFC">DIFC · <span data-c="DIFC">…</span></button>
         <button data-f="ADGM">ADGM · <span data-c="ADGM">…</span></button>
         <button data-f="SICC">SICC · <span data-c="SICC">…</span></button>
@@ -300,14 +300,14 @@
 <section class="section">
   <h2>All judgments</h2>
   <div class="filter-row">
-    <input type="text" id="searchBox" placeholder="Search case numbers, parties, judges, instruments…">
-    <select id="tribunalFilter">
+    <input type="text" id="searchBox" aria-label="Search judgments" placeholder="Search case numbers, parties, judges, instruments…">
+    <select id="tribunalFilter" aria-label="Filter by tribunal">
       <option value="">All tribunals</option>
       <option value="DIFC Courts">DIFC Courts</option>
       <option value="ADGM Courts">ADGM Courts</option>
       <option value="Singapore International Commercial Court">SICC</option>
     </select>
-    <select id="claimFilter">
+    <select id="claimFilter" aria-label="Filter by claim type">
       <option value="">All claim types</option>
     </select>
   </div>
@@ -388,43 +388,11 @@ async function loadCorpus(){
     });
     return { corpus, source: 'live' };
   } catch (e) {
-    console.warn('atlas: live data fetch failed, using synth fallback —', e.message);
-    return { corpus: synthCorpus(), source: 'synth' };
+    // No synthetic stand-in: a page of invented scores under plausible
+    // case numbers is worse than an empty grid with a reason.
+    console.error('atlas: could not load data/judgments.json:', e.message);
+    return { corpus: [], source: 'error', error: e.message };
   }
-}
-
-function synthCorpus(){
-  const rng = mulberry32(20260429);
-  function score(p2, p1){
-    const r = rng();
-    if(r < p2) return 2;
-    if(r < p2+p1) return 1;
-    return 0;
-  }
-  const out = [];
-  for(let i=0;i<32;i++){
-    const seq = String(i+1).padStart(3,'0');
-    out.push({ id:`CFI ${seq}/2024`, tribunal:'DIFC',
-      scores:[score(.78,.16),score(.78,.16),score(.78,.16),score(.85,.13),score(.72,.20),score(.74,.20)],
-      sp:[2,2], pinned:false, raw:null });
-  }
-  for(let i=0;i<76;i++){
-    const seq = String(i+1).padStart(3,'0');
-    out.push({ id:`ADGMCFI-${seq}/2024`, tribunal:'ADGM',
-      scores:[score(.93,.06),score(.91,.07),score(.94,.05),score(.92,.07),score(.88,.10),score(.90,.08)],
-      sp:[2,2], pinned:false, raw:null });
-  }
-  // SICC: 80 entries to match the post-expansion canonical corpus
-  // (188 = 32 DIFC + 76 ADGM + 80 SICC). Earlier the synth fallback
-  // emitted only 13 SICC entries, leaving the page silently lying
-  // about the headline "188 fingerprints" claim when live data was
-  // unreachable.
-  for(let i=0;i<80;i++){
-    out.push({ id:`SIC/S/${String(i+1).padStart(3,'0')}/2024`, tribunal:'SICC',
-      scores:[score(.96,.03),score(.96,.03),score(.97,.02),score(.96,.03),score(.94,.05),score(.95,.04)],
-      sp:[2,2], pinned:false, raw:null });
-  }
-  return out;
 }
 
 const PALETTE = {
@@ -537,11 +505,15 @@ function fingerprint(j, opts){
   `;
 })();
 
+// HTML-escape helper (defensive: judgment data is curated but must round-trip safely
+// through innerHTML in case a scraped field contains stray < & or quote characters).
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
 let CORPUS = [];
-let SOURCE = 'synth';
+let SOURCE = 'error';
 
 (async function main(){
-  const { corpus, source } = await loadCorpus();
+  const { corpus, source, error } = await loadCorpus();
   CORPUS = corpus;
   SOURCE = source;
   const srcEl = document.getElementById('src');
@@ -549,7 +521,7 @@ let SOURCE = 'synth';
     srcEl.className = source === 'live' ? 'src live' : 'src';
     srcEl.textContent = source === 'live'
       ? '✓ live · loaded from data/judgments.json'
-      : '↺ synth fallback · open via the deployed page for live scores';
+      : '✕ data/judgments.json did not load';
   }
   const counts = { all: corpus.length, DIFC:0, ADGM:0, SICC:0 };
   corpus.forEach(j => { if(counts[j.tribunal] !== undefined) counts[j.tribunal]++; });
@@ -561,8 +533,15 @@ function renderGrid(){
   const grid = document.getElementById('grid');
   if(!grid) return;
   grid.innerHTML = '';
+  if(SOURCE !== 'live'){
+    grid.innerHTML = '<p role="alert" style="grid-column:1/-1;padding:24px">Could not load <code>data/judgments.json</code>, so no judgments are shown. If you opened this file directly, serve the repo root instead: <code>python3 -m http.server 8001</code>, then open <code>http://127.0.0.1:8001/dashboard/</code>.</p>';
+    return;
+  }
   CORPUS.forEach((j, idx)=>{
     const cell = document.createElement('div');
+    cell.tabIndex = 0;
+    cell.setAttribute('role', 'button');
+    cell.setAttribute('aria-label', `${j.id}, ${j.tribunal}: open score detail`);
     cell.className = 'cell' + (j.pinned ? ' pinned' : '');
     cell.dataset.tribunal = j.tribunal;
     cell.dataset.idx = idx;
@@ -573,9 +552,12 @@ function renderGrid(){
       <span class="atlas-tag">${String(idx+1).padStart(3,'0')}</span>
       <span class="score">${mean}</span>
       ${fingerprint(j)}
-      <span class="id">${j.id}</span>
+      <span class="id">${esc(j.id)}</span>
     `;
     cell.addEventListener('click', ()=>openModal(idx));
+    cell.addEventListener('keydown', e=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(idx); }
+    });
     grid.appendChild(cell);
   });
   applyFilter('all');
@@ -604,8 +586,12 @@ function applyFilter(f){
 
 document.querySelectorAll('.atlas-scope .filters button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.atlas-scope .filters button').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.atlas-scope .filters button').forEach(b=>{
+      b.classList.remove('on');
+      b.setAttribute('aria-pressed', 'false');
+    });
     btn.classList.add('on');
+    btn.setAttribute('aria-pressed', 'true');
     applyFilter(btn.dataset.f);
   });
 });
@@ -621,9 +607,6 @@ function openModal(idx){
   modalArt.innerHTML = fingerprint(j, {size:380});
   const total = j.scores.reduce((a,b)=>a+b,0);
   const mean = total / j.scores.length;
-  // HTML-escape helper (defensive: judgment data is curated but must round-trip safely
-  // through innerHTML in case a scraped field contains stray < & or quote characters).
-  const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const safeUrl = u => { try { const url = new URL(u); return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : ''; } catch(_) { return ''; } };
   const labels = [
     ['PR1','Cites a written rule the reader can look up'],
@@ -639,8 +622,8 @@ function openModal(idx){
     return `<tr><td class="k">${k}</td><td>${desc}</td><td class="v"><span class="atlas-bar"><i style="width:${w}%"></i></span>${s}</td></tr>`;
   }).join('');
   const sps = `
-    <tr><td class="k">SP1</td><td>Separation of powers</td><td class="v"><span class="atlas-bar"><i style="width:${j.sp[0]/2*100}%"></i></span>${j.sp[0]}</td></tr>
-    <tr><td class="k">SP2</td><td>Composable appeal path</td><td class="v"><span class="atlas-bar"><i style="width:${j.sp[1]/2*100}%"></i></span>${j.sp[1]}</td></tr>
+    <tr><td class="k">SP1</td><td>Separation of powers <small>(tribunal-level, not scored per judgment)</small></td><td class="v"><span class="atlas-bar"><i style="width:${j.sp[0]/2*100}%"></i></span>${j.sp[0]}</td></tr>
+    <tr><td class="k">SP2</td><td>Composable appeal path <small>(tribunal-level, not scored per judgment)</small></td><td class="v"><span class="atlas-bar"><i style="width:${j.sp[1]/2*100}%"></i></span>${j.sp[1]}</td></tr>
   `;
 
   const r = j.raw || {};

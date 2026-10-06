@@ -136,6 +136,9 @@
               }
             ]
           },
+          "awarded_is_final": {
+            "type": "boolean"
+          },
           "contract_cap_aed": {
             "oneOf": [
               {
@@ -161,6 +164,7 @@
         "required": [
           "after_contract_cap_aed",
           "awarded_aed",
+          "awarded_is_final",
           "contract_cap_aed",
           "was_390_2_varied",
           "was_contract_capped"

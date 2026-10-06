@@ -15,7 +15,7 @@ to do so. Open a GitHub issue using the `replication-attempt` template
 
 The Docker image at the repository root runs the full corpus through
 `make test` in one command. Reproducibility scripts live under
-`scripts/`. The pre-registered analysis pipeline is in
+`scripts/`. The analysis plan and stop rules are in
 `PREREGISTRATION.md`.
 
 The author will accept co-authorship offers on the next paper revision
@@ -111,8 +111,9 @@ Review and certification follow the process in
 By submitting a contribution, you agree that:
 
 - Code contributions are licensed under the **MIT License**.
-- Data contributions (under `data/`) are licensed under
-  **CC-BY-4.0**.
+- Data contributions (under `data/`) are licensed under the
+  **Habeas Protocol Structured-Metadata Licence v1**
+  (`LICENSES/HABEAS-METADATA.txt`).
 - You have the right to submit the contribution under those terms.
 
 ## Getting help

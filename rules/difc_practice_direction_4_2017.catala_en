@@ -91,7 +91,15 @@ The encoding combines the three sources as follows:
   - principal = reasonable_costs × 0.80          (practice convention)
   - in_breach iff days_paid_after_order > 14     (RDC 38.40)
   - interest = principal × 0.09 × accrued/365    (PD 4/2017)
-  - accrued = days_paid_after_order - 14         (RDC 38.40 deadline)
+  - accrued = days_paid_after_order if in breach, else 0
+        (PD 4/2017: interest runs "from the date the judgment is
+        entered", so once the 14-day window is missed it accrues from
+        the order date, not from the deadline. ARB 008/2026 para 3 says
+        the same in terms: "from the date of this Order".)
+
+Corrected 2026-10-05: this module previously accrued from the deadline
+(days_paid_after_order - 14), which understated interest by 14 days and
+disagreed with trace-02.
 
 This composition is so consistent across DIFC arbitration costs orders
 that the corpus has converged on a near-formula — captured here as a
@@ -140,7 +148,7 @@ scope OutstandingArbitrationCosts:
     ## "In breach" iff payment landed past the deadline.
     let in_breach equals claim.days_paid_after_order > claim.deadline_days in
     let accrued equals
-      if in_breach then claim.days_paid_after_order - claim.deadline_days
+      if in_breach then claim.days_paid_after_order
       else 0.00
     in
     let interest equals
@@ -188,8 +196,8 @@ scope TestPD4_PaidOnTime:
 
 scope TestPD4_Unpaid61Days:
   definition award equals composite.award
-  ## Receiver remained unpaid 61 days past the order — 47 days past
-  ## the deadline.
+  ## Receiver remained unpaid 61 days past the order. Interest runs
+  ## from the order date: 61 days, not 47.
   definition composite.claim equals
     ArbitrationCostsClaim {
       -- reasonable_costs_aed: 95982.26
@@ -199,6 +207,27 @@ scope TestPD4_Unpaid61Days:
       -- simple_interest_rate: 0.09
     }
   assertion award.in_breach = true
+  assertion award.days_accrued = 61.0
+
+#[test] declaration scope TestPD4_OneDayLate:
+  composite scope OutstandingArbitrationCosts
+  output award content ArbitrationCostsAward
+
+scope TestPD4_OneDayLate:
+  definition award equals composite.award
+  ## Trace-02 scenario "unpaid one day late": day 15 after the order.
+  ## 76,785.808 × 0.09 × 15/365 = 284.00 (to the fils).
+  definition composite.claim equals
+    ArbitrationCostsClaim {
+      -- reasonable_costs_aed: 95982.26
+      -- discount_rate: 0.80
+      -- deadline_days: 14.0
+      -- days_paid_after_order: 15.0
+      -- simple_interest_rate: 0.09
+    }
+  assertion award.days_accrued = 15.0
+  assertion award.interest_aed > 283.995
+  assertion award.interest_aed < 284.005
 
 #[test] declaration scope TestPD4_EIBORPreEffectiveDateRegime:
   composite scope OutstandingArbitrationCosts

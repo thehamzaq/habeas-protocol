@@ -26,7 +26,7 @@ specifically *not* a random draw, and it is *not* claimed to be
 representative of the population of all rulings each tribunal has
 ever issued.
 
-The pre-registration (`PREREGISTRATION.md` §2) states the same
+The analysis plan (`PREREGISTRATION.md` §2) states the same
 sampling frame for any future analysis run on this corpus.
 
 ---

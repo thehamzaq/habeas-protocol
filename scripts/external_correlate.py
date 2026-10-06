@@ -73,37 +73,61 @@ def days_to_judgment(entry):
     return None  # Implementation deferred; honest "unknown" rather than guessed.
 
 
+# Appellate outputs, by filename. Token-anchored: a bare "_ca" substring
+# also matches "_Capital" / "_case" and marked first-instance files as
+# appellate.
+_APPELLATE_FILE = re.compile(
+    r"sgca|adgmca|court[_-]of[_-]appeal|(?:^|[_-])ca[_-]", re.I)
+_APPELLATE_ENTRY = re.compile(r"SGCA|ADGMCA|Court of Appeal", re.I)
+
+
 def was_appealed(entry, all_text_files):
-    """True if some CA/Court of Appeal text mentions the case_no."""
+    """True if some CA/Court of Appeal text mentions the case_no.
+
+    None for entries that are themselves appellate judgments: their own
+    text carries the case number, so the scan would match itself.
+    """
     cn = entry.get("case_no")
     if not cn:
         return None
+    own = " ".join(str(entry.get(k) or "") for k in ("case_no", "url", "division"))
+    if _APPELLATE_ENTRY.search(own):
+        return None
     pat = re.compile(re.escape(cn), flags=re.I)
     for f in all_text_files:
-        if any(tag in f.name.lower() for tag in ("court_of_appeal", "ca_", "_ca", "sgca")):
+        if _APPELLATE_FILE.search(f.name):
             try:
                 text = f.read_text(errors="replace")
-                if pat.search(text):
-                    return True
-            except Exception:
+            except OSError as e:
+                print(f"  WARN unreadable {f.name}: {e}")
                 continue
+            if pat.search(text):
+                return True
     return False
 
 
 def spearman_rank_corr(xs, ys):
-    """Spearman rank correlation. Returns (rho, n) where rho in [-1, 1]."""
+    """Spearman rank correlation: Pearson r on average ranks.
+
+    The 1 - 6*sum(d^2)/(n(n^2-1)) shortcut is only valid without ties.
+    Both variables here are heavily tied (a boolean, and a 13-level
+    score), and the shortcut reported the wrong sign.
+    Returns (rho, n); rho is None if either variable is constant.
+    """
     pairs = [(x, y) for x, y in zip(xs, ys)
              if x is not None and y is not None]
-    if len(pairs) < 4:
-        return (None, len(pairs))
     n = len(pairs)
-    xs = [p[0] for p in pairs]
-    ys = [p[1] for p in pairs]
-    rx = _ranks(xs)
-    ry = _ranks(ys)
-    d2 = sum((a - b) ** 2 for a, b in zip(rx, ry))
-    rho = 1 - (6 * d2) / (n * (n * n - 1))
-    return (round(rho, 4), n)
+    if n < 4:
+        return (None, n)
+    rx = _ranks([p[0] for p in pairs])
+    ry = _ranks([p[1] for p in pairs])
+    mx, my = sum(rx) / n, sum(ry) / n
+    sxx = sum((a - mx) ** 2 for a in rx)
+    syy = sum((b - my) ** 2 for b in ry)
+    if sxx == 0 or syy == 0:
+        return (None, n)
+    cov = sum((a - mx) * (b - my) for a, b in zip(rx, ry))
+    return (round(cov / (sxx * syy) ** 0.5, 4), n)
 
 
 def _ranks(values):
@@ -132,7 +156,12 @@ def main():
     print(f"Loaded {len(judgments)} judgments")
 
     # Index raw text files
-    text_files = list(RAW_ROOT.rglob("*.txt")) if RAW_ROOT.exists() else []
+    text_files = sorted(RAW_ROOT.rglob("*.txt")) if RAW_ROOT.exists() else []
+    if not text_files:
+        raise SystemExit(
+            f"No raw text under {RAW_ROOT}. This analysis needs the scraped "
+            "corpus (gitignored); run scripts/fetch_*.py first. Refusing to "
+            "overwrite the result file with all-zero metrics.")
     print(f"Indexed {len(text_files)} raw text files for citation/appeal scan")
 
     rows = []

@@ -18,6 +18,16 @@ Composite walk:
 from typing import List
 
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from _inputs import as_bool, as_choice  # noqa: E402
+
+OUTCOMES = frozenset({"Dismissed", "AllowedInPart", "AllowedInFull"})
+
+
 def iaa_s31_disposition(grounds: List[dict]) -> dict:
     """Walk the IAA s 31 grounds and return the disposition.
 
@@ -34,6 +44,10 @@ def iaa_s31_disposition(grounds: List[dict]) -> dict:
     treated as is_severable=false (the conservative reading).
     """
     n_pleaded = len(grounds)
+    for g in grounds:
+        as_choice(g, "court_outcome", OUTCOMES)
+        if "is_severable" in g:
+            as_bool(g, "is_severable")
     n_dismissed = sum(1 for g in grounds if g["court_outcome"] == "Dismissed")
     n_partial = sum(1 for g in grounds if g["court_outcome"] == "AllowedInPart")
     n_full = sum(1 for g in grounds if g["court_outcome"] == "AllowedInFull")
@@ -50,7 +64,7 @@ def iaa_s31_disposition(grounds: List[dict]) -> dict:
     n_full_severable_relief = sum(
         1 for g in grounds
         if g["court_outcome"] == "AllowedInFull"
-        and bool(g.get("is_severable", False))
+        and g.get("is_severable", False) is True
         and is_outside_scope(g)
     )
     n_full_dispositive = n_full - n_full_severable_relief
@@ -90,10 +104,10 @@ def iaa_s31_5_adjournment(inputs: dict) -> dict:
     The adjournment / security order is lawful only where a parallel
     set-aside application is pending at the seat.
     """
-    lawful = bool(inputs["setting_aside_pending_at_seat"])
+    lawful = as_bool(inputs, "setting_aside_pending_at_seat")
     return {
-        "proceedings_adjourned": bool(inputs["adjournment_ordered"]) and lawful,
-        "security_required": bool(inputs["security_ordered"]) and lawful,
+        "proceedings_adjourned": as_bool(inputs, "adjournment_ordered") and lawful,
+        "security_required": as_bool(inputs, "security_ordered") and lawful,
         "adjournment_engaged_lawfully": lawful,
     }
 
@@ -109,11 +123,15 @@ def iaa_s31_2_c_infra_petita(conditions: dict, court_outcome_on_31_2_c: str) -> 
     all four conditions met; consistent iff (succeeds → AllowedInFull)
     AND (¬succeeds → Dismissed).
     """
+    if court_outcome_on_31_2_c not in OUTCOMES:
+        raise ValueError(
+            f"court_outcome_on_31_2_c must be one of {sorted(OUTCOMES)}, "
+            f"got {court_outcome_on_31_2_c!r}")
     challenge_succeeds = (
-        bool(conditions["point_properly_before_tribunal"])
-        and bool(conditions["point_essential_to_dispute"])
-        and bool(conditions["tribunal_completely_failed_to_consider"])
-        and bool(conditions["prejudice_demonstrated"])
+        as_bool(conditions, "point_properly_before_tribunal")
+        and as_bool(conditions, "point_essential_to_dispute")
+        and as_bool(conditions, "tribunal_completely_failed_to_consider")
+        and as_bool(conditions, "prejudice_demonstrated")
     )
     if challenge_succeeds:
         consistent = (court_outcome_on_31_2_c == "AllowedInFull")

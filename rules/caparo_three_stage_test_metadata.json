@@ -8,7 +8,8 @@
     }
   ],
   "test_scopes": [
-    "TestCaparoAllStagesMet",
+    "TestCaparoEstablishedCategory",
+    "TestCaparoNovelAllStagesMet",
     "TestCaparoFailsOnPolicyGate"
   ],
   "certification": {

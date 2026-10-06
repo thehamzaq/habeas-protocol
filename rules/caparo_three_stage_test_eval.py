@@ -19,12 +19,18 @@ Output `path` is one of:
   - NovelCategory_FailsAtStage
 """
 
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _inputs import as_bool  # noqa: E402
+
 
 def caparo_test(facts: dict) -> dict:
-    is_established = bool(facts["is_established_category"])
-    foreseeable = bool(facts["harm_reasonably_foreseeable"])
-    proximity = bool(facts["sufficient_proximity"])
-    fjr = bool(facts["fair_just_reasonable_to_impose"])
+    is_established = as_bool(facts, "is_established_category")
+    foreseeable = as_bool(facts, "harm_reasonably_foreseeable")
+    proximity = as_bool(facts, "sufficient_proximity")
+    fjr = as_bool(facts, "fair_just_reasonable_to_impose")
     raw_n = int(foreseeable) + int(proximity) + int(fjr)
     novel_pass = foreseeable and proximity and fjr
     if is_established:

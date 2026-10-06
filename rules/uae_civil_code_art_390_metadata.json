@@ -8,8 +8,9 @@
     }
   ],
   "test_scopes": [
-    "TestArt390CapEngages",
-    "TestArt390NoExaggerationFinding"
+    "TestArt390ContractCapOnly_Trace04",
+    "TestArt390NoCapNoVariation",
+    "TestArt390BothLayersEngage"
   ],
   "certification": {
     "state": "draft",

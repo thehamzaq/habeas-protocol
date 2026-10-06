@@ -58,6 +58,11 @@ def bootstrap_diff_ci(a, b, n_resamples=N_RESAMPLES, alpha=ALPHA, rng=None):
     return point, lo, hi
 
 
+INTERPRETATION = (
+    "These are case-resampling (ordinary nonparametric bootstrap) intervals: judgments are resampled with replacement within each tribunal. They describe how much each mean moves with which cases are in the sample. They do not capture grader error, and they are not population intervals: the 188 entries are a convenience sample assembled by the procedures documented in data/sources.md, not a random draw from a defined population of judgments."
+)
+
+
 def main():
     judgments = json.loads(JUDGMENTS.read_text())
     by_tribunal: dict[str, list[float]] = {}
@@ -120,6 +125,7 @@ def main():
               f"[{lo:+.3f}, {hi:+.3f}] | {sig} |")
 
     OUTPUT_JSON.write_text(json.dumps({
+        "interpretation": INTERPRETATION,
         "n_resamples": N_RESAMPLES,
         "alpha": ALPHA,
         "seed": SEED,

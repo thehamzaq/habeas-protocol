@@ -1,6 +1,18 @@
-# Pre-registration — Habeas Protocol v0.2 corpus analyses
+# Analysis plan and stop rules: Habeas Protocol v0.2 corpus analyses
 
-**Pre-registration date:** 2026-05-07
+> **Status, added 2026-10-05 (see §6).** This file was first titled
+> "Pre-registration". That label holds for only part of it. The file
+> and the first results of the static analyses (H1, H6, H8) entered the
+> repository in the same commit (`8f24a0c`, 2026-05-07), so for those
+> three the record cannot show that the hypotheses came first, and they
+> should be read as an analysis plan published with its results. The
+> API-dependent analyses (H2, H3, H4, H5, H7) had not been run when
+> this file was committed and have not been run since, so for those
+> five the stop rules below do precede any result. Nothing here is
+> timestamped by a third party; the only evidence of ordering is the
+> git history. The filename is kept so existing references resolve.
+
+**Plan committed:** 2026-05-07
 **Author:** Hamza Qureshi (Maxim Labs)
 **Repository:** https://github.com/thehamzaq/habeas-protocol
 **Last committed SHA before pre-registration:** `6a77bdb` (`fix CI: deterministic rule schemas + drop decks`). The commit immediately following this file's addition pins the pre-registration to a specific repo state; any subsequent changes to the analysis pipeline must be appended to §6 (Amendments) below with a date and rationale rather than edited into §1–§5 in place.
@@ -185,4 +197,22 @@ Every change to this document after the initial commit must be
 appended to this section with a date and rationale. The original
 hypotheses and stop rules above must not be edited in place.
 
-(none yet)
+**2026-10-05. Relabelled, and H8 recomputed.**
+
+1. *Label.* Title changed from "Pre-registration" to "Analysis plan
+   and stop rules" and the status note added at the top, for the reason
+   given there. Item 1 of the list in the preamble ("The hypotheses
+   were stated before the data was collected") is not supportable for
+   any hypothesis: the corpus was committed on 2026-04-28, before this
+   file. The hypotheses and stop rules in §1 to §5 are unchanged.
+2. *H8 computation.* `scripts/external_correlate.py` computed Spearman's
+   ρ with the shortcut 1 − 6Σd²/(n(n²−1)), which is invalid for tied
+   ranks, and its appeal flag matched filenames containing `_ca`
+   (including `_Capital`) and counted appellate entries as appealed.
+   Both were corrected. Result changed from ρ = +0.32 / +0.12
+   ("H8 passes") to ρ = −0.26 (appeal status, n=163) and −0.04
+   (citations, n=186). **H8 is not satisfied.** The stop rule S8 itself
+   is unchanged. Reported in `paper.md` §4.12.
+3. *H6.* Re-reading `data/robustness/lopo.json` against S6: dropping PR4
+   puts SICC (1.91) above ADGM (1.90), an ordering reversal that the
+   first write-up did not report. Now reported in `paper.md` §4.7.

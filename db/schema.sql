@@ -2,7 +2,7 @@
 -- Postgres 16+
 --
 -- Two layers:
---   (1) "structured" — the 121 hand/AI-coded judgments from data/judgments.json,
+--   (1) "structured" — the 188 scored judgments (39 LLM first-pass, 149 regex-heuristic) from data/judgments.json,
 --       with their primitive scores, rules cited, and per-entry coding provenance.
 --   (2) "raw" — the scraped corpus on disk (DIFC HTML, ADGM PDFs, SICC HTML),
 --       indexed so anyone can query the bytes alongside the structured layer.

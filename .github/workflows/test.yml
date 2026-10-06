@@ -7,6 +7,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   catala:
     name: catala typecheck + interpret
@@ -84,6 +87,18 @@ jobs:
             git --no-pager diff -- 'rules/*.schema.json' rules/_index.json
             exit 1
           fi
+
+      - name: Conformance (Python evaluators + Catala #[test] scopes)
+        shell: bash
+        env:
+          HABEAS_REQUIRE_CATALA: "1"
+        run: |
+          set -euo pipefail
+          eval $(opam env)
+          make conformance
+
+      - name: Evaluator guard tests (hostile inputs, boundaries)
+        run: python3 tests/evaluator_guard_tests.py
 
       - name: Property tests for rule modules
         shell: bash

@@ -2,13 +2,13 @@
   "per_metric": {
     "subsequent_citations": {
       "n_pairs": 186,
-      "spearman_rho": 0.1226,
-      "interpretation": "positive correlation: rubric tracks this metric"
+      "spearman_rho": -0.0383,
+      "interpretation": "null correlation: rubric and metric measure different things"
     },
     "was_appealed": {
-      "n_pairs": 186,
-      "spearman_rho": 0.3222,
-      "interpretation": "positive correlation: rubric tracks this metric"
+      "n_pairs": 163,
+      "spearman_rho": -0.2557,
+      "interpretation": "negative correlation: rubric inversely tracks this metric"
     },
     "days_to_judgment": {
       "n_pairs": 0,
@@ -95,7 +95,7 @@
       "tribunal": "DIFC Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 1,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -207,7 +207,7 @@
       "tribunal": "DIFC Courts",
       "rubric_mean": 1.6666666666666667,
       "subsequent_citations": 4,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -327,7 +327,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 2,
       "subsequent_citations": 31,
-      "was_appealed": true,
+      "was_appealed": false,
       "days_to_judgment": null
     },
     {
@@ -519,7 +519,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 2,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -527,7 +527,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 2,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -535,7 +535,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -543,7 +543,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.6666666666666667,
       "subsequent_citations": 1,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -551,7 +551,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 0,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -559,7 +559,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 2,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -567,7 +567,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -575,7 +575,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.6666666666666667,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -583,7 +583,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 1,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -599,7 +599,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 4,
-      "was_appealed": false,
+      "was_appealed": true,
       "days_to_judgment": null
     },
     {
@@ -607,7 +607,7 @@
       "tribunal": "ADGM Courts",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 2,
-      "was_appealed": false,
+      "was_appealed": true,
       "days_to_judgment": null
     },
     {
@@ -991,7 +991,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 1,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1007,7 +1007,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 0,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1015,7 +1015,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.3333333333333333,
       "subsequent_citations": 0,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1023,7 +1023,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 0,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1039,7 +1039,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1047,7 +1047,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 2,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1055,7 +1055,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1063,7 +1063,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 1,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1343,7 +1343,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.8333333333333333,
       "subsequent_citations": 1,
-      "was_appealed": true,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1351,7 +1351,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1359,7 +1359,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.3333333333333333,
       "subsequent_citations": 0,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     },
     {
@@ -1519,7 +1519,7 @@
       "tribunal": "Singapore International Commercial Court",
       "rubric_mean": 1.5,
       "subsequent_citations": 1,
-      "was_appealed": false,
+      "was_appealed": null,
       "days_to_judgment": null
     }
   ]

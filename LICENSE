@@ -3,10 +3,17 @@ This repository is dual-licensed.
   Code (everything except files under data/) is licensed under the MIT License.
   See LICENSES/MIT.txt for the full text.
 
-  Dataset (everything under data/, including the structured judgments corpus
-  in data/judgments.json and the v0.2 primitives schema in data/primitives.json)
-  is licensed under the Creative Commons Attribution 4.0 International License
-  (CC-BY-4.0). See LICENSES/CC-BY-4.0.txt for the full text.
+  Structured metadata under data/ (the files listed in
+  LICENSES/HABEAS-METADATA.txt, including data/judgments.json and
+  data/primitives.json) is licensed under the Habeas Protocol
+  Structured-Metadata Licence v1 (non-commercial research, takedown-respecting).
+  See LICENSES/HABEAS-METADATA.txt for the full text.
+
+  Source judgments are not redistributed by this repository and are not
+  covered by either licence; they remain the property of the issuing court.
+  Releases made before the May 2026 terms-of-service audit carried a CC-BY-4.0
+  notice for data/; LICENSES/CC-BY-4.0.txt is kept for reference to those
+  releases only.
 
 ----------------------------------------------------------------------
 

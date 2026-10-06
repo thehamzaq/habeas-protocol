@@ -28,6 +28,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
+from _catala import find_catala  # noqa: E402
+
 from difc_rdc_part_38_eval import assess_standard_basis  # noqa: E402
 
 
@@ -72,7 +74,7 @@ def run_catala(case):
     skip the cross-check and rely on the Python-vs-expected match alone (a
     weaker conformance, but better than failing CI when opam is missing).
     """
-    catala = shutil.which("catala")
+    catala = find_catala()
     if not catala:
         return None
     rule_path = HERE / "difc_rdc_part_38.catala_en"
