@@ -539,14 +539,19 @@ def _audit_log(module: str, scope: str, inputs: dict,
     if failure is None:
         return
     # The full row was rejected. Inputs are request-controlled (a \u0000
-    # is enough to make jsonb refuse them), so a caller must not be able to
-    # run a rule and leave no trace: record a reduced row that keeps the
-    # module, scope, outcome and input hash.
-    sys.stderr.write(f"[api] audit row rejected, writing reduced row: {failure}\n")
-    reduced = dict(row, inputs={"_audit": "inputs omitted: full row rejected"},
-                   output=None, source_label=None,
-                   error=("audit: full row rejected; " + (row["error"] or ""))[:4000]
-                   .replace("\x00", ""))
+    # is enough to make jsonb refuse them), so a caller must be able neither
+    # to run a rule and leave no trace nor to strip their inputs from the
+    # record. The fallback row keeps inputs and output as JSON text: inside
+    # a string the escape is stored as literal characters, which jsonb takes.
+    sys.stderr.write(f"[api] audit row rejected, writing fallback row: {failure}\n")
+    reduced = dict(
+        row,
+        inputs={"_audit": "full row rejected; inputs kept as JSON text",
+                "inputs_json": canonical_inputs},
+        output=None if output is None else {"output_json": json.dumps(output, sort_keys=True)},
+        source_label=(row["source_label"] or "").replace("\x00", "") or None,
+        error=("audit: full row rejected; " + (row["error"] or ""))[:4000].replace("\x00", ""),
+    )
     failure = _insert_audit_row(reduced)
     if failure is None:
         return
@@ -590,7 +595,12 @@ def _insert_audit_row(row: dict) -> str | None:
         return f"{type(e).__name__}: {e}"
     # psql's exit status was previously ignored, so a rejected insert
     # looked like success.
-    return None if out.returncode == 0 else (out.stderr.strip() or f"psql exit {out.returncode}")
+    if out.returncode == 0:
+        return None
+    # First line only: psql's later lines quote the failing statement, which
+    # carries the request inputs, and those must not reach the server log.
+    reason = (out.stderr.strip().splitlines() or [""])[0][:200]
+    return reason or f"psql exit {out.returncode}"
 
 
 def handle_rule_run(_qs, body: bytes):
