@@ -27,9 +27,9 @@ Only the compound mark "Habeas Protocol" is associated with this project.
 
 ## What the open licences do *not* grant
 
-The MIT (code) and CC-BY-4.0 (data) licences in this repository grant
-broad rights to use, copy, modify, and redistribute the code and the
-dataset. They do **not** grant any rights in the names "Habeas Protocol"
+The MIT licence (code) and the Habeas Protocol Structured-Metadata
+Licence v1 (data, non-commercial research) in this repository grant
+rights to use the code and the structured metadata on their own terms. They do **not** grant any rights in the names "Habeas Protocol"
 or "Maxim Labs", or in any logo, wordmark, or visual identity associated
 with the project.
 

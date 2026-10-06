@@ -114,7 +114,7 @@ After all six scripts complete, regenerate the paper-side numbers:
 ```bash
 python3 scripts/check_grading_provenance.py    # confirms metadata still pinned
 make conformance                               # confirms rule library still green
-make property-tests                            # confirms 1930 invariants pass
+make property-tests                            # confirms 1980 invariants pass
 ```
 
 Then update `paper.md` §4.6–§4.11 with the actual stop-rule outcomes

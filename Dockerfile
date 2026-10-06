@@ -1,7 +1,7 @@
 # Habeas Protocol — reproducible build environment.
 #
 # Goal: clone the repo, run `docker build -t habeas .`, then
-#       `docker run --rm habeas make test` and have all 1930 property
+#       `docker run --rm habeas make test` and have all 1980 property
 #       invariants + every Catala typecheck/interpret + every conformance
 #       test pass — without touching the host.
 #

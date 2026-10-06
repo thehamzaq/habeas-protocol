@@ -331,7 +331,7 @@ The constructive claim is that the protocol crosses legal-family boundaries. The
 
 `spike/trace-07/`. *DEC 001/2025 — Techteryx Ltd v IG and others* (DIFC Digital Economy Court, Andrew Black KC, 3 April 2026). Norwich Pharmacal[^norwich] + Bankers Trust[^bankers] + DIFC RDC 28.52 third-party disclosure jurisdiction, applied to a USD 456 million stablecoin-reserves tracing dispute. The first trace in DIFC's purpose-built Digital Economy Court — the venue most directly aligned with the digital-commerce claim type the paper's framing has targeted from §1.
 
-The rule is a three-stage decision tree: (i) does a wrong support a constructive-trust claim against the recipient of the misapplied funds (Bankers Trust threshold)? (ii) is the third party innocently mixed up in the transaction sufficient to trigger the Norwich Pharmacal duty? (iii) does RDC 28.52 supply the procedural route in DIFC? The predicate composes all three gates — nine substantive checks in total — and reproduces the court's reasoning at para 24 exactly. Disposition: orders granted under both heads against the named third parties; the disclosure injunction enforces.
+The rule has three independent routes, any one of which makes the order grantable: (i) does a wrong support a constructive-trust claim against the recipient of the misapplied funds (Bankers Trust threshold)? (ii) is the third party innocently mixed up in the transaction sufficient to trigger the Norwich Pharmacal duty? (iii) does RDC 28.52 supply the procedural route in DIFC? The court found all three made out. The predicate evaluates all three (nine substantive checks in total) and reproduces the court's reasoning at para 24 exactly. Disposition: orders granted under both heads against the named third parties; the disclosure injunction enforces.
 
 The constructive claim is methodological coverage of the FinTech / digital-asset vertical the courts increasingly handle. Stablecoin-tracing, smart-contract custody disputes, and similar fact patterns route through exactly this combination of common-law equitable jurisdiction and the local procedural rule — and the protocol now demonstrates that route end-to-end.
 
@@ -647,7 +647,7 @@ who replicates the procedure end-to-end and publishes their results.
 - Trace #6 GNC Holdings v ONI Global ([2025] SGHC(I) 25, SICC) — partial NY Convention refusal under Singapore IAA s 31; para 185(a)–(c) reproduced exactly
 - Trace #7 Techteryx v IG (DIFC Digital Economy Court) — third-party-jurisdiction gate (Norwich Pharmacal + Bankers Trust + RDC 28.52); USD 456M stablecoin tracing; all 9 checks reproduce para 24
 - Saturation-pattern delta on 10× ADGM expansion: **−0.02** (1.93 → 1.91)
-- Rule library: **12 Catala modules** (16 named scopes), all green under `catala interpret --no-stdlib`; **1930 property-test invariants** pass under random inputs against conjunctive / monotonicity / disposition properties
+- Rule library: **12 Catala modules** (16 named scopes), all green under `catala interpret --no-stdlib`; **1980 property-test invariants** pass under random inputs against conjunctive / monotonicity / disposition properties
 - Corpus linking after May 2026 sweep: SICC **100%** (26/26 raw docs linked), ADGM **90.8%** (316/348), DIFC **28.2%** (166/588 — structural ceiling: 32 coded of 142 discoverable)
 
 ## Appendix B — Files
@@ -666,7 +666,7 @@ who replicates the procedure end-to-end and publishes their results.
 - `api/server.py` — 18-endpoint Postgres-backed read-only API; `api/openapi.yaml` — OpenAPI 3.0 spec.
 - `clients/python/`, `clients/typescript/` — first-party clients wrapping every endpoint.
 - `db/schema.sql` — 8 tables, 3 views, FTS index; `rule_runs` audit table.
-- `tests/property_tests.py` — 1930 property invariants exercised against random inputs.
+- `tests/property_tests.py` — 1980 property invariants exercised against random inputs.
 - `LICENSE`, `LICENSES/`, `CONTRIBUTING.md`, `SECURITY.md`, `TRADEMARK.md`, `TAKEDOWN.md` — open-source governance: MIT (code) + Habeas Protocol Structured-Metadata Licence v1 (non-commercial research, takedown-respecting; `data/raw/` source judgments are gitignored on ToS grounds) + Mozilla/Rust-style trademark policy + private vulnerability disclosure + 7-day takedown commitment.
 - `scripts/{fetch_difc,fetch_adgm_firecrawl,fetch_adgm_pages,strip_html,migrate_to_postgres,triage_adgm,build_digests,grade_borderline,merge_adgm_codings,build_trace_outputs,build_rule_schemas,bootstrap_rule_metadata}.{py,sh}` — corpus pipeline and reproducibility scripts.
 - `scripts/{build_falsification_set,analyse_falsification,build_comparison_set,analyse_comparison,select_irr_sample,score_irr,plan_sicc_expansion,bootstrap_rule_sources,check_rule_drift,build_trace_discrepancies,verify_trace_discrepancies,add_dashboard_disclaimers}.py` — methodology and rule-library extensions added in this revision.
@@ -711,7 +711,7 @@ who replicates the procedure end-to-end and publishes their results.
 
 [^gnc]: *GNC Holdings LLC v ONI Global Pte Ltd* [2025] SGHC(I) 25 (Chua Lee Ming J, Simon Thorley IJ, James Allsop IJ; 21 October 2025). SICC OA 9/2025. Partial refusal of enforcement of a foreign arbitral award under SG IAA s 31; first SICC trace in this corpus (Trace #6).
 
-[^techteryx]: *Techteryx Ltd v IG (BVI) Limited and others*, DIFC Digital Economy Court, Black KC (3 April 2026). USD 456M stablecoin-reserves tracing dispute; conjunctive jurisdictional gates of Norwich Pharmacal + Bankers Trust + RDC 28.52 over a non-party financial institution. Trace #7; the first trace in DIFC's Digital Economy Court — purpose-built for digital-asset cross-border commercial disputes.
+[^techteryx]: *Techteryx Ltd v IG (BVI) Limited and others*, DIFC Digital Economy Court, Black KC (3 April 2026). USD 456M stablecoin-reserves tracing dispute; three independent disclosure routes (Norwich Pharmacal, Bankers Trust, RDC 28.52) over a non-party financial institution, all three made out. Trace #7; the first trace in DIFC's Digital Economy Court — purpose-built for digital-asset cross-border commercial disputes.
 
 [^norwich]: *Norwich Pharmacal Co v Customs and Excise Commissioners* [1974] AC 133 (HL). Equitable jurisdiction to compel a non-party who has become "mixed up" in wrongdoing to disclose information.
 
