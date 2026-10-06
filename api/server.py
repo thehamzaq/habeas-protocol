@@ -549,16 +549,35 @@ def _audit_log(module: str, scope: str, inputs: dict,
         inputs={"_audit": "full row rejected; inputs kept as JSON text",
                 "inputs_json": canonical_inputs},
         output=None if output is None else {"output_json": json.dumps(output, sort_keys=True)},
-        source_label=(row["source_label"] or "").replace("\x00", "") or None,
-        error=("audit: full row rejected; " + (row["error"] or ""))[:4000].replace("\x00", ""),
+        source_label=_jsonb_safe_text(row["source_label"]) or None,
+        error=_jsonb_safe_text("audit: full row rejected; " + (row["error"] or ""))[:4000],
     )
     failure = _insert_audit_row(reduced)
     if failure is None:
         return
-    sys.stderr.write(f"[api] AUDIT ROW LOST for {module}/{scope} sha256={sha}: {failure}\n")
+    # Last resort: a row with nothing request-controlled in it except the
+    # input hash, so no payload can make jsonb refuse it. Only an unreachable
+    # database loses this one.
+    sys.stderr.write(f"[api] audit fallback row rejected, writing minimal row: {failure}\n")
+    minimal = dict(
+        reduced,
+        module=_jsonb_safe_text(module), scope=_jsonb_safe_text(scope),
+        inputs={"_audit": "inputs omitted: full and fallback rows rejected"},
+        output=None, source_label=None,
+        error="audit: full and fallback rows rejected",
+    )
+    failure = _insert_audit_row(minimal)
+    if failure is None:
+        return
+    sys.stderr.write(f"[api] AUDIT ROW LOST sha256={sha}: {failure}\n")
     if AUDIT_REQUIRED:
         raise RuntimeError("rule run could not be recorded in the audit log; "
                            "result withheld (HABEAS_AUDIT_REQUIRED=1)")
+
+
+def _jsonb_safe_text(text: str | None) -> str:
+    """Drop what a jsonb string cannot hold: NUL and unpaired surrogates."""
+    return (text or "").replace("\x00", "").encode("utf-8", "replace").decode("utf-8")
 
 
 def _insert_audit_row(row: dict) -> str | None:
